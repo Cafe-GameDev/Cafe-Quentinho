@@ -1,4 +1,8 @@
 /.godot/
 /android/
-.env
-.aseprite
+License.txt
+*.env
+*.zip
+*.url
+*.DS_Store
+*.aseprite
