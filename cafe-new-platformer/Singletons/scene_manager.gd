@@ -10,6 +10,8 @@ var color_rect: ColorRect
 var tween: Tween
 
 func _ready() -> void:
+	GlobalEvents.scene_change_requested.connect(change_scene_to_file)
+
 	var root = get_tree().root
 	current_scene = root.get_child(root.get_child_count() - 1)
 	loaded_scenes[current_scene.scene_file_path] = current_scene

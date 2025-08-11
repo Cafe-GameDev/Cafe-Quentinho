@@ -425,3 +425,68 @@ A seguir estão os padrões de `Resource` recomendados para os sistemas mais com
     @export var event_sequence: Array[Dictionary] = []
     ```
 *   **Uso:** Um `CutsceneManager` receberia um `CutsceneData`. Ele leria o `event_sequence` passo a passo, executando cada evento em ordem: mostrando um diálogo, movendo a câmera, tocando uma animação em um personagem, etc.
+
+### 21. `AIPersonalityData`
+
+*   **Propósito:** Desacopla o *comportamento* de uma IA de suas *estatísticas*. Permite que diferentes inimigos compartilhem a mesma lógica de IA (ex: patrulha), mas com parâmetros diferentes, ou que um mesmo inimigo possa ter seu comportamento alterado dinamicamente.
+*   **Exemplo de Código (`Scripts/Resources/AIPersonalityData.gd`):**
+    ```gdscript
+    class_name AIPersonalityData
+    extends Resource
+
+    enum Behavior {
+        PATROL,  # Patrulha uma área definida
+        GUARD,   # Fica parado em um ponto, mas persegue se avistar o jogador
+        AGGRESSIVE, # Persegue o jogador ativamente
+        COWARD    # Foge do jogador quando com vida baixa
+    }
+
+    @export var behavior_type: Behavior = Behavior.PATROL
+    
+    @export_group("Parâmetros de Comportamento")
+    @export var patrol_path_node: NodePath # Para o comportamento de patrulha
+    @export var coward_health_threshold: float = 0.2 # Percentual de vida para começar a fugir
+    ```
+*   **Uso:** Um script de IA genérico em um inimigo teria uma variável `@export var personality: AIPersonalityData`. No loop de física, ele usaria uma máquina de estados (`match personality.behavior_type:`) para executar a lógica correspondente, usando os parâmetros definidos no `Resource`.
+
+### 22. `InteractableData`
+
+*   **Propósito:** Define as propriedades de um objeto interativo no mundo, permitindo que um script genérico lide com diferentes tipos de interações (ler placas, abrir portas, puxar alavancas).
+*   **Exemplo de Código (`Scripts/Resources/InteractableData.gd`):**
+    ```gdscript
+    class_name InteractableData
+    extends Resource
+
+    @export var interaction_prompt: String = "Interagir" # Ex: "Abrir Baú", "Ler Placa"
+    
+    @export_group("Eventos")
+    # Sinal a ser emitido pelo objeto quando a interação for bem-sucedida.
+    # Ex: "lever_pulled", "door_opened"
+    @export var success_signal: StringName 
+    # Animação a ser tocada no objeto durante a interação.
+    @export var animation_name: StringName
+    ```
+*   **Uso:** Um nó `Area2D` em um objeto interativo detectaria o jogador. Ao pressionar o botão de ação, o script leria o `InteractableData`, mostraria o `interaction_prompt` na UI, tocaria a `animation_name` no objeto e emitiria o `success_signal`, que seria conectado a outro sistema (ex: um gerenciador de portas).
+
+### 23. `PlayerProfileData`
+
+*   **Propósito:** Armazena dados globais do jogador que persistem entre sessões e não estão ligados a um save de personagem específico, como conquistas, moeda premium e modos de jogo desbloqueados.
+*   **Exemplo de Código (`Scripts/Resources/PlayerProfileData.gd`):**
+    ```gdscript
+    class_name PlayerProfileData
+    extends Resource
+
+    @export var player_name: String = "Player"
+    @export var total_playtime_seconds: float = 0.0
+    
+    @export_group("Moedas")
+    @export var shared_gold: int = 0 # Ouro compartilhado entre todos os saves
+    @export var premium_currency: int = 0
+
+    @export_group("Progresso Global")
+    # Um dicionário para rastrear conquistas. Ex: {"first_quest_completed": true}
+    @export var achievements: Dictionary = {}
+    # Um array de strings para modos de jogo desbloqueados. Ex: ["new_game_plus"]
+    @export var unlocked_game_modes: Array[String] = []
+    ```
+*   **Uso:** Este `Resource` seria salvo em um arquivo separado do save do jogo (ex: `user://profile.dat`). Ele seria carregado no início do jogo para verificar conquistas, popular a loja de moeda premium e determinar quais opções do menu principal estão disponíveis.

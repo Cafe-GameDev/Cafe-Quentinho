@@ -1,0 +1,290 @@
+[gd_scene load_steps=10 format=3 uid="uid://d0000000000000000000000000000000"]
+
+[ext_resource type="Script" path="res://Scripts/Player/Player.gd" id="1_player_script"]
+[ext_resource type="Script" path="res://Scripts/FSM/StateMachine.gd" id="2_state_machine_script"]
+[ext_resource type="Script" path="res://Scripts/Player/States/Idle.gd" id="3_idle_script"]
+[ext_resource type="Script" path="res://Scripts/Player/States/Run.gd" id="4_run_script"]
+[ext_resource type="Script" path="res://Scripts/Player/States/Jump.gd" id="5_jump_script"]
+[ext_resource type="Texture2D" path="res://Assets/Player/Idle/player_idle_48x48.png" id="6_idle_texture"]
+[ext_resource type="Texture2D" path="res://Assets/Player/Run/player_run_48x48.png" id="7_run_texture"]
+[ext_resource type="Texture2D" path="res://Assets/Player/Jump/player_jump_48x48.png" id="8_jump_texture"]
+[ext_resource type="Texture2D" path="res://Assets/Player/Death/player_death_64x64.png" id="9_death_texture"]
+[ext_resource type="Texture2D" path="res://Assets/Player/Hurt/player_hurt_48x48.png" id="10_hurt_texture"]
+[ext_resource type="Texture2D" path="res://Assets/Player/Attack/player_sword_atk_64x64.png" id="11_attack_texture"]
+[ext_resource type="Texture2D" path="res://Assets/Player/air_spin/player_air_spin_48x48.png" id="12_air_spin_texture"]
+[ext_resource type="Texture2D" path="res://Assets/Player/climb_back/player_climb_back_48x48.png" id="13_climb_back_texture"]
+[ext_resource type="Texture2D" path="res://Assets/Player/climb_side/player_side_climb_48x48.png" id="14_climb_side_texture"]
+[ext_resource type="Texture2D" path="res://Assets/Player/climb_side_old/player_side_climb_48x48.png" id="15_climb_side_old_texture"]
+[ext_resource type="Texture2D" path="res://Assets/Player/crouch_idle/player_crouch_idle_48x48.png" id="16_crouch_idle_texture"]
+[ext_resource type="Texture2D" path="res://Assets/Player/crouch_walk/player_crouch_walk_48x48.png" id="17_crouch_walk_texture"]
+[ext_resource type="Texture2D" path="res://Assets/Player/dash/dash.png" id="18_dash_texture"]
+[ext_resource type="Texture2D" path="res://Assets/Player/katana_air_attack/player_katana_air_attack_80x64.png" id="19_katana_air_attack_texture"]
+[ext_resource type="Texture2D" path="res://Assets/Player/katana_attack_sheathe/player_katana_attack_sheathe_80x64.png" id="20_katana_attack_sheathe_texture"]
+[ext_resource type="Texture2D" path="res://Assets/Player/katana_continuous_attack/player_katana_continuous_attack_80x64.png" id="21_katana_continuous_attack_texture"]
+[ext_resource type="Texture2D" path="res://Assets/Player/katana_run/player_katana_run_48x48.png" id="22_katana_run_texture"]
+[ext_resource type="Texture2D" path="res://Assets/Player/katana_run_attack/player_katana_running_attack_upper_body.png" id="23_katana_run_attack_texture"]
+[ext_resource type="Texture2D" path="res://Assets/Player/katana_walk/katana_walk.png" id="24_katana_walk_texture"]
+[ext_resource type="Texture2D" path="res://Assets/Player/land/player_land_48x48.png" id="25_land_texture"]
+[ext_resource type="Texture2D" path="res://Assets/Player/ledge_grab_climb/player_ledge_climb_48x48.png" id="26_ledge_grab_climb_texture"]
+[ext_resource type="Texture2D" path="res://Assets/Player/pull/player_pull_48x48.png" id="27_pull_texture"]
+[ext_resource type="Texture2D" path="res://Assets/Player/punch/player_punch_64x64.png" id="28_punch_texture"]
+[ext_resource type="Texture2D" path="res://Assets/Player/punch_cross/player_punch_cross_64x64.png" id="29_punch_cross_texture"]
+[ext_resource type="Texture2D" path="res://Assets/Player/punch_jab/player_punch_jab_48x48.png" id="30_punch_jab_texture"]
+[ext_resource type="Texture2D" path="res://Assets/Player/push/player_push_48x48.png" id="31_push_texture"]
+[ext_resource type="Texture2D" path="res://Assets/Player/push_pull_idle/player_push_idle_48x48.png" id="32_push_pull_idle_texture"]
+[ext_resource type="Texture2D" path="res://Assets/Player/roll/player_roll_48x48.png" id="33_roll_texture"]
+[ext_resource type="Texture2D" path="res://Assets/Player/shooting_run_aim/player_running_shooting_48x48.png" id="34_shooting_run_aim_shooting_texture"]
+[ext_resource type="Texture2D" path="res://Assets/Player/shooting_run_aim/player_running_aiming_48x48.png" id="35_shooting_run_aim_aiming_texture"]
+[ext_resource type="Texture2D" path="res://Assets/Player/shooting_2h/player_shoot_2h_48x48.png" id="36_shooting_2h_texture"]
+[ext_resource type="Texture2D" path="res://Assets/Player/slide/player_slide_48x48.png" id="37_slide_texture"]
+[ext_resource type="Texture2D" path="res://Assets/Player/sword_idle/player_sword_idle_48x48.png" id="38_sword_idle_texture"]
+[ext_resource type="Texture2D" path="res://Assets/Player/sword_run/player_sword_run_48x48.png" id="39_sword_run_texture"]
+[ext_resource type="Texture2D" path="res://Assets/Player/sword_stab/player_sword_stab_96x48.png" id="40_sword_stab_texture"]
+[ext_resource type="Texture2D" path="res://Assets/Player/walk/player_walk_48x48.png" id="41_walk_texture"]
+[ext_resource type="Texture2D" path="res://Assets/Player/wall_land_left/player_wall_land_left_48x48.png" id="42_wall_land_left_texture"]
+[ext_resource type="Texture2D" path="res://Assets/Player/wall_land/player_wall_land_48x48.png" id="43_wall_land_texture"]
+[ext_resource type="Texture2D" path="res://Assets/Player/wall_slide_left/player_wall_slide_left_48x48.png" id="44_wall_slide_left_texture"]
+[ext_resource type="Texture2D" path="res://Assets/Player/wall_slide/player_wall_slide_48x48.png" id="45_wall_slide_texture"]
+
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_player"]
+animations = [{
+"frames": [ExtResource("6_idle_texture")],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [ExtResource("7_run_texture")],
+"loop": true,
+"name": &"run",
+"speed": 5.0
+}, {
+"frames": [ExtResource("8_jump_texture")],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [ExtResource("9_death_texture")],
+"loop": true,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [ExtResource("10_hurt_texture")],
+"loop": true,
+"name": &"hurt",
+"speed": 5.0
+}, {
+"frames": [ExtResource("11_attack_texture")],
+"loop": true,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [ExtResource("12_air_spin_texture")],
+"loop": true,
+"name": &"air_spin",
+"speed": 5.0
+}, {
+"frames": [ExtResource("13_climb_back_texture")],
+"loop": true,
+"name": &"climb_back",
+"speed": 5.0
+}, {
+"frames": [ExtResource("14_climb_side_texture")],
+"loop": true,
+"name": &"climb_side",
+"speed": 5.0
+}, {
+"frames": [ExtResource("15_climb_side_old_texture")],
+"loop": true,
+"name": &"climb_side_old",
+"speed": 5.0
+}, {
+"frames": [ExtResource("16_crouch_idle_texture")],
+"loop": true,
+"name": &"crouch_idle",
+"speed": 5.0
+}, {
+"frames": [ExtResource("17_crouch_walk_texture")],
+"loop": true,
+"name": &"crouch_walk",
+"speed": 5.0
+}, {
+"frames": [ExtResource("18_dash_texture")],
+"loop": true,
+"name": &"dash",
+"speed": 5.0
+}, {
+"frames": [ExtResource("19_katana_air_attack_texture")],
+"loop": true,
+"name": &"katana_air_attack",
+"speed": 5.0
+}, {
+"frames": [ExtResource("20_katana_attack_sheathe_texture")],
+"loop": true,
+"name": &"katana_attack_sheathe",
+"speed": 5.0
+}, {
+"frames": [ExtResource("21_katana_continuous_attack_texture")],
+"loop": true,
+"name": &"katana_continuous_attack",
+"speed": 5.0
+}, {
+"frames": [ExtResource("22_katana_run_texture")],
+"loop": true,
+"name": &"katana_run",
+"speed": 5.0
+}, {
+"frames": [ExtResource("23_katana_run_attack_texture")],
+"loop": true,
+"name": &"katana_run_attack",
+"speed": 5.0
+}, {
+"frames": [ExtResource("24_katana_walk_texture")],
+"loop": true,
+"name": &"katana_walk",
+"speed": 5.0
+}, {
+"frames": [ExtResource("25_land_texture")],
+"loop": true,
+"name": &"land",
+"speed": 5.0
+}, {
+"frames": [ExtResource("26_ledge_grab_climb_texture")],
+"loop": true,
+"name": &"ledge_grab_climb",
+"speed": 5.0
+}, {
+"frames": [ExtResource("27_pull_texture")],
+"loop": true,
+"name": &"pull",
+"speed": 5.0
+}, {
+"frames": [ExtResource("28_punch_texture")],
+"loop": true,
+"name": &"punch",
+"speed": 5.0
+}, {
+"frames": [ExtResource("29_punch_cross_texture")],
+"loop": true,
+"name": &"punch_cross",
+"speed": 5.0
+}, {
+"frames": [ExtResource("30_punch_jab_texture")],
+"loop": true,
+"name": &"punch_jab",
+"speed": 5.0
+}, {
+"frames": [ExtResource("31_push_texture")],
+"loop": true,
+"name": &"push",
+"speed": 5.0
+}, {
+"frames": [ExtResource("32_push_pull_idle_texture")],
+"loop": true,
+"name": &"push_pull_idle",
+"speed": 5.0
+}, {
+"frames": [ExtResource("33_roll_texture")],
+"loop": true,
+"name": &"roll",
+"speed": 5.0
+}, {
+"frames": [ExtResource("34_shooting_run_aim_shooting_texture"), ExtResource("35_shooting_run_aim_aiming_texture")],
+"loop": true,
+"name": &"shooting_run_aim",
+"speed": 5.0
+}, {
+"frames": [ExtResource("36_shooting_2h_texture")],
+"loop": true,
+"name": &"shooting_2h",
+"speed": 5.0
+}, {
+"frames": [ExtResource("37_slide_texture")],
+"loop": true,
+"name": &"slide",
+"speed": 5.0
+}, {
+"frames": [ExtResource("38_sword_idle_texture")],
+"loop": true,
+"name": &"sword_idle",
+"speed": 5.0
+}, {
+"frames": [ExtResource("39_sword_run_texture")],
+"loop": true,
+"name": &"sword_run",
+"speed": 5.0
+}, {
+"frames": [ExtResource("40_sword_stab_texture")],
+"loop": true,
+"name": &"sword_stab",
+"speed": 5.0
+}, {
+"frames": [ExtResource("41_walk_texture")],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}, {
+"frames": [ExtResource("42_wall_land_left_texture")],
+"loop": true,
+"name": &"wall_land_left",
+"speed": 5.0
+}, {
+"frames": [ExtResource("43_wall_land_texture")],
+"loop": true,
+"name": &"wall_land",
+"speed": 5.0
+}, {
+"frames": [ExtResource("44_wall_slide_left_texture")],
+"loop": true,
+"name": &"wall_slide_left",
+"speed": 5.0
+}, {
+"frames": [ExtResource("45_wall_slide_texture")],
+"loop": true,
+"name": &"wall_slide",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_player_body"]
+size = Vector2(16, 32) # Placeholder size
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_player_area"]
+size = Vector2(20, 36) # Placeholder size
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_player_script")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_player_body")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_player")
+animation = &"idle"
+offset = Vector2(0, -8) # Adjust offset for 48x48 sprites
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": null
+}
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(16, -8) # Placeholder for projectile spawn
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0 # Placeholder
+collision_mask = 0 # Placeholder
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_player_area")
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("2_state_machine_script")
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("3_idle_script")
+
+[node name="Run" type="Node" parent="StateMachine"]
+script = ExtResource("4_run_script")
+
+[node name="Jump" type="Node" parent="StateMachine"]
+script = ExtResource("5_jump_script")
