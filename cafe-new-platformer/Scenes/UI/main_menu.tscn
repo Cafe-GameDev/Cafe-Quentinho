@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://b7g2vj6x8jyqg"]
+[gd_scene load_steps=2 format=3 uid="uid://bdfphyp7j33qb"]
 
-[ext_resource type="Script" path="res://Scripts/UI/main_menu.gd" id="1_t5wgr"]
+[ext_resource type="Script" uid="uid://c3xcmbn7ndro5" path="res://Scripts/UI/main_menu.gd" id="1_5wsvm"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -9,31 +9,35 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_t5wgr")
+script = ExtResource("1_5wsvm")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -58.0
-offset_top = -55.0
-offset_right = 58.0
-offset_bottom = 55.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 10
+alignment = 1
+theme_override_constants/separation = 20
 
 [node name="StartButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-text = tr("UI_START_GAME")
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_minimum_size = Vector2(200, 50)
+text = "Iniciar Jogo"
 
 [node name="SettingsButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-text = tr("UI_SETTINGS")
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_minimum_size = Vector2(200, 50)
+text = "Configurações"
 
 [node name="QuitButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-text = tr("UI_QUIT")
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_minimum_size = Vector2(200, 50)
+text = "Sair"

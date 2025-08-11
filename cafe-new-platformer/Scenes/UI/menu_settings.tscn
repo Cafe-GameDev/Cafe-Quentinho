@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://c1wkbv6xjyqg"]
+[gd_scene load_steps=2 format=3 uid="uid://d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1"]
 
-[ext_resource type="Script" path="res://Scripts/UI/menu_settings.gd" id="1_abcde"]
+[ext_resource type="Script" uid="uid://c3xcmbn7ndro5" path="res://Scripts/UI/menu_settings.gd" id="1_script"]
 
 [node name="MenuSettings" type="Control"]
 layout_mode = 3
@@ -9,13 +9,19 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_abcde")
+script = ExtResource("1_script")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -200.0
+offset_right = 300.0
+offset_bottom = 200.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -24,114 +30,76 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 20.0
-offset_top = 20.0
-offset_right = -20.0
-offset_bottom = -20.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 15
 
-[node name="TitleLabel" type="Label" parent="Panel/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 32
-text = tr("UI_SETTINGS")
-horizontal_alignment = 1
-
-[node name="TabContainer" type="TabContainer" parent="Panel/VBoxContainer"]
+[node name="TabContainer" type="TabContainer" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Video" type="VBoxContainer" parent="Panel/VBoxContainer/TabContainer"]
-name = tr("UI_VIDEO")
+[node name="Video" type="VBoxContainer" parent="TabContainer"]
 layout_mode = 2
-theme_override_constants/separation = 10
-alignment = 1
 
-[node name="ResolutionHBox" type="HBoxContainer" parent="Panel/VBoxContainer/TabContainer/Video"]
+[node name="ResolutionHBox" type="HBoxContainer" parent="TabContainer/Video"]
 layout_mode = 2
-alignment = 1
 
-[node name="Label" type="Label" parent="Panel/VBoxContainer/TabContainer/Video/ResolutionHBox"]
+[node name="Label" type="Label" parent="TabContainer/Video/ResolutionHBox"]
 layout_mode = 2
-text = tr("UI_RESOLUTION")
+text = "Resolução:"
 
-[node name="ResolutionOptionButton" type="OptionButton" parent="Panel/VBoxContainer/TabContainer/Video/ResolutionHBox"]
+[node name="ResolutionOptionButton" type="OptionButton" parent="TabContainer/Video/ResolutionHBox"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="FullscreenCheckBox" type="CheckBox" parent="Panel/VBoxContainer/TabContainer/Video"]
+[node name="FullscreenCheckBox" type="CheckBox" parent="TabContainer/Video"]
 layout_mode = 2
-text = tr("UI_FULLSCREEN")
+text = "Tela Cheia"
 
-[node name="VSyncCheckBox" type="CheckBox" parent="Panel/VBoxContainer/TabContainer/Video"]
+[node name="VSyncCheckBox" type="CheckBox" parent="TabContainer/Video"]
 layout_mode = 2
-text = tr("UI_VSYNC")
+text = "V-Sync"
 
-[node name="FPSLimitHBox" type="HBoxContainer" parent="Panel/VBoxContainer/TabContainer/Video"]
+[node name="FPSLimitHBox" type="HBoxContainer" parent="TabContainer/Video"]
 layout_mode = 2
-alignment = 1
 
-[node name="Label" type="Label" parent="Panel/VBoxContainer/TabContainer/Video/FPSLimitHBox"]
+[node name="Label" type="Label" parent="TabContainer/Video/FPSLimitHBox"]
 layout_mode = 2
-text = tr("UI_FPS_LIMIT")
+text = "Limite de FPS:"
 
-[node name="FPSLimitOptionButton" type="OptionButton" parent="Panel/VBoxContainer/TabContainer/Video/FPSLimitHBox"]
+[node name="FPSLimitOptionButton" type="OptionButton" parent="TabContainer/Video/FPSLimitHBox"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Audio" type="VBoxContainer" parent="Panel/VBoxContainer/TabContainer"]
-visible = false
-name = tr("UI_AUDIO")
+[node name="Audio" type="VBoxContainer" parent="TabContainer"]
 layout_mode = 2
-theme_override_constants/separation = 10
+
+[node name="MasterHSlider" type="HSlider" parent="TabContainer/Audio"]
+layout_mode = 2
+min_value = 0.0
+max_value = 1.0
+step = 0.01
+
+[node name="MusicHSlider" type="HSlider" parent="TabContainer/Audio"]
+layout_mode = 2
+min_value = 0.0
+max_value = 1.0
+step = 0.01
+
+[node name="SfxHSlider" type="HSlider" parent="TabContainer/Audio"]
+layout_mode = 2
+min_value = 0.0
+max_value = 1.0
+step = 0.01
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
 alignment = 1
 
-[node name="MasterLabel" type="Label" parent="Panel/VBoxContainer/TabContainer/Audio"]
+[node name="ApplyButton" type="Button" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
-text = tr("UI_MASTER_VOLUME")
-horizontal_alignment = 1
+text = "Aplicar"
 
-[node name="MasterHSlider" type="HSlider" parent="Panel/VBoxContainer/TabContainer/Audio"]
+[node name="BackButton" type="Button" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
-min_value = 0.0
-max_value = 1.0
-step = 0.01
-value = 1.0
-
-[node name="MusicLabel" type="Label" parent="Panel/VBoxContainer/TabContainer/Audio"]
-layout_mode = 2
-text = tr("UI_MUSIC_VOLUME")
-horizontal_alignment = 1
-
-[node name="MusicHSlider" type="HSlider" parent="Panel/VBoxContainer/TabContainer/Audio"]
-layout_mode = 2
-min_value = 0.0
-max_value = 1.0
-step = 0.01
-value = 1.0
-
-[node name="SfxLabel" type="Label" parent="Panel/VBoxContainer/TabContainer/Audio"]
-layout_mode = 2
-text = tr("UI_SFX_VOLUME")
-horizontal_alignment = 1
-
-[node name="SfxHSlider" type="HSlider" parent="Panel/VBoxContainer/TabContainer/Audio"]
-layout_mode = 2
-min_value = 0.0
-max_value = 1.0
-step = 0.01
-value = 1.0
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 10
-alignment = 2
-
-[node name="ApplyButton" type="Button" parent="Panel/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-text = tr("UI_APPLY")
-
-[node name="BackButton" type="Button" parent="Panel/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-text = tr("UI_BACK")
+text = "Voltar"

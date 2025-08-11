@@ -1,4 +1,4 @@
-"""msgid ""
+msgid ""
 msgstr ""
 "Project-Id-Version: Cafe-Quentinho\n"
 "POT-Creation-Date: \n"
@@ -60,4 +60,3 @@ msgstr "Resume"
 
 msgid "UI_MAIN_MENU"
 msgstr "Main Menu"
-"""
