@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="DialogueData" load_steps=2]
+
+[ext_resource type="Script" path="res://Scripts/Resources/DialogueData.gd" id="1_ddata"]
+
+[resource]
+script = ExtResource("1_ddata")
+dialogue_lines = [
+	{"character": "Ferreiro", "text": "Bem-vindo, aventureiro! As estradas estão perigosas."},
+	{"character": "Herói", "text": "O que está acontecendo?"},
+	{"character": "Ferreiro", "text": "Goblins têm atacado as redondezas. Cuidado."}
+]

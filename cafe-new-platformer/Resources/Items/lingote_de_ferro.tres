@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="LootItemData" load_steps=2]
+
+[ext_resource type="Script" path="res://Scripts/Resources/LootItemData.gd" id="1_item"]
+
+[resource]
+script = ExtResource("1_item")
+item_name = "Lingote de Ferro"
+item_type = 0
+description = "Um lingote de ferro puro, pronto para ser forjado."
+stackable = true

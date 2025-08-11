@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="LootItemData" load_steps=2]
+
+[ext_resource type="Script" path="res://Scripts/Resources/LootItemData.gd" id="1_idata"]
+
+[resource]
+script = ExtResource("1_idata")
+item_name = "Poção de Vida"
+item_type = 0
+description = "Uma poção simples que restaura 25 pontos de vida."
+stackable = true

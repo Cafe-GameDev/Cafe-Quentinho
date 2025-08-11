@@ -1,0 +1,63 @@
+"""msgid ""
+msgstr ""
+"Project-Id-Version: Cafe-Quentinho\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "UI_START_GAME"
+msgstr "Start Game"
+
+msgid "UI_SETTINGS"
+msgstr "Settings"
+
+msgid "UI_QUIT"
+msgstr "Quit"
+
+msgid "UI_VIDEO"
+msgstr "Video"
+
+msgid "UI_RESOLUTION"
+msgstr "Resolution"
+
+msgid "UI_FULLSCREEN"
+msgstr "Fullscreen"
+
+msgid "UI_VSYNC"
+msgstr "V-Sync"
+
+msgid "UI_FPS_LIMIT"
+msgstr "FPS Limit"
+
+msgid "UI_AUDIO"
+msgstr "Audio"
+
+msgid "UI_MASTER_VOLUME"
+msgstr "Master Volume"
+
+msgid "UI_MUSIC_VOLUME"
+msgstr "Music Volume"
+
+msgid "UI_SFX_VOLUME"
+msgstr "SFX Volume"
+
+msgid "UI_APPLY"
+msgstr "Apply"
+
+msgid "UI_BACK"
+msgstr "Back"
+
+msgid "UI_PAUSED"
+msgstr "Paused"
+
+msgid "UI_RESUME"
+msgstr "Resume"
+
+msgid "UI_MAIN_MENU"
+msgstr "Main Menu"
+"""

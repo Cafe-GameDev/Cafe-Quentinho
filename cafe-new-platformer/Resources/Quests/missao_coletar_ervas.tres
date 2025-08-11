@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="QuestData" load_steps=2]
+
+[ext_resource type="Script" path="res://Scripts/Resources/QuestData.gd" id="1_qdata"]
+
+[resource]
+script = ExtResource("1_qdata")
+quest_title = "Ajuda para o Alquimista"
+description_start = "O alquimista local precisa de 5 Ervas Raras para uma poção. Elas crescem na Floresta dos Sussurros."
+description_in_progress = "Continue procurando pelas Ervas Raras na floresta."
+description_completed = "Você coletou todas as ervas! Leve-as para o alquimista."
+required_amount = 5
+reward_xp = 150
+reward_gold = 75

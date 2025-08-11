@@ -1,0 +1,40 @@
+# Baseado no estilo do Google, que é um padrão popular.
+# Documentação completa: https://clang.llvm.org/docs/ClangFormatStyleOptions.html
+BasedOnStyle: Google
+
+# --- Indentação e Alinhamento ---
+IndentWidth: 4
+TabWidth: 4
+UseTab: Never
+AlignAfterOpenBracket: Align
+AlignConsecutiveAssignments: false
+AlignConsecutiveDeclarations: false
+AlignOperands: Align
+
+# --- Espaçamento ---
+SpaceAfterCStyleCast: true
+SpaceBeforeAssignmentOperators: true
+SpaceBeforeParens: ControlStatements
+SpaceInEmptyParentheses: false
+SpacesInAngles: false
+SpacesInCStyleCastParentheses: false
+SpacesInParentheses: false
+SpacesInSquareBrackets: false
+
+# --- Quebras de Linha ---
+AllowShortFunctionsOnASingleLine: Empty
+AllowShortIfStatementsOnASingleLine: Never
+AllowShortLoopsOnASingleLine: false
+AlwaysBreakTemplateDeclarations: Yes
+BreakBeforeBraces: Allman # Estilo Allman (chaves em nova linha)
+BreakConstructorInitializers: BeforeColon
+ColumnLimit: 80 # Limite de 80 colunas para legibilidade
+
+# --- Ponteiros ---
+PointerAlignment: Right
+
+# --- Outras Regras ---
+AllowAllParametersOfDeclarationOnNextLine: true
+FixNamespaceComments: true
+SortIncludes: true
+Cpp11BracedListStyle: true

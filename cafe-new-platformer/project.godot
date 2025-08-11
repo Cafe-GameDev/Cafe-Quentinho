@@ -11,15 +11,24 @@ config_version=5
 [application]
 
 config/name="Cafe-Quentinho"
+run/main_scene="res://Scenes/UI/main_menu.tscn"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 
 [autoload]
 
-Global="*res://Singletons/globals.gd"
+Globals="*res://Singletons/globals.gd"
 SceneManager="*res://Singletons/scene_manager.gd"
 SettingsManager="*res://Singletons/settings_manager.gd"
 SaveManager="*res://Singletons/save_manager.gd"
 AudioManager="*res://Singletons/audio_manager.gd"
+
+[internationalization]
+
+locale/translations=PackedStringArray("res://i18n/pt_br.po", "res://i18n/en_us.po")
+
+[locale]
+
+test="pt_BR"
 
 [editor_plugins]
 

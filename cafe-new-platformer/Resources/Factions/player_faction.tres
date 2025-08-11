@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="FactionData" load_steps=2]
+
+[ext_resource type="Script" path="res://Scripts/Resources/FactionData.gd" id="1_pfaction"]
+
+[resource]
+script = ExtResource("1_pfaction")
+faction_name = "Heróis"
+stances = {}
