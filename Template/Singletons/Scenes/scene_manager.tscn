@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://bqf02v5eog068"]
+
+[ext_resource type="Script" uid="uid://ceqdowk3eu154" path="res://Singletons/Scripts/scene_manager.gd" id="1_abcde"]
+[ext_resource type="PackedScene" uid="uid://2iswqfi1mcrw" path="res://Scenes/UI/settings_menu.tscn" id="1_kfh4b"]
+[ext_resource type="PackedScene" uid="uid://c7ckkfc3bhrkc" path="res://Scenes/UI/quit_confirmation_dialog.tscn" id="1_quit_dialog_scene"]
+[ext_resource type="PackedScene" uid="uid://b4b5bm4br5j6a" path="res://Scenes/UI/pause_menu.tscn" id="1_rrvs5"]
+[ext_resource type="PackedScene" uid="uid://cgrv6f7vj3l3g" path="res://Scenes/UI/main_menu.tscn" id="1_t4j2j"]
+
+[node name="SceneManager" type="Node"]
+process_mode = 3
+script = ExtResource("1_abcde")
+
+[node name="GameViewportContainer" type="SubViewportContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="GameViewport" type="SubViewport" parent="GameViewportContainer"]
+handle_input_locally = false
+size = Vector2i(1152, 648)
+render_target_update_mode = 4
+
+[node name="MainMenu" parent="GameViewportContainer/GameViewport" instance=ExtResource("1_t4j2j")]
+
+[node name="PauseMenu" parent="GameViewportContainer/GameViewport" instance=ExtResource("1_rrvs5")]
+visible = false
+
+[node name="OptionsMenu" parent="GameViewportContainer/GameViewport" instance=ExtResource("1_kfh4b")]
+visible = false
+
+[node name="QuitConfirmationDialog" parent="GameViewportContainer/GameViewport" instance=ExtResource("1_quit_dialog_scene")]
+visible = false
