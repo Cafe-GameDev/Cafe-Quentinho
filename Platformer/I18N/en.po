@@ -1,4 +1,4 @@
-# Portuguese (Brazil) translations for Cafe-Quentinho Template.
+# English translations for Cafe-Quentinho Template.
 # Copyright (C) 2025 Cafe-GameDev
 # This file is distributed under the same license as the Cafe-Quentinho Template project.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2025.
@@ -11,105 +11,105 @@ msgstr ""
 "POT-Creation-Date: 2025-08-13 15:00-0300\n"
 "PO-Revision-Date: 2025-08-13 15:00-0300\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: Portuguese (Brazil)\n"
-"Language: pt_BR\n"
+"Language-Team: English\n"
+"Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Gemini\n"
 
 msgid "UI_MAIN_MENU_TITLE"
-msgstr "Template do Bruno"
+msgstr "Bruno's Template"
 
 msgid "UI_NEW_GAME"
-msgstr "Novo Jogo"
+msgstr "New Game"
 
 msgid "UI_OPTIONS"
-msgstr "Opções"
+msgstr "Options"
 
 msgid "UI_EXIT"
-msgstr "Sair"
+msgstr "Exit"
 
 msgid "UI_PAUSE_MENU_TITLE"
-msgstr "Pausado"
+msgstr "Paused"
 
 msgid "UI_RESUME_GAME"
-msgstr "Voltar ao Jogo"
+msgstr "Resume Game"
 
 msgid "UI_QUIT_CONFIRMATION_PROMPT"
-msgstr "Deseja realmente sair?"
+msgstr "Do you really want to quit?"
 
 msgid "UI_YES"
-msgstr "Sim"
+msgstr "Yes"
 
 msgid "UI_NO"
-msgstr "Não"
+msgstr "No"
 
 msgid "UI_SETTINGS_TITLE"
-msgstr "Configurações"
+msgstr "Settings"
 
 msgid "UI_VIDEO"
-msgstr "Vídeo"
+msgstr "Video"
 
 msgid "UI_AUDIO"
-msgstr "Áudio"
+msgstr "Audio"
 
 msgid "UI_BACK"
-msgstr "Voltar"
+msgstr "Back"
 
 msgid "UI_VIDEO_OPTIONS"
-msgstr "Opções de Vídeo"
+msgstr "Video Options"
 
 msgid "UI_FULLSCREEN"
-msgstr "Tela Cheia"
+msgstr "Fullscreen"
 
 msgid "UI_AUDIO_OPTIONS"
-msgstr "Opções de Áudio"
+msgstr "Audio Options"
 
 msgid "UI_MASTER_VOLUME"
-msgstr "Geral"
+msgstr "Master"
 
 msgid "UI_MUSIC_VOLUME"
-msgstr "Música"
+msgstr "Music"
 
 msgid "UI_SFX_VOLUME"
-msgstr "Efeitos"
+msgstr "Effects"
 
 msgid "UI_APPLY"
-msgstr "Aplicar"
+msgstr "Apply"
 
 msgid "UI_LANGUAGE"
-msgstr "Idioma"
+msgstr "Language"
 
 msgid "UI_LANGUAGE_OPTIONS"
-msgstr "Opções de Idioma"
+msgstr "Language Options"
 
 msgid "DEBUG_CONSOLE_READY"
-msgstr "Console de Depuração pronto. Pressione 'P' para alternar."
+msgstr "Debug Console ready. Press 'P' to toggle."
 
 msgid "DEBUG_LOG_TITLE"
-msgstr "Log de Eventos Globais"
+msgstr "Global Events Log"
 
 msgid "DEBUG_GAME_SECTION"
-msgstr "[b]Jogo[/b]"
+msgstr "[b]Game[/b]"
 
 msgid "DEBUG_GAME_VERSION"
-msgstr "  Versão do Jogo: 1.0.0 (Alpha)"
+msgstr "  Game Version: 1.0.0 (Alpha)"
 
 msgid "DEBUG_GAME_STATE"
-msgstr "  Estado: {state}"
+msgstr "  State: {state}"
 
 msgid "DEBUG_CURRENT_SCENE"
-msgstr "  Cena Atual: {scene}"
+msgstr "  Current Scene: {scene}"
 
 msgid "DEBUG_LAST_SAVE"
-msgstr "  Último Save: N/A"
+msgstr "  Last Save: N/A"
 
 msgid "DEBUG_SYSTEM_SECTION"
-msgstr "[b]Sistema[/b]"
+msgstr "[b]System[/b]"
 
 msgid "DEBUG_OS"
-msgstr "  SO: {os}"
+msgstr "  OS: {os}"
 
 msgid "DEBUG_DISPLAY_SECTION"
 msgstr "[b]Display[/b]"
@@ -121,37 +121,7 @@ msgid "DEBUG_MONITOR_INFO"
 msgstr "Monitor {id}: {size} @ {hz}Hz"
 
 msgid "DEBUG_SIGNAL_RECEIVED"
-msgstr "Sinal '{signal}' recebido"
+msgstr "Signal '{signal}' received"
 
 msgid "DEBUG_WITH_ARGS"
-msgstr " com argumentos: {{args}}"
-
-msgid "UI_MONITOR"
-msgstr "Monitor"
-
-msgid "UI_WINDOW_MODE_WINDOWED"
-msgstr "Janela"
-
-msgid "UI_WINDOW_MODE_FULLSCREEN"
-msgstr "Tela Cheia"
-
-msgid "UI_RESOLUTION"
-msgstr "Resolução"
-
-msgid "DEBUG_PROCESSOR"
-msgstr "  Processador: {processor}"
-
-msgid "DEBUG_CORES"
-msgstr "  Núcleos: {cores}"
-
-msgid "DEBUG_RAM"
-msgstr "  RAM: {ram}"
-
-msgid "DEBUG_VIDEO_ADAPTER"
-msgstr "  Adaptador de Vídeo: {adapter}"
-
-msgid "DEBUG_VIDEO_DRIVER"
-msgstr "  Driver de Vídeo: {driver}"
-
-msgid "DEBUG_VIDEO_RENDERER"
-msgstr "  Renderizador de Vídeo: {renderer}"
+msgstr " with args: {{args}}"
