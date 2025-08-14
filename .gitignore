@@ -10,3 +10,12 @@ Credits.txt
 *.gif
 *.ini
 /Addons/gut/*
+/Platformer
+/Platformer/*
+
+/Platformer/Assets/Sounds/kenney_digital-audio/Audio
+/Platformer/Assets/Sounds/kenney_digital-audio
+/Platformer/Assets/Sounds
+/Platformer/Assets
+*.ogg
+*.import
