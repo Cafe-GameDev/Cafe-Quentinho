@@ -60,7 +60,6 @@ func _update_debug_info() -> void:
 	
 	info_string += tr("DEBUG_DISPLAY_SECTION") + "\n"
 	info_string += tr("DEBUG_MONITOR").format({"monitor": monitor_str}) + "\n"
-	
 	debug_info_text.text = info_string
 
 func _connect_to_global_events() -> void:
@@ -77,13 +76,33 @@ func _connect_to_global_events() -> void:
 	GlobalEvents.game_paused.connect(_on_game_paused)
 	GlobalEvents.game_unpaused.connect(_on_game_unpaused)
 	GlobalEvents.music_track_changed.connect(_on_music_track_changed)
+	
+	#NOVAS CONEXÕES DE SINAL DE VÍDEO
+	GlobalEvents.field_of_view_changed.connect(_on_field_of_view_changed)
+	GlobalEvents.aspect_ratio_changed.connect(_on_aspect_ratio_changed)
+	GlobalEvents.dynamic_render_scale_changed.connect(_on_dynamic_render_scale_changed)
+	GlobalEvents.render_scale_changed.connect(_on_render_scale_changed)
+	GlobalEvents.frame_rate_limit_changed.connect(_on_frame_rate_limit_changed)
+	GlobalEvents.max_frame_rate_changed.connect(_on_max_frame_rate_changed)
+	GlobalEvents.vsync_mode_changed.connect(_on_vsync_mode_changed)
+	GlobalEvents.triple_buffering_changed.connect(_on_triple_buffering_changed)
+	GlobalEvents.reduce_buffering_changed.connect(_on_reduce_buffering_changed)
+	GlobalEvents.low_latency_mode_changed.connect(_on_low_latency_mode_changed)
+	GlobalEvents.gamma_correction_changed.connect(_on_gamma_correction_changed)
+	GlobalEvents.contrast_changed.connect(_on_contrast_changed)
+	GlobalEvents.brightness_changed.connect(_on_brightness_changed)
+	GlobalEvents.hdr_mode_changed.connect(_on_hdr_mode_changed)
+	GlobalEvents.shaders_quality_changed.connect(_on_shaders_quality_changed)
+	GlobalEvents.effects_quality_changed.connect(_on_effects_quality_changed)
+	GlobalEvents.colorblind_mode_changed.connect(_on_colorblind_mode_changed)
+	GlobalEvents.reduce_screen_shake_changed.connect(_on_reduce_screen_shake_changed)
 
 func _log_signal(signal_name: String, args: Dictionary = {}) -> void:
 	var message = tr("DEBUG_SIGNAL_RECEIVED").format({"signal": signal_name})
 	if not args.is_empty():
 		var args_list = []
 		for key in args:
-			args_list.append("'{key}': {value}".format({"key": key, "value": str(args[key])}))
+			args_list.append("'" + key + "': " + str(args[key]))
 		message += tr("DEBUG_WITH_ARGS").format({"args": ", ".join(args_list)})
 	_log_message(message, "SIGNAL")
 
@@ -140,3 +159,58 @@ func _on_game_unpaused() -> void:
 
 func _on_music_track_changed(track_name: String) -> void:
 	_log_signal("music_track_changed", {"track": track_name})
+
+# NOVOS SIGNAL HANDLERS DE VÍDEO
+func _on_field_of_view_changed(fov_value: float) -> void:
+	_log_signal("field_of_view_changed", {"fov_value": fov_value})
+
+func _on_aspect_ratio_changed(aspect_ratio_index: int) -> void:
+	_log_signal("aspect_ratio_changed", {"aspect_ratio_index": aspect_ratio_index})
+
+func _on_dynamic_render_scale_changed(mode: int) -> void:
+	_log_signal("dynamic_render_scale_changed", {"mode": mode})
+
+func _on_render_scale_changed(scale_value: float) -> void:
+	_log_signal("render_scale_changed", {"scale_value": scale_value})
+
+func _on_frame_rate_limit_changed(mode: int) -> void:
+	_log_signal("frame_rate_limit_changed", {"mode": mode})
+
+func _on_max_frame_rate_changed(fps_value: int) -> void:
+	_log_signal("max_frame_rate_changed", {"fps_value": fps_value})
+
+func _on_vsync_mode_changed(mode: int) -> void:
+	_log_signal("vsync_mode_changed", {"mode": mode})
+
+func _on_triple_buffering_changed(enabled: bool) -> void:
+	_log_signal("triple_buffering_changed", {"enabled": enabled})
+
+func _on_reduce_buffering_changed(enabled: bool) -> void:
+	_log_signal("reduce_buffering_changed", {"enabled": enabled})
+
+func _on_low_latency_mode_changed(mode: int) -> void:
+	_log_signal("low_latency_mode_changed", {"mode": mode})
+
+func _on_gamma_correction_changed(gamma_value: float) -> void:
+	_log_signal("gamma_correction_changed", {"gamma_value": gamma_value})
+
+func _on_contrast_changed(contrast_value: float) -> void:
+	_log_signal("contrast_changed", {"contrast_value": contrast_value})
+
+func _on_brightness_changed(brightness_value: float) -> void:
+	_log_signal("brightness_changed", {"brightness_value": brightness_value})
+
+func _on_hdr_mode_changed(mode: int) -> void:
+	_log_signal("hdr_mode_changed", {"mode": mode})
+
+func _on_shaders_quality_changed(quality_level: int) -> void:
+	_log_signal("shaders_quality_changed", {"quality_level": quality_level})
+
+func _on_effects_quality_changed(quality_level: int) -> void:
+	_log_signal("effects_quality_changed", {"quality_level": quality_level})
+
+func _on_colorblind_mode_changed(mode: int) -> void:
+	_log_signal("colorblind_mode_changed", {"mode": mode})
+
+func _on_reduce_screen_shake_changed(enabled: bool) -> void:
+	_log_signal("reduce_screen_shake_changed", {"enabled": enabled})

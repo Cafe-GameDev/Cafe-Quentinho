@@ -125,3 +125,87 @@ msgstr "Signal '{signal}' received"
 
 msgid "DEBUG_WITH_ARGS"
 msgstr " with args: {{args}}"
+
+msgid "UI_MONITOR"
+msgstr "Monitor"
+
+msgid "UI_WINDOW_MODE_WINDOWED"
+msgstr "Windowed"
+
+msgid "UI_WINDOW_MODE_FULLSCREEN"
+msgstr "Fullscreen"
+
+msgid "UI_RESOLUTION"
+msgstr "Resolution"
+
+msgid "DEBUG_PROCESSOR"
+msgstr "  Processor: {processor}"
+
+msgid "DEBUG_CORES"
+msgstr "  Cores: {cores}"
+
+msgid "DEBUG_RAM"
+msgstr "  RAM: {ram}"
+
+msgid "DEBUG_VIDEO_ADAPTER"
+msgstr "  Video Adapter: {adapter}"
+
+msgid "DEBUG_VIDEO_DRIVER"
+msgstr "  Video Driver: {driver}"
+
+msgid "DEBUG_VIDEO_RENDERER"
+msgstr "  Video Renderer: {renderer}"
+
+msgid "UI_DRS_OFF"
+msgstr "Off"
+
+msgid "UI_DRS_CUSTOM"
+msgstr "Custom"
+
+msgid "UI_FPS_CUSTOM"
+msgstr "Custom"
+
+msgid "UI_VSYNC_OFF"
+msgstr "Off"
+
+msgid "UI_VSYNC_ON"
+msgstr "On"
+
+msgid "UI_VSYNC_ADAPTIVE"
+msgstr "Adaptive"
+
+msgid "UI_LOW_LATENCY_OFF"
+msgstr "Off"
+
+msgid "UI_LOW_LATENCY_ENABLED"
+msgstr "Enabled"
+
+msgid "UI_LOW_LATENCY_ENABLED_BOOST"
+msgstr "Enabled (Boost)"
+
+msgid "UI_HDR_OFF"
+msgstr "Off"
+
+msgid "UI_HDR_ON"
+msgstr "On"
+
+msgid "UI_QUALITY_LOW"
+msgstr "Low"
+
+msgid "UI_QUALITY_MEDIUM"
+msgstr "Medium"
+
+msgid "UI_QUALITY_HIGH"
+msgstr "High"
+
+msgid "UI_COLORBLIND_OFF"
+msgstr "Off"
+
+msgid "UI_COLORBLIND_PROTANOPIA"
+msgstr "Protanopia"
+
+msgid "UI_COLORBLIND_DEUTERANOPIA"
+msgstr "Deuteranopia"
+
+msgid "UI_COLORBLIND_TRITANOPIA"
+msgstr "Tritanopia"

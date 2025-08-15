@@ -11,17 +11,8 @@ func _ready():
 	GlobalEvents.scene_push_requested.connect(_on_scene_push_requested)
 	GlobalEvents.scene_pop_requested.connect(_on_scene_pop_requested)
 
-	# A cena inicial (MainMenu, etc.) já está dentro do Viewport.
-	# Adicionamos ela à pilha para que possa ser gerenciada.
-	if game_viewport.get_child_count() > 0:
-		for child in game_viewport.get_children():
-			if child is Control: # Assumindo que as UIs iniciais são nós de Controle
-				_scene_stack.append(child)
-				# Esconde todas as UIs exceto a primeira (MainMenu)
-				if _scene_stack.size() > 1:
-					child.hide()
-				else:
-					child.show()
+	# A cena inicial (MainMenu, etc.) agora está em um CanvasLayer separado.
+	# Não precisamos mais inicializá-las aqui.
 
 
 func _on_scene_push_requested(path: String):

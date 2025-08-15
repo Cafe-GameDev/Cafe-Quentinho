@@ -155,3 +155,57 @@ msgstr "  Driver de Vídeo: {driver}"
 
 msgid "DEBUG_VIDEO_RENDERER"
 msgstr "  Renderizador de Vídeo: {renderer}"
+
+msgid "UI_DRS_OFF"
+msgstr "Desligado"
+
+msgid "UI_DRS_CUSTOM"
+msgstr "Personalizado"
+
+msgid "UI_FPS_CUSTOM"
+msgstr "Personalizado"
+
+msgid "UI_VSYNC_OFF"
+msgstr "Desligado"
+
+msgid "UI_VSYNC_ON"
+msgstr "Ligado"
+
+msgid "UI_VSYNC_ADAPTIVE"
+msgstr "Adaptativo"
+
+msgid "UI_LOW_LATENCY_OFF"
+msgstr "Desligado"
+
+msgid "UI_LOW_LATENCY_ENABLED"
+msgstr "Ativado"
+
+msgid "UI_LOW_LATENCY_ENABLED_BOOST"
+msgstr "Ativado (Boost)"
+
+msgid "UI_HDR_OFF"
+msgstr "Desligado"
+
+msgid "UI_HDR_ON"
+msgstr "Ligado"
+
+msgid "UI_QUALITY_LOW"
+msgstr "Baixa"
+
+msgid "UI_QUALITY_MEDIUM"
+msgstr "Média"
+
+msgid "UI_QUALITY_HIGH"
+msgstr "Alta"
+
+msgid "UI_COLORBLIND_OFF"
+msgstr "Desligado"
+
+msgid "UI_COLORBLIND_PROTANOPIA"
+msgstr "Protanopia"
+
+msgid "UI_COLORBLIND_DEUTERANOPIA"
+msgstr "Deuteranopia"
+
+msgid "UI_COLORBLIND_TRITANOPIA"
+msgstr "Tritanopia"

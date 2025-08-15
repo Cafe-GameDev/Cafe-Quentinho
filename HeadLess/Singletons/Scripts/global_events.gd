@@ -14,15 +14,54 @@ signal play_sfx_by_key_requested(sfx_key: String)
 @warning_ignore("unused_signal")
 signal music_track_changed(track_name: String)
 
-# --- Sinais de Configurações (Settings) ---
+# --- Sinais de Vídeo ---
 @warning_ignore("unused_signal")
-signal audio_setting_changed(bus_name, linear_volume)
+signal video_resolution_changed(new_resolution: Vector2i)
+@warning_ignore("unused_signal")
+signal video_window_mode_changed(new_mode: int) # new_mode pode ser DisplayServer.WINDOW_MODE_FULLSCREEN, WINDOW_MODE_WINDOWED, etc.
 @warning_ignore("unused_signal")
 signal fullscreen_mode_changed(is_fullscreen)
 @warning_ignore("unused_signal")
-signal window_mode_changed(mode: int)
+signal field_of_view_changed(fov_value: float)
 @warning_ignore("unused_signal")
-signal resolution_changed(resolution: Vector2i)
+signal aspect_ratio_changed(aspect_ratio_index: int)
+@warning_ignore("unused_signal")
+signal dynamic_render_scale_changed(mode: int)
+@warning_ignore("unused_signal")
+signal render_scale_changed(scale_value: float)
+@warning_ignore("unused_signal")
+signal frame_rate_limit_changed(mode: int)
+@warning_ignore("unused_signal")
+signal max_frame_rate_changed(fps_value: int)
+@warning_ignore("unused_signal")
+signal vsync_mode_changed(mode: int)
+@warning_ignore("unused_signal")
+signal triple_buffering_changed(enabled: bool)
+@warning_ignore("unused_signal")
+signal reduce_buffering_changed(enabled: bool)
+@warning_ignore("unused_signal")
+signal low_latency_mode_changed(mode: int)
+@warning_ignore("unused_signal")
+signal gamma_correction_changed(gamma_value: float)
+@warning_ignore("unused_signal")
+signal contrast_changed(contrast_value: float)
+@warning_ignore("unused_signal")
+signal brightness_changed(brightness_value: float)
+@warning_ignore("unused_signal")
+signal hdr_mode_changed(mode: int)
+@warning_ignore("unused_signal")
+signal shaders_quality_changed(quality_level: int)
+@warning_ignore("unused_signal")
+signal effects_quality_changed(quality_level: int)
+@warning_ignore("unused_signal")
+signal colorblind_mode_changed(mode: int)
+@warning_ignore("unused_signal")
+signal reduce_screen_shake_changed(enabled: bool)
+
+# --- Sinais de Configurações (Settings) ---
+@warning_ignore("unused_signal")
+signal audio_setting_changed(bus_name, linear_volume)
+
 @warning_ignore("unused_signal")
 signal monitor_changed(monitor_index: int)
 @warning_ignore("unused_signal")
@@ -32,7 +71,7 @@ signal save_settings_requested
 @warning_ignore("unused_signal")
 signal load_settings_requested
 @warning_ignore("unused_signal")
-signal settings_loaded(settings_data)
+signal settings_loaded(settings_data: Dictionary)
 @warning_ignore("unused_signal")
 signal open_settings_requested
 @warning_ignore("unused_signal")
@@ -87,3 +126,6 @@ signal hide_quit_confirmation_requested
 signal quit_confirmed
 @warning_ignore("unused_signal")
 signal quit_cancelled
+
+# Sinais de Configuração de UI
+signal ui_scale_preset_changed(preset_name: String)
