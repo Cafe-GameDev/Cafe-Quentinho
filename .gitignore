@@ -11,3 +11,5 @@ Credits.txt
 *.ini
 
 *.local
+/HeadLess
+/HeadLess/**

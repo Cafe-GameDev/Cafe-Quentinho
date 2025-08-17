@@ -1,75 +1,50 @@
-# Repo Café CLI
+# Template "BodyLess" - Café Quentinho
 
-Bem-vindo ao Repo Café CLI, seu **parceiro de desenvolvimento colaborativo** para o ecossistema Godot. Prepare sua xícara, porque a jornada do código será deliciosa!
+O "BodyLess" é um kit de desenvolvimento e template de fundação "sem corpo" para a Godot Engine. Seu propósito não é ser um jogo, mas sim fornecer uma arquitetura de sistemas essenciais, robusta e escalável, que sirva como o ponto de partida definitivo para novos projetos. Ele foi concebido para resolver o problema comum de desenvolvedores que negligenciam ou adiam a implementação de sistemas cruciais, permitindo que as equipes de desenvolvimento foquem no que realmente importa: a criação da lógica e conteúdo do jogo (o "corpo").
 
-O Repo Café CLI transforma o Gemini em um copiloto que tem acesso direto e total ao seu ambiente de desenvolvimento. Em vez de você precisar copiar e colar código para obter ajuda, o Repo Café CLI já tem acesso a todo o seu projeto, incluindo scripts, cenas e a arquitetura geral do seu jogo.
+Ele serve como base para outros templates do ecossistema "Café Quentinho", como o `TopDown` e o `Platformer`, e também é projetado para ser facilmente acoplado a projetos já existentes.
 
-Ele é, em essência, o Gemini para desenvolvedores Godot, e o melhor de tudo: **roda diretamente no seu celular via Termux!**
+## Pilares da Arquitetura
 
-## Comandos da Ferramenta
+A filosofia do template se baseia em quatro pilares fundamentais:
 
-O Repo Café CLI vem com um conjunto de comandos para agilizar seu desenvolvimento:
+*   **Desacoplamento Total (Event-Driven):** A comunicação entre os sistemas principais é feita exclusivamente através de um "Barramento de Eventos" (`GlobalEvents`). Nenhum manager tem conhecimento direto sobre o outro, permitindo modificações e substituições sem quebrar o projeto.
+*   **Modularidade e Responsabilidade Única:** Cada sistema principal é um Singleton (Autoload) com uma responsabilidade claramente definida, resultando em código limpo e fácil de manter.
+*   **Orientado a Dados:** Separação entre lógica e dados, incentivando o uso de `Resources` e Dicionários para gerenciar o estado do jogo.
+*   **Pronto para Produção:** Funcionalidades essenciais para um jogo completo já vêm pré-configuradas.
 
--   `repo-cafe`:
-    -   **Função:** Inicia a sessão de chat com o assistente.
-    -   **Uso:** `repo-cafe`
+## Funcionalidades Principais
 
--   `cafe-new [template] <nome-do-projeto>`:
-    -   **Função:** Te serve um novo "Café Quentinho" (um projeto Godot com base nos templates do Café).
-    -   **Argumentos:**
-        -   `template` (opcional): Especifique `platformer` ou `topdown`. Se não especificar, o template `headless` (apenas com sistemas essenciais) será usado.
-    -   **Exemplos de Uso:**
-        -   `cafe-new meu-projeto` (usa o template headless)
-        -   `cafe-new platformer meu-jogo-plataforma`
-        -   `cafe-new topdown meu-jogo-topdown`
+O template oferece os seguintes sistemas pré-configurados, com foco em eficiência e boas práticas:
 
--   `repo-cafe-update`:
-    -   **Função:** Atualiza a ferramenta `repo-cafe` para a versão mais recente. O processo de atualização também garante que sua cópia local do repo-cafe esteja sincronizada com a versão da ferramenta.
-    -   **Uso:** `repo-cafe-update`
+### Singletons (Autoloads)
 
--   `repo-update`:
-    -   **Função:** Atualiza especificamente o repositório de conhecimento. É ideal para obter o conteúdo mais recente, que pode ser atualizado com mais frequência do que a ferramenta em si.
-    -   **Uso:** `repo-update`
+*   **`GlobalEvents` (Event Bus):**
+    *   **Propósito:** O coração da comunicação desacoplada. Contém exclusivamente declarações de `signal`, atuando como um quadro de avisos central e passivo para eventos globais.
+*   **`SceneManager`:**
+    *   **Propósito:** Gerenciar o carregamento, descarregamento e transições de cenas de forma eficiente e controlada usando um sistema de pilha (`push`/`pop`).
+*   **`AudioManager`:**
+    *   **Propósito:** Centralizar o carregamento e a reprodução de música e efeitos sonoros (SFX).
+    *   **Eficiência:** Carrega sons dinamicamente de pastas, os categoriza automaticamente e usa um pool de players para SFX, evitando que sons se cortem.
+*   **`SettingsManager`:**
+    *   **Propósito:** Gerenciar o estado das configurações do jogo (áudio, vídeo, etc.) em um dicionário. Ele aplica as configurações e reage a mudanças, mas não lida com salvamento/carregamento.
+*   **`SaveSystem`:**
+    *   **Propósito:** Único responsável por interagir com o sistema de arquivos. Ele salva e carrega dicionários de dados (como as configurações do `SettingsManager`) em formato JSON no diretório `user://`.
+*   **`InputManager`:**
+    *   **Propósito:** Traduzir input bruto (teclado, controle) em sinais de "intenção" para o `GlobalEvents`, desacoplando a entrada física da ação do jogo.
+*   **`DebugConsole`:**
+    *   **Propósito:** Fornecer feedback visual para depuração em tempo real, ouvindo todos os sinais do `GlobalEvents` e exibindo um log formatado.
 
--   `cafe-rename`:
-    -   **Função:** Renomeia arquivos e pastas recursivamente para um formato limpo e consistente, ideal para Godot e sistemas de controle de versão. Preserva maiúsculas/minúsculas e hífens, mas troca espaços por `_` e remove acentos/caracteres especiais.
-    -   **Uso:** `cafe-rename --source <caminho-opcional>`
+### Sistema de UI Reativo
 
-## Como Funciona?
+*   Cenas de UI (ex: `main_menu`, `pause_menu`, `settings_menu`) são "burras" por design. Elas apenas apresentam botões, emitem sinais de "requisição" para o `GlobalEvents` (ex: `scene_push_requested`) e reagem a sinais de mudança de estado para controlar sua visibilidade.
 
-O Repo Café CLI é um wrapper inteligente para o `gemini-cli` do Google. Ele utiliza o repositório [Repo Café](https://github.com/Café-GameDev/repo-cafe) — um curso completo de Godot em formato de texto — como uma base de conhecimento fixa. É o nosso grão especial, sempre moído na hora para o seu projeto, garantindo um aroma único em cada linha de código.
+### Internacionalização (I18N)
 
-## Instalação
+*   Estrutura completa para tradução usando arquivos `.po`. Os textos na UI são definidos por chaves (ex: `UI_NEW_GAME`) diretamente no editor, permitindo que o `TranslationServer` do Godot os traduza automaticamente.
 
-Para instalar o Repo Café CLI, você precisa ter o [Node.js](https://nodejs.org/) (que inclui o NPM) instalado em seu sistema.
+## Sugestões para Atualizações Futuras
 
-Com o Node.js pronto, abra seu terminal e execute o seguinte comando:
-
-```bash
-npm install -g repo-cafe
-```
-
-E pronto! Seu café está coado e pronto para ser saboreado, seja um espresso rápido ou um coado demorado.
-
-## Como Usar
-
-Após a instalação, simplesmente abra um novo terminal e execute:
-
-```bash
-repo-cafe
-```
-
-É só dar um gole e começar a codificar, sentindo a Caféína do desenvolvimento fluir!
-
-## Recursos Adicionais
-
--   **Análise de Mídia**: O Gemini pode "ver" e analisar arquivos de imagem e áudio do seu projeto. Ele tem um olfato apurado para os detalhes, como um sommelier de café, identificando cada nuance do seu projeto.
-
-## Modo de Operação de Conteúdo (NSFW)
-
-Para garantir total liberdade criativa em projetos destinados a um público adulto, o Repo Café CLI possui um modo de operação explícito (NSFW). É a sua dose extra de Caféína para a criatividade sem limites, como um café duplo para as ideias mais ousadas.
-
--   **Modo Padrão (SFW):** Por padrão, o assistente opera com as políticas de segurança de conteúdo do Google, evitando temas sensíveis.
--   **Modo Explícito (NSFW):** Se um arquivo chamado `NSFW` (sem extensão) for detectado na raiz do seu projeto, as restrições de conteúdo são suspensas. Isso permite que o assistente colabore na criação de diálogos com linguagem explícita, descrições de violência e outros temas maduros, respeitando a visão criativa do seu projeto.
-
-Se você solicitar um conteúdo que seria bloqueado, o próprio assistente oferecerá a criação do arquivo `NSFW` para ativar o modo explícito.
+*   **UI/UX (Mobile & Gamepad):** Adicionar HUDs para touch e gamepad, e garantir navegação completa dos menus via controle.
+*   **Sistemas Essenciais:** Implementar remapeamento de inputs e um conjunto robusto de opções de acessibilidade (modos para daltônicos, legendas personalizáveis, etc.).
+*   **Visuais:** Adicionar exemplos de partículas e shaders para demonstrar efeitos visuais.
