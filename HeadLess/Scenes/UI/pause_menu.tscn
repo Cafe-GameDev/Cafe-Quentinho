@@ -1,0 +1,68 @@
+[gd_scene load_steps=2 format=3 uid="uid://b4b5bm4br5j6a"]
+
+[ext_resource type="Script" uid="uid://j7kgorat6c5a" path="res://Scripts/UI/pause_menu.gd" id="1_rrvs5"]
+
+[node name="PauseMenu" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rrvs5")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.1, 0.1, 0.1, 1)
+
+[node name="TitleLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -200.0
+offset_top = 50.0
+offset_right = 200.0
+offset_bottom = 100.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 36
+text = "UI_PAUSE_MENU_TITLE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MainButtons" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = -60.0
+offset_right = 80.0
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 15
+
+[node name="NewGameButton" type="Button" parent="MainButtons"]
+layout_mode = 2
+text = "UI_RESUME_GAME"
+
+[node name="OptionsButton" type="Button" parent="MainButtons"]
+layout_mode = 2
+text = "UI_OPTIONS"
+
+[node name="ExitButton" type="Button" parent="MainButtons"]
+layout_mode = 2
+text = "UI_EXIT"
+
+[connection signal="pressed" from="MainButtons/NewGameButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="MainButtons/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="MainButtons/ExitButton" to="." method="_on_exit_button_pressed"]
