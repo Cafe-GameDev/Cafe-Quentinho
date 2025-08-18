@@ -11,12 +11,13 @@ config_version=5
 [application]
 
 config/name="BodyLess"
+run/main_scene="uid://dxhws6yewnojk"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 <<<<<<<HEADrun/main_scene="uid://b51bucwuhln4v"
 
 [autoload]
 
-<<<<<<<HEADGlobalEvents="*res://Autoloads/EventBus/global_events.gd"
+GlobalEvents="*res://Autoloads/EventBus/global_events.gd"
 LocalEvents="*res://Autoloads/EventBus/local_events.gd"
 GlobalMachine="*res://Autoloads/StateMachines/global_machine.gd"
 LocalMachine="*res://Autoloads/StateMachines/local_machine.gd"

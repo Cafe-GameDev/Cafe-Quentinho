@@ -1,6 +1,27 @@
-[gd_scene load_steps=2 format=3 uid="uid://cy8wdupgurgfc"]
+[gd_scene load_steps=23 format=3 uid="uid://cy8wdupgurgfc"]
 
-[ext_resource type="Script" uid="uid://cwervoggthcwp" path="res://Scripts/UI/options_menu.gd" id="1_run4o"]
+[ext_resource type="Script" path="res://Scripts/UI/options_menu.gd" id="1_run4o"]
+[ext_resource type="Script" uid="uid://c8soxpoohhv3k" path="res://Scripts/UI/Settings/Video/monitor.gd" id="2_v3s7g"]
+[ext_resource type="Script" uid="uid://b0to51po0ycj" path="res://Scripts/UI/Settings/Video/window.gd" id="3_3gi7d"]
+[ext_resource type="Script" uid="uid://bpixej8va8ltk" path="res://Scripts/UI/Settings/Video/resolution.gd" id="4_j5knn"]
+[ext_resource type="Script" uid="uid://mcw6jcmukn0p" path="res://Scripts/UI/Settings/Video/aspect.gd" id="5_3mnbf"]
+[ext_resource type="Script" uid="uid://dxglauj582j4f" path="res://Scripts/UI/Settings/Video/dynamic_render.gd" id="6_wv8sl"]
+[ext_resource type="Script" uid="uid://jq0p3n7w11qw" path="res://Scripts/UI/Settings/Video/render_scale.gd" id="7_0gyhc"]
+[ext_resource type="Script" uid="uid://cil22dy7linnr" path="res://Scripts/UI/Settings/Video/frame_rate.gd" id="8_yn4rt"]
+[ext_resource type="Script" uid="uid://xgcla4f0g3v0" path="res://Scripts/UI/Settings/Video/max_frame.gd" id="9_twvus"]
+[ext_resource type="Script" uid="uid://diqpb8y127a6m" path="res://Scripts/UI/Settings/Video/v_sync.gd" id="10_rqfjk"]
+[ext_resource type="Script" uid="uid://bfdb2o1lsybe0" path="res://Scripts/UI/Settings/Video/gamma_correction.gd" id="11_p2b1j"]
+[ext_resource type="Script" uid="uid://c10xql2at2elx" path="res://Scripts/UI/Settings/Video/contrast.gd" id="12_cdipl"]
+[ext_resource type="Script" uid="uid://1j8gwak2tdg6" path="res://Scripts/UI/Settings/Video/brightness.gd" id="13_04fdb"]
+[ext_resource type="Script" uid="uid://d34h55j7rh84o" path="res://Scripts/UI/Settings/Video/shaders.gd" id="14_sx38g"]
+[ext_resource type="Script" uid="uid://hq6ekapwquwn" path="res://Scripts/UI/Settings/Video/effects_quality.gd" id="15_6r8l8"]
+[ext_resource type="Script" uid="uid://bka2dvk3puxs" path="res://Scripts/UI/Settings/Video/colorblind.gd" id="16_wkt5q"]
+[ext_resource type="Script" uid="uid://6q70717rqc0r" path="res://Scripts/UI/Settings/Video/reduce_screen_shake.gd" id="17_ndi35"]
+[ext_resource type="Script" uid="uid://byvycfw8yhyom" path="res://Scripts/UI/Settings/Video/ui_scale.gd" id="18_6gurc"]
+[ext_resource type="Script" uid="uid://nelg1hyglwrs" path="res://Scripts/UI/Settings/Audio/master.gd" id="19_efu1j"]
+[ext_resource type="Script" uid="uid://di5m0f88ijcxw" path="res://Scripts/UI/Settings/Audio/music.gd" id="20_ts4hv"]
+[ext_resource type="Script" uid="uid://dq12omuvgwn8k" path="res://Scripts/UI/Settings/Audio/sfx.gd" id="21_bw48c"]
+[ext_resource type="Script" uid="uid://cnmrmds3xslo2" path="res://Scripts/UI/Settings/Locate/language_options.gd" id="22_4o4ek"]
 
 [node name="OptionsMenu" type="Control"]
 process_mode = 3
@@ -141,6 +162,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="VideoSettings" type="VBoxContainer" parent="PanelContainer/Margin/Box/ContentHBox/ScrollContent/CategoryContent"]
+visible = false
 layout_mode = 2
 theme_override_constants/separation = 10
 
@@ -148,6 +170,7 @@ theme_override_constants/separation = 10
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 20
+script = ExtResource("2_v3s7g")
 
 [node name="MonitorLabel" type="Label" parent="PanelContainer/Margin/Box/ContentHBox/ScrollContent/CategoryContent/VideoSettings/Monitor"]
 custom_minimum_size = Vector2(250, 0)
@@ -162,6 +185,7 @@ size_flags_horizontal = 3
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 20
+script = ExtResource("3_3gi7d")
 
 [node name="WindowModeLabel" type="Label" parent="PanelContainer/Margin/Box/ContentHBox/ScrollContent/CategoryContent/VideoSettings/Window"]
 custom_minimum_size = Vector2(250, 0)
@@ -176,6 +200,7 @@ size_flags_horizontal = 3
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 20
+script = ExtResource("4_j5knn")
 
 [node name="ResolutionLabel" type="Label" parent="PanelContainer/Margin/Box/ContentHBox/ScrollContent/CategoryContent/VideoSettings/Resolution"]
 custom_minimum_size = Vector2(250, 0)
@@ -191,6 +216,7 @@ size_flags_vertical = 3
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 20
+script = ExtResource("5_3mnbf")
 
 [node name="AspectRatioLabel" type="Label" parent="PanelContainer/Margin/Box/ContentHBox/ScrollContent/CategoryContent/VideoSettings/Aspect"]
 custom_minimum_size = Vector2(250, 0)
@@ -206,6 +232,7 @@ size_flags_vertical = 3
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 20
+script = ExtResource("6_wv8sl")
 
 [node name="DynamicRenderScaleLabel" type="Label" parent="PanelContainer/Margin/Box/ContentHBox/ScrollContent/CategoryContent/VideoSettings/DynamicRender"]
 custom_minimum_size = Vector2(250, 0)
@@ -221,6 +248,7 @@ size_flags_vertical = 3
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 20
+script = ExtResource("7_0gyhc")
 
 [node name="RenderScaleLabel" type="Label" parent="PanelContainer/Margin/Box/ContentHBox/ScrollContent/CategoryContent/VideoSettings/RenderScale"]
 custom_minimum_size = Vector2(250, 0)
@@ -229,9 +257,7 @@ text = "UI_RENDER_SCALE"
 
 [node name="RenderScaleSlider" type="HSlider" parent="PanelContainer/Margin/Box/ContentHBox/ScrollContent/CategoryContent/VideoSettings/RenderScale"]
 layout_mode = 2
-
 size_flags_horizontal = 3
-
 size_flags_vertical = 2
 min_value = 0.5
 max_value = 2.0
@@ -242,6 +268,7 @@ value = 1.0
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 20
+script = ExtResource("8_yn4rt")
 
 [node name="FrameRateLimitLabel" type="Label" parent="PanelContainer/Margin/Box/ContentHBox/ScrollContent/CategoryContent/VideoSettings/FrameRate"]
 custom_minimum_size = Vector2(250, 0)
@@ -256,6 +283,7 @@ size_flags_horizontal = 3
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 20
+script = ExtResource("9_twvus")
 
 [node name="MaxFrameRateLabel" type="Label" parent="PanelContainer/Margin/Box/ContentHBox/ScrollContent/CategoryContent/VideoSettings/MaxFrame"]
 custom_minimum_size = Vector2(250, 0)
@@ -274,6 +302,7 @@ value = 60.0
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 20
+script = ExtResource("10_rqfjk")
 
 [node name="VSyncLabel" type="Label" parent="PanelContainer/Margin/Box/ContentHBox/ScrollContent/CategoryContent/VideoSettings/VSync"]
 custom_minimum_size = Vector2(250, 0)
@@ -288,6 +317,7 @@ size_flags_horizontal = 3
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 20
+script = ExtResource("11_p2b1j")
 
 [node name="GammaCorrectionLabel" type="Label" parent="PanelContainer/Margin/Box/ContentHBox/ScrollContent/CategoryContent/VideoSettings/GammaCorrection"]
 custom_minimum_size = Vector2(250, 0)
@@ -306,6 +336,7 @@ value = 2.2
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 20
+script = ExtResource("12_cdipl")
 
 [node name="ContrastLabel" type="Label" parent="PanelContainer/Margin/Box/ContentHBox/ScrollContent/CategoryContent/VideoSettings/Contrast"]
 custom_minimum_size = Vector2(250, 0)
@@ -324,6 +355,7 @@ value = 1.0
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 20
+script = ExtResource("13_04fdb")
 
 [node name="BrightnessLabel" type="Label" parent="PanelContainer/Margin/Box/ContentHBox/ScrollContent/CategoryContent/VideoSettings/Brightness"]
 custom_minimum_size = Vector2(250, 0)
@@ -342,6 +374,7 @@ value = 1.0
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 20
+script = ExtResource("14_sx38g")
 
 [node name="ShadersQualityLabel" type="Label" parent="PanelContainer/Margin/Box/ContentHBox/ScrollContent/CategoryContent/VideoSettings/Shaders"]
 custom_minimum_size = Vector2(250, 0)
@@ -356,6 +389,7 @@ size_flags_horizontal = 3
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 20
+script = ExtResource("15_6r8l8")
 
 [node name="EffectsQualityLabel" type="Label" parent="PanelContainer/Margin/Box/ContentHBox/ScrollContent/CategoryContent/VideoSettings/EffectsQuality"]
 custom_minimum_size = Vector2(250, 0)
@@ -370,6 +404,7 @@ size_flags_horizontal = 3
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 20
+script = ExtResource("16_wkt5q")
 
 [node name="ColorblindModeLabel" type="Label" parent="PanelContainer/Margin/Box/ContentHBox/ScrollContent/CategoryContent/VideoSettings/Colorblind"]
 custom_minimum_size = Vector2(250, 0)
@@ -384,6 +419,7 @@ size_flags_horizontal = 3
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 20
+script = ExtResource("17_ndi35")
 
 [node name="ReduceScreenShakeLabel" type="Label" parent="PanelContainer/Margin/Box/ContentHBox/ScrollContent/CategoryContent/VideoSettings/ReduceScreenShake"]
 custom_minimum_size = Vector2(250, 0)
@@ -398,6 +434,7 @@ size_flags_horizontal = 3
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 20
+script = ExtResource("18_6gurc")
 
 [node name="UIScaleLabel" type="Label" parent="PanelContainer/Margin/Box/ContentHBox/ScrollContent/CategoryContent/VideoSettings/UIScale"]
 custom_minimum_size = Vector2(250, 0)
@@ -409,35 +446,52 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="AudioSettings" type="VBoxContainer" parent="PanelContainer/Margin/Box/ContentHBox/ScrollContent/CategoryContent"]
-visible = false
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="MasterLabel" type="Label" parent="PanelContainer/Margin/Box/ContentHBox/ScrollContent/CategoryContent/AudioSettings"]
+[node name="Master" type="HBoxContainer" parent="PanelContainer/Margin/Box/ContentHBox/ScrollContent/CategoryContent/AudioSettings"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 20
+script = ExtResource("19_efu1j")
+
+[node name="MasterLabel" type="Label" parent="PanelContainer/Margin/Box/ContentHBox/ScrollContent/CategoryContent/AudioSettings/Master"]
 layout_mode = 2
 text = "UI_MASTER_VOLUME"
 
-[node name="MasterSlider" type="HSlider" parent="PanelContainer/Margin/Box/ContentHBox/ScrollContent/CategoryContent/AudioSettings"]
+[node name="MasterSlider" type="HSlider" parent="PanelContainer/Margin/Box/ContentHBox/ScrollContent/CategoryContent/AudioSettings/Master"]
 layout_mode = 2
 max_value = 1.0
 step = 0.01
 value = 1.0
 
-[node name="MusicLabel" type="Label" parent="PanelContainer/Margin/Box/ContentHBox/ScrollContent/CategoryContent/AudioSettings"]
+[node name="Music" type="HBoxContainer" parent="PanelContainer/Margin/Box/ContentHBox/ScrollContent/CategoryContent/AudioSettings"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 20
+script = ExtResource("20_ts4hv")
+
+[node name="MusicLabel" type="Label" parent="PanelContainer/Margin/Box/ContentHBox/ScrollContent/CategoryContent/AudioSettings/Music"]
 layout_mode = 2
 text = "UI_MUSIC_VOLUME"
 
-[node name="MusicSlider" type="HSlider" parent="PanelContainer/Margin/Box/ContentHBox/ScrollContent/CategoryContent/AudioSettings"]
+[node name="MusicSlider" type="HSlider" parent="PanelContainer/Margin/Box/ContentHBox/ScrollContent/CategoryContent/AudioSettings/Music"]
 layout_mode = 2
 max_value = 1.0
 step = 0.01
 value = 1.0
 
-[node name="SfxLabel" type="Label" parent="PanelContainer/Margin/Box/ContentHBox/ScrollContent/CategoryContent/AudioSettings"]
+[node name="SFX" type="HBoxContainer" parent="PanelContainer/Margin/Box/ContentHBox/ScrollContent/CategoryContent/AudioSettings"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 20
+script = ExtResource("21_bw48c")
+
+[node name="SfxLabel" type="Label" parent="PanelContainer/Margin/Box/ContentHBox/ScrollContent/CategoryContent/AudioSettings/SFX"]
 layout_mode = 2
 text = "UI_SFX_VOLUME"
 
-[node name="SfxSlider" type="HSlider" parent="PanelContainer/Margin/Box/ContentHBox/ScrollContent/CategoryContent/AudioSettings"]
+[node name="SfxSlider" type="HSlider" parent="PanelContainer/Margin/Box/ContentHBox/ScrollContent/CategoryContent/AudioSettings/SFX"]
 layout_mode = 2
 max_value = 1.0
 step = 0.01
@@ -451,6 +505,7 @@ theme_override_constants/separation = 10
 [node name="LanguageOptionsContainer" type="VBoxContainer" parent="PanelContainer/Margin/Box/ContentHBox/ScrollContent/CategoryContent/LanguageSettings"]
 layout_mode = 2
 theme_override_constants/separation = 5
+script = ExtResource("22_4o4ek")
 
 [node name="Spacer" type="Control" parent="PanelContainer/Margin/Box/ContentHBox/ScrollContent/CategoryContent"]
 layout_mode = 2

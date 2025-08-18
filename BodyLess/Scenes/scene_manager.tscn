@@ -1,6 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://b51bucwuhln4v"]
+[gd_scene load_steps=6 format=3 uid="uid://dxhws6yewnojk"]
 
-[ext_resource type="Script" uid="uid://dkdek2qq68i3j" path="res://Scripts/scene_manager.gd" id="1_mk1ro"]
+[ext_resource type="Script" path="res://Scripts/scene_manager.gd" id="1_mk1ro"]
+[ext_resource type="PackedScene" uid="uid://oy5s0xerhufo" path="res://Scenes/UI/main_menu.tscn" id="2_py5r8"]
+[ext_resource type="PackedScene" uid="uid://cy8wdupgurgfc" path="res://Scenes/UI/options_menu.tscn" id="3_t7rfq"]
+[ext_resource type="PackedScene" uid="uid://xc4la75a5m4q" path="res://Scenes/UI/pause_menu.tscn" id="4_thx0b"]
+[ext_resource type="PackedScene" uid="uid://ckonqksbeok8r" path="res://Scenes/UI/quit_confirmation_dialog.tscn" id="5_ye2ax"]
 
 [node name="SceneManager" type="Node"]
 process_mode = 3
@@ -20,3 +24,14 @@ size = Vector2i(1152, 648)
 render_target_update_mode = 4
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="MainMenu" parent="CanvasLayer" instance=ExtResource("2_py5r8")]
+
+[node name="OptionsMenu" parent="CanvasLayer" instance=ExtResource("3_t7rfq")]
+visible = false
+
+[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("4_thx0b")]
+visible = false
+
+[node name="QuitConfirmationDialog" parent="CanvasLayer" instance=ExtResource("5_ye2ax")]
+visible = false

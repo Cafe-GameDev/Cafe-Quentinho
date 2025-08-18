@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://ckonqksbeok8r"]
 
-[ext_resource type="Script" uid="uid://cjyddd1xx4mag" path="res://Scripts/UI/quit_confirmation_dialog.gd" id="1_08863"]
+[ext_resource type="Script" path="res://Scripts/UI/quit_confirmation_dialog.gd" id="1_08863"]
 
 [node name="QuitConfirmationDialog" type="PanelContainer"]
 process_mode = 3
