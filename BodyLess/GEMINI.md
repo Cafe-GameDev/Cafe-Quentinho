@@ -211,3 +211,11 @@ Nossa UI é construída usando cenas auto-contidas (`main_menu.tscn`, `options_m
 1.  **Para Ações:** Ela emite sinais no `GlobalEvents` (ex: `GlobalEvents.emit_signal("options_button_pressed")`).
 2.  **Para Reações:** Ela ouve sinais do `GlobalEvents` para saber quando deve aparecer ou se atualizar (ex: `GlobalEvents.game_state_changed.connect(_on_game_state_changed)`).
 Isso desacopla completamente a interface da lógica e das máquinas de estado do jogo.
+
+
+- Sempre que for para abrir o editor Godot, use as flags --verbose -e
+- O usuário prefere que eu sempre teste as modificações automaticamente após implementá-las.
+- Executavel da Godot: "C://Users/bruno/Documents/Godot_v4.4.1-stable_win64_console.exe"
+
+Sempre que possivel, use Dictionary
+EventBus, seja ele o GlobalEvents ou o LocalEvents, são obrigatorios, e nem mesmo eles podema acessar diretamente um script ou scene, apenas pode emitir sinais da propria godot
