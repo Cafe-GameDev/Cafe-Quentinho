@@ -70,7 +70,15 @@ O template oferece os seguintes sistemas pré-configurados, com foco em eficiên
     *   **Eficiência:** Contém exclusivamente declarações de `signal`, atuando como um quadro de avisos central e passivo para eventos globais. Isso garante que os sistemas se comuniquem sem conhecer uns aos outros, promovendo um desacoplamento extremo, alta modularidade, testabilidade e escalabilidade.
 *   **`GlobalMachine` (State Machine):**
     *   **Propósito:** Gerenciar o estado global do jogo.
-    *   **Eficiência:** Implementa uma Máquina de Estados Finitos (FSM) simples (`MENU`, `PLAYING`, `PAUSED`, `SETTINGS`, `QUIT_CONFIRMATION`), centralizando a lógica de pausa e o fluxo geral do jogo. Isso evita lógica de estado espalhada e facilita a transição entre diferentes modos de jogo.
+    *   **Eficiência:** Implementa uma Máquina de Estados Finitos (FSM) robusta para centralizar a lógica de pausa e o fluxo geral do jogo. Isso evita lógica de estado espalhada e facilita a transição entre diferentes modos de jogo. Os estados definidos são:
+        *   `MENU`: O jogador está no menu principal.
+        *   `SETTINGS`: O jogador está no menu de opções.
+        *   `LOADING`: O jogo está carregando uma cena/nível.
+        *   `PLAYING`: O jogador está ativamente no jogo.
+        *   `PLAYING_SAVING`: O jogo está salvando em segundo plano (ex: autosave), mas a jogabilidade continua. Este estado garante que apenas um "snapshot" dos dados seja salvo, evitando corrupção de dados.
+        *   `PAUSED`: O jogo está pausado e o menu de pause está visível.
+        *   `QUIT_CONFIRMATION`: A caixa de diálogo "Deseja sair?" está na tela.
+        *   `SAVING_QUIT`: O jogo está salvando os dados explicitamente antes de fechar.
 *   **`AudioManager`:**
     *   **Propósito:** Centralizar o carregamento e a reprodução de música e efeitos sonoros (SFX).
     *   **Eficiência:**
