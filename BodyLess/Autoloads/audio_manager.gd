@@ -6,6 +6,7 @@ extends Node
 
 const SFX_BUS_NAME = "SFX"
 const MUSIC_BUS_NAME = "Music"
+const MASTER_BUS_NAME = "Master"
 
 # --- Bibliotecas de Som ---
 var _sfx_library: Dictionary = {}
@@ -26,9 +27,14 @@ func _ready():
 	_music_player.bus = MUSIC_BUS_NAME
 	_music_player.finished.connect(_on_music_finished)
 
-	# Conecta-se a sinais globais para reprodução de SFX.
+	# Conecta-se a sinais globais para reprodução e controle.
 	GlobalEvents.play_sfx_by_key_requested.connect(play_random_sfx)
-	GlobalEvents.music_change_requested.connect(_on_music_change_requested) # Connect to the new music change signal
+	GlobalEvents.music_change_requested.connect(_on_music_change_requested)
+	
+	# Conecta-se aos novos sinais de volume específicos.
+	GlobalEvents.master_volume_changed.connect(func(vol): _update_bus_volume(MASTER_BUS_NAME, vol))
+	GlobalEvents.music_volume_changed.connect(func(vol): _update_bus_volume(MUSIC_BUS_NAME, vol))
+	GlobalEvents.sfx_volume_changed.connect(func(vol): _update_bus_volume(SFX_BUS_NAME, vol))
 
 	# Cria um pool de AudioStreamPlayers para SFX.
 	for i in range(_sfx_player_count):
@@ -185,10 +191,10 @@ func _on_music_finished():
 		play_random_music(_current_playlist_key)
 
 
-func _on_audio_setting_changed(bus_name: String, linear_volume: float):
+func _update_bus_volume(bus_name: String, linear_volume: float):
 	var bus_index = AudioServer.get_bus_index(bus_name)
 	if bus_index != -1:
-		var db_volume = linear_to_db(linear_volume) if linear_volume > 0 else -80.0
+		var db_volume = linear_to_db(linear_volume) if linear_volume > 0.001 else -80.0
 		AudioServer.set_bus_volume_db(bus_index, db_volume)
 
 
