@@ -1,0 +1,27 @@
+Café com Godot
+Copyright 2025 Cafe-GameDev
+
+Licenciado sob a Licença Apache, Versão 2.0 (a "Licença");
+você não pode usar este arquivo exceto em conformidade com a Licença.
+Você pode obter uma cópia da Licença em
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+A menos que exigido pela lei aplicável ou acordado por escrito, o software
+distribuído sob a Licença é distribuído "COMO ESTÁ",
+SEM GARANTIAS OU CONDIÇÕES DE QUALQUER TIPO, expressas ou implícitas.
+Consulte a Licença para as permissões específicas que regem o idioma e
+limitações sob a Licença.
+
+=========================================================================
+## Atribuições de Terceiros
+
+Partes deste projeto podem incluir ativos ou código de terceiros.
+Todos os componentes de terceiros estão sujeitos às suas próprias licenças.
+As atribuições para esses componentes estão listadas abaixo.
+
+---
+
+- "2D Platformer/Metroidvania Asset Pack" por Zegley
+  - Fonte: https://zegley.itch.io/2d-platformermetroidvania-asset-pack
+  - Licença: Creative Commons Attribution 4.0 International (CC BY 4.0)

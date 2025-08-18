@@ -109,8 +109,8 @@ Enquanto uma "Cena" é um arquivo no seu disco, a **Árvore de Cenas** é a estr
 *   Um script é anexado a um nó e efetivamente estende sua funcionalidade.
 *   Ele possui funções de ciclo de vida que o Godot chama automaticamente:
     *   `_ready()`: Chamada uma vez quando o nó e seus filhos entram na `SceneTree`. Ótimo para inicialização.
-    *   `_process(delta)`: Chamada a cada frame. Ideal para lógica que não envolve física (ex: atualizar UI, checar inputs). `delta` é o tempo desde o último frame.
-    *   `_physics_process(delta)`: Chamada a uma taxa de quadros fixa (padrão de 60 vezes por segundo). Ideal para toda a lógica de física (movimento, colisões) para garantir consistência.
+    -   `_process(delta)`: Chamada a cada frame. Ideal para lógica que não envolve física (ex: atualizar UI, checar inputs). `delta` é o tempo desde o último frame.
+    -   `_physics_process(delta)`: Chamada a uma taxa de quadros fixa (padrão de 60 vezes por segundo). Ideal para toda a lógica de física (movimento, colisões) para garantir consistência.
 
 ## 5. Sinais (Signals)
 
@@ -193,8 +193,8 @@ O Godot gerencia o acesso a arquivos, salvamento e carregamento de dados princip
 
 *   **Fundamentos:**
     *   **`FileAccess`:** Classe para leitura e escrita de arquivos.
-    *   **Caminhos:** `user://` (gravável, para saves) e `res://` (somente leitura, para assets do jogo).
-    *   **Formatos:** JSON (legível) e serialização binária (`store_var`/`get_var`, mais eficiente).
+    -   **Caminhos:** `user://` (gravável, para saves) e `res://` (somente leitura, para assets do jogo).
+    -   **Formatos:** JSON (legível) e serialização binária (`store_var`/`get_var`, mais eficiente).
 
 **Como Promove o Desacoplamento:** O sistema de salvamento é centralizado para desacoplar o estado do jogo do método de persistência. Os `Managers` (como `SettingsManager`) mantêm seu estado em dicionários. Quando um `SaveManager` recebe um sinal `save_game_requested`, ele pede os dicionários de estado de cada `Manager` e os serializa para um arquivo. Os `Managers` não sabem *como* os dados são salvos; eles apenas fornecem seu estado quando solicitado. Isso desacopla a lógica do jogo do sistema de arquivos.
 
@@ -219,3 +219,5 @@ Isso desacopla completamente a interface da lógica e das máquinas de estado do
 
 Sempre que possivel, use Dictionary
 EventBus, seja ele o GlobalEvents ou o LocalEvents, são obrigatorios, e nem mesmo eles podema acessar diretamente um script ou scene, apenas pode emitir sinais da propria godot
+
+- Ao criar um script ou cena, antes de usar / anexar o script a cena, ou ao instanciar essa cena dentro de outra, é obrigatorio abrir a godot usando as flags -e --verbose --import, para que a propria godot gere as uids invés de tentar "adivinhar" ou escolher uma. O caminho para a instalação da godot é "C://Users/bruno/Documents/Godot_v4.4.1-stable_win64_console.exe" abra ela com -e --verbose quando o usuario solicitar

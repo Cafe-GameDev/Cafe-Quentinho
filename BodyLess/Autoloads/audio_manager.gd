@@ -27,8 +27,8 @@ func _ready():
 	_music_player.finished.connect(_on_music_finished)
 
 	# Conecta-se a sinais globais para reprodução de SFX.
-	#GlobalEvents.play_sfx_by_key_requested.connect(play_random_sfx)
-	#GlobalEvents.music_change_requested.connect(_on_music_change_requested) # Connect to the new music change signal
+	GlobalEvents.play_sfx_by_key_requested.connect(play_random_sfx)
+	GlobalEvents.music_change_requested.connect(_on_music_change_requested) # Connect to the new music change signal
 
 	# Cria um pool de AudioStreamPlayers para SFX.
 	for i in range(_sfx_player_count):

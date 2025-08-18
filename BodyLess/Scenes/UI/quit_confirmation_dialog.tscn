@@ -49,5 +49,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "UI_NO"
 
+[connection signal="mouse_entered" from="MarginContainer/VBoxContainer/HBoxContainer/YesButton" to="." method="_on_button_mouse_entered"]
+[connection signal="mouse_entered" from="MarginContainer/VBoxContainer/HBoxContainer/NoButton" to="." method="_on_button_mouse_entered"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/YesButton" to="." method="_on_yes_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/NoButton" to="." method="_on_no_button_pressed"]

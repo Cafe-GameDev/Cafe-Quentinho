@@ -259,7 +259,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 2
 min_value = 0.5
-max_value = 2.0
+max_value = 1.5
 step = 0.01
 value = 1.0
 
@@ -295,7 +295,7 @@ size_flags_horizontal = 3
 min_value = 30.0
 max_value = 300.0
 step = 2.0
-value = 60.0
+value = 300.0
 
 [node name="VSync" type="HBoxContainer" parent="PanelContainer/Margin/Box/ContentHBox/ScrollContent/CategoryContent/VideoSettings"]
 layout_mode = 2
@@ -545,5 +545,8 @@ text = "UI_APPLY"
 [connection signal="pressed" from="PanelContainer/Margin/Box/ContentHBox/ScrollList/CategoryList/VideoButton" to="." method="_on_video_button_pressed"]
 [connection signal="pressed" from="PanelContainer/Margin/Box/ContentHBox/ScrollList/CategoryList/AudioButton" to="." method="_on_audio_button_pressed"]
 [connection signal="pressed" from="PanelContainer/Margin/Box/ContentHBox/ScrollList/CategoryList/LanguageButton" to="." method="_on_language_button_pressed"]
+[connection signal="drag_ended" from="PanelContainer/Margin/Box/ContentHBox/ScrollContent/CategoryContent/AudioSettings/Master/MasterSlider" to="PanelContainer/Margin/Box/ContentHBox/ScrollContent/CategoryContent/AudioSettings/Master" method="_on_master_slider_drag_ended"]
+[connection signal="drag_ended" from="PanelContainer/Margin/Box/ContentHBox/ScrollContent/CategoryContent/AudioSettings/Music/MusicSlider" to="PanelContainer/Margin/Box/ContentHBox/ScrollContent/CategoryContent/AudioSettings/Music" method="_on_music_slider_drag_ended"]
+[connection signal="drag_ended" from="PanelContainer/Margin/Box/ContentHBox/ScrollContent/CategoryContent/AudioSettings/SFX/SfxSlider" to="PanelContainer/Margin/Box/ContentHBox/ScrollContent/CategoryContent/AudioSettings/SFX" method="_on_sfx_slider_drag_ended"]
 [connection signal="pressed" from="PanelContainer/Margin/Box/BottomButtonsContainer/BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="pressed" from="PanelContainer/Margin/Box/BottomButtonsContainer/ApplyButton" to="." method="_on_apply_button_pressed"]
