@@ -162,7 +162,6 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="VideoSettings" type="VBoxContainer" parent="PanelContainer/Margin/Box/ContentHBox/ScrollContent/CategoryContent"]
-visible = false
 layout_mode = 2
 theme_override_constants/separation = 10
 
@@ -446,6 +445,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="AudioSettings" type="VBoxContainer" parent="PanelContainer/Margin/Box/ContentHBox/ScrollContent/CategoryContent"]
+visible = false
 layout_mode = 2
 theme_override_constants/separation = 10
 
@@ -456,11 +456,13 @@ theme_override_constants/separation = 20
 script = ExtResource("19_efu1j")
 
 [node name="MasterLabel" type="Label" parent="PanelContainer/Margin/Box/ContentHBox/ScrollContent/CategoryContent/AudioSettings/Master"]
+custom_minimum_size = Vector2(170, 0)
 layout_mode = 2
 text = "UI_MASTER_VOLUME"
 
 [node name="MasterSlider" type="HSlider" parent="PanelContainer/Margin/Box/ContentHBox/ScrollContent/CategoryContent/AudioSettings/Master"]
 layout_mode = 2
+size_flags_horizontal = 3
 max_value = 1.0
 step = 0.01
 value = 1.0
@@ -472,11 +474,13 @@ theme_override_constants/separation = 20
 script = ExtResource("20_ts4hv")
 
 [node name="MusicLabel" type="Label" parent="PanelContainer/Margin/Box/ContentHBox/ScrollContent/CategoryContent/AudioSettings/Music"]
+custom_minimum_size = Vector2(170, 0)
 layout_mode = 2
 text = "UI_MUSIC_VOLUME"
 
 [node name="MusicSlider" type="HSlider" parent="PanelContainer/Margin/Box/ContentHBox/ScrollContent/CategoryContent/AudioSettings/Music"]
 layout_mode = 2
+size_flags_horizontal = 3
 max_value = 1.0
 step = 0.01
 value = 1.0
@@ -488,11 +492,13 @@ theme_override_constants/separation = 20
 script = ExtResource("21_bw48c")
 
 [node name="SfxLabel" type="Label" parent="PanelContainer/Margin/Box/ContentHBox/ScrollContent/CategoryContent/AudioSettings/SFX"]
+custom_minimum_size = Vector2(170, 0)
 layout_mode = 2
 text = "UI_SFX_VOLUME"
 
 [node name="SfxSlider" type="HSlider" parent="PanelContainer/Margin/Box/ContentHBox/ScrollContent/CategoryContent/AudioSettings/SFX"]
 layout_mode = 2
+size_flags_horizontal = 3
 max_value = 1.0
 step = 0.01
 value = 1.0
@@ -535,3 +541,9 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 text = "UI_APPLY"
+
+[connection signal="pressed" from="PanelContainer/Margin/Box/ContentHBox/ScrollList/CategoryList/VideoButton" to="." method="_on_video_button_pressed"]
+[connection signal="pressed" from="PanelContainer/Margin/Box/ContentHBox/ScrollList/CategoryList/AudioButton" to="." method="_on_audio_button_pressed"]
+[connection signal="pressed" from="PanelContainer/Margin/Box/ContentHBox/ScrollList/CategoryList/LanguageButton" to="." method="_on_language_button_pressed"]
+[connection signal="pressed" from="PanelContainer/Margin/Box/BottomButtonsContainer/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="PanelContainer/Margin/Box/BottomButtonsContainer/ApplyButton" to="." method="_on_apply_button_pressed"]
