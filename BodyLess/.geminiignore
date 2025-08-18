@@ -1,0 +1,14 @@
+/.godot/
+/android/
+License.txt
+Credits.txt
+*.env
+*.zip
+*.url
+*.DS_Store
+*.asepritesim
+*.gif
+*.ini
+*.ogg.import
+**.import
+*.*.import

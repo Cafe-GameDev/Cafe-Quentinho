@@ -1,0 +1,211 @@
+# French translations for Cafe-Quentinho Template.
+# Copyright (C) 2025 Cafe-GameDev
+# This file is distributed under the same license as the Cafe-Quentinho Template project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2025.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Cafe-Quentinho Template\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-08-13 15:00-0300\n"
+"PO-Revision-Date: 2025-08-13 15:00-0300\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: French\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Gemini\n"
+
+msgid "UI_MAIN_MENU_TITLE"
+msgstr "Modèle de Bruno"
+
+msgid "UI_NEW_GAME"
+msgstr "Nouveau Jeu"
+
+msgid "UI_OPTIONS"
+msgstr "Options"
+
+msgid "UI_EXIT"
+msgstr "Quitter"
+
+msgid "UI_PAUSE_MENU_TITLE"
+msgstr "En Pause"
+
+msgid "UI_RESUME_GAME"
+msgstr "Reprendre le Jeu"
+
+msgid "UI_QUIT_CONFIRMATION_PROMPT"
+msgstr "Voulez-vous vraiment quitter ?"
+
+msgid "UI_YES"
+msgstr "Oui"
+
+msgid "UI_NO"
+msgstr "Non"
+
+msgid "UI_SETTINGS_TITLE"
+msgstr "Paramètres"
+
+msgid "UI_VIDEO"
+msgstr "Vidéo"
+
+msgid "UI_AUDIO"
+msgstr "Audio"
+
+msgid "UI_BACK"
+msgstr "Retour"
+
+msgid "UI_VIDEO_OPTIONS"
+msgstr "Options Vidéo"
+
+msgid "UI_FULLSCREEN"
+msgstr "Plein Écran"
+
+msgid "UI_AUDIO_OPTIONS"
+msgstr "Options Audio"
+
+msgid "UI_MASTER_VOLUME"
+msgstr "Général"
+
+msgid "UI_MUSIC_VOLUME"
+msgstr "Musique"
+
+msgid "UI_SFX_VOLUME"
+msgstr "Effets"
+
+msgid "UI_APPLY"
+msgstr "Appliquer"
+
+msgid "UI_LANGUAGE"
+msgstr "Langue"
+
+msgid "UI_LANGUAGE_OPTIONS"
+msgstr "Options de Langue"
+
+msgid "DEBUG_CONSOLE_READY"
+msgstr "Console de débogage prête. Appuyez sur 'P' pour basculer."
+
+msgid "DEBUG_LOG_TITLE"
+msgstr "Journal des Événements Globaux"
+
+msgid "DEBUG_GAME_SECTION"
+msgstr "[b]Jeu[/b]"
+
+msgid "DEBUG_GAME_VERSION"
+msgstr "  Version du Jeu: 1.0.0 (Alpha)"
+
+msgid "DEBUG_GAME_STATE"
+msgstr "  État: {state}"
+
+msgid "DEBUG_CURRENT_SCENE"
+msgstr "  Scène Actuelle: {scene}"
+
+msgid "DEBUG_LAST_SAVE"
+msgstr "  Dernière Sauvegarde: N/A"
+
+msgid "DEBUG_SYSTEM_SECTION"
+msgstr "[b]Système[/b]"
+
+msgid "DEBUG_OS"
+msgstr "  SE: {os}"
+
+msgid "DEBUG_DISPLAY_SECTION"
+msgstr "[b]Affichage[/b]"
+
+msgid "DEBUG_MONITOR"
+msgstr "  Moniteur: {monitor}"
+
+msgid "DEBUG_MONITOR_INFO"
+msgstr "Moniteur {id}: {size} @ {hz}Hz"
+
+msgid "DEBUG_SIGNAL_RECEIVED"
+msgstr "Signal '{signal}' reçu"
+
+msgid "DEBUG_WITH_ARGS"
+msgstr " avec arguments: {{args}}"
+
+msgid "UI_MONITOR"
+msgstr "Moniteur"
+
+msgid "UI_WINDOW_MODE_WINDOWED"
+msgstr "Fenêtré"
+
+msgid "UI_WINDOW_MODE_FULLSCREEN"
+msgstr "Plein écran"
+
+msgid "UI_RESOLUTION"
+msgstr "Résolution"
+
+msgid "DEBUG_PROCESSOR"
+msgstr "  Processeur: {processor}"
+
+msgid "DEBUG_CORES"
+msgstr "  Cœurs: {cores}"
+
+msgid "DEBUG_RAM"
+msgstr "  RAM: {ram}"
+
+msgid "DEBUG_VIDEO_ADAPTER"
+msgstr "  Adaptateur Vidéo: {adapter}"
+
+msgid "DEBUG_VIDEO_DRIVER"
+msgstr "  Pilote Vidéo: {driver}"
+
+msgid "DEBUG_VIDEO_RENDERER"
+msgstr "  Rendu Vidéo: {renderer}"
+
+msgid "UI_DRS_OFF"
+msgstr "Désactivé"
+
+msgid "UI_DRS_CUSTOM"
+msgstr "Personnalisé"
+
+msgid "UI_FPS_CUSTOM"
+msgstr "Personnalisé"
+
+msgid "UI_VSYNC_OFF"
+msgstr "Désactivé"
+
+msgid "UI_VSYNC_ON"
+msgstr "Activé"
+
+msgid "UI_VSYNC_ADAPTIVE"
+msgstr "Adaptatif"
+
+msgid "UI_LOW_LATENCY_OFF"
+msgstr "Désactivé"
+
+msgid "UI_LOW_LATENCY_ENABLED"
+msgstr "Activé"
+
+msgid "UI_LOW_LATENCY_ENABLED_BOOST"
+msgstr "Activé (Boost)"
+
+msgid "UI_HDR_OFF"
+msgstr "Désactivé"
+
+msgid "UI_HDR_ON"
+msgstr "Activé"
+
+msgid "UI_QUALITY_LOW"
+msgstr "Faible"
+
+msgid "UI_QUALITY_MEDIUM"
+msgstr "Moyenne"
+
+msgid "UI_QUALITY_HIGH"
+msgstr "Élevée"
+
+msgid "UI_COLORBLIND_OFF"
+msgstr "Désactivé"
+
+msgid "UI_COLORBLIND_PROTANOPIA"
+msgstr "Protanopie"
+
+msgid "UI_COLORBLIND_DEUTERANOPIA"
+msgstr "Deutéranopie"
+
+msgid "UI_COLORBLIND_TRITANOPIA"
+msgstr "Tritanopie"

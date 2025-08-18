@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://doyox406ilwbi"]
+
+[ext_resource type="Script" uid="uid://covevem2ij50" path="res://Autoloads/audio_manager.gd" id="1_ue73k"]
+
+[node name="AudioManager" type="Node"]
+script = ExtResource("1_ue73k")
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+autoplay = true
+
+[node name="MusicChangeTimer" type="Timer" parent="."]
+wait_time = 300.0
+autostart = true
+
+[connection signal="timeout" from="MusicChangeTimer" to="." method="_on_music_change_timer_timeout"]

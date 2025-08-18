@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://d1v2w3x4y506"]
+
+[ext_resource type="Texture2D" uid="uid://bd7h00m2apygc" path="res://resident-evil-4-2023-games-scarecrow-chainsaw-5k-8k-7680x4320-8944.jpg" id="1_a02cp"]
+
+[node name="World" type="Node2D"]
+
+[node name="Resident-evil-4-2023-games-scarecrow-chainsaw-5k-8k-7680x4320-8944" type="Sprite2D" parent="."]
+scale = Vector2(0.125, 0.125)
+texture = ExtResource("1_a02cp")
+centered = false
+
+[node name="Camera2D" type="Camera2D" parent="."]
+limit_left = 0
+limit_top = 0
