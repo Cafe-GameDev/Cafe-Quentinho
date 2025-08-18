@@ -11,9 +11,12 @@ config_version=5
 [application]
 
 config/name="BodyLess"
-run/main_scene="uid://dxhws6yewnojk"
+run/main_scene="uid://wqih6q1gejje"
 config/features=PackedStringArray("4.4", "GL Compatibility")
-<<<<<<<HEADrun/main_scene="uid://b51bucwuhln4v"
+
+[audio]
+
+buses/default_bus_layout="uid://ds7iaq80ptcxo"
 
 [autoload]
 
@@ -55,3 +58,8 @@ toggle_console={
 locale/translations=PackedStringArray("res://I18N/en.po", "res://I18N/pt_BR.po", "res://I18N/es.po", "res://I18N/fr.po")
 locale/include_text_server_data=true
 locale/fallback="pt_BR"
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
+viewport/hdr_2d=true

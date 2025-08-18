@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://wqih6q1gejje"]
+
+[ext_resource type="Script" path="res://Scripts/scene_control.gd" id="1_78w63"]
+[ext_resource type="PackedScene" uid="uid://oy5s0xerhufo" path="res://Scenes/UI/main_menu.tscn" id="2_p57nn"]
+[ext_resource type="PackedScene" uid="uid://cy8wdupgurgfc" path="res://Scenes/UI/options_menu.tscn" id="3_rlkpd"]
+[ext_resource type="PackedScene" uid="uid://xc4la75a5m4q" path="res://Scenes/UI/pause_menu.tscn" id="4_ovurm"]
+[ext_resource type="PackedScene" uid="uid://ckonqksbeok8r" path="res://Scenes/UI/quit_confirmation_dialog.tscn" id="5_vgjc0"]
+
+[node name="SceneControl" type="Node"]
+process_mode = 3
+script = ExtResource("1_78w63")
+
+[node name="GameViewportContainer" type="SubViewportContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="GameViewport" type="SubViewport" parent="GameViewportContainer"]
+handle_input_locally = false
+size = Vector2i(1152, 648)
+render_target_update_mode = 4
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="MainMenu" parent="CanvasLayer" instance=ExtResource("2_p57nn")]
+
+[node name="OptionsMenu" parent="CanvasLayer" instance=ExtResource("3_rlkpd")]
+visible = false
+
+[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("4_ovurm")]
+visible = false
+
+[node name="QuitConfirmationDialog" parent="CanvasLayer" instance=ExtResource("5_vgjc0")]
+visible = false
