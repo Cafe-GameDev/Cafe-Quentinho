@@ -1,12 +1,6 @@
-<<<<<<< HEAD
 [gd_scene load_steps=2 format=3 uid="uid://cy8wdupgurgfc"]
 
 [ext_resource type="Script" uid="uid://cwervoggthcwp" path="res://Scripts/UI/options_menu.gd" id="1_run4o"]
-=======
-[gd_scene load_steps=2 format=3 uid="uid://p3r8unt7pa5o"]
-
-[ext_resource type="Script" uid="uid://bx0fswmy1oqoa" path="res://Scripts/UI/options_menu.gd" id="1_run4o"]
->>>>>>> ee7bc34fd3e892534753d4af6c060df0e4bb91c5
 
 [node name="OptionsMenu" type="Control"]
 process_mode = 3
@@ -193,27 +187,6 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-<<<<<<< HEAD
-=======
-[node name="Field" type="HBoxContainer" parent="PanelContainer/Margin/Box/ContentHBox/ScrollContent/CategoryContent/VideoSettings"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_constants/separation = 20
-
-[node name="FieldOfViewLabel" type="Label" parent="PanelContainer/Margin/Box/ContentHBox/ScrollContent/CategoryContent/VideoSettings/Field"]
-custom_minimum_size = Vector2(250, 0)
-layout_mode = 2
-text = "UI_FIELD_OF_VIEW"
-
-[node name="FieldOfViewSlider" type="HSlider" parent="PanelContainer/Margin/Box/ContentHBox/ScrollContent/CategoryContent/VideoSettings/Field"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 2
-min_value = 70.0
-max_value = 103.0
-value = 70.0
-
->>>>>>> ee7bc34fd3e892534753d4af6c060df0e4bb91c5
 [node name="Aspect" type="HBoxContainer" parent="PanelContainer/Margin/Box/ContentHBox/ScrollContent/CategoryContent/VideoSettings"]
 layout_mode = 2
 size_flags_vertical = 3
@@ -256,10 +229,9 @@ text = "UI_RENDER_SCALE"
 
 [node name="RenderScaleSlider" type="HSlider" parent="PanelContainer/Margin/Box/ContentHBox/ScrollContent/CategoryContent/VideoSettings/RenderScale"]
 layout_mode = 2
-<<<<<<< HEAD
+
 size_flags_horizontal = 3
-=======
->>>>>>> ee7bc34fd3e892534753d4af6c060df0e4bb91c5
+
 size_flags_vertical = 2
 min_value = 0.5
 max_value = 2.0
@@ -312,51 +284,6 @@ text = "UI_VSYNC"
 layout_mode = 2
 size_flags_horizontal = 3
 
-<<<<<<< HEAD
-=======
-[node name="TripleBuffering" type="HBoxContainer" parent="PanelContainer/Margin/Box/ContentHBox/ScrollContent/CategoryContent/VideoSettings"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_constants/separation = 20
-
-[node name="TripleBufferingLabel" type="Label" parent="PanelContainer/Margin/Box/ContentHBox/ScrollContent/CategoryContent/VideoSettings/TripleBuffering"]
-custom_minimum_size = Vector2(250, 0)
-layout_mode = 2
-text = "UI_TRIPLE_BUFFERING"
-
-[node name="TripleBufferingCheckBox" type="CheckBox" parent="PanelContainer/Margin/Box/ContentHBox/ScrollContent/CategoryContent/VideoSettings/TripleBuffering"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="ReduceBuffering" type="HBoxContainer" parent="PanelContainer/Margin/Box/ContentHBox/ScrollContent/CategoryContent/VideoSettings"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_constants/separation = 20
-
-[node name="ReduceBufferingLabel" type="Label" parent="PanelContainer/Margin/Box/ContentHBox/ScrollContent/CategoryContent/VideoSettings/ReduceBuffering"]
-custom_minimum_size = Vector2(250, 0)
-layout_mode = 2
-text = "UI_REDUCE_BUFFERING"
-
-[node name="ReduceBufferingCheckBox" type="CheckBox" parent="PanelContainer/Margin/Box/ContentHBox/ScrollContent/CategoryContent/VideoSettings/ReduceBuffering"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="LowLatency" type="HBoxContainer" parent="PanelContainer/Margin/Box/ContentHBox/ScrollContent/CategoryContent/VideoSettings"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_constants/separation = 20
-
-[node name="LowLatencyModeLabel" type="Label" parent="PanelContainer/Margin/Box/ContentHBox/ScrollContent/CategoryContent/VideoSettings/LowLatency"]
-custom_minimum_size = Vector2(250, 0)
-layout_mode = 2
-text = "UI_LOW_LATENCY_MODE"
-
-[node name="LowLatencyModeOptionButton" type="OptionButton" parent="PanelContainer/Margin/Box/ContentHBox/ScrollContent/CategoryContent/VideoSettings/LowLatency"]
-layout_mode = 2
-size_flags_horizontal = 3
-
->>>>>>> ee7bc34fd3e892534753d4af6c060df0e4bb91c5
 [node name="GammaCorrection" type="HBoxContainer" parent="PanelContainer/Margin/Box/ContentHBox/ScrollContent/CategoryContent/VideoSettings"]
 layout_mode = 2
 size_flags_vertical = 3
@@ -411,27 +338,6 @@ max_value = 1.5
 step = 0.01
 value = 1.0
 
-<<<<<<< HEAD
-=======
-[node name="HDR" type="HBoxContainer" parent="PanelContainer/Margin/Box/ContentHBox/ScrollContent/CategoryContent/VideoSettings"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_constants/separation = 20
-
-[node name="HDRLabel" type="Label" parent="PanelContainer/Margin/Box/ContentHBox/ScrollContent/CategoryContent/VideoSettings/HDR"]
-custom_minimum_size = Vector2(250, 0)
-layout_mode = 2
-text = "UI_HDR"
-
-[node name="HDROptionButton" type="OptionButton" parent="PanelContainer/Margin/Box/ContentHBox/ScrollContent/CategoryContent/VideoSettings/HDR"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="HDRCalibrationButton" type="Button" parent="PanelContainer/Margin/Box/ContentHBox/ScrollContent/CategoryContent/VideoSettings"]
-layout_mode = 2
-text = "UI_HDR_CALIBRATION"
-
->>>>>>> ee7bc34fd3e892534753d4af6c060df0e4bb91c5
 [node name="Shaders" type="HBoxContainer" parent="PanelContainer/Margin/Box/ContentHBox/ScrollContent/CategoryContent/VideoSettings"]
 layout_mode = 2
 size_flags_vertical = 3

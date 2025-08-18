@@ -11,17 +11,12 @@ config_version=5
 [application]
 
 config/name="BodyLess"
-<<<<<<< HEAD
-run/main_scene="uid://b51bucwuhln4v"
-=======
-run/main_scene="uid://bqf02v5eog068"
->>>>>>> ee7bc34fd3e892534753d4af6c060df0e4bb91c5
 config/features=PackedStringArray("4.4", "GL Compatibility")
+<<<<<<<HEADrun/main_scene="uid://b51bucwuhln4v"
 
 [autoload]
 
-<<<<<<< HEAD
-GlobalEvents="*res://Autoloads/EventBus/global_events.gd"
+<<<<<<<HEADGlobalEvents="*res://Autoloads/EventBus/global_events.gd"
 LocalEvents="*res://Autoloads/EventBus/local_events.gd"
 GlobalMachine="*res://Autoloads/StateMachines/global_machine.gd"
 LocalMachine="*res://Autoloads/StateMachines/local_machine.gd"
@@ -59,18 +54,3 @@ toggle_console={
 locale/translations=PackedStringArray("res://I18N/en.po", "res://I18N/pt_BR.po", "res://I18N/es.po", "res://I18N/fr.po")
 locale/include_text_server_data=true
 locale/fallback="pt_BR"
-=======
-GlobalEvents="*res://Autoload/EventBus/global_events.gd"
-LocalEvents="*res://Autoload/EventBus/local_events.gd"
-GlobalMachine="*res://Autoload/StateMachines/global_machine.gd"
-LocalMachine="*res://Autoload/StateMachines/local_machine.gd"
-AudioManager="*res://Autoload/audio_manager.tscn"
-DebugConsole="*res://Autoload/debug_console.tscn"
-SettingsManager="*res://Autoload/settings_manager.gd"
-InputManager="*res://Autoload/input_manager.gd"
-
-[rendering]
-
-renderer/rendering_method="gl_compatibility"
-renderer/rendering_method.mobile="gl_compatibility"
->>>>>>> ee7bc34fd3e892534753d4af6c060df0e4bb91c5

@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 [gd_scene load_steps=2 format=3 uid="uid://b51bucwuhln4v"]
 
 [ext_resource type="Script" uid="uid://dkdek2qq68i3j" path="res://Scripts/scene_manager.gd" id="1_mk1ro"]
@@ -6,19 +5,6 @@
 [node name="SceneManager" type="Node"]
 process_mode = 3
 script = ExtResource("1_mk1ro")
-=======
-[gd_scene load_steps=6 format=3 uid="uid://bqf02v5eog068"]
-
-[ext_resource type="Script" uid="uid://dkvuse1sfprgx" path="res://Scripts/scene_manager.gd" id="1_py5r8"]
-[ext_resource type="PackedScene" uid="uid://c7ckkfc3bhrkc" path="res://Scenes/UI/quit_confirmation_dialog.tscn" id="1_quit_dialog_scene"]
-[ext_resource type="PackedScene" uid="uid://b4b5bm4br5j6a" path="res://Scenes/UI/pause_menu.tscn" id="1_rrvs5"]
-[ext_resource type="PackedScene" uid="uid://cgrv6f7vj3l3g" path="res://Scenes/UI/main_menu.tscn" id="1_t4j2j"]
-[ext_resource type="PackedScene" uid="uid://p3r8unt7pa5o" path="res://Scenes/UI/options_menu.tscn" id="4_py5r8"]
-
-[node name="SceneManager" type="Node"]
-process_mode = 3
-script = ExtResource("1_py5r8")
->>>>>>> ee7bc34fd3e892534753d4af6c060df0e4bb91c5
 
 [node name="GameViewportContainer" type="SubViewportContainer" parent="."]
 anchors_preset = 15
@@ -34,21 +20,3 @@ size = Vector2i(1152, 648)
 render_target_update_mode = 4
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-<<<<<<< HEAD
-=======
-
-[node name="MainMenu" parent="CanvasLayer" instance=ExtResource("1_t4j2j")]
-z_index = 10
-
-[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("1_rrvs5")]
-visible = false
-z_index = 10
-
-[node name="OptionsMenu" parent="CanvasLayer" instance=ExtResource("4_py5r8")]
-visible = false
-z_index = 10
-
-[node name="QuitConfirmationDialog" parent="CanvasLayer" instance=ExtResource("1_quit_dialog_scene")]
-visible = false
-z_index = 10
->>>>>>> ee7bc34fd3e892534753d4af6c060df0e4bb91c5
