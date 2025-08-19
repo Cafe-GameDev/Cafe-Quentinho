@@ -1,9 +1,0 @@
-[gd_resource type="Resource" script_class="InteractableData" load_steps=2]
-
-[ext_resource type="Script" path="res://Scripts/Resources/InteractableData.gd" id="1_interact"]
-
-[resource]
-script = ExtResource("1_interact")
-interaction_prompt = "Puxar Alavanca"
-success_signal = &"lever_was_pulled"
-animation_name = &"pull"

@@ -1,8 +1,0 @@
-[gd_resource type="Resource" script_class="AIPersonalityData" load_steps=2]
-
-[ext_resource type="Script" path="res://Scripts/Resources/AIPersonalityData.gd" id="1_ai"]
-
-[resource]
-script = ExtResource("1_ai")
-behavior_type = 0 # PATROL
-coward_health_threshold = 0.1

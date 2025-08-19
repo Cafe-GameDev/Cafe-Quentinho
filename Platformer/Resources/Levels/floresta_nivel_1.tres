@@ -1,9 +1,0 @@
-[gd_resource type="Resource" script_class="LevelData" load_steps=2]
-
-[ext_resource type="Script" path="res://Scripts/Resources/LevelData.gd" id="1_ldata"]
-
-[resource]
-script = ExtResource("1_ldata")
-level_name = "Floresta dos Sussurros"
-scene_path = "res://Scenes/Levels/game.tscn"
-time_limit_seconds = 600
