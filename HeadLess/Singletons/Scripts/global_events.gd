@@ -128,4 +128,5 @@ signal quit_confirmed
 signal quit_cancelled
 
 # Sinais de Configuração de UI
+@warning_ignore("unused_signal")
 signal ui_scale_preset_changed(preset_name: String) # Novo sinal para presets de escala da UI

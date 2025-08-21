@@ -1,3 +1,4 @@
+*/.godot/*
 /.godot/
 /android/
 License.txt
@@ -11,5 +12,3 @@ Credits.txt
 *.ini
 
 *.local
-/HeadLess
-/HeadLess/**

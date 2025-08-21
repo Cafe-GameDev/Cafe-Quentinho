@@ -128,6 +128,33 @@ Com os conceitos fundamentais estabelecidos, podemos agora explorar como eles s�
 
 O **EventBus** é a nossa ferramenta central para comunicação, aplicando o conceito de Sinais em uma escala global. Ele funciona como um "quadro de avisos" centralizado (implementado como um Autoload/Singleton) que permite que diferentes partes do código se comuniquem sem se conhecerem.
 
+### Padrão de Comunicação para Dados Persistentes
+
+Para garantir o desacoplamento e a previsibilidade, qualquer sistema que gerencie dados que precisam ser salvos e carregados (configurações, idioma, mapeamento de teclas, etc.) deve seguir um rigoroso padrão de comunicação com 5 sinais através do `GlobalEvents`. O padrão utiliza um prefixo de **escopo** (ex: `settings_`, `language_`) e um sufixo de **ação** para formar nomes de sinais consistentes.
+
+**O Padrão Base de 5 Sinais:**
+
+1.  **`[escopo]_changed(dados: Dictionary)`**
+    *   **Propósito:** Notificação de mudança em tempo real ("live"). É emitida por controles da UI (sliders, botões) e contém um dicionário apenas com o valor alterado. O `Manager` correspondente ouve este sinal para atualizar seu estado interno "ao vivo".
+
+2.  **`request_loading_[escopo]_changed()`**
+    *   **Propósito:** Requisição para carregar os dados do disco. É emitida por scripts de UI no `_ready` para se popularem com os dados salvos, ou por botões como "Voltar" para reverter alterações não salvas.
+
+3.  **`loading_[escopo]_changed(dados: Dictionary)`**
+    *   **Propósito:** Resposta à requisição de carregamento. É emitida pelo `Manager` após carregar e validar os dados do disco, transmitindo o dicionário *completo* para todos os sistemas interessados.
+
+4.  **`request_saving_[escopo]_changed()`**
+    *   **Propósito:** Requisição para persistir o estado "ao vivo" atual no disco. É emitida por botões de "Aplicar" ou "Salvar".
+
+5.  **`request_reset_[escopo]_changed()`**
+    *   **Propósito:** Requisição para redefinir as configurações para os padrões de fábrica. O `Manager` ouve, restaura seu estado "ao vivo" para os padrões e imediatamente salva essa versão em disco.
+
+**Exemplos de Aplicação:**
+
+*   **Settings (Áudio/Vídeo):** `settings_changed`, `request_loading_settings_changed`, `loading_settings_changed`, `request_saving_settings_changed`, `request_reset_settings_changed`
+*   **Language (Idioma):** `language_changed`, `request_loading_language_changed`, `loading_language_changed`, `request_saving_language_changed`, `request_reset_language_changed`
+*   **Inputs (Mapeamento de Teclas - Futuro):** `inputs_changed`, `request_loading_inputs_changed`, `loading_inputs_changed`, `request_saving_inputs_changed`, `request_reset_inputs_changed`
+
 *   **`GlobalEvents`:** Para eventos que afetam todo o jogo (mudanças de cena, configurações, estado do jogo).
 *   **`LocalEvents`:** Para comunicação *dentro* de uma cena de jogo específica (puzzles, interações locais).
 

@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 /.godot/
 /android/
 License.txt
@@ -7,8 +6,8 @@ Credits.txt
 *.zip
 *.url
 *.DS_Store
-=======
-# Godot 4+ specific ignores
-.godot/
-/android/
->>>>>>> ee7bc34fd3e892534753d4af6c060df0e4bb91c5
+*.aseprite
+*.gif
+*.ini
+
+*.local

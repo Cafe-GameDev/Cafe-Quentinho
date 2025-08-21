@@ -1,71 +1,124 @@
 extends Node
 
-# SaveSystem: Único responsável por interagir com o sistema de arquivos.
-# - Ouve sinais para salvar dados (dicionários) em arquivos.
-# - Ouve sinais para carregar dados de arquivos e emitir para outros sistemas.
+const BASE_SAVE_DIR = "user://saves/"
+const SAVE_FILE_EXTENSION = ".json"
 
-const SETTINGS_PATH = "user://settings.json"
+# Define o número de slots de save por modo de jogo
+const MAX_SAVE_SLOTS_PER_MODE = 3
 
 func _ready() -> void:
-	# Conecta-se aos sinais que solicitam operações de arquivo.
-	GlobalEvents.save_settings_to_disk.connect(_on_save_settings_to_disk)
-	GlobalEvents.load_settings_requested.connect(_on_load_settings_requested)
+	_connect_signals()
+	# A criação dos diretórios específicos de modo será feita no momento do save.
 
+func _connect_signals() -> void:
+	GlobalEvents.request_save_game.connect(_on_request_save_game)
+	GlobalEvents.request_load_game.connect(_on_request_load_game)
 
-func _on_save_settings_to_disk(settings_data: Dictionary) -> void:
-	print("SaveSystem: Received request to save settings.")
-	var error = _save_dictionary_to_json(SETTINGS_PATH, settings_data)
-	if error == OK:
-		print("SaveSystem: Settings saved successfully to %s" % SETTINGS_PATH)
+# ==============================================================================
+# Funções de Orquestração de Save/Load
+# ==============================================================================
+
+func _on_request_save_game(session_id: int, game_mode: String) -> void:
+	if session_id < 0 or session_id >= MAX_SAVE_SLOTS_PER_MODE:
+		printerr("[SaveSystem] Tentativa de salvar em slot inválido: %d para modo %s" % [session_id, game_mode])
+		GlobalEvents.show_toast_requested.emit("TOAST_ERROR_SAVE_FAILED_MESSAGE", "error")
+		return
+
+	var game_data: Dictionary = {}
+
+	# Solicita dados de outros managers para compor o save
+	# Os managers devem ouvir esses sinais e emitir seus dados via '..._received'
+	GlobalEvents.request_player_data_for_save.emit()
+	var player_data = await GlobalEvents.player_data_for_save_received
+	game_data["player_data"] = player_data
+
+	GlobalEvents.request_inventory_data_for_save.emit()
+	var inventory_data = await GlobalEvents.inventory_data_for_save_received
+	game_data["inventory_data"] = inventory_data
+
+	GlobalEvents.request_global_machine_data_for_save.emit()
+	var global_machine_data = await GlobalEvents.global_machine_data_for_save_received
+	game_data["global_machine_data"] = global_machine_data
+
+	GlobalEvents.request_world_data_for_save.emit()
+	var world_data = await GlobalEvents.world_data_for_save_received
+	game_data["world_data"] = world_data
+
+	GlobalEvents.request_settings_data_for_save.emit()
+	var settings_data = await GlobalEvents.settings_data_for_save_received
+	game_data["settings_data"] = settings_data
+
+	GlobalEvents.request_language_data_for_save.emit()
+	var language_data = await GlobalEvents.language_data_for_save_received
+	game_data["language_data"] = language_data
+
+	GlobalEvents.request_input_map_data_for_save.emit()
+	var input_map_data = await GlobalEvents.input_map_data_for_save_received
+	game_data["input_map_data"] = input_map_data
+
+	# Adicionar mais requisições de dados conforme necessário (ex: quests, NPCs, etc.)
+
+	if _save_to_file(game_mode, session_id, game_data):
+		print("[SaveSystem] Jogo salvo com sucesso no slot %d para o modo %s." % [session_id, game_mode])
+		GlobalEvents.game_saved.emit(session_id)
+		GlobalEvents.show_toast_requested.emit("TOAST_SETTINGS_SAVED_MESSAGE", "success") # Reutilizando a chave de settings
 	else:
-		printerr("SaveSystem: Failed to save settings. Error code: %s" % error)
+		printerr("[SaveSystem] Falha ao salvar o jogo no slot %d para o modo %s." % [session_id, game_mode])
+		GlobalEvents.show_toast_requested.emit("TOAST_ERROR_SAVE_FAILED_MESSAGE", "error")
 
 
-func _on_load_settings_requested() -> void:
-	print("SaveSystem: Received request to load settings.")
-	var loaded_data = _load_dictionary_from_json(SETTINGS_PATH)
-	# Emite os dados carregados (ou um dicionário vazio se falhar) para quem pediu.
-	GlobalEvents.emit_signal("settings_loaded", loaded_data)
-	if loaded_data.is_empty():
-		print("SaveSystem: No settings file found at %s or file is empty." % SETTINGS_PATH)
+func _on_request_load_game(session_id: int, game_mode: String) -> void:
+	if session_id < 0 or session_id >= MAX_SAVE_SLOTS_PER_MODE:
+		printerr("[SaveSystem] Tentativa de carregar de slot inválido: %d para modo %s" % [session_id, game_mode])
+		GlobalEvents.show_toast_requested.emit("TOAST_ERROR_SAVE_FAILED_MESSAGE", "error")
+		return
+
+	var loaded_data = _load_from_file(game_mode, session_id)
+
+	if not loaded_data.is_empty():
+		print("[SaveSystem] Jogo carregado com sucesso do slot %d para o modo %s." % [session_id, game_mode])
+		GlobalEvents.game_loaded.emit(session_id, loaded_data)
+		GlobalEvents.show_toast_requested.emit("TOAST_LOAD_SUCCESS_MESSAGE", "info") # Nova chave de tradução
 	else:
-		print("SaveSystem: Settings loaded and emitted.")
+		printerr("[SaveSystem] Falha ao carregar o jogo do slot %d para o modo %s. Arquivo não encontrado ou corrompido." % [session_id, game_mode])
+		GlobalEvents.show_toast_requested.emit("TOAST_ERROR_LOAD_FAILED_MESSAGE", "error") # Nova chave de tradução
 
+# ==============================================================================
+# Funções de Acesso a Arquivos
+# ==============================================================================
 
-# --- Funções Utilitárias de Arquivo ---
+func _get_save_path(game_mode: String, session_id: int) -> String:
+	var mode_dir = BASE_SAVE_DIR.path_join(game_mode.to_lower())
+	if not DirAccess.dir_exists_absolute(mode_dir):
+		DirAccess.make_dir_absolute(mode_dir)
+	return mode_dir.path_join("save_slot_" + str(session_id) + SAVE_FILE_EXTENSION)
 
-func _save_dictionary_to_json(path: String, data: Dictionary) -> Error:
+func _save_to_file(game_mode: String, session_id: int, data: Dictionary) -> bool:
+	var path = _get_save_path(game_mode, session_id)
 	var file = FileAccess.open(path, FileAccess.WRITE)
-	if not file:
-		return FileAccess.get_open_error()
-	
-	# Converte o dicionário para uma string JSON formatada (pretty print).
-	var json_string = JSON.stringify(data, "\t")
-	file.store_string(json_string)
-	file.close()
-	return OK
+	if file:
+		var json_string = JSON.stringify(data, "  ")
+		file.store_string(json_string)
+		return true
+	else:
+		printerr("[SaveSystem] Falha ao abrir arquivo para escrita em %s" % path)
+		return false
 
-
-func _load_dictionary_from_json(path: String) -> Dictionary:
+func _load_from_file(game_mode: String, session_id: int) -> Dictionary:
+	var path = _get_save_path(game_mode, session_id)
 	if not FileAccess.file_exists(path):
-		return {}
+		return {} # Retorna dicionário vazio se o arquivo não existe
 
 	var file = FileAccess.open(path, FileAccess.READ)
-	if not file:
-		printerr("SaveSystem: Failed to open file for reading at %s. Error: %s" % [path, FileAccess.get_open_error()])
-		return {}
+	if file:
+		var json_string = file.get_as_text()
+		var parse_result = JSON.parse_string(json_string)
+		if parse_result is Dictionary:
+			return parse_result
+		else:
+			printerr("[SaveSystem] Falha ao parsear JSON ou dados não são um dicionário de %s" % path)
+			return {} # Retorna vazio em erro de parse
+	else:
+		printerr("[SaveSystem] Falha ao abrir arquivo para leitura em %s" % path)
 
-	var content = file.get_as_text()
-	file.close()
-
-	var json = JSON.new()
-	var error = json.parse(content)
-	if error != OK:
-		printerr("SaveSystem: Failed to parse JSON from %s. Error: %s" % [path, json.get_error_message()])
-		return {}
-
-	if not json.data is Dictionary:
-		printerr("SaveSystem: Parsed JSON data is not a Dictionary.")
-		return {}
-
-	return json.data
+	return {}

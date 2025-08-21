@@ -1,17 +1,57 @@
 extends HBoxContainer
 
 @onready var option_button: OptionButton = $UIScaleOptionButton
+@onready var ui_scale_label: Label = $UIScaleLabel
 
 func _ready() -> void:
-	GlobalEvents.ui_scale_preset_changed.connect(_on_ui_scale_preset_changed)
-	# TODO: Popular com presets de escala. Ex: "100%", "125%", "150%"
+	# Popula com presets de escala.
+	option_button.add_item("100%", 0)
+	option_button.add_item("125%", 1)
+	option_button.add_item("150%", 2)
+	option_button.add_item("175%", 3)
+	option_button.add_item("200%", 4)
+	
+	GlobalEvents.loading_settings_changed.connect(_on_loading_settings_changed)
+	
+	# Conecta os sinais de mouse para tooltips
+	ui_scale_label.mouse_entered.connect(_on_mouse_entered_control.bind(ui_scale_label))
+	ui_scale_label.mouse_exited.connect(_on_mouse_exited_control)
+	option_button.mouse_entered.connect(_on_mouse_entered_control.bind(option_button))
+	option_button.mouse_exited.connect(_on_mouse_exited_control)
+
 
 func _on_ui_scale_option_button_item_selected(index: int) -> void:
-	GlobalEvents.emit_signal("ui_scale_preset_changed", option_button.get_item_text(index))
+	var ui_scale_value: float
+	match index:
+		0: ui_scale_value = 1.0
+		1: ui_scale_value = 1.25
+		2: ui_scale_value = 1.5
+		3: ui_scale_value = 1.75
+		4: ui_scale_value = 2.0
+		_: ui_scale_value = 1.0 # Default case
 
-func _on_ui_scale_preset_changed(preset_name: String) -> void:
-	for i in range(option_button.item_count):
-		if option_button.get_item_text(i) == preset_name:
-			if option_button.selected != i:
-				option_button.select(i)
-			return
+	# Emite o sinal de mudança de configuração com o valor da escala da UI
+	GlobalEvents.setting_changed.emit({"video": {"ui_scale": ui_scale_value}})
+
+func _on_loading_settings_changed(settings: Dictionary) -> void:
+	if settings.has("video") and settings["video"].has("ui_scale"):
+		var ui_scale_value: float = settings["video"]["ui_scale"]
+		var selected_index: int = -1
+		match ui_scale_value:
+			1.0: selected_index = 0
+			1.25: selected_index = 1
+			1.5: selected_index = 2
+			1.75: selected_index = 3
+			2.0: selected_index = 4
+		
+		if selected_index != -1 and option_button.selected != selected_index:
+			option_button.select(selected_index)
+
+func _on_mouse_entered_control(control_node: Control) -> void:
+	if control_node and control_node.has_meta("tooltip_text"):
+		GlobalEvents.show_tooltip_requested.emit(control_node.get_meta("tooltip_text"), get_global_mouse_position())
+	elif control_node and control_node.tooltip_text:
+		GlobalEvents.show_tooltip_requested.emit(control_node.tooltip_text, get_global_mouse_position())
+
+func _on_mouse_exited_control() -> void:
+	GlobalEvents.hide_tooltip_requested.emit()

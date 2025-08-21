@@ -1,136 +1,111 @@
-# Repo Café CLI
+# Template "BodyLess" - Café Quentinho
 
-Bem-vindo ao Repo Café CLI, seu **parceiro de desenvolvimento colaborativo** para o ecossistema Godot. Prepare sua xícara, porque a jornada do código será deliciosa!
+O "BodyLess" é um kit de desenvolvimento e template de fundação "sem corpo" para a Godot Engine. Seu propósito não é ser um jogo, mas sim fornecer uma arquitetura de sistemas essenciais, robusta e escalável, que sirva como o ponto de partida definitivo para novos projetos. Ele foi concebido para resolver o problema comum de desenvolvedores que negligenciam ou adiam a implementação de sistemas cruciais, permitindo que as equipes de desenvolvimento foquem no que realmente importa: a criação da lógica e conteúdo do jogo (o "corpo").
 
-O Repo Café CLI transforma o Gemini em um copiloto que tem acesso direto e total ao seu ambiente de desenvolvimento. Em vez de você precisar copiar e colar código para obter ajuda, o Repo Café CLI já tem acesso a todo o seu projeto, incluindo scripts, cenas e a arquitetura geral do seu jogo.
+Ele serve como base para outros templates do ecossistema "Café Quentinho", como o `TopDown` e o `Platformer`, e também é projetado para ser facilmente acoplado a projetos já existentes.
 
-Ele é, em essência, o Gemini para desenvolvedores Godot, e o melhor de tudo: **roda diretamente no seu celular via Termux!**
+## Pilares da Arquitetura
 
-## Comandos da Ferramenta
+A filosofia do template se baseia em quatro pilares fundamentais:
 
-O Repo Café CLI vem com um conjunto de comandos para agilizar seu desenvolvimento:
+*   **Desacoplamento Total (Event-Driven):** A comunicação entre os sistemas principais é feita exclusivamente através de um "Barramento de Eventos" (`GlobalEvents`). Nenhum manager tem conhecimento direto sobre o outro, permitindo modificações e substituições sem quebrar o projeto.
+*   **Modularidade e Responsabilidade Única:** Cada sistema principal é um Singleton (Autoload) com uma responsabilidade claramente definida, resultando em código limpo e fácil de manter.
 
--   `repo-cafe`:
-    -   **Função:** Inicia a sessão de chat com o assistente.
-    -   **Uso:** `repo-cafe`
+*   **Orientado a Dados:** Separação entre lógica e dados, incentivando o uso de `Resources` e Dicionários para gerenciar o estado do jogo.
 
--   `cafe-new [template] <nome-do-projeto>`:
-    -   **Função:** Te serve um novo "Café Quentinho" (um projeto Godot com base nos templates do Café).
-    -   **Argumentos:**
-        -   `template` (opcional): Especifique `platformer` ou `topdown`. Se não especificar, o template `bodyless` (apenas com sistemas essenciais) será usado.
-    -   **Exemplos de Uso:**
-        -   `cafe-new meu-projeto` (usa o template bodyless)
-        -   `cafe-new platformer meu-jogo-plataforma`
-        -   `cafe-new topdown meu-jogo-topdown`
+*   **Pronto para Produção:** Funcionalidades essenciais para um jogo completo já vêm pré-configuradas.
 
--   `repo-cafe-update`:
-    -   **Função:** Atualiza a ferramenta `repo-cafe` para a versão mais recente. O processo de atualização também garante que sua cópia local do repo-cafe esteja sincronizada com a versão da ferramenta.
-    -   **Uso:** `repo-cafe-update`
+### Padrão de Comunicação para Dados Persistentes
 
--   `repo-update`:
-    -   **Função:** Atualiza especificamente o repositório de conhecimento. É ideal para obter o conteúdo mais recente, que pode ser atualizado com mais frequência do que a ferramenta em si.
-    -   **Uso:** `repo-update`
+Para garantir o desacoplamento e a previsibilidade, qualquer sistema que gerencie dados que precisam ser salvos e carregados (configurações, idioma, mapeamento de teclas, etc.) deve seguir um rigoroso padrão de comunicação com 5 sinais através do `GlobalEvents`.
 
--   `cafe-rename`:
-    -   **Função:** Renomeia arquivos e pastas recursivamente para um formato limpo e consistente, ideal para Godot e sistemas de controle de versão. Preserva maiúsculas/minúsculas e hífens, mas troca espaços por `_` e remove acentos/caracteres especiais.
-    -   **Uso:** `cafe-rename --source <caminho-opcional>`
+O padrão utiliza um prefixo de **escopo** (ex: `settings_`, `language_`) e um sufixo de **ação** para formar nomes de sinais consistentes.
 
-## Como Funciona?
+**O Padrão Base:**
 
-O Repo Café CLI é um wrapper inteligente para o `gemini-cli` do Google. Ele utiliza o repositório [Repo Café](https://github.com/Café-GameDev/repo-cafe) — um curso completo de Godot em formato de texto — como uma base de conhecimento fixa. É o nosso grão especial, sempre moído na hora para o seu projeto, garantindo um aroma único em cada linha de código.
+1.  **`[escopo]_changed(dados: Dictionary)`**
+    *   **Propósito:** Notificação de mudança em tempo real ("live").
+    *   **Emitido por:** Controles da UI (sliders, botões) quando o valor é alterado.
+    *   **Carga:** Um dicionário contendo *apenas* a chave e o valor que mudaram.
+    *   **Ouvido por:** O `Manager` correspondente, para atualizar seu estado interno "ao vivo".
 
-## A Filosofia "BodyLess" (Sem Corpo)
+2.  **`request_loading_[escopo]_changed()`**
+    *   **Propósito:** Requisição para carregar os dados do disco.
+    *   **Emitido por:** Scripts de UI (no `_ready`) para se popularem com os dados salvos, ou por botões (como "Voltar") para reverter alterações não salvas.
+    *   **Carga:** Nenhuma.
+    *   **Ouvido por:** O `Manager` correspondente.
 
-O Repo Café CLI não apenas ajuda a escrever código; ele segue e implementa uma filosofia de arquitetura robusta chamada **"BodyLess"**. O nome reflete o princípio central: **desacoplamento total**. Os sistemas são projetados para não terem "corpos" ou referências diretas uns aos outros. Em vez disso, eles se comunicam de forma indireta, criando um código mais limpo, modular e escalável.
+3.  **`loading_[escopo]_changed(dados: Dictionary)`**
+    *   **Propósito:** Resposta à requisição de carregamento.
+    *   **Emitido por:** O `Manager`, após carregar, validar e mesclar os dados do disco com os padrões.
+    *   **Carga:** O dicionário *completo* e validado das configurações.
+    *   **Ouvido por:** Todos os scripts de UI e sistemas que dependem desses dados.
 
-### Os Pilares da Arquitetura
+4.  **`request_saving_[escopo]_changed()`**
+    *   **Propósito:** Requisição para persistir o estado "ao vivo" atual no disco.
+    *   **Emitido por:** Botões de "Aplicar" ou "Salvar".
+    *   **Carga:** Nenhuma.
+    *   **Ouvido por:** O `Manager` correspondente.
 
-1.  **EventBus (O Quadro de Avisos):** Um Autoload/Singleton que funciona como um quadro de avisos central. Em vez de um objeto chamar uma função em outro, ele simplesmente "publica um aviso" (emite um sinal) no EventBus.
-2.  **Dicionários (Os Mensageiros):** Toda a comunicação através do EventBus é feita com Dicionários. Eles são os contêineres de dados universais que carregam a informação de um sistema para o outro, sem criar dependências.
-3.  **Resources (Os Contêineres de Dados):** Usamos `Resources` personalizados (`.tres`) para definir os "o quês" do nosso jogo (ex: dados de uma arma, stats de um inimigo), separando completamente os dados do comportamento.
-4.  **Managers Ouvintes (Autoloads Reativos):** Nossos sistemas globais (Autoloads) não são chamados diretamente. Eles são projetados para **ouvir** os "avisos" no EventBus e reagir a eles.
+5.  **`request_reset_[escopo]_changed()`**
+    *   **Propósito:** Requisição para redefinir as configurações para os padrões de fábrica.
+    *   **Emitido por:** Um botão "Restaurar Padrões".
+    *   **Carga:** Nenhuma.
+    *   **Ouvido por:** O `Manager`, que substituirá seu estado "ao vivo" pelos padrões e, em seguida, salvará em disco.
 
-### A Estrutura Padrão de Autoloads
+**Exemplos de Aplicação:**
 
-A arquitetura "BodyLess" se manifesta em uma estrutura clara de Autoloads (Singletons), divididos em dois domínios:
+*   **Settings (Áudio/Vídeo):**
+    *   `settings_changed`
+    *   `request_loading_settings_changed`
+    *   `loading_settings_changed`
+    *   `request_saving_settings_changed`
+    *   `request_reset_settings_changed`
+*   **Language (Idioma):**
+    *   `language_changed`
+    *   `request_loading_language_changed`
+    *   `loading_language_changed`
+    *   `request_saving_language_changed`
+    *   `request_reset_language_changed`
+*   **Inputs (Mapeamento de Teclas - Futuro):**
+    *   `inputs_changed`
+    *   `request_loading_inputs_changed`
+    *   `loading_inputs_changed`
+    *   `request_saving_inputs_changed`
+    *   `request_reset_inputs_changed`
 
-#### Sistemas Globais
-Gerenciam o estado geral do jogo e a comunicação entre sistemas.
+## Funcionalidades Principais
 
--   **GlobalEvents:** O coração da comunicação. Todos os sistemas globais se comunicam através dele.
--   **GlobalMachine:** Controla a máquina de estados global (ex: `MENU`, `JOGANDO`, `PAUSADO`).
--   **SaveSystem:** Ouve os pedidos de salvar/carregar e orquestra a persistência de dados.
--   **SettingsManager:** Gerencia as configurações do jogador (áudio, vídeo, controles).
--   **InputManager:** Centraliza o gerenciamento de input, especialmente para remapeamento de teclas.
--   **AudioManager:** Gerencia a reprodução de música e efeitos sonoros.
--   **DebugConsole:** Um console de depuração para testes em tempo de execução.
+O template oferece os seguintes sistemas pré-configurados, com foco em eficiência e boas práticas:
 
-#### Sistemas Locais
-Gerenciam o estado *dentro* de uma cena de jogo (uma fase, um nível). Eles são persistentes, mas focados no gameplay imediato.
+### Singletons (Autoloads)
 
--   **LocalEvents:** Um EventBus para comunicação interna da cena (ex: um puzzle que abre uma porta na mesma fase).
--   **LocalMachine:** Controla a máquina de estados da cena (ex: `EXPLORANDO`, `COMBATE`, `CUTSCENE`).
+*   **`GlobalEvents` (Event Bus):**
+    *   **Propósito:** O coração da comunicação desacoplada. Contém exclusivamente declarações de `signal`, atuando como um quadro de avisos central e passivo para eventos globais.
+*   **`SceneManager`:**
+    *   **Propósito:** Gerenciar o carregamento, descarregamento e transições de cenas de forma eficiente e controlada usando um sistema de pilha (`push`/`pop`).
+*   **`AudioManager`:**
+    *   **Propósito:** Centralizar o carregamento e a reprodução de música e efeitos sonoros (SFX).
+    *   **Eficiência:** Carrega sons dinamicamente de pastas, os categoriza automaticamente e usa um pool de players para SFX, evitando que sons se cortem.
+*   **`SettingsManager`:**
+    *   **Propósito:** Gerenciar o estado das configurações do jogo (áudio, vídeo, etc.) em um dicionário. Ele aplica as configurações e reage a mudanças, mas não lida com salvamento/carregamento.
+*   **`SaveSystem`:**
+    *   **Propósito:** Único responsável por interagir com o sistema de arquivos. Ele salva e carrega dicionários de dados (como as configurações do `SettingsManager`) em formato JSON no diretório `user://`.
+*   **`InputManager`:**
+    *   **Propósito:** Traduzir input bruto (teclado, controle) em sinais de "intenção" para o `GlobalEvents`, desacoplando a entrada física da ação do jogo.
+*   **`DebugConsole`:**
+    *   **Propósito:** Fornecer feedback visual para depuração em tempo real, ouvindo todos os sinais do `GlobalEvents` e exibindo um log formatado.
 
-**A Regra de Ouro:** A comunicação entre os domínios Global e Local é estritamente separada. `LocalEvents` é um sistema fechado, usado apenas para comunicação *dentro* de uma mesma cena (ex: um puzzle abrindo uma porta próxima). Ele **nunca** deve ser usado como uma "escada" para o `GlobalEvents`.
+### Sistema de UI Reativo
 
-Se um nó dentro da cena, como o Player, precisa de uma ação global (ex: notificar sua morte para que a `GlobalMachine` possa mudar o estado do jogo), ele deve emitir o sinal **diretamente no `GlobalEvents`**. A responsabilidade de escolher o canal correto (Local ou Global) é sempre do emissor original do evento.
+*   Cenas de UI (ex: `main_menu`, `pause_menu`, `settings_menu`) são "burras" por design. Elas apenas apresentam botões, emitem sinais de "requisição" para o `GlobalEvents` (ex: `scene_push_requested`) e reagem a sinais de mudança de estado para controlar sua visibilidade.
 
-### A Estrutura da Cena Principal: SceneControl e Viewport
+### Internacionalização (I18N)
 
-Além da comunicação, a arquitetura "BodyLess" define uma estrutura de cena robusta para gerenciar o jogo, a UI e o dimensionamento da tela. A cena principal do jogo, chamada `SceneControl.tscn`, não é um Autoload, mas sim a primeira cena que o Godot carrega.
+*   Estrutura completa para tradução usando arquivos `.po`. Os textos na UI são definidos por chaves (ex: `UI_NEW_GAME`) diretamente no editor, permitindo que o `TranslationServer` do Godot os traduza automaticamente.
 
-Sua estrutura é a seguinte:
--   **`SceneControl` (Node - O Maestro):** O nó raiz. Seu script é responsável por orquestrar quais cenas estão ativas, realizando as transições (carregando e descarregando fases) em resposta a eventos do `GlobalEvents`.
-    -   **`ViewportContainer` > `SubViewport` (O Palco do Jogo):** Este contêiner especial abriga o "mundo" do jogo. Todas as cenas de gameplay (fases, níveis) e suas HUDs específicas são instanciadas aqui dentro. O uso de um `SubViewport` é crucial, pois ele desacopla a resolução do jogo da resolução da janela, permitindo:
-        -   **Pixel-perfect scaling:** Renderizar um jogo de pixel art em baixa resolução e escalá-lo perfeitamente para telas HD/4K sem borrões.
-        -   **Efeitos de post-processing:** Aplicar shaders e efeitos visuais à tela inteira do jogo sem afetar os menus.
-    -   **`CanvasLayer` (A Interface Global):** Este layer flutua *acima* do `Viewport` do jogo. Ele é o lar de todas as interfaces que não fazem parte do mundo do jogo, como:
-        -   Menu Principal / Tela de Título
-        -   Menu de Pause
-        -   Menu de Configurações
-        -   Pop-ups globais (Ex: "Sair do jogo?", "Salvar alterações?")
+## Sugestões para Atualizações Futuras
 
-Essa separação garante que a UI global nunca interfira com a câmera ou a resolução do jogo, e que o `SceneControl` atue como um verdadeiro controlador de entrada e saída de cenas.
-
-### Exemplo de Fluxo (Salvando Configurações)
-1.  O jogador clica no botão "Salvar". O botão emite um sinal `request_save_settings` no `GlobalEvents`.
-2.  O `SettingsManager` ouve este sinal, coleta seus dados em um Dicionário e emite `save_settings_data({"audio": ...})` no `GlobalEvents`.
-3.  O `SaveSystem` ouve `save_settings_data`, salva os dados em disco e emite `settings_saved_successfully`.
-4.  A UI ouve o sinal de sucesso e mostra uma notificação.
-
-O resultado é um código robusto e desacoplado, nossa receita para um projeto tão confiável quanto um bom café.
-
-## Instalação
-
-Para instalar o Repo Café CLI, você precisa ter o [Node.js](https://nodejs.org/) (que inclui o NPM) instalado em seu sistema.
-
-Com o Node.js pronto, abra seu terminal e execute o seguinte comando:
-
-```bash
-npm install -g repo-cafe
-```
-
-E pronto! Seu café está coado e pronto para ser saboreado, seja um espresso rápido ou um coado demorado.
-
-## Como Usar
-
-Após a instalação, simplesmente abra um novo terminal e execute:
-
-```bash
-repo-cafe
-```
-
-É só dar um gole e começar a codificar, sentindo a Cafeína do desenvolvimento fluir!
-
-## Recursos Adicionais
-
--   **Análise de Mídia**: O Gemini pode "ver" e analisar arquivos de imagem e áudio do seu projeto. Ele tem um olfato apurado para os detalhes, como um sommelier de café, identificando cada nuance do seu projeto.
-
-## Modo de Operação de Conteúdo (NSFW)
-
-Para garantir total liberdade criativa em projetos destinados a um público adulto, o Repo Café CLI possui um modo de operação explícito (NSFW). É a sua dose extra de Cafeína para a criatividade sem limites, como um café duplo para as ideias mais ousadas.
-
--   **Modo Padrão (SFW):** Por padrão, o assistente opera com as políticas de segurança de conteúdo do Google, evitando temas sensíveis.
--   **Modo Explícito (NSFW):** Se um arquivo chamado `NSFW` (sem extensão) for detectado na raiz do seu projeto, as restrições de conteúdo são suspensas. Isso permite que o assistente colabore na criação de diálogos com linguagem explícita, descrições de violência e outros temas maduros, respeitando a visão criativa do seu projeto.
-
-Se você solicitar um conteúdo que seria bloqueado, o próprio assistente oferecerá a criação do arquivo `NSFW` para ativar o modo explícito.
+*   **UI/UX (Mobile & Gamepad):** Adicionar HUDs para touch e gamepad, e garantir navegação completa dos menus via controle.
+*   **Sistemas Essenciais:** Implementar remapeamento de inputs e um conjunto robusto de opções de acessibilidade (modos para daltônicos, legendas personalizáveis, etc.).
+*   **Visuais:** Adicionar exemplos de partículas e shaders para demonstrar efeitos visuais.

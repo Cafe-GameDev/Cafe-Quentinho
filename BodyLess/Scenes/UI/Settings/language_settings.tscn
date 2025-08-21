@@ -1,0 +1,157 @@
+[gd_scene load_steps=2 format=3 uid="uid://bey3t3k4biaww"]
+
+[ext_resource type="Script" uid="uid://cnmrmds3xslo2" path="res://Scripts/UI/Settings/Locate/language_options.gd" id="1_utlj1"]
+
+[node name="LanguageSettings" type="VBoxContainer"]
+visible = false
+theme_override_constants/separation = 10
+
+[node name="LanguageOptionsContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 10
+script = ExtResource("1_utlj1")
+
+[node name="EN_US_Button" type="Button" parent="LanguageOptionsContainer"]
+layout_mode = 2
+text = "UI_LANGUAGE_EN_US"
+metadata/locale = "en_US"
+
+[node name="EN_GB_Button" type="Button" parent="LanguageOptionsContainer"]
+layout_mode = 2
+text = "UI_LANGUAGE_EN_GB"
+metadata/locale = "en_GB"
+
+[node name="EN_IN_Button" type="Button" parent="LanguageOptionsContainer"]
+layout_mode = 2
+text = "UI_LANGUAGE_EN_IN"
+metadata/locale = "en_IN"
+
+[node name="PT_BR_Button" type="Button" parent="LanguageOptionsContainer"]
+layout_mode = 2
+text = "UI_LANGUAGE_PT_BR"
+metadata/locale = "pt_BR"
+
+[node name="PT_PT_Button" type="Button" parent="LanguageOptionsContainer"]
+layout_mode = 2
+text = "UI_LANGUAGE_PT_PT"
+metadata/locale = "pt_PT"
+
+[node name="ES_ES_Button" type="Button" parent="LanguageOptionsContainer"]
+layout_mode = 2
+text = "UI_LANGUAGE_ES_ES"
+metadata/locale = "es_ES"
+
+[node name="ES_LA_Button" type="Button" parent="LanguageOptionsContainer"]
+layout_mode = 2
+text = "UI_LANGUAGE_ES_LA"
+metadata/locale = "es_LA"
+
+[node name="FR_Button" type="Button" parent="LanguageOptionsContainer"]
+layout_mode = 2
+text = "UI_LANGUAGE_FR"
+metadata/locale = "fr"
+
+[node name="DE_Button" type="Button" parent="LanguageOptionsContainer"]
+layout_mode = 2
+text = "UI_LANGUAGE_DE"
+metadata/locale = "de"
+
+[node name="IT_Button" type="Button" parent="LanguageOptionsContainer"]
+layout_mode = 2
+text = "UI_LANGUAGE_IT"
+metadata/locale = "it"
+
+[node name="NL_Button" type="Button" parent="LanguageOptionsContainer"]
+layout_mode = 2
+text = "UI_LANGUAGE_NL"
+metadata/locale = "nl"
+
+[node name="JA_Button" type="Button" parent="LanguageOptionsContainer"]
+layout_mode = 2
+text = "UI_LANGUAGE_JA"
+metadata/locale = "ja"
+
+[node name="KO_Button" type="Button" parent="LanguageOptionsContainer"]
+layout_mode = 2
+text = "UI_LANGUAGE_KO"
+metadata/locale = "ko"
+
+[node name="RU_Button" type="Button" parent="LanguageOptionsContainer"]
+layout_mode = 2
+text = "UI_LANGUAGE_RU"
+metadata/locale = "ru"
+
+[node name="ZH_HANS_Button" type="Button" parent="LanguageOptionsContainer"]
+layout_mode = 2
+text = "UI_LANGUAGE_ZH_HANS"
+metadata/locale = "zh_Hans"
+
+[node name="ZH_HANT_Button" type="Button" parent="LanguageOptionsContainer"]
+layout_mode = 2
+text = "UI_LANGUAGE_ZH_HANT"
+metadata/locale = "zh_Hant"
+
+[node name="SW_Button" type="Button" parent="LanguageOptionsContainer"]
+layout_mode = 2
+text = "UI_LANGUAGE_SW"
+metadata/locale = "sw"
+
+[node name="AF_Button" type="Button" parent="LanguageOptionsContainer"]
+layout_mode = 2
+text = "UI_LANGUAGE_AF"
+metadata/locale = "af"
+
+[node name="PL_Button" type="Button" parent="LanguageOptionsContainer"]
+layout_mode = 2
+text = "UI_LANGUAGE_PL"
+metadata/locale = "pl"
+
+[node name="TR_Button" type="Button" parent="LanguageOptionsContainer"]
+layout_mode = 2
+text = "UI_LANGUAGE_TR"
+metadata/locale = "tr"
+
+[node name="HI_Button" type="Button" parent="LanguageOptionsContainer"]
+layout_mode = 2
+text = "UI_LANGUAGE_HI"
+metadata/locale = "hi"
+
+[node name="ID_Button" type="Button" parent="LanguageOptionsContainer"]
+layout_mode = 2
+text = "UI_LANGUAGE_ID"
+metadata/locale = "id"
+
+[node name="VI_Button" type="Button" parent="LanguageOptionsContainer"]
+layout_mode = 2
+text = "UI_LANGUAGE_VI"
+metadata/locale = "vi"
+
+[node name="AR_Button" type="Button" parent="LanguageOptionsContainer"]
+layout_mode = 2
+text = "UI_LANGUAGE_AR"
+metadata/locale = "ar"
+
+[node name="FIL_Button" type="Button" parent="LanguageOptionsContainer"]
+layout_mode = 2
+text = "UI_LANGUAGE_FIL"
+metadata/locale = "fil"
+
+[node name="HA_Button" type="Button" parent="LanguageOptionsContainer"]
+layout_mode = 2
+text = "UI_LANGUAGE_HA"
+metadata/locale = "ha"
+
+[node name="AM_Button" type="Button" parent="LanguageOptionsContainer"]
+layout_mode = 2
+text = "UI_LANGUAGE_AM"
+metadata/locale = "am"
+
+[node name="YO_Button" type="Button" parent="LanguageOptionsContainer"]
+layout_mode = 2
+text = "UI_LANGUAGE_YO"
+metadata/locale = "yo"
+
+[node name="BN_Button" type="Button" parent="LanguageOptionsContainer"]
+layout_mode = 2
+text = "UI_LANGUAGE_BN"
+metadata/locale = "bn"

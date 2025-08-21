@@ -1,0 +1,292 @@
+# Russian translations for Cafe-Quentinho Template.
+# Copyright (C) 2025 Cafe-GameDev
+# This file is distributed under the same license as the Cafe-Quentinho Template project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2025.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Cafe-Quentinho Template\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-08-13 15:00-0300\n"
+"PO-Revision-Date: 2025-08-18 10:00-0300\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Russian\n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Gemini\n"
+
+msgid "UI_MAIN_MENU_TITLE"
+msgstr "Шаблон Бруно"
+
+msgid "UI_NEW_GAME"
+msgstr "Новая игра"
+
+msgid "UI_OPTIONS"
+msgstr "Настройки"
+
+msgid "UI_EXIT"
+msgstr "Выход"
+
+msgid "UI_PAUSE_MENU_TITLE"
+msgstr "Пауза"
+
+msgid "UI_RESUME_GAME"
+msgstr "Продолжить игру"
+
+msgid "UI_QUIT_CONFIRMATION_PROMPT"
+msgstr "Вы действительно хотите выйти?"
+
+msgid "UI_YES"
+msgstr "Да"
+
+msgid "UI_NO"
+msgstr "Нет"
+
+msgid "UI_SETTINGS_TITLE"
+msgstr "Настройки"
+
+msgid "UI_VIDEO"
+msgstr "Видео"
+
+msgid "UI_AUDIO"
+msgstr "Аудио"
+
+msgid "UI_BACK"
+msgstr "Назад"
+
+msgid "UI_VIDEO_OPTIONS"
+msgstr "Настройки видео"
+
+msgid "UI_FULLSCREEN"
+msgstr "Полный экран"
+
+msgid "UI_AUDIO_OPTIONS"
+msgstr "Настройки аудио"
+
+msgid "UI_MASTER_VOLUME"
+msgstr "Общая громкость"
+
+msgid "UI_MUSIC_VOLUME"
+msgstr "Музыка"
+
+msgid "UI_SFX_VOLUME"
+msgstr "Эффекты"
+
+msgid "UI_APPLY"
+msgstr "Применить"
+
+msgid "UI_LANGUAGE"
+msgstr "Язык"
+
+msgid "UI_LANGUAGE_OPTIONS"
+msgstr "Языковые настройки"
+
+msgid "DEBUG_CONSOLE_READY"
+msgstr "Консоль отладки готова. Нажмите 'P' для переключения."
+
+msgid "DEBUG_LOG_TITLE"
+msgstr "Журнал глобальных событий"
+
+msgid "DEBUG_GAME_SECTION"
+msgstr "[b]Игра[/b]"
+
+msgid "DEBUG_GAME_VERSION"
+msgstr "  Версия игры: 1.0.0 (Альфа)"
+
+msgid "DEBUG_GAME_STATE"
+msgstr "  Состояние: {state}"
+
+msgid "DEBUG_CURRENT_SCENE"
+msgstr "  Текущая сцена: {scene}"
+
+msgid "DEBUG_LAST_SAVE"
+msgstr "  Последнее сохранение: Н/Д"
+
+msgid "DEBUG_SYSTEM_SECTION"
+msgstr "[b]Система[/b]"
+
+msgid "DEBUG_OS"
+msgstr "  ОС: {os}"
+
+msgid "DEBUG_DISPLAY_SECTION"
+msgstr "[b]Дисплей[/b]"
+
+msgid "DEBUG_MONITOR"
+msgstr "  Монитор: {monitor}"
+
+msgid "DEBUG_MONITOR_INFO"
+msgstr "Монитор {id}: {size} @ {hz}Hz"
+
+msgid "DEBUG_SIGNAL_RECEIVED"
+msgstr "Сигнал '{signal}' получен"
+
+msgid "DEBUG_WITH_ARGS"
+msgstr " с аргументами: {{args}}"
+
+msgid "UI_MONITOR"
+msgstr "Монитор"
+
+msgid "UI_WINDOW_MODE_WINDOWED"
+msgstr "Оконный"
+
+msgid "UI_WINDOW_MODE_FULLSCREEN"
+msgstr "Полный экран"
+
+msgid "UI_RESOLUTION"
+msgstr "Разрешение"
+
+msgid "DEBUG_PROCESSOR"
+msgstr "  Процессор: {processor}"
+
+msgid "DEBUG_CORES"
+msgstr "  Ядра: {cores}"
+
+msgid "DEBUG_RAM"
+msgstr "  ОЗУ: {ram}"
+
+msgid "DEBUG_VIDEO_ADAPTER"
+msgstr "  Видеоадаптер: {adapter}"
+
+msgid "DEBUG_VIDEO_DRIVER"
+msgstr "  Видеодрайвер: {driver}"
+
+msgid "DEBUG_VIDEO_RENDERER"
+msgstr "  Рендерер видео: {renderer}"
+
+msgid "UI_DRS_OFF"
+msgstr "Выкл"
+
+msgid "UI_DRS_CUSTOM"
+msgstr "Пользовательский"
+
+msgid "UI_FPS_CUSTOM"
+msgstr "Пользовательский"
+
+msgid "UI_VSYNC_OFF"
+msgstr "Выкл"
+
+msgid "UI_VSYNC_ON"
+msgstr "Вкл"
+
+msgid "UI_VSYNC_ADAPTIVE"
+msgstr "Адаптивный"
+
+msgid "UI_QUALITY_LOW"
+msgstr "Низкое"
+
+msgid "UI_QUALITY_MEDIUM"
+msgstr "Среднее"
+
+msgid "UI_QUALITY_HIGH"
+msgstr "Высокое"
+
+msgid "UI_COLORBLIND_OFF"
+msgstr "Выкл"
+
+msgid "UI_COLORBLIND_PROTANOPIA"
+msgstr "Протанопия"
+
+msgid "UI_COLORBLIND_DEUTERANOPIA"
+msgstr "Дейтеранопия"
+
+msgid "UI_COLORBLIND_TRITANOPIA"
+msgstr "Тританопия"
+
+msgid "UI_LANGUAGE_EN_US"
+msgstr "Английский (США)"
+
+msgid "UI_LANGUAGE_EN_GB"
+msgstr "Английский (Великобритания)"
+
+msgid "UI_LANGUAGE_PT_BR"
+msgstr "Португальский (Бразилия)"
+
+msgid "UI_LANGUAGE_PT_PT"
+msgstr "Португальский (Португалия)"
+
+msgid "UI_LANGUAGE_ES_ES"
+msgstr "Испанский (Испания)"
+
+msgid "UI_LANGUAGE_ES_LA"
+msgstr "Испанский (Америка)"
+
+msgid "UI_LANGUAGE_FR"
+msgstr "Французский"
+
+msgid "UI_LANGUAGE_DE"
+msgstr "Немецкий"
+
+msgid "UI_LANGUAGE_IT"
+msgstr "Итальянский"
+
+msgid "UI_LANGUAGE_NL"
+msgstr "Голландский"
+
+msgid "UI_LANGUAGE_JA"
+msgstr "Японский"
+
+msgid "UI_LANGUAGE_KO"
+msgstr "Корейский"
+
+msgid "UI_LANGUAGE_RU"
+msgstr "Русский"
+
+msgid "UI_LANGUAGE_ZH"
+msgstr "Китайский"
+
+msgid "UI_LANGUAGE_EN_IN"
+msgstr "Английский (Индия)"
+
+msgid "UI_LANGUAGE_ZH_HANS"
+msgstr "Китайский (упрощенный)"
+
+msgid "UI_LANGUAGE_ZH_HANT"
+msgstr "Китайский (традиционный)"
+
+msgid "UI_LANGUAGE_SW"
+msgstr "Суахили"
+
+msgid "UI_LANGUAGE_AF"
+msgstr "Африкаанс"
+
+msgid "UI_LANGUAGE_PL"
+msgstr "Польский"
+
+msgid "UI_LANGUAGE_TR"
+msgstr "Турецкий"
+
+msgid "UI_LANGUAGE_HI"
+msgstr "Хинди"
+
+msgid "UI_LANGUAGE_ID"
+msgstr "Индонезийский"
+
+msgid "UI_LANGUAGE_VI"
+msgstr "Вьетнамский"
+
+msgid "UI_LANGUAGE_AR"
+msgstr "Арабский"
+
+msgid "UI_LANGUAGE_FIL"
+msgstr "Филиппинский"
+
+msgid "UI_LANGUAGE_HA"
+msgstr "Хауса"
+
+msgid "UI_LANGUAGE_AM"
+msgstr "Амхарский"
+
+msgid "UI_LANGUAGE_YO"
+msgstr "Йоруба"
+
+msgid "UI_LANGUAGE_BN"
+msgstr "Бенгальский"
+
+msgid "TOAST_LOAD_SUCCESS_MESSAGE"
+msgstr "Game loaded successfully!"
+
+msgid "TOAST_ERROR_LOAD_FAILED_MESSAGE"
+msgstr "Failed to load game progress."

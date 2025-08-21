@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://your_new_uid_here"]
+
+[node name="InputRowTemplate" type="HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="ActionNameLabel" type="Label" parent="."]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "Action Name"
+vertical_alignment = 1
+
+[node name="KeyButton" type="Button" parent="."]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+text = "None"
+
+[node name="ControllerButton" type="Button" parent="."]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+text = "None"
+
+[node name="MouseButton" type="Button" parent="."]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+text = "None"

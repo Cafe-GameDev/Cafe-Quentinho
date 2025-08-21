@@ -1,0 +1,7 @@
+[gd_scene load_steps=1 format=3 uid="uid://new_3d_playground_uid"]
+
+[node name="3D_Playground" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]

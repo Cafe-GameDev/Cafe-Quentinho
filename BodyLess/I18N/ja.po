@@ -1,0 +1,298 @@
+# Japanese translations for Cafe-Quentinho Template.
+# Copyright (C) 2025 Cafe-GameDev
+# This file is distributed under the same license as the Cafe-Quentinho Template project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2025.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Cafe-Quentinho Template\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-08-13 15:00-0300\n"
+"PO-Revision-Date: 2025-08-18 10:00-0300\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Japanese\n"
+"Language: ja\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Gemini\n"
+
+msgid "UI_MAIN_MENU_TITLE"
+msgstr "ブルーノのテンプレート"
+
+msgid "UI_NEW_GAME"
+msgstr "ニューゲーム"
+
+msgid "UI_OPTIONS"
+msgstr "オプション"
+
+msgid "UI_EXIT"
+msgstr "終了"
+
+msgid "UI_PAUSE_MENU_TITLE"
+msgstr "一時停止"
+
+msgid "UI_RESUME_GAME"
+msgstr "ゲーム再開"
+
+msgid "UI_QUIT_CONFIRMATION_PROMPT"
+msgstr "本当に終了しますか？"
+
+msgid "UI_YES"
+msgstr "はい"
+
+msgid "UI_NO"
+msgstr "いいえ"
+
+msgid "UI_SETTINGS_TITLE"
+msgstr "設定"
+
+msgid "UI_VIDEO"
+msgstr "ビデオ"
+
+msgid "UI_AUDIO"
+msgstr "オーディオ"
+
+msgid "UI_BACK"
+msgstr "戻る"
+
+msgid "UI_VIDEO_OPTIONS"
+msgstr "ビデオオプション"
+
+msgid "UI_FULLSCREEN"
+msgstr "フルスクリーン"
+
+msgid "UI_AUDIO_OPTIONS"
+msgstr "オーディオオプション"
+
+msgid "UI_MASTER_VOLUME"
+msgstr "マスター"
+
+msgid "UI_MUSIC_VOLUME"
+msgstr "音楽"
+
+msgid "UI_SFX_VOLUME"
+msgstr "効果音"
+
+msgid "UI_APPLY"
+msgstr "適用"
+
+msgid "UI_LANGUAGE"
+msgstr "言語"
+
+msgid "UI_LANGUAGE_OPTIONS"
+msgstr "言語オプション"
+
+msgid "DEBUG_CONSOLE_READY"
+msgstr "デバッグコンソールの準備ができました。「P」キーで切り替えます。"
+
+msgid "DEBUG_LOG_TITLE"
+msgstr "グローバルイベントログ"
+
+msgid "DEBUG_GAME_SECTION"
+msgstr "[b]ゲーム[/b]"
+
+msgid "DEBUG_GAME_VERSION"
+msgstr "  ゲームバージョン: 1.0.0 (アルファ)"
+
+msgid "DEBUG_GAME_STATE"
+msgstr "  状態: {state}"
+
+msgid "DEBUG_CURRENT_SCENE"
+msgstr "  現在のシーン: {scene}"
+
+msgid "DEBUG_LAST_SAVE"
+msgstr "  最終保存: N/A"
+
+msgid "DEBUG_SYSTEM_SECTION"
+msgstr "[b]システム[/b]"
+
+msgid "DEBUG_OS"
+msgstr "  OS: {os}"
+
+msgid "DEBUG_DISPLAY_SECTION"
+msgstr "[b]ディスプレイ[/b]"
+
+msgid "DEBUG_MONITOR"
+msgstr "  モニター: {monitor}"
+
+msgid "DEBUG_MONITOR_INFO"
+msgstr "モニター {id}: {size} @ {hz}Hz"
+
+msgid "DEBUG_SIGNAL_RECEIVED"
+msgstr "信号 '{signal}' を受信しました"
+
+msgid "DEBUG_WITH_ARGS"
+msgstr " 引数: {{args}}"
+
+msgid "UI_MONITOR"
+msgstr "モニター"
+
+msgid "UI_WINDOW_MODE_WINDOWED"
+msgstr "ウィンドウ"
+
+msgid "UI_WINDOW_MODE_FULLSCREEN"
+msgstr "フルスクリーン"
+
+msgid "UI_RESOLUTION"
+msgstr "解像度"
+
+msgid "DEBUG_PROCESSOR"
+msgstr "  プロセッサ: {processor}"
+
+msgid "DEBUG_CORES"
+msgstr "  コア: {cores}"
+
+msgid "DEBUG_RAM"
+msgstr "  RAM: {ram}"
+
+msgid "DEBUG_VIDEO_ADAPTER"
+msgstr "  ビデオアダプター: {adapter}"
+
+msgid "DEBUG_VIDEO_DRIVER"
+msgstr "  ビデオドライバー: {driver}"
+
+msgid "DEBUG_VIDEO_RENDERER"
+msgstr "  ビデオレンダラー: {renderer}"
+
+msgid "UI_DRS_OFF"
+msgstr "オフ"
+
+msgid "UI_DRS_CUSTOM"
+msgstr "カスタム"
+
+msgid "UI_FPS_CUSTOM"
+msgstr "カスタム"
+
+msgid "UI_VSYNC_OFF"
+msgstr "オフ"
+
+msgid "UI_VSYNC_ON"
+msgstr "オン"
+
+msgid "UI_VSYNC_ADAPTIVE"
+msgstr "アダプティブ"
+
+msgid "UI_QUALITY_LOW"
+msgstr "低"
+
+msgid "UI_QUALITY_MEDIUM"
+msgstr "中"
+
+msgid "UI_QUALITY_HIGH"
+msgstr "高"
+
+msgid "UI_COLORBLIND_OFF"
+msgstr "オフ"
+
+msgid "UI_COLORBLIND_PROTANOPIA"
+msgstr "1型色覚"
+
+msgid "UI_COLORBLIND_DEUTERANOPIA"
+msgstr "2型色覚"
+
+msgid "UI_COLORBLIND_TRITANOPIA"
+msgstr "3型色覚"
+
+msgid "UI_LANGUAGE_EN_US"
+msgstr "英語 (米国)"
+
+msgid "UI_LANGUAGE_EN_GB"
+msgstr "英語 (英国)"
+
+msgid "UI_LANGUAGE_PT_BR"
+msgstr "ポルトガル語 (ブラジル)"
+
+msgid "UI_LANGUAGE_PT_PT"
+msgstr "ポルトガル語 (ポルトガル)"
+
+msgid "UI_LANGUAGE_ES_ES"
+msgstr "スペイン語 (スペイン)"
+
+msgid "UI_LANGUAGE_ES_LA"
+msgstr "スペイン語 (アメリカ)"
+
+msgid "UI_LANGUAGE_FR"
+msgstr "フランス語"
+
+msgid "UI_LANGUAGE_DE"
+msgstr "ドイツ語"
+
+msgid "UI_LANGUAGE_IT"
+msgstr "イタリア語"
+
+msgid "UI_LANGUAGE_NL"
+msgstr "オランダ語"
+
+msgid "UI_LANGUAGE_JA"
+msgstr "日本語"
+
+msgid "UI_LANGUAGE_KO"
+msgstr "韓国語"
+
+msgid "UI_LANGUAGE_RU"
+msgstr "ロシア語"
+
+msgid "UI_LANGUAGE_ZH"
+msgstr "中国語"
+
+msgid "UI_LANGUAGE_EN_IN"
+msgstr "英語 (インド)"
+
+msgid "UI_LANGUAGE_ZH_HANS"
+msgstr "中国語 (簡体字)"
+
+msgid "UI_LANGUAGE_ZH_HANT"
+msgstr "中国語 (繁体字)"
+
+msgid "UI_LANGUAGE_SW"
+msgstr "スワヒリ語"
+
+msgid "UI_LANGUAGE_AF"
+msgstr "アフリカーンス語"
+
+msgid "UI_LANGUAGE_PL"
+msgstr "ポーランド語"
+
+msgid "UI_LANGUAGE_TR"
+msgstr "トルコ語"
+
+msgid "UI_LANGUAGE_HI"
+msgstr "ヒンディー語"
+
+msgid "UI_LANGUAGE_ID"
+msgstr "インドネシア語"
+
+msgid "UI_LANGUAGE_VI"
+msgstr "ベトナム語"
+
+msgid "UI_LANGUAGE_AR"
+msgstr "アラビア語"
+
+msgid "UI_LANGUAGE_FIL"
+msgstr "フィリピン語"
+
+msgid "UI_LANGUAGE_HA"
+msgstr "ハウサ語"
+
+msgid "UI_LANGUAGE_AM"
+msgstr "アムハラ語"
+
+msgid "UI_LANGUAGE_YO"
+msgstr "ヨルバ語"
+
+msgid "UI_LANGUAGE_BN"
+msgstr "ベンガル語"
+
+msgid "TOAST_LOAD_SUCCESS_MESSAGE"
+msgstr "Game loaded successfully!"
+
+msgid "TOAST_ERROR_LOAD_FAILED_MESSAGE"
+msgstr "Failed to load game progress."
+
+msgid "TOAST_ITEM_USED_MESSAGE"
+msgstr "Item used: {item_name}!"
+
+msgid "TOAST_ITEM_EQUIPPED_MESSAGE"
+msgstr "Item equipped: {item_name}!"

@@ -1,0 +1,298 @@
+# Italian translations for Cafe-Quentinho Template.
+# Copyright (C) 2025 Cafe-GameDev
+# This file is distributed under the same license as the Cafe-Quentinho Template project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2025.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Cafe-Quentinho Template\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-08-13 15:00-0300\n"
+"PO-Revision-Date: 2025-08-18 10:00-0300\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Italian\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Gemini\n"
+
+msgid "UI_MAIN_MENU_TITLE"
+msgstr "Template di Bruno"
+
+msgid "UI_NEW_GAME"
+msgstr "Nuova Partita"
+
+msgid "UI_OPTIONS"
+msgstr "Opzioni"
+
+msgid "UI_EXIT"
+msgstr "Esci"
+
+msgid "UI_PAUSE_MENU_TITLE"
+msgstr "In Pausa"
+
+msgid "UI_RESUME_GAME"
+msgstr "Riprendi Partita"
+
+msgid "UI_QUIT_CONFIRMATION_PROMPT"
+msgstr "Vuoi davvero uscire?"
+
+msgid "UI_YES"
+msgstr "Sì"
+
+msgid "UI_NO"
+msgstr "No"
+
+msgid "UI_SETTINGS_TITLE"
+msgstr "Impostazioni"
+
+msgid "UI_VIDEO"
+msgstr "Video"
+
+msgid "UI_AUDIO"
+msgstr "Audio"
+
+msgid "UI_BACK"
+msgstr "Indietro"
+
+msgid "UI_VIDEO_OPTIONS"
+msgstr "Opzioni Video"
+
+msgid "UI_FULLSCREEN"
+msgstr "Schermo Intero"
+
+msgid "UI_AUDIO_OPTIONS"
+msgstr "Opzioni Audio"
+
+msgid "UI_MASTER_VOLUME"
+msgstr "Generale"
+
+msgid "UI_MUSIC_VOLUME"
+msgstr "Musica"
+
+msgid "UI_SFX_VOLUME"
+msgstr "Effetti"
+
+msgid "UI_APPLY"
+msgstr "Applica"
+
+msgid "UI_LANGUAGE"
+msgstr "Lingua"
+
+msgid "UI_LANGUAGE_OPTIONS"
+msgstr "Opzioni Lingua"
+
+msgid "DEBUG_CONSOLE_READY"
+msgstr "Console di debug pronta. Premi 'P' per attivar/disattivare."
+
+msgid "DEBUG_LOG_TITLE"
+msgstr "Registro Eventi Globali"
+
+msgid "DEBUG_GAME_SECTION"
+msgstr "[b]Gioco[/b]"
+
+msgid "DEBUG_GAME_VERSION"
+msgstr "  Versione del Gioco: 1.0.0 (Alpha)"
+
+msgid "DEBUG_GAME_STATE"
+msgstr "  Stato: {state}"
+
+msgid "DEBUG_CURRENT_SCENE"
+msgstr "  Scena Attuale: {scene}"
+
+msgid "DEBUG_LAST_SAVE"
+msgstr "  Ultimo Salvataggio: N/D"
+
+msgid "DEBUG_SYSTEM_SECTION"
+msgstr "[b]Sistema[/b]"
+
+msgid "DEBUG_OS"
+msgstr "  OS: {os}"
+
+msgid "DEBUG_DISPLAY_SECTION"
+msgstr "[b]Display[/b]"
+
+msgid "DEBUG_MONITOR"
+msgstr "  Monitor: {monitor}"
+
+msgid "DEBUG_MONITOR_INFO"
+msgstr "Monitor {id}: {size} @ {hz}Hz"
+
+msgid "DEBUG_SIGNAL_RECEIVED"
+msgstr "Segnale '{signal}' ricevuto"
+
+msgid "DEBUG_WITH_ARGS"
+msgstr " con argomenti: {{args}}"
+
+msgid "UI_MONITOR"
+msgstr "Monitor"
+
+msgid "UI_WINDOW_MODE_WINDOWED"
+msgstr "Finestra"
+
+msgid "UI_WINDOW_MODE_FULLSCREEN"
+msgstr "Schermo Intero"
+
+msgid "UI_RESOLUTION"
+msgstr "Risoluzione"
+
+msgid "DEBUG_PROCESSOR"
+msgstr "  Processore: {processor}"
+
+msgid "DEBUG_CORES"
+msgstr "  Core: {cores}"
+
+msgid "DEBUG_RAM"
+msgstr "  RAM: {ram}"
+
+msgid "DEBUG_VIDEO_ADAPTER"
+msgstr "  Adattatore Video: {adapter}"
+
+msgid "DEBUG_VIDEO_DRIVER"
+msgstr "  Driver Video: {driver}"
+
+msgid "DEBUG_VIDEO_RENDERER"
+msgstr "  Renderer Video: {renderer}"
+
+msgid "UI_DRS_OFF"
+msgstr "Off"
+
+msgid "UI_DRS_CUSTOM"
+msgstr "Personalizzato"
+
+msgid "UI_FPS_CUSTOM"
+msgstr "Personalizzato"
+
+msgid "UI_VSYNC_OFF"
+msgstr "Off"
+
+msgid "UI_VSYNC_ON"
+msgstr "On"
+
+msgid "UI_VSYNC_ADAPTIVE"
+msgstr "Adattivo"
+
+msgid "UI_QUALITY_LOW"
+msgstr "Bassa"
+
+msgid "UI_QUALITY_MEDIUM"
+msgstr "Media"
+
+msgid "UI_QUALITY_HIGH"
+msgstr "Alta"
+
+msgid "UI_COLORBLIND_OFF"
+msgstr "Off"
+
+msgid "UI_COLORBLIND_PROTANOPIA"
+msgstr "Protanopia"
+
+msgid "UI_COLORBLIND_DEUTERANOPIA"
+msgstr "Deuteranopia"
+
+msgid "UI_COLORBLIND_TRITANOPIA"
+msgstr "Tritanopia"
+
+msgid "UI_LANGUAGE_EN_US"
+msgstr "Inglese (USA)"
+
+msgid "UI_LANGUAGE_EN_GB"
+msgstr "Inglese (UK)"
+
+msgid "UI_LANGUAGE_PT_BR"
+msgstr "Portoghese (Brasile)"
+
+msgid "UI_LANGUAGE_PT_PT"
+msgstr "Portoghese (Portogallo)"
+
+msgid "UI_LANGUAGE_ES_ES"
+msgstr "Spagnolo (Spagna)"
+
+msgid "UI_LANGUAGE_ES_LA"
+msgstr "Spagnolo (America)"
+
+msgid "UI_LANGUAGE_FR"
+msgstr "Francese"
+
+msgid "UI_LANGUAGE_DE"
+msgstr "Tedesco"
+
+msgid "UI_LANGUAGE_IT"
+msgstr "Italiano"
+
+msgid "UI_LANGUAGE_NL"
+msgstr "Olandese"
+
+msgid "UI_LANGUAGE_JA"
+msgstr "Giapponese"
+
+msgid "UI_LANGUAGE_KO"
+msgstr "Coreano"
+
+msgid "UI_LANGUAGE_RU"
+msgstr "Russo"
+
+msgid "UI_LANGUAGE_ZH"
+msgstr "Cinese"
+
+msgid "UI_LANGUAGE_EN_IN"
+msgstr "Inglese (India)"
+
+msgid "UI_LANGUAGE_ZH_HANS"
+msgstr "Cinese (semplificato)"
+
+msgid "UI_LANGUAGE_ZH_HANT"
+msgstr "Cinese (tradizionale)"
+
+msgid "UI_LANGUAGE_SW"
+msgstr "Swahili"
+
+msgid "UI_LANGUAGE_AF"
+msgstr "Afrikaans"
+
+msgid "UI_LANGUAGE_PL"
+msgstr "Polacco"
+
+msgid "UI_LANGUAGE_TR"
+msgstr "Turco"
+
+msgid "UI_LANGUAGE_HI"
+msgstr "Hindi"
+
+msgid "UI_LANGUAGE_ID"
+msgstr "Indonesiano"
+
+msgid "UI_LANGUAGE_VI"
+msgstr "Vietnamita"
+
+msgid "UI_LANGUAGE_AR"
+msgstr "Arabo"
+
+msgid "UI_LANGUAGE_FIL"
+msgstr "Filippino"
+
+msgid "UI_LANGUAGE_HA"
+msgstr "Hausa"
+
+msgid "UI_LANGUAGE_AM"
+msgstr "Amarico"
+
+msgid "UI_LANGUAGE_YO"
+msgstr "Yoruba"
+
+msgid "UI_LANGUAGE_BN"
+msgstr "Bengalese"
+
+msgid "TOAST_LOAD_SUCCESS_MESSAGE"
+msgstr "Game loaded successfully!"
+
+msgid "TOAST_ERROR_LOAD_FAILED_MESSAGE"
+msgstr "Failed to load game progress."
+
+msgid "TOAST_ITEM_USED_MESSAGE"
+msgstr "Item used: {item_name}!"
+
+msgid "TOAST_ITEM_EQUIPPED_MESSAGE"
+msgstr "Item equipped: {item_name}!"

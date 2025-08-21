@@ -1,25 +1,53 @@
 extends HBoxContainer
 
 @onready var option_button: OptionButton = $ResolutionOptionButton
-var resolutions: Array[Vector2i] = [
-	Vector2i(1280, 720),
-	Vector2i(1920, 1080),
-	Vector2i(2560, 1440)
-]
+@onready var resolution_label: Label = $ResolutionLabel
+
+# Mapeamento de IDs para resoluções (deve corresponder aos IDs definidos na cena .tscn)
+const RESOLUTION_MAP: Dictionary = {
+	0: Vector2i(320, 180),
+	1: Vector2i(640, 360),
+	2: Vector2i(854, 480),
+	3: Vector2i(1280, 720),
+	4: Vector2i(1920, 1080),
+	5: Vector2i(2560, 1440),
+	6: Vector2i(3840, 2160)
+}
 
 func _ready() -> void:
-	GlobalEvents.video_resolution_changed.connect(_on_video_resolution_changed)
-	for i in range(resolutions.size()):
-		option_button.add_item("%d x %d" % [resolutions[i].x, resolutions[i].y], i)
+	# Conecta ao sinal de carregamento de configurações para definir a resolução inicial.
+	GlobalEvents.loading_settings_changed.connect(_on_loading_settings_changed)
+
+	# Conecta os sinais de mouse para tooltips
+	resolution_label.mouse_entered.connect(_on_mouse_entered_control.bind(resolution_label))
+	resolution_label.mouse_exited.connect(_on_mouse_exited_control)
+	option_button.mouse_entered.connect(_on_mouse_entered_control.bind(option_button))
+	option_button.mouse_exited.connect(_on_mouse_exited_control)
 
 
 func _on_resolution_option_button_item_selected(index: int) -> void:
-	if index >= 0 and index < resolutions.size():
-		GlobalEvents.emit_signal("video_resolution_changed", resolutions[index])
+	if RESOLUTION_MAP.has(index):
+		GlobalEvents.emit_signal("setting_changed", {"video": {"resolution": RESOLUTION_MAP[index]}})
 
-func _on_video_resolution_changed(new_resolution: Vector2i) -> void:
-	for i in range(resolutions.size()):
-		if resolutions[i] == new_resolution:
-			if option_button.selected != i:
-				option_button.select(i)
-			return
+
+func _on_loading_settings_changed(settings: Dictionary) -> void:
+	# Define a resolução selecionada no OptionButton com base nas configurações carregadas.
+	if settings.has("video") and settings["video"].has("resolution"):
+		var current_resolution: Vector2i = settings["video"]["resolution"]
+		var selected_index: int = -1
+		for key in RESOLUTION_MAP:
+			if RESOLUTION_MAP[key] == current_resolution:
+				selected_index = key
+				break
+		
+		if selected_index != -1 and option_button.selected != selected_index:
+			option_button.select(selected_index)
+
+func _on_mouse_entered_control(control_node: Control) -> void:
+	if control_node and control_node.has_meta("tooltip_text"):
+		GlobalEvents.show_tooltip_requested.emit(control_node.get_meta("tooltip_text"), get_global_mouse_position())
+	elif control_node and control_node.tooltip_text:
+		GlobalEvents.show_tooltip_requested.emit(control_node.tooltip_text, get_global_mouse_position())
+
+func _on_mouse_exited_control() -> void:
+	GlobalEvents.hide_tooltip_requested.emit()

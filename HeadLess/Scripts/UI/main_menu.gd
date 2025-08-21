@@ -42,7 +42,7 @@ func _on_exit_button_pressed() -> void:
 	GlobalEvents.play_sfx_by_key_requested.emit("ui_click")
 	GlobalEvents.request_game_state_change.emit(GameManager.GameState.QUIT_CONFIRMATION)
 
-func _on_button_mouse_entered():
+func _on_button_mouse_entered() -> void:
 	GlobalEvents.play_sfx_by_key_requested.emit("ui_rollover")
 
 

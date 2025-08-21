@@ -46,7 +46,7 @@ func _request_state_change(new_state: State) -> void:
 
 # Executa a mudança de estado e seus efeitos colaterais diretos.
 func _change_state(new_state: State) -> void:
-	var old_state = current_state
+	var old_state: State = current_state
 
 	# Salva o estado anterior se estivermos entrando em um menu de sobreposição.
 	if new_state == State.SETTINGS or new_state == State.QUIT_CONFIRMATION:
@@ -66,7 +66,7 @@ func _change_state(new_state: State) -> void:
 			get_tree().paused = true
 
 	# Emite o sinal para que outros sistemas (como o SceneControl para a UI) possam reagir.
-	GlobalEvents.game_state_changed.emit(current_state, old_state)
+	GlobalEvents.game_state_changed.emit(State.keys()[current_state], State.keys()[old_state])
 
 
 # --- Handlers de Sinais ---

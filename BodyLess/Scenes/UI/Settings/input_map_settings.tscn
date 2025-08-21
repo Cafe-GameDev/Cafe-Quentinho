@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://cvtlqfm3228xb"]
+
+[node name="InputMapSettings" type="VBoxContainer"]
+visible = false
+theme_override_constants/separation = 10
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="InputActionsContainer" type="VBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="Header" type="HBoxContainer" parent="ScrollContainer/InputActionsContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="ActionLabel" type="Label" parent="ScrollContainer/InputActionsContainer/Header"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "UI_INPUT_ACTION"
+horizontal_alignment = 1
+
+[node name="KeyLabel" type="Label" parent="ScrollContainer/InputActionsContainer/Header"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+text = "UI_INPUT_KEYBOARD"
+horizontal_alignment = 1
+
+[node name="ControllerLabel" type="Label" parent="ScrollContainer/InputActionsContainer/Header"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+text = "UI_INPUT_CONTROLLER"
+horizontal_alignment = 1
+
+[node name="MouseLabel" type="Label" parent="ScrollContainer/InputActionsContainer/Header"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+text = "UI_INPUT_MOUSE"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="ScrollContainer/InputActionsContainer"]
+layout_mode = 2
+
+[node name="ResetButton" type="Button" parent="."]
+layout_mode = 2
+text = "UI_RESET_DEFAULTS"

@@ -1,0 +1,196 @@
+**Fase 1: Refatoração do Sistema de Configurações (12 Passos)**
+
+**Passo 1: Análise Detalhada do `GlobalEvents`**
+*   **Re-avaliação:** Confirmado. A lista de sinais a serem removidos e adicionados permanece a mesma, pois o conteúdo do arquivo `global_events.gd` é estático e foi relido.
+    *   **Sinais a serem removidos do `GlobalEvents`:**
+        *   `master_volume_changed(linear_volume: float)`
+        *   `music_volume_changed(linear_volume: float)`
+        *   `sfx_volume_changed(linear_volume: float)`
+        *   `monitor_changed(monitor_index: int)`
+        *   `video_window_mode_changed(new_mode: int)`
+        *   `video_resolution_changed(new_resolution: Vector2i)`
+        *   `aspect_ratio_changed(aspect_ratio_index: int)`
+        *   `dynamic_render_scale_changed(mode: int)`
+        *   `render_scale_changed(scale_value: float)`
+        *   `frame_rate_limit_changed(mode: int)`
+        *   `max_frame_rate_changed(fps_value: int)`
+        *   `vsync_mode_changed(mode: int)`
+        *   `gamma_correction_changed(gamma_value: float)`
+        *   `contrast_changed(contrast_value: float)`
+        *   `brightness_changed(brightness_value: float)`
+        *   `shaders_quality_changed(quality_level: int)`
+        *   `effects_quality_changed(quality_level: int)`
+        *   `colorblind_mode_changed(mode: int)`
+        *   `reduce_screen_shake_changed(enabled: bool)`
+    *   **Novos sinais a serem adicionados ao `GlobalEvents`:**
+        *   `signal setting_changed(change_data: Dictionary)`
+        *   `signal loading_settings_changed(loading_data: Dictionary)`
+        *   `signal request_setting_changed()`
+        *   `signal request_loading_settings_changed()`
+
+**Passo 2: Varredura de Emissores de Sinais Antigos**
+*   **Re-avaliação:** Confirmado. A re-varredura mostrou "No matches found" para todos os padrões `GlobalEvents.[signal_name].emit`. Isso confirma que nenhum código existente emite diretamente esses sinais individuais antigos, simplificando a refatoração da UI, pois não há pontos de emissão existentes que precisem ser alterados.
+
+**Passo 3: Varredura de Conectores de Sinais Antigos**
+*   **Re-avaliação:** Confirmado. A re-varredura confirmou os arquivos e linhas exatas onde os sinais individuais antigos estão conectados. Esta lista é crucial para identificar todos os scripts que precisam ser adaptados para os novos sinais `setting_changed` e `loading_settings_changed`.
+    *   **Conectores Confirmados:**
+        *   `Autoloads\audio_manager.gd`
+        *   `Autoloads\settings_manager.gd`
+        *   `Autoloads\video_manager.gd`
+        *   `Autoloads\debug_console.gd`
+        *   Scripts de UI de configurações (ex: `Scripts\UI\Settings\Audio\master.gd`, `music.gd`, `sfx.gd` e todos os scripts em `Scripts\UI\Settings\Video\`)
+
+**Passo 4: Identificação de Sinais Não Utilizados/Problemáticos**
+*   **Re-avaliação:** Com base nos resultados confirmados dos Passos 2 e 3:
+    *   **Sinais Atualmente Declarados mas Sem Emissores Encontrados (e que serão removidos):** Todos os sinais individuais de áudio e vídeo listados no Passo 1. Isso é confirmado pela re-varredura.
+    *   **Sinais Atualmente Declarados mas Sem Emissores/Conectores Diretos Encontrados (potenciais candidatos a remoção futura):** `ui_scale_preset_changed(preset_name: String)`, `music_change_requested`. A análise anterior se mantém. Se não forem conectados ou emitidos, são de fato candidatos à remoção.
+    *   **Sinais que representam acoplamentos indesejados:** Os sinais individuais de áudio e vídeo. Isso é confirmado pela necessidade de refatorar seus ouvintes.
+
+**Passo 5: Planejamento da Modificação do `GlobalEvents`**
+*   **Re-avaliação:** A modificação proposta permanece válida e necessária. A remoção dos sinais antigos e a adição dos novos é o cerne da simplificação do EventBus.
+    *   **Proposta de Modificação para `BodyLess\Autoloads\EventBus\global_events.gd`:**
+        1.  Remover as linhas dos sinais de áudio e vídeo individuais.
+        2.  Adicionar as seguintes linhas (novos sinais):
+            ```gdscript
+            # --- SINAIS UNIFICADOS DE CONFIGURAÇÕES E CARREGAMENTO ---
+            @warning_ignore("unused_signal")
+            signal setting_changed(change_data: Dictionary)
+            @warning_ignore("unused_signal")
+            signal loading_settings_changed(loading_data: Dictionary)
+            @warning_ignore("unused_signal")
+            signal request_setting_changed()
+            @warning_ignore("unused_signal")
+            signal request_loading_settings_changed()
+            ```
+
+**Passo 6: Planejamento da Refatoração dos Componentes da UI (Áudio)**
+*   **Re-avaliação:** Confirmado pela re-varredura no Passo 3. Esses scripts de UI estão de fato se conectando aos sinais antigos e precisam ser atualizados. As mudanças propostas (remover conexões antigas, alterar a emissão para `setting_changed`, remover callbacks antigos) estão corretas.
+    *   **Para `Scripts\UI\Settings\Audio\master.gd`, `music.gd`, `sfx.gd`:**
+        1.  Remover a conexão antiga ao sinal individual em `_ready()`.
+        2.  Modificar a emissão do sinal para: `GlobalEvents.emit_signal("setting_changed", {"audio": {"[nome_da_configuracao]": slider.value}})
+        3.  Remover a função de callback antiga (ex: `_on_master_volume_changed`).
+
+**Passo 7: Planejamento da Refatoração dos Componentes da UI (Vídeo)**
+*   **Re-avaliação:** Confirmado pela re-varredura no Passo 3. Esses scripts de UI estão de fato se conectando aos sinais antigos e precisam ser atualizados. As mudanças propostas (remover conexões antigas, alterar a emissão para `setting_changed`, remover callbacks antigos) estão corretas.
+    *   **Para `Scripts\UI\Settings\Video\monitor.gd`, `window.gd`, `resolution.gd`, `dynamic_render.gd`, `render_scale.gd`, `frame_rate.gd`, `max_frame.gd`, `v_sync.gd`, `gamma_correction.gd`, `contrast.gd`, `brightness.gd`, `shaders.gd`, `effects_quality.gd`, `colorblind.gd`, `reduce_screen_shake.gd`:**
+        1.  Remover a conexão antiga ao sinal individual em `_ready()`.
+        2.  Modificar a emissão do sinal para: `GlobalEvents.emit_signal("setting_changed", {"video": {"[nome_da_configuracao]": [valor_do_controle]}})
+        3.  Remover a função de callback antiga.
+
+**Passo 8: Planejamento da Adaptação do `SettingsManager`**
+*   **Re-avaliação:** Confirmado pela re-varredura no Passo 3. `settings_manager.gd` se conecta a todos os sinais antigos e precisa ser adaptado. As mudanças propostas (remover conexões antigas, adicionar conexão a `setting_changed`, criar `_update_live_settings_from_change_data`) estão corretas.
+    *   **Modificar `_connect_signals()`:** Remover conexões antigas e adicionar: `GlobalEvents.setting_changed.connect(func(change_data: Dictionary): _update_live_settings_from_change_data(change_data))`. 
+    *   **Criar `_update_live_settings_from_change_data(change_data: Dictionary)`:** Esta função fundirá o `change_data` no `live_settings`.
+
+**Passo 9: Planejamento da Adaptação do `VideoManager`**
+*   **Re-avaliação:** Confirmado pela re-varredura no Passo 3. `video_manager.gd` se conecta a vários sinais de vídeo antigos e precisa ser adaptado. As mudanças propostas (remover conexões antigas, adicionar conexão a `setting_changed`, criar `_on_setting_changed`, atualizar `_apply_setting`) estão corretas.
+    *   **Modificar `_ready()`:** Remover conexões antigas e adicionar: `GlobalEvents.setting_changed.connect(func(change_data: Dictionary): _on_setting_changed(change_data))`. 
+    *   **Criar `_on_setting_changed(change_data: Dictionary)`:** Esta função verificará a chave "video" e chamará `call_deferred("_apply_setting", key, value)` para cada mudança.
+    *   **Atualizar `_apply_setting(key: String, value)`:** Adicionar lógica para `gamma_correction`, `contrast`, `brightness`, `shaders_quality`, `effects_quality`, `colorblind_mode`, `reduce_screen_shake` e integrar FSR 1 e 2.
+
+**Passo 10: Planejamento da Adaptação do `AudioManager`**
+*   **Re-avaliação:** Confirmado pela re-varredura no Passo 3. `audio_manager.gd` se conecta a sinais de áudio antigos e precisa ser adaptado. As mudanças propostas (remover conexões antigas, adicionar conexão a `setting_changed`, adicionar conexão a `settings_loaded`, criar `_on_setting_changed`, adicionar/modificar `_on_settings_loaded`) estão corretas.
+    *   **Modificar `_ready()`:** Remover conexões antigas e adicionar: `GlobalEvents.setting_changed.connect(func(change_data: Dictionary): _on_setting_changed(change_data))`. Adicionar `GlobalEvents.settings_loaded.connect(_on_settings_loaded)`. 
+    *   **Criar `_on_setting_changed(change_data: Dictionary)`:** Esta função verificará a chave "audio" e chamará `call_deferred("_update_bus_volume", bus_name, value)` para cada mudança.
+    *   **Adicionar/Modificar `_on_settings_loaded(settings: Dictionary)`:** Aplicará as configurações de áudio iniciais.
+
+**Passo 11: Planejamento da Adaptação do `DebugConsole`**
+*   **Re-avaliação:** Confirmado pela re-varredura no Passo 3. `debug_console.gd` se conecta a todos os sinais antigos e precisa ser adaptado. As mudanças propostas (remover conexões antigas, adicionar conexões aos novos sinais, aprimorar `_log_generic_signal`) estão corretas.
+    *   **Modificar `_connect_all_signals()`:**
+        *   Remover conexões antigas.
+        *   Adicionar conexão ao novo `setting_changed`.
+        *   Adicionar conexões para os novos sinais (com os nomes atualizados e sem argumentos para os de requisição):
+            ```gdscript
+            GlobalEvents.loading_settings_changed.connect(func(data): log_func.call("loading_settings_changed", [data]))
+            GlobalEvents.request_setting_changed.connect(func(): log_func.call("request_setting_changed", []))
+            GlobalEvents.request_loading_settings_changed.connect(func(): log_func.call("request_loading_settings_changed", []))
+            ```
+    *   **Aprimorar `_log_generic_signal`:** Garantir que lide bem com dicionários (usando `JSON.stringify`).
+
+**Passo 12: Verificação de Sincronia e Eficiência (Refatoração)**
+*   **Re-avaliação:** Os princípios permanecem válidos. O uso de `call_deferred` é crucial para operações assíncronas e para evitar condições de corrida. As buscas propostas para acoplamento direto ainda são relevantes para a verificação pós-refatoração.
+    *   Confirmar o uso de `call_deferred` nas chamadas de aplicação de configurações nos Managers.
+    *   Propor buscas para verificar a ausência de chamadas diretas entre `SettingsManager`, `VideoManager` e `AudioManager`.
+
+---
+
+**Fase 2: Extensão e Novas Funcionalidades (12 Passos)**
+
+**Passo 13: Planejamento da Estrutura de Pastas para Cenas de Jogo**
+*   **Re-avaliação:** Este passo é estrutural e permanece válido.
+    *   Criar `BodyLess\Scenes\Game\TopDown\`, `BodyLess\Scenes\Game\Platformer\`, `BodyLess\Scenes\Game\3D\`.
+
+**Passo 14: Planejamento da Cena TopDown Playground**
+*   **Re-avaliação:** O design conceitual para este playground permanece válido.
+    *   **Cena Principal:** `TopDown_Playground.tscn` (Node2D) com `TileMap`.
+    *   **Player:** `Player_TopDown.tscn` (CharacterBody2D) com `AnimatedSprite2D`, `Camera2D` (smoothing, limits).
+    *   **Inimigo Base:** `Enemy_TopDown.tscn` (CharacterBody2D/StaticBody2D).
+    *   **Itens:** `WeaponPickup_TopDown.tscn`, `HealingPotion_TopDown.tscn` (Area2D).
+
+**Passo 15: Planejamento da Cena Platformer Playground**
+*   **Re-avaliação:** O design conceitual para este playground permanece válido.
+    *   **Cena Principal:** `Platformer_Playground.tscn` (Node2D) com `TileMap`.
+    *   **Player:** `Player_Platformer.tscn` (CharacterBody2D) com `AnimatedSprite2D`, `Camera2D` (smoothing, limits).
+    *   **Inimigo Base:** `Enemy_Platformer.tscn` (CharacterBody2D/StaticBody2D).
+    *   **Itens:** `WeaponPickup_Platformer.tscn`, `HealingPotion_Platformer.tscn` (Area2D).
+
+**Passo 16: Planejamento da Cena 3D Playground**
+*   **Re-avaliação:** O design conceitual para este playground permanece válido.
+    *   **Cena Principal:** `3D_Playground.tscn` (Node3D) com `MeshInstance3D` e `StaticBody3D`.
+    *   **Player:** `Player_3D.tscn` (CharacterBody3D) com `MeshInstance3D`, `Camera3D`.
+    *   **Inimigo Base:** `Enemy_3D.tscn` (CharacterBody3D/StaticBody3D).
+    *   **Itens:** `WeaponPickup_3D.tscn`, `HealingPotion_3D.tscn` (Area3D).
+
+**Passo 17: Planejamento dos Recursos de Armas e Socos (`Resource`s)**
+*   **Re-avaliação:** O uso de Resources para dados de armas é um princípio central do "BodyLess" e permanece válido.
+    *   **Script Base:** `BodyLess\Resources\Scripts\WeaponData.gd` (extends Resource) com propriedades de dano, alcance, tipo, recarga, munição.
+    *   **Recursos (`.tres`):** `Punch.tres`, `Sword.tres`, `Bow.tres`, `Pistol.tres`, `Grenade.tres`, `MachineGun.tres`.
+    *   **Lógica de Recarga:** Implementar no Player (ou componente de arma) com `Timer` e animação.
+
+**Passo 18: Planejamento dos Sistemas Universais (Autoloads)**
+*   **Re-avaliação:** A lista de Autoloads universais e suas responsabilidades gerais permanece válida e alinhada com a filosofia "BodyLess".
+    *   **`InventoryManager`:** Gerencia inventário, emite `GlobalEvents.inventory_changed`.
+    *   **`QuestSystem`:** Gerencia quests (incluindo tutorial), emite `GlobalEvents.quest_updated`.
+    *   **`LootSystem`:** Gerencia drops de inimigos, usa `LootTable.gd` e `LootItem.gd` (Resources).
+    *   **`FloatingTextManager`:** Instancia `FloatingText.tscn` para feedback de dano.
+    *   **`SaveSystem`:** Orquestra salvamento/carregamento de dados de outros Managers.
+    *   **`GlobalMachine`:** Gerencia estado global do jogo e flags de progresso.
+
+**Passo 19: Planejamento da Implementação de Inimigos**
+*   **Re-avaliação:** A abordagem em camadas para a IA inimiga (estático, patrulha, FSM) e o uso de Resources `EnemyData` são princípios de design sólidos.
+    *   **Script Base:** `BodyLess\Scripts\Enemy\enemy.gd` (extends CharacterBody2D/3D) com lógica de dano, morte, sons, texto flutuante, loot.
+    *   **Recurso de Dados do Inimigo:** `BodyLess\Resources\Scripts\EnemyData.gd` (extends Resource) com propriedades de saúde, dano, velocidade, comportamento (estático, patrulha, FSM).
+    *   **Recursos de Dados (`.tres`):** `DummyData.tres`, `PatrolBotData.tres`, `HunterData.tres`.
+    *   **Máquina de Estados (FSM):** Implementar FSM genérica no `Enemy.gd` com estados `Idle`, `Patrol`, `Chase`, `Attack`.
+
+**Passo 20: Planejamento da HUD Universal**
+*   **Re-avaliação:** O design de uma HUD universal conectada a gerenciadores globais é consistente com a abordagem "BodyLess".
+    *   **Cena:** `BodyLess\Scenes\UI\HUD.tscn` (CanvasLayer) com barra de vida (conectada a `GlobalMachine`) e hotbar (conectada a `InventoryManager`).
+    *   **Script:** `BodyLess\Scripts\UI\HUD.gd` para atualização visual e lógica de troca de armas.
+
+**Passo 21: Planejamento da Internacionalização (I18N) e FSR**
+*   **Re-avaliação:** São funcionalidades padrão e seus pontos de integração estão corretamente identificados.
+    *   **I18N:** Adicionar novos arquivos `.po` em `BodyLess\I18N\`. Garantir que a UI use chaves de tradução. Adicionar opção de idioma na UI de configurações.
+    *   **FSR:** Pesquisar API nativa do Godot 4.x para FSR. Adicionar opções de FSR na UI de vídeo e modificar `VideoManager._apply_setting` para aplicar a configuração.
+
+**Passo 22: Planejamento do Sistema de Spawner e Grupos**
+*   **Re-avaliação:** O spawner e o gerenciamento de grupos são boas práticas para design de níveis e gerenciamento de inimigos.
+    *   **Cena:** `BodyLess\Scenes\Game\Spawner.tscn` (Node2D/Node3D) com `Timer` para instanciar inimigos em pontos de spawn. Adicionar inimigos ao grupo "enemies".
+    *   **Lógica de Limpeza:** Botão na UI de debug ou `WorldManager` para chamar `get_tree().call_group("enemies", "queue_free")`.
+
+**Passo 23: Planejamento do Polimento e "Juice"**
+*   **Re-avaliação:** Esses elementos são cruciais para a sensação do jogo e os métodos propostos são práticas padrão do Godot.
+    *   **Áudio Espacial:** `AudioListener2D/3D` na câmera. `AudioStreamPlayer2D/3D` para SFX posicionais.
+    *   **Efeitos Visuais:** `HitEffect.tscn` com `GPUParticles2D/3D` e som.
+    *   **Camera Shake:** Função `camera_shake` no script da câmera, chamada via sinal.
+    *   **AnimationTree:** No Player, configurar `AnimationTree` com `AnimationNodeStateMachine` para gerenciar animações.
+
+**Passo 24: Planejamento da Documentação Final e Testes**
+*   **Re-avaliação:** Documentação abrangente e testes são essenciais para qualquer projeto. A estrutura e o conteúdo propostos são apropriados.
+    *   **Atualizar Documentação Existente:** `BodyLess\Docs\Refatoracao_Configuracoes.md`.
+        *   Explicitamente mencionar os 4 novos sinais (`setting_changed`, `loading_settings_changed`, `request_setting_changed`, `request_loading_settings_changed`) e seus propósitos, com `request_setting_changed` e `request_loading_settings_changed` sem argumentos.
+        *   Discutir potenciais casos de uso para `loading_settings_changed` (em `SaveSystem`, `SceneManager` e telas de carregamento), `request_setting_changed` (como uma requisição mais genérica para configurações) e `request_loading_settings_changed` (como uma requisição genérica para iniciar carregamento).
+    *   **Criar Nova Documentação:** `BodyLess\Docs\Arquitetura_Extensao.md`, `BodyLess\Docs\Playground_Design.md`, `BodyLess\Docs\Weapon_System.md`.
+    *   **Definir Testes Manuais e Automatizados:** Testes abrangentes para todas as funcionalidades implementadas.
+
+Este é o plano completo e revisado. Estou pronto para aguardar suas próximas instruções.
