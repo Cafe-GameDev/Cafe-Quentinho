@@ -1,5 +1,6 @@
 /.godot/
 /android/
+/Assets/
 License.txt
 Credits.txt
 *.env

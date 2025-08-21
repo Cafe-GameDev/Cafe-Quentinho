@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://d00d1e5f00d1e5f0"]
 
-[ext_resource type="Script" path="res://Scenes/UI/Tooltip/tooltip.gd" id="1_script"]
+[ext_resource type="Script" path="res://Scripts/UI/Tooltip/tooltip.gd" id="1_script"]
 
 [node name="Tooltip" type="PanelContainer"]
 mouse_filter = 2 # MOUSE_FILTER_IGNORE
