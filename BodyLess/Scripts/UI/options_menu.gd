@@ -7,12 +7,12 @@ const TOOLTIP_SCENE = preload("res://Scenes/UI/Tooltip/Tooltip.tscn")
 
 var _current_tooltip: Control = null
 var _tooltip_texts: Dictionary = {
-    "VideoButton": "Configurações de vídeo.",
-    "AudioButton": "Configurações de áudio.",
-    "LanguageButton": "Configurações de idioma.",
-    "InputMapButton": "Configurações de mapeamento de teclas.",
-    "BackButton": "Volta para o menu anterior.",
-    "ApplyButton": "Salva as configurações e volta para o menu anterior.",
+	"VideoButton": "Configurações de vídeo.",
+	"AudioButton": "Configurações de áudio.",
+	"LanguageButton": "Configurações de idioma.",
+	"InputMapButton": "Configurações de mapeamento de teclas.",
+	"BackButton": "Volta para o menu anterior.",
+	"ApplyButton": "Salva as configurações e volta para o menu anterior.",
 }
 
 @onready var language_label: Label = $PanelContainer/Margin/Box/UPButtons/LabelContainer/LanguageLabel
@@ -71,15 +71,21 @@ func _on_language_button_pressed() -> void:
 
 
 func _on_back_button_pressed() -> void:
+	print("[OptionsMenu] Botão 'Voltar' pressionado. Revertendo configurações e voltando ao estado anterior.")
 	# Emite um sinal para o SettingsManager reverter as configs para o último estado salvo.
-	GlobalEvents.emit_signal("close_settings_requested")
+	GlobalEvents.request_loading_settings_changed.emit() # Requisita o carregamento das últimas configurações salvas
+	GlobalEvents.request_loading_language_changed.emit() # Requisita o carregamento do último idioma salvo
 	# Emite um sinal para o GameManager/SceneManager para fechar a UI de opções.
-	GlobalEvents.emit_signal("return_to_previous_state_requested")
+	GlobalEvents.return_to_previous_state_requested.emit()
 
 
 func _on_apply_button_pressed() -> void:
+	print("[OptionsMenu] Botão 'Aplicar' pressionado. Solicitando salvamento de configurações.")
 	# Solicita que as configurações sejam salvas.
-	GlobalEvents.emit_signal("save_settings_requested")
+	GlobalEvents.request_saving_settings_changed.emit()
+	GlobalEvents.request_saving_language_changed.emit()
+	# Emite um sinal para o GameManager/SceneManager para fechar a UI de opções.
+	GlobalEvents.return_to_previous_state_requested.emit()
 
 
 func _on_button_mouse_entered(button: Button) -> void:
@@ -90,7 +96,10 @@ func _on_button_mouse_entered(button: Button) -> void:
 			_current_tooltip.queue_free()
 		_current_tooltip = TOOLTIP_SCENE.instantiate()
 		add_child(_current_tooltip)
-		_current_tooltip.set_text(_tooltip_texts[button_name])
+		# Acessa o Label dentro do Tooltip para definir o texto
+		var tooltip_label = _current_tooltip.find_child("Label")
+		if tooltip_label:
+			tooltip_label.set_text(_tooltip_texts[button_name])
 		_current_tooltip.position = get_global_mouse_position() + Vector2(10, 10) # Offset para não cobrir o mouse
 
 func _on_button_mouse_exited() -> void:

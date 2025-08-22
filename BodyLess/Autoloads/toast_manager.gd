@@ -7,7 +7,9 @@ var _is_showing_toast: bool = false
 func _ready() -> void:
 	GlobalEvents.show_toast_requested.connect(_on_show_toast_requested)
 
-func _on_show_toast_requested(message: String, type: String = "info") -> void:
+func _on_show_toast_requested(toast_data: Dictionary) -> void:
+	var message: String = toast_data.get("message", "")
+	var type: String = toast_data.get("type", "info")
 	_toast_queue.push_back({"message": message, "type": type})
 	if not _is_showing_toast:
 		_show_next_toast()

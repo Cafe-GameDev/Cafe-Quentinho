@@ -7,13 +7,14 @@ var current_camera_mode: String = "first_person" # "first_person" or "third_pers
 func _ready() -> void:
 	print("3D World Loaded!")
 	_set_camera_mode(current_camera_mode)
-	GlobalEvents.input_special_pressed.connect(_on_input_special_pressed)
+	GlobalEvents.input_action_triggered.connect(_on_input_action_triggered)
 
-func _on_input_special_pressed() -> void:
-	if current_camera_mode == "first_person":
-		_set_camera_mode("third_person")
-	else:
-		_set_camera_mode("first_person")
+func _on_input_action_triggered(action_data: Dictionary) -> void:
+	if action_data.get("action") == "special" and action_data.get("state") == "pressed":
+		if current_camera_mode == "first_person":
+			_set_camera_mode("third_person")
+		else:
+			_set_camera_mode("first_person")
 
 func _set_camera_mode(mode: String) -> void:
 	current_camera_mode = mode

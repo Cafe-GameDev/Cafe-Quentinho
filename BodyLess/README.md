@@ -10,11 +10,8 @@ A filosofia do template se baseia em quatro pilares fundamentais:
 
 *   **Desacoplamento Total (Event-Driven):** A comunicação entre os sistemas principais é feita exclusivamente através de um "Barramento de Eventos" (`GlobalEvents`). Nenhum manager tem conhecimento direto sobre o outro, permitindo modificações e substituições sem quebrar o projeto.
 *   **Modularidade e Responsabilidade Única:** Cada sistema principal é um Singleton (Autoload) com uma responsabilidade claramente definida, resultando em código limpo e fácil de manter.
-<<<<<<< HEAD
+
 *   **Orientado a Dados:** Separação entre lógica e dados, incentivando o uso de `Resources` e Dicionários para gerenciar o estado do jogo.
-=======
-*   **Orientado a Dados:** Separação entre lógica e dados, incentivando o uso de `Resources` e carregamento dinâmico de assets.
->>>>>>> ee7bc34fd3e892534753d4af6c060df0e4bb91c5
 *   **Pronto para Produção:** Funcionalidades essenciais para um jogo completo já vêm pré-configuradas.
 
 ### Padrão de Comunicação para Dados Persistentes

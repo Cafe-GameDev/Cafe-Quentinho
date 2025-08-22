@@ -18,6 +18,9 @@ var current_state: State = State.MENU
 # Armazena o estado anterior para poder retornar de menus de sobreposição como SETTINGS.
 var _previous_state: State = State.MENU
 
+# Dicionário para armazenar a "mini-tabela" de inputs relevantes para a GlobalMachine
+var _global_input_map: Dictionary = {}
+
 
 func _ready() -> void:
 	# Garante que o jogo não comece pausado e que o processo da máquina de estados
@@ -26,13 +29,16 @@ func _ready() -> void:
 	get_tree().paused = false
 
 	# Conecta-se aos sinais de "intenção" do GlobalEvents para acionar as transições de estado.
-	GlobalEvents.pause_toggled.connect(_on_pause_toggled)
-	GlobalEvents.show_settings_menu_requested.connect(func(): _request_state_change(State.SETTINGS))
+	# GlobalEvents.pause_toggled.connect(_on_pause_toggled) # Removido, será tratado pelo consumidor de input
+	GlobalEvents.show_ui_requested.connect(func(ui_data: Dictionary): if ui_data.get("ui_key") == "options_menu": _request_state_change(State.SETTINGS))
 	GlobalEvents.show_quit_confirmation_requested.connect(func(): _request_state_change(State.QUIT_CONFIRMATION))
 	GlobalEvents.return_to_previous_state_requested.connect(_on_return_to_previous_state_requested)
 	GlobalEvents.quit_confirmed.connect(_on_quit_confirmed)
 	GlobalEvents.quit_cancelled.connect(_on_quit_cancelled)
-	GlobalEvents.scene_changed.connect(_on_scene_changed)
+	GlobalEvents.scene_updated.connect(_on_scene_updated)
+
+	# Conexão para receber o mapeamento de inputs do SettingsManager
+	GlobalEvents.loading_input_map_changed.connect(_on_loading_input_map_changed)
 
 
 # Ponto de entrada central para todas as solicitações de mudança de estado.
@@ -66,7 +72,7 @@ func _change_state(new_state: State) -> void:
 			get_tree().paused = true
 
 	# Emite o sinal para que outros sistemas (como o SceneControl para a UI) possam reagir.
-	GlobalEvents.game_state_changed.emit(State.keys()[current_state], State.keys()[old_state])
+	GlobalEvents.game_state_updated.emit({"new_state": State.keys()[current_state], "previous_state": State.keys()[old_state], "is_paused": get_tree().paused})
 
 
 # --- Handlers de Sinais ---
@@ -98,8 +104,15 @@ func _on_quit_cancelled() -> void:
 	_request_state_change(_previous_state)
 
 
-func _on_scene_changed(scene_path: String) -> void:
+func _on_scene_updated(scene_data: Dictionary) -> void:
+	var scene_path: String = scene_data.get("path", "")
 	if scene_path.contains("world.tscn"):
 		_request_state_change(State.PLAYING)
 	elif scene_path.contains("main_menu.tscn"):
 		_request_state_change(State.MENU)
+
+func _on_loading_input_map_changed(input_map_data: Dictionary) -> void:
+	print("[GlobalMachine] Recebendo dados de mapeamento de input: ", input_map_data)
+	# Armazena apenas as ações relevantes para a GlobalMachine
+	_global_input_map = input_map_data.get("global_actions", {})
+	print("[GlobalMachine] Mini-tabela de input para GlobalMachine: ", _global_input_map)

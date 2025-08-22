@@ -30,11 +30,10 @@ func _on_loading_settings_changed(settings: Dictionary) -> void:
 				break
 
 func _on_mouse_entered_control(control_node: Control) -> void:
-	var control = get_viewport().get_last_mouse_unhandled_input_node()
-	if control and control.has_meta("tooltip_text"):
-		GlobalEvents.show_tooltip_requested.emit(control.get_meta("tooltip_text"), get_global_mouse_position())
-	elif control and control.tooltip_text:
-		GlobalEvents.show_tooltip_requested.emit(control.tooltip_text, get_global_mouse_position())
+	if control_node.has_meta("tooltip_text"):
+		GlobalEvents.show_tooltip_requested.emit(control_node.get_meta("tooltip_text"), get_global_mouse_position())
+	elif control_node.tooltip_text:
+		GlobalEvents.show_tooltip_requested.emit(control_node.tooltip_text, get_global_mouse_position())
 
 func _on_mouse_exited_control() -> void:
 	GlobalEvents.hide_tooltip_requested.emit()

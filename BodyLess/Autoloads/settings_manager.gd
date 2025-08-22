@@ -37,11 +37,11 @@ var DEFAULT_SETTINGS: Dictionary = {
 }
 
 const FSR_QUALITY_SCALES: Dictionary = {
-    0: 1.0,  # Ultra Quality
-    1: 0.77, # Quality
-    2: 0.66, # Balanced
-    3: 0.5,  # Performance
-    4: 0.33  # Ultra Performance
+	0: 1.0,  # Ultra Quality
+	1: 0.77, # Quality
+	2: 0.66, # Balanced
+	3: 0.5,  # Performance
+	4: 0.33  # Ultra Performance
 }
 
 const SETTINGS_TEMPLATE: Dictionary = {
@@ -71,6 +71,46 @@ const SETTINGS_TEMPLATE: Dictionary = {
 	}
 }
 
+const TYPE_TO_STRING: Dictionary = {
+	TYPE_NIL: "Nil",
+	TYPE_BOOL: "bool",
+	TYPE_INT: "int",
+	TYPE_FLOAT: "float",
+	TYPE_STRING: "String",
+	TYPE_VECTOR2: "Vector2",
+	TYPE_VECTOR2I: "Vector2i",
+	TYPE_RECT2: "Rect2",
+	TYPE_RECT2I: "Rect2i",
+	TYPE_VECTOR3: "Vector3",
+	TYPE_VECTOR3I: "Vector3i",
+	TYPE_TRANSFORM2D: "Transform2D",
+	TYPE_VECTOR4: "Vector4",
+	TYPE_VECTOR4I: "Vector4i",
+	TYPE_QUATERNION: "Quaternion",
+	TYPE_AABB: "AABB",
+	TYPE_BASIS: "Basis",
+	TYPE_TRANSFORM3D: "Transform3D",
+	TYPE_PROJECTION: "Projection",
+	TYPE_COLOR: "Color",
+	TYPE_STRING_NAME: "StringName",
+	TYPE_NODE_PATH: "NodePath",
+	TYPE_RID: "RID",
+	TYPE_OBJECT: "Object",
+	TYPE_CALLABLE: "Callable",
+	TYPE_SIGNAL: "Signal",
+	TYPE_DICTIONARY: "Dictionary",
+	TYPE_ARRAY: "Array",
+	TYPE_PACKED_BYTE_ARRAY: "PackedByteArray",
+	TYPE_PACKED_INT32_ARRAY: "PackedInt32Array",
+	TYPE_PACKED_INT64_ARRAY: "PackedInt64Array",
+	TYPE_PACKED_FLOAT32_ARRAY: "PackedFloat32Array",
+	TYPE_PACKED_FLOAT64_ARRAY: "PackedFloat64Array",
+	TYPE_PACKED_STRING_ARRAY: "PackedStringArray",
+	TYPE_PACKED_VECTOR2_ARRAY: "PackedVector2Array",
+	TYPE_PACKED_VECTOR3_ARRAY: "PackedVector3Array",
+	TYPE_PACKED_COLOR_ARRAY: "PackedColorArray"
+}
+
 var live_settings: Dictionary = {}
 
 # --- Dicionários de Idioma ---
@@ -84,7 +124,7 @@ var DEFAULT_LANGUAGE_SETTINGS: Dictionary = {
 const LANGUAGE_TEMPLATE: Dictionary = {
 	"language": {
 		"locale": {"type": TYPE_STRING, "valid_values": [
-			"en_US", "en_GB", "en_IN", "pt_BR", "pt_PT", "es_ES", "es_LA", "fr", "de", "it", "nl", "ja", "ko", "ru", 
+			"en_US", "en_GB", "en_IN", "pt_BR", "pt_PT", "es_ES", "es_LA", "fr", "de", "it", "nl", "ja", "ko", "ru",
 			"zh_Hans", "zh_Hant", "sw", "af", "pl", "tr", "ar", "hi", "id", "vi", "fil", "ha", "am", "yo", "bn"
 		]}
 	}
@@ -144,12 +184,12 @@ var live_input_map_settings: Dictionary = {}
 func _ready() -> void:
 	# Inicializa o idioma padrão baseado no SO.
 	DEFAULT_LANGUAGE_SETTINGS.language.locale = OS.get_locale()
-	
+
 	_connect_signals()
-	
-	# O SaveSystem agora é responsável por iniciar o carregamento das configurações
-	# GlobalEvents.request_loading_settings_changed.emit() # Isso será emitido pelo SaveSystem
-	# GlobalEvents.request_loading_language_changed.emit() # Isso será emitido pelo SaveSystem
+
+	live_settings = DEFAULT_SETTINGS.duplicate(true)
+	live_language_settings = DEFAULT_LANGUAGE_SETTINGS.duplicate(true)
+	live_input_map_settings = DEFAULT_INPUT_MAP_SETTINGS.duplicate(true)
 
 
 func _connect_signals() -> void:
@@ -168,39 +208,53 @@ func _connect_signals() -> void:
 	GlobalEvents.request_language_data_for_save.connect(_on_request_language_data_for_save) # SaveSystem requisita dados
 
 	# Conexões para Mapeamento de Teclas (Input Map)
-	GlobalEvents.request_reset_input_map_changed.connect(_on_request_reset_input_map_changed)
-	GlobalEvents.loading_input_map_changed.connect(_on_loading_input_map_changed_from_save) # Recebe dados carregados do SaveSystem
-	GlobalEvents.request_input_map_data_for_save.connect(_on_request_input_map_data_for_save) # SaveSystem requisita dados
+	GlobalEvents.input_map_changed.connect(_on_input_map_changed) # Recebe atualizações da UI de remapeamento
+	GlobalEvents.request_reset_input_map.connect(_on_request_reset_input_map)
 
 
 # ==============================================================================
 # Lógica para Configurações (Áudio/Vídeo)
 # ==============================================================================
 
+
+
 func _on_loading_settings_changed(settings_data: Dictionary) -> void:
+	print("[SettingsManager] Recebendo dados de configurações carregados: ", settings_data)
 	live_settings = _validate_and_merge_data(settings_data, DEFAULT_SETTINGS, SETTINGS_TEMPLATE)
+	live_input_map_settings = settings_data.get("input_map_settings", DEFAULT_INPUT_MAP_SETTINGS).duplicate(true)
 	_apply_video_settings(live_settings.video)
 	_apply_audio_settings(live_settings.audio)
+	_apply_input_map_data(live_input_map_settings)
+	GlobalEvents.loading_input_map_changed.emit(live_input_map_settings) # Notifica a UI de InputMap
+	print("[SettingsManager] Configurações aplicadas: ", live_settings)
+	print("[SettingsManager] Mapeamento de input aplicado: ", live_input_map_settings)
 
 func _on_request_saving_settings() -> void:
-	# O SaveSystem agora espera por um sinal para coletar os dados
-	GlobalEvents.settings_data_for_save_received.emit(live_settings)
+	print("[SettingsManager] Requisitando salvamento de configurações. Enviando dados: ", live_settings)
+	var data_to_save = live_settings.duplicate(true)
+	data_to_save["input_map_settings"] = live_input_map_settings.duplicate(true)
+	GlobalEvents.settings_data_for_save_received.emit(data_to_save)
 
 func _on_loading_language_changed(language_data: Dictionary) -> void:
+	print("[SettingsManager] Recebendo dados de idioma carregados: ", language_data)
 	live_language_settings = _validate_and_merge_data(language_data, DEFAULT_LANGUAGE_SETTINGS, LANGUAGE_TEMPLATE)
 	_apply_locale(live_language_settings.language.locale)
+	print("[SettingsManager] Idioma aplicado: ", live_language_settings.language.locale)
 
 func _on_request_saving_language() -> void:
-	# O SaveSystem agora espera por um sinal para coletar os dados
+	print("[SettingsManager] Requisitando salvamento de idioma. Enviando dados: ", live_language_settings)
 	GlobalEvents.language_data_for_save_received.emit(live_language_settings)
 
 func _on_request_settings_data_for_save() -> void:
+	print("[SettingsManager] SaveSystem requisitou dados de configurações. Enviando: ", live_settings)
 	GlobalEvents.settings_data_for_save_received.emit(live_settings)
 
 func _on_request_language_data_for_save() -> void:
+	print("[SettingsManager] SaveSystem requisitou dados de idioma. Enviando: ", live_language_settings)
 	GlobalEvents.language_data_for_save_received.emit(live_language_settings)
 
 func _on_setting_changed(change_data: Dictionary) -> void:
+	print("[SettingsManager] Configuração alterada em tempo real: ", change_data)
 	live_settings.merge(change_data, true)
 	if change_data.has("video"):
 		_apply_video_settings(live_settings.video)
@@ -208,36 +262,50 @@ func _on_setting_changed(change_data: Dictionary) -> void:
 		_apply_audio_settings(live_settings.audio)
 
 func _on_request_reset_settings() -> void:
+	print("[SettingsManager] Requisitando reset de configurações para padrão.")
 	live_settings = DEFAULT_SETTINGS.duplicate(true)
+	live_input_map_settings = DEFAULT_INPUT_MAP_SETTINGS.duplicate(true)
+	_apply_video_settings(live_settings.video)
+	_apply_audio_settings(live_settings.audio)
+	_apply_input_map_data(live_input_map_settings)
+	GlobalEvents.loading_input_map_changed.emit(live_input_map_settings) # Notifica a UI de InputMap
 	GlobalEvents.request_saving_settings_changed.emit()
+	print("[SettingsManager] Configurações e mapeamento de input resetados e salvamento solicitado.")
 
 
 func _apply_video_settings(video_settings: Dictionary) -> void:
+	print("[SettingsManager] Aplicando configurações de vídeo: ", video_settings)
 	# Aplica configurações de janela
-	DisplayServer.window_set_mode(video_settings.window_mode)
-	DisplayServer.window_set_size(video_settings.resolution)
-	DisplayServer.window_set_current_screen(video_settings.monitor_index)
+	DisplayServer.window_set_mode(video_settings.get("window_mode", DisplayServer.WINDOW_MODE_WINDOWED))
+	DisplayServer.window_set_size(video_settings.get("resolution", Vector2i(1920, 1080)))
+	DisplayServer.window_set_current_screen(video_settings.get("monitor_index", 0))
 
 	# Aplica FSR
-	var fsr_mode = video_settings.upscaling_mode
-	var fsr_scale = FSR_QUALITY_SCALES.get(video_settings.upscaling_quality, 0.66) # Default para Balanced
+	var fsr_mode = video_settings.get("upscaling_mode", 0)
+	var fsr_quality_index = video_settings.get("upscaling_quality", 2) # Default para Balanced
+	var fsr_scale = FSR_QUALITY_SCALES.get(fsr_quality_index, 0.66)
 
 	ProjectSettings.set_setting("rendering/scaling_3d/mode", fsr_mode)
 	ProjectSettings.set_setting("rendering/scaling_3d/scale", fsr_scale)
 	ProjectSettings.save() # Salva as configurações do projeto para que o FSR seja aplicado
+	print("[SettingsManager] FSR Mode: %d, FSR Scale: %f" % [fsr_mode, fsr_scale])
 
 	# Aplica VSync
-	DisplayServer.window_set_vsync_mode(video_settings.vsync_mode)
+	DisplayServer.window_set_vsync_mode(video_settings.get("vsync_mode", DisplayServer.VSYNC_ENABLED))
+	print("[SettingsManager] VSync Mode: %d" % video_settings.get("vsync_mode", DisplayServer.VSYNC_ENABLED))
 
 	# Aplica Frame Rate Limit
-	Engine.max_fps = video_settings.max_frame_rate if video_settings.frame_rate_limit_mode == 1 else 0
+	Engine.max_fps = video_settings.get("max_frame_rate", 60) if video_settings.get("frame_rate_limit_mode", 0) == 1 else 0
+	print("[SettingsManager] Max FPS: %d" % Engine.max_fps)
 
 	# TODO: Implementar lógica para aspect_ratio, gamma_correction, contrast, brightness, shaders_quality, effects_quality, colorblind_mode, reduce_screen_shake, ui_scale_preset
 
 func _apply_audio_settings(audio_settings: Dictionary) -> void:
-	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), linear_to_db(audio_settings.master_volume))
-	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"), linear_to_db(audio_settings.music_volume))
-	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Sfx"), linear_to_db(audio_settings.sfx_volume))
+	print("[SettingsManager] Aplicando configurações de áudio: ", audio_settings)
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), linear_to_db(audio_settings.get("master_volume", 1.0)))
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"), linear_to_db(audio_settings.get("music_volume", 1.0)))
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Sfx"), linear_to_db(audio_settings.get("sfx_volume", 1.0)))
+	print("[SettingsManager] Volumes de áudio aplicados.")
 
 
 # ==============================================================================
@@ -247,16 +315,20 @@ func _apply_audio_settings(audio_settings: Dictionary) -> void:
 
 
 func _on_language_changed(change_data: Dictionary) -> void:
+	print("[SettingsManager] Idioma alterado em tempo real: ", change_data)
 	live_language_settings.merge(change_data, true)
 	# Aplica a mudança de idioma em tempo real
 	if change_data.has("language") and change_data.language.has("locale"):
 		_apply_locale(change_data.language.locale)
 
 func _on_request_reset_language() -> void:
+	print("[SettingsManager] Requisitando reset de idioma para padrão.")
 	live_language_settings = DEFAULT_LANGUAGE_SETTINGS.duplicate(true)
 	GlobalEvents.request_saving_language_changed.emit()
+	print("[SettingsManager] Idioma resetado e salvamento solicitado.")
 
 func _apply_locale(locale_code: String) -> void:
+	print("[SettingsManager] Aplicando locale: ", locale_code)
 	TranslationServer.set_locale(locale_code)
 
 
@@ -264,7 +336,8 @@ func _apply_locale(locale_code: String) -> void:
 # Lógica para Mapeamento de Teclas (Input Map)
 # ==============================================================================
 
-func _on_request_reset_input_map_changed() -> void:
+func _on_request_reset_input_map() -> void:
+	print("[SettingsManager] Requisitando reset de mapeamento de teclas para padrão.")
 	# Redefine os mapeamentos de input para os padrões de fábrica.
 	# Aplica os mapeamentos padrão ao InputMap do Godot.
 	_apply_input_map_data(DEFAULT_INPUT_MAP_SETTINGS)
@@ -273,68 +346,34 @@ func _on_request_reset_input_map_changed() -> void:
 	GlobalEvents.loading_input_map_changed.emit(DEFAULT_INPUT_MAP_SETTINGS)
 
 	# Solicita o salvamento das configurações de input redefinidas.
-	GlobalEvents.request_saving_input_map_changed.emit()
+	GlobalEvents.request_saving_settings_changed.emit()
+	print("[SettingsManager] Mapeamento de teclas resetado e salvamento solicitado.")
 
 
-func _on_loading_input_map_changed_from_save(input_map_data: Dictionary) -> void:
-	# Recebe os dados do InputMap carregados do SaveSystem e os aplica.
-	_apply_input_map_data(input_map_data)
-
-	# Atualiza a UI de InputMap para refletir os mapeamentos carregados.
-	GlobalEvents.loading_input_map_changed.emit(input_map_data)
 
 
-func _on_request_input_map_data_for_save() -> void:
-	# Coleta os mapeamentos atuais do InputMap e os envia para o SaveSystem.
-	var input_map_data: Dictionary = {}
-	for action_name in InputMap.get_actions():
-		var events_data: Array = []
-		for event in InputMap.action_get_events(action_name):
-			var event_dict: Dictionary = {}
-			if event is InputEventKey:
-				event_dict = {
-					"type": "InputEventKey",
-					"keycode": event.keycode,
-					"physical_keycode": event.physical_keycode,
-					"unicode": event.unicode,
-					"pressed": false
-				}
-			elif event is InputEventJoypadButton:
-				event_dict = {
-					"type": "InputEventJoypadButton",
-					"button_index": event.button_index,
-					"pressed": false
-				}
-			elif event is InputEventJoypadMotion:
-				event_dict = {
-					"type": "InputEventJoypadMotion",
-					"axis": event.axis,
-					"axis_value": event.axis_value
-				}
-			elif event is InputEventMouseButton:
-				event_dict = {
-					"type": "InputEventMouseButton",
-					"button_index": event.button_index,
-					"pressed": false
-				}
-			events_data.append(event_dict)
-		input_map_data[action_name] = events_data
-	
-	GlobalEvents.input_map_data_for_save_received.emit(input_map_data)
+
+func _on_input_map_changed(input_map_data: Dictionary) -> void:
+	print("[SettingsManager] Mapeamento de teclas alterado em tempo real: ", input_map_data)
+	live_input_map_settings = input_map_data.duplicate(true) # Atualiza o estado interno
+	GlobalEvents.request_saving_settings_changed.emit() # Solicita o salvamento das configurações (incluindo input map)
+	print("[SettingsManager] Mapeamento de teclas atualizado e salvamento solicitado.")
 
 
 func _apply_input_map_data(input_map_data: Dictionary) -> void:
-	# Aplica os mapeamentos de input fornecidos ao InputMap do Godot.
+	print("[SettingsManager] Aplicando mapeamentos de input: ", input_map_data)
+	# Limpa todas as ações existentes no InputMap do Godot
+	for action_name in InputMap.get_actions():
+		InputMap.erase_action(action_name)
+
+	# Aplica os novos mapeamentos de input
 	for action_name in input_map_data:
+		InputMap.add_action(action_name)
 		var events_data: Array = input_map_data[action_name]
-		# Limpa todos os eventos existentes para esta ação antes de aplicar os novos
-		for event in InputMap.action_get_events(action_name):
-			InputMap.action_erase_event(action_name, event)
-		
 		for event_data in events_data:
 			var event_type: String = event_data.get("type", "")
 			var new_event: InputEvent
-			
+
 			match event_type:
 				"InputEventKey":
 					new_event = InputEventKey.new()
@@ -358,6 +397,10 @@ func _apply_input_map_data(input_map_data: Dictionary) -> void:
 					printerr("SettingsManager: Tipo de evento desconhecido ao aplicar InputMap: %s" % event_type)
 					continue
 			InputMap.action_add_event(action_name, new_event)
+	print("[SettingsManager] Mapeamentos de input aplicados.")
+
+
+
 
 
 # ==============================================================================
@@ -365,53 +408,78 @@ func _apply_input_map_data(input_map_data: Dictionary) -> void:
 # ==============================================================================
 
 func _validate_and_merge_data(loaded_data: Dictionary, default_data: Dictionary, template: Dictionary) -> Dictionary:
+	print("[SettingsManager] Validando e mesclando dados. Carregados: %s, Padrão: %s" % [loaded_data, default_data])
 	var final_data = default_data.duplicate(true)
 	if loaded_data.is_empty():
+		print("[SettingsManager] Dados carregados vazios. Retornando dados padrão.")
 		return final_data
 
 	for category in final_data:
 		if not loaded_data.has(category) or typeof(loaded_data[category]) != TYPE_DICTIONARY:
+			print("[SettingsManager] Categoria '%s' não encontrada ou não é um dicionário nos dados carregados. Pulando." % category)
 			continue
 		for key in final_data[category]:
 			if not loaded_data[category].has(key):
+				print("[SettingsManager] Chave '%s.%s' não encontrada nos dados carregados. Mantendo padrão." % [category, key])
 				continue
 
 			var loaded_value = loaded_data[category][key]
 			var rule = template[category][key]
-			var is_valid = false
+			var is_valid = true # Assume válido até que uma regra falhe
 
 			var loaded_type = typeof(loaded_value)
 			if rule.has("type") and loaded_type != rule.type:
-				printerr("[SM] Validation FAILED for '%s.%s'. Type mismatch." % [category, key])
-			elif key == "locale":
-				var validated_locale = _get_validated_locale(loaded_value)
-				if validated_locale in rule.valid_values:
-					loaded_value = validated_locale
-					is_valid = true
-				else:
-					printerr("[SM] Validation FAILED for '%s'. Not a valid locale: %s" % [key, loaded_value])
-			elif rule.has("valid_values"):
-				if loaded_value in rule.valid_values: is_valid = true
-			elif rule.has("min") and rule.has("max"):
-				if loaded_value >= rule.min and loaded_value <= rule.max: is_valid = true
-			else:
-				is_valid = true
+				printerr("[SM] Validation FAILED for '%s.%s'. Type mismatch. Expected %s, got %s." % [category, key, TYPE_TO_STRING[rule.type], TYPE_TO_STRING[loaded_type]])
+				is_valid = false
+
+			if is_valid: # Only proceed with further validation if type is correct
+				if key == "locale":
+					var validated_locale = _get_validated_locale(loaded_value)
+					if validated_locale in rule.valid_values:
+						loaded_value = validated_locale
+					else:
+						printerr("[SM] Validation FAILED for '%s'. Not a valid locale: %s" % [key, loaded_value])
+						is_valid = false
+				elif rule.has("valid_values"):
+					if loaded_value in rule.valid_values:
+						pass # Already valid
+					else:
+						printerr("[SM] Validation FAILED for '%s.%s'. Value '%s' not in valid_values." % [category, key, loaded_value])
+						is_valid = false
+				elif rule.has("min") and rule.has("max"):
+					if loaded_value >= rule.min and loaded_value <= rule.max:
+						pass # Already valid
+					else:
+						printerr("[SM] Validation FAILED for '%s.%s'. Value '%s' out of range [%s, %s]." % [category, key, loaded_value, rule.min, rule.max])
+						is_valid = false
+				# No 'else' needed here, as is_valid remains true if no specific rule applies
 
 			if is_valid:
 				final_data[category][key] = loaded_value
-	
+				print("[SettingsManager] Validado e mesclado: %s.%s = %s" % [category, key, loaded_value])
+			else:
+				printerr("[SettingsManager] Falha na validação para %s.%s. Mantendo valor padrão: %s" % [category, key, final_data[category][key]])
+
+	print("[SettingsManager] Validação e mesclagem concluídas. Dados finais: ", final_data)
 	return final_data
 
 func _get_validated_locale(locale_code: String) -> String:
+	print("[SettingsManager] Validando locale: ", locale_code)
 	# Lógica de middleware/fallback para locales
 	if locale_code.begins_with("en") and locale_code not in ["en_US", "en_GB", "en_IN"]:
+		print("[SettingsManager] Locale '%s' fallback para en_US." % locale_code)
 		return "en_US"
 	if locale_code.begins_with("es") and locale_code not in ["es_ES", "es_LA"]:
+		print("[SettingsManager] Locale '%s' fallback para es_LA." % locale_code)
 		return "es_LA"
 	if locale_code.begins_with("pt") and locale_code not in ["pt_BR", "pt_PT"]:
+		print("[SettingsManager] Locale '%s' fallback para pt_PT." % locale_code)
 		return "pt_PT"
 	if locale_code == "zh_CN" or locale_code == "zh":
+		print("[SettingsManager] Locale '%s' fallback para zh_Hans." % locale_code)
 		return "zh_Hans"
 	if locale_code in ["zh_TW", "zh_HK"]:
+		print("[SettingsManager] Locale '%s' fallback para zh_Hant." % locale_code)
 		return "zh_Hant"
+	print("[SettingsManager] Locale '%s' validado." % locale_code)
 	return locale_code

@@ -22,6 +22,9 @@ var _sfx_players: Array[AudioStreamPlayer] = []
 @onready var _music_player: AudioStreamPlayer = $MusicPlayer
 @onready var music_change_timer: Timer = $MusicChangeTimer
 
+# Dicionário para armazenar a "mini-tabela" de inputs relevantes para o AudioManager
+var _audio_input_map: Dictionary = {}
+
 func _ready():
 	# Configura o bus do player de música e conecta seu sinal de término.
 	_music_player.bus = MUSIC_BUS_NAME
@@ -29,11 +32,14 @@ func _ready():
 
 	# Conecta-se a sinais globais para reprodução e controle.
 	GlobalEvents.play_sfx_by_key_requested.connect(play_random_sfx)
-	GlobalEvents.music_change_requested.connect(_on_music_change_requested)
-	
+	# GlobalEvents.music_change_requested.connect(_on_music_change_requested) # Removido, será tratado pelo consumidor de input
+
 	# Conecta-se ao novo sinal unificado de configurações
 	GlobalEvents.setting_changed.connect(func(change_data: Dictionary): _on_settings_changed(change_data))
 	GlobalEvents.loading_settings_changed.connect(_on_loading_settings_changed)
+
+	# Conexão para receber o mapeamento de inputs do SettingsManager
+	GlobalEvents.loading_input_map_changed.connect(_on_loading_input_map_changed)
 
 	# Solicita o carregamento inicial das configurações quando o AudioManager estiver pronto
 	GlobalEvents.request_loading_settings_changed.emit()
@@ -47,7 +53,7 @@ func _ready():
 
 	# Carrega todas as bibliotecas de som.
 	_load_all_sounds()
-	
+
 	# Seleciona e toca uma playlist aleatória.
 	_select_and_play_random_playlist()
 
@@ -73,7 +79,7 @@ func _load_all_sounds() -> void:
 	while category_folder != "":
 		if root_dir.current_is_dir():
 			var current_path: String = audio_root_path.path_join(category_folder)
-			
+
 			# Separa os áudios: a pasta "music" vai para a biblioteca de música, o resto para SFX.
 			if category_folder.to_lower() == "music":
 				_populate_library_from(current_path, _music_library)
@@ -81,7 +87,7 @@ func _load_all_sounds() -> void:
 				_populate_library_from(current_path, _sfx_library, category_folder.to_lower())
 
 		category_folder = root_dir.get_next()
-	
+
 	# Após carregar, popula a lista de chaves de playlists.
 	_music_playlist_keys = _music_library.keys()
 	print("Carregamento de áudio concluído. %d playlists de música encontradas." % _music_playlist_keys.size())
@@ -99,7 +105,7 @@ func _populate_library_from(path: String, library: Dictionary, key_prefix: Strin
 		if dir.current_is_dir():
 			var sub_path: String = path.path_join(sub_folder)
 			var final_key: String = (key_prefix + "_" + sub_folder.to_lower()) if not key_prefix.is_empty() else sub_folder.to_lower()
-			
+
 			var audio_streams: Array[AudioStream] = _get_streams_in_folder(sub_path)
 			if not audio_streams.is_empty():
 				library[final_key] = audio_streams
@@ -122,7 +128,7 @@ func _get_streams_in_folder(path: String) -> Array[AudioStream]:
 			if stream is AudioStream:
 				streams.append(stream)
 		file_name = dir.get_next()
-	
+
 	return streams
 
 
@@ -196,6 +202,7 @@ func _on_settings_changed(change_data: Dictionary) -> void:
 			call_deferred("_update_bus_volume", SFX_BUS_NAME, audio_changes["sfx_volume"])
 
 func _on_loading_settings_changed(settings: Dictionary) -> void:
+	print("[AudioManager] Recebendo configurações de áudio carregadas: ", settings)
 	if settings.has("audio") and typeof(settings["audio"]) == TYPE_DICTIONARY:
 		var audio_settings = settings["audio"]
 		if audio_settings.has("master_volume"):
@@ -204,6 +211,12 @@ func _on_loading_settings_changed(settings: Dictionary) -> void:
 			_update_bus_volume(MUSIC_BUS_NAME, audio_settings["music_volume"])
 		if audio_settings.has("sfx_volume"):
 			_update_bus_volume(SFX_BUS_NAME, audio_settings["sfx_volume"])
+
+func _on_loading_input_map_changed(input_map_data: Dictionary) -> void:
+	print("[AudioManager] Recebendo dados de mapeamento de input: ", input_map_data)
+	# Armazena apenas as ações relevantes para o AudioManager
+	_audio_input_map = input_map_data.get("audio_actions", {})
+	print("[AudioManager] Mini-tabela de input para AudioManager: ", _audio_input_map)
 
 func _on_music_finished():
 	# Toca a próxima música aleatória da mesma playlist.

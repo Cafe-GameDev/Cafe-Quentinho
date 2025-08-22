@@ -16,9 +16,9 @@ var _current_game_scene: Node = null
 
 func _ready() -> void:
 	# Conecta-se ao sinal de mudança de estado para poder reagir.
-	GlobalEvents.game_state_changed.connect(_on_game_state_changed)
+	GlobalEvents.game_state_updated.connect(_on_game_state_updated)
 	# Conecta-se a sinais de gerenciamento de cena.
-	GlobalEvents.scene_changed.connect(_on_scene_changed)
+	GlobalEvents.scene_updated.connect(_on_scene_updated)
 	GlobalEvents.request_game_selection_scene.connect(_on_request_game_selection_scene)
 	
 	# Conexões para configurações de vídeo e idioma
@@ -27,14 +27,16 @@ func _ready() -> void:
 	GlobalEvents.language_changed.connect(func(change_data: Dictionary): _on_language_changed(change_data))
 
 	# Garante que o estado inicial da UI esteja correto.
-	_on_game_state_changed(GlobalMachine.State.keys()[GlobalMachine.current_state], GlobalMachine.State.keys()[GlobalMachine.current_state])
+	_on_game_state_updated({"new_state": GlobalMachine.State.keys()[GlobalMachine.current_state], "previous_state": GlobalMachine.State.keys()[GlobalMachine.current_state], "is_paused": GlobalMachine.get_tree().paused})
 
 	# Solicita o carregamento inicial das configurações para que o SceneControl possa aplicá-las
 	GlobalEvents.request_loading_settings_changed.emit()
 
 
 # A função central que controla qual UI está visível.
-func _on_game_state_changed(new_state: String, _old_state: String) -> void:
+func _on_game_state_updated(state_data: Dictionary) -> void:
+	var new_state: String = state_data.get("new_state", "")
+	var _old_state: String = state_data.get("previous_state", "")
 	# Esconde todas as UIs de sobreposição por padrão.
 	options_menu.visible = false
 	pause_menu.visible = false
@@ -55,7 +57,8 @@ func _on_game_state_changed(new_state: String, _old_state: String) -> void:
 
 
 # Gerencia a troca de cenas de "nível" ou "mundo".
-func _on_scene_changed(scene_path: String) -> void:
+func _on_scene_updated(scene_data: Dictionary) -> void:
+	var scene_path: String = scene_data.get("path", "")
 	# Se já houver uma cena de jogo, remove-a.
 	if _current_game_scene:
 		_current_game_scene.queue_free()
@@ -79,6 +82,7 @@ func _on_scene_changed(scene_path: String) -> void:
 # ==============================================================================
 
 func _on_loading_settings_changed(settings: Dictionary) -> void:
+	print("[SceneControl] Recebendo configurações carregadas: ", settings)
 	# Aplica todas as configurações de vídeo e idioma quando elas são carregadas inicialmente.
 	if settings.has("video"):
 		var video_settings = settings["video"]
@@ -98,6 +102,7 @@ func _on_loading_settings_changed(settings: Dictionary) -> void:
 		_apply_colorblind_mode(video_settings.get("colorblind_mode", 0))
 		_apply_reduce_screen_shake(video_settings.get("reduce_screen_shake", false))
 		_apply_ui_scale(video_settings.get("ui_scale", 1.0))
+	print("[SceneControl] Configurações de vídeo aplicadas.")
 
 
 func _on_setting_changed(change_data: Dictionary) -> void:

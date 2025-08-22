@@ -11,12 +11,12 @@ func _on_new_game_button_pressed() -> void: # Renomeado no inspetor para _on_res
 
 func _on_options_button_pressed() -> void:
 	# Solicita a exibição do menu de configurações.
-	GlobalEvents.emit_signal("show_settings_menu_requested")
+	GlobalEvents.show_ui_requested.emit({"ui_key": "options_menu", "context": "paused_game"})
 
 
 func _on_exit_button_pressed() -> void:
 	# Solicita a exibição da confirmação de saída.
-	GlobalEvents.emit_signal("show_quit_confirmation_requested")
+	GlobalEvents.show_ui_requested.emit({"ui_key": "quit_confirmation", "context": "paused_game"})
 
 
 func _on_change_game_button_pressed() -> void:
@@ -25,3 +25,7 @@ func _on_change_game_button_pressed() -> void:
 
 func _on_button_mouse_entered() -> void:
 	UiSoundPlayer.play_hover_sound()
+
+func _on_game_state_updated(state_data: Dictionary) -> void:
+	var new_state: String = state_data.get("new_state", "")
+	visible = (new_state == "PAUSED")

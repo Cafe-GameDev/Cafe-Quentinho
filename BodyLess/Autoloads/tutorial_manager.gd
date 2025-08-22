@@ -10,7 +10,9 @@ func _ready() -> void:
 	GlobalEvents.coach_mark_next_requested.connect(_on_coach_mark_next_requested)
 	GlobalEvents.coach_mark_skip_requested.connect(_on_coach_mark_skip_requested)
 
-func _on_start_tutorial_requested(tutorial_name: String) -> void:
+func _on_start_tutorial_requested(tutorial_data: Dictionary) -> void:
+	var tutorial_name: String = tutorial_data.get("name", "")
+	var start_step: int = tutorial_data.get("step", -1)
 	# Carrega os passos do tutorial (ex: de um Resource ou JSON)
 	# Por simplicidade, um exemplo hardcoded:
 	_tutorial_steps = [

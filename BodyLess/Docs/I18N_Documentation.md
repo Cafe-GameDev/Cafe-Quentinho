@@ -8,7 +8,39 @@ O Godot Engine utiliza arquivos `.po` (Portable Object) para gerenciar as tradu�
 
 ### Estrutura de Arquivos
 
-Os arquivos de tradução estão localizados em `BodyLess/I18N/`. Cada arquivo `.po` corresponde a um idioma específico (ex: `pt_BR.po` para Português do Brasil, `es_LA.po` para Espanhol da América Latina).
+Os arquivos de tradução estão localizados em `BodyLess/I18N/`. Cada arquivo `.po` corresponde a um idioma específico. A lista completa de arquivos `.po` suportados inclui:
+
+*   `en_US.po` (Inglês - Estados Unidos)
+*   `en_GB.po` (Inglês - Grã-Bretanha)
+*   `en_IN.po` (Inglês - Índia)
+*   `pt_BR.po` (Português - Brasil)
+*   `pt_PT.po` (Português - Portugal)
+*   `es_ES.po` (Espanhol - Espanha)
+*   `es_LA.po` (Espanhol - América Latina)
+*   `fr.po` (Francês)
+*   `de.po` (Alemão)
+*   `it.po` (Italiano)
+*   `nl.po` (Holandês)
+*   `ja.po` (Japonês)
+*   `ko.po` (Coreano)
+*   `ru.po` (Russo)
+*   `zh_Hans.po` (Chinês Simplificado)
+*   `zh_Hant.po` (Chinês Tradicional)
+*   `sw.po` (Suaíli)
+*   `af.po` (Africâner)
+*   `pl.po` (Polonês)
+*   `tr.po` (Turco)
+*   `ar.po` (Árabe)
+*   `fa.po` (Persa)
+*   `he.po` (Hebraico)
+*   `hi.po` (Hindi)
+*   `ur.po` (Urdu)
+*   `bn.po` (Bengali)
+*   `id.po` (Indonésio)
+*   `vi.po` (Vietnamita)
+*   `fil.po` (Filipino)
+*   `th.po` (Tailandês)
+*   `ms.po` (Malaio)
 
 ## 2. Chaves de Tradução Essenciais
 
@@ -24,7 +56,7 @@ Estas chaves são definidas no `en_US.po` e se estendem aproximadamente até a l
 *   **Configurações:** `UI_VIDEO`, `UI_AUDIO`, `UI_BACK`, `UI_APPLY`, `UI_LANGUAGE`
 *   **Opções de Vídeo:** `UI_VIDEO_OPTIONS`, `UI_FULLSCREEN`, `UI_MONITOR`, `UI_WINDOW_MODE_WINDOWED`, `UI_WINDOW_MODE_FULLSCREEN`, `UI_RESOLUTION`, `UI_DRS_OFF`, `UI_DRS_CUSTOM`, `UI_FPS_CUSTOM`, `UI_VSYNC_OFF`, `UI_VSYNC_ON`, `UI_VSYNC_ADAPTIVE`, `UI_QUALITY_LOW`, `UI_QUALITY_MEDIUM`, `UI_QUALITY_HIGH`, `UI_COLORBLIND_OFF`, `UI_COLORBLIND_PROTANOPIA`, `UI_COLORBLIND_DEUTERANOPIA`, `UI_COLORBLIND_TRITANOPIA`
 *   **Opções de Áudio:** `UI_AUDIO_OPTIONS`, `UI_MASTER_VOLUME`, `UI_MUSIC_VOLUME`, `UI_SFX_VOLUME`
-*   **Opções de Idioma:** `UI_LANGUAGE_OPTIONS`, e todas as chaves `UI_LANGUAGE_XX_YY` para os idiomas suportados.
+*   **Opções de Idioma:** `UI_LANGUAGE_OPTIONS`, e todas as chaves `UI_LANGUAGE_XX_YY` para os idiomas suportados (ex: `UI_LANGUAGE_EN_US`, `UI_LANGUAGE_PT_BR`, etc.).
 *   **Mensagens do Console de Depuração:** `DEBUG_CONSOLE_READY`, `DEBUG_LOG_TITLE`, `DEBUG_GAME_SECTION`, `DEBUG_GAME_VERSION`, `DEBUG_GAME_STATE`, `DEBUG_CURRENT_SCENE`, `DEBUG_LAST_SAVE`, `DEBUG_SYSTEM_SECTION`, `DEBUG_OS`, `DEBUG_DISPLAY_SECTION`, `DEBUG_MONITOR_INFO`, `DEBUG_SIGNAL_RECEIVED`, `DEBUG_WITH_ARGS`, `DEBUG_PROCESSOR`, `DEBUG_CORES`, `DEBUG_RAM`, `DEBUG_VIDEO_ADAPTER`, `DEBUG_VIDEO_DRIVER`, `DEBUG_VIDEO_RENDERER`
 
 ### 2.2. Chaves de Tradução para Tooltips

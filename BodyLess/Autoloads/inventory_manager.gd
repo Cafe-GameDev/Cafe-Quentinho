@@ -7,6 +7,7 @@ extends Node
 const MAX_INVENTORY_SLOTS = 16 # Exemplo: 16 slots de inventário
 
 var inventory_slots: Array[Dictionary] = [] # Cada slot é um dicionário: {"item_id": "", "quantity": 0, "item_data": null}
+var _is_inventory_ui_visible: bool = false
 
 func _ready() -> void:
 	_initialize_inventory()
@@ -65,7 +66,8 @@ func remove_item(item_id: String, quantity: int = 1) -> bool:
 				if slot.quantity == 0:
 					slot.item_id = ""
 					slot.item_data = null
-				GlobalEvents.item_removed.emit({"item_id": item_id, "quantity": quantity})
+				var current_slot_index = inventory_slots.find(slot)
+				GlobalEvents.item_removed.emit({"item_id": item_id, "quantity": quantity, "slot_index": current_slot_index})
 				return true
 			else:
 				printerr("[InventoryManager] Não há quantidade suficiente de %s para remover." % item_id)
@@ -142,11 +144,16 @@ func _on_request_inventory_data_for_save() -> void:
 # func _on_item_collected_in_world(item_resource_path: String, quantity: int) -> void:
 # 	add_item(item_resource_path, quantity)
 
-# Exemplo de como o InventoryManager reagiria a um input para abrir/fechar a UI do inventário
-# func _on_input_inventory_pressed() -> void:
-# 	# Lógica para mostrar/esconder a UI do inventário
-# 	GlobalEvents.toggle_inventory_ui_requested.emit()
+
 
 # Exemplo de como o InventoryManager reagiria a uma requisição de uso de item da UI
 # func _on_request_use_item(slot_index: int) -> void:
 # 	use_item_by_slot(slot_index)
+
+func _on_input_action_triggered(action_data: Dictionary) -> void:
+	if action_data.get("action") == "inventory" and action_data.get("state") == "pressed":
+		_is_inventory_ui_visible = not _is_inventory_ui_visible
+		if _is_inventory_ui_visible:
+			GlobalEvents.show_ui_requested.emit({"ui_key": "inventory_menu", "context": "game_playing"})
+		else:
+			GlobalEvents.hide_ui_requested.emit({"ui_key": "inventory_menu"})

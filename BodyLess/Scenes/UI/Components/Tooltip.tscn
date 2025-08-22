@@ -1,35 +1,19 @@
-[gd_scene format=3]
+[gd_scene load_steps=2 format=3 uid="uid://d0b37233c06b631e97171f489cd02153"]
 
-[ext_resource type="Script" path="res://Scripts/UI/Components/Tooltip.gd" id="1_tooltip_script"]
+[ext_resource type="Script" path="res://Scripts/UI/Components/Tooltip.gd" id="1_j4x2x"]
 
-[node name="TooltipCanvasLayer" type="CanvasLayer"]
-layer = 10 # Garante que o tooltip fique acima de tudo
-script = ExtResource("1_tooltip_script")
-
-[node name="TooltipContainer" type="Control" parent="."]
-layout_mode = 3
+[node name="Tooltip" type="PanelContainer"]
 anchors_preset = 0
-mouse_filter = 2 # Ignora eventos do mouse
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+script = ExtResource("1_j4x2x")
 
-[node name="Background" type="ColorRect" parent="TooltipContainer"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.113725, 0.113725, 0.113725, 0.1) # 1D1D1D com 10% de opacidade
-
-[node name="TextLabel" type="Label" parent="MarginContainer"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-text = ""
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 35.0
+offset_bottom = 35.0
+text = "Tooltip Text"
 autowrap_mode = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1) # Texto branco
-; theme_override_fonts/font = ExtResource("res://caminho/para/sua/fonte_inter.tres") # Descomente e ajuste se precisar de uma fonte específica

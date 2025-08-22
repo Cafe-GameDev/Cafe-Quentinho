@@ -45,16 +45,8 @@ func _on_request_save_game(session_id: int, game_mode: String) -> void:
 	game_data["world_data"] = world_data
 
 	GlobalEvents.request_settings_data_for_save.emit()
-	var settings_data = await GlobalEvents.settings_data_for_save_received
-	game_data["settings_data"] = settings_data
-
-	GlobalEvents.request_language_data_for_save.emit()
-	var language_data = await GlobalEvents.language_data_for_save_received
-	game_data["language_data"] = language_data
-
-	GlobalEvents.request_input_map_data_for_save.emit()
-	var input_map_data = await GlobalEvents.input_map_data_for_save_received
-	game_data["input_map_data"] = input_map_data
+	var settings_and_input_map_data = await GlobalEvents.settings_data_for_save_received
+	game_data["settings_data"] = settings_and_input_map_data
 
 	# Adicionar mais requisições de dados conforme necessário (ex: quests, NPCs, etc.)
 
@@ -77,11 +69,19 @@ func _on_request_load_game(session_id: int, game_mode: String) -> void:
 
 	if not loaded_data.is_empty():
 		print("[SaveSystem] Jogo carregado com sucesso do slot %d para o modo %s." % [session_id, game_mode])
+
+		var settings_and_input_map_data = loaded_data.get("settings_data", {})
+
+		GlobalEvents.loading_settings_changed.emit(settings_and_input_map_data)
+		GlobalEvents.loading_language_changed.emit(loaded_data.get("language_data", {}))
+
 		GlobalEvents.game_loaded.emit(session_id, loaded_data)
-		GlobalEvents.show_toast_requested.emit("TOAST_LOAD_SUCCESS_MESSAGE", "info") # Nova chave de tradução
+		GlobalEvents.show_toast_requested.emit("TOAST_LOAD_SUCCESS_MESSAGE", "info")
 	else:
-		printerr("[SaveSystem] Falha ao carregar o jogo do slot %d para o modo %s. Arquivo não encontrado ou corrompido." % [session_id, game_mode])
-		GlobalEvents.show_toast_requested.emit("TOAST_ERROR_LOAD_FAILED_MESSAGE", "error") # Nova chave de tradução
+		printerr("[SaveSystem] Falha ao carregar o jogo do slot %d para o modo %s. Arquivo não encontrado ou corrompido. Criando novo save com configurações padrão." % [session_id, game_mode])
+		GlobalEvents.request_reset_settings_changed.emit()
+		GlobalEvents.request_saving_settings_changed.emit()
+		GlobalEvents.show_toast_requested.emit("TOAST_ERROR_LOAD_FAILED_MESSAGE", "error")
 
 # ==============================================================================
 # Funções de Acesso a Arquivos
@@ -94,19 +94,23 @@ func _get_save_path(game_mode: String, session_id: int) -> String:
 	return mode_dir.path_join("save_slot_" + str(session_id) + SAVE_FILE_EXTENSION)
 
 func _save_to_file(game_mode: String, session_id: int, data: Dictionary) -> bool:
+	print("[SaveSystem] Tentando salvar dados para o modo %s, slot %d." % [game_mode, session_id])
 	var path = _get_save_path(game_mode, session_id)
 	var file = FileAccess.open(path, FileAccess.WRITE)
 	if file:
 		var json_string = JSON.stringify(data, "  ")
 		file.store_string(json_string)
+		print("[SaveSystem] Dados salvos com sucesso em: %s" % path)
 		return true
 	else:
 		printerr("[SaveSystem] Falha ao abrir arquivo para escrita em %s" % path)
 		return false
 
 func _load_from_file(game_mode: String, session_id: int) -> Dictionary:
+	print("[SaveSystem] Tentando carregar dados para o modo %s, slot %d." % [game_mode, session_id])
 	var path = _get_save_path(game_mode, session_id)
 	if not FileAccess.file_exists(path):
+		print("[SaveSystem] Arquivo de save não encontrado em: %s" % path)
 		return {} # Retorna dicionário vazio se o arquivo não existe
 
 	var file = FileAccess.open(path, FileAccess.READ)
@@ -114,6 +118,7 @@ func _load_from_file(game_mode: String, session_id: int) -> Dictionary:
 		var json_string = file.get_as_text()
 		var parse_result = JSON.parse_string(json_string)
 		if parse_result is Dictionary:
+			print("[SaveSystem] Dados carregados com sucesso de: %s" % path)
 			return parse_result
 		else:
 			printerr("[SaveSystem] Falha ao parsear JSON ou dados não são um dicionário de %s" % path)

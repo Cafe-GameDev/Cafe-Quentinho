@@ -95,17 +95,10 @@ text = "UI_3D_GAME"
 layout_mode = 2
 text = "UI_BACK"
 
-[connection signal="mouse_entered" from="MainButtons/NewGameButton" to="." method="_on_button_mouse_entered" binds=["MainButtons/NewGameButton"]]
 [connection signal="pressed" from="MainButtons/NewGameButton" to="." method="_on_new_game_button_pressed"]
-[connection signal="mouse_entered" from="MainButtons/OptionsButton" to="." method="_on_button_mouse_entered" binds=["MainButtons/OptionsButton"]]
 [connection signal="pressed" from="MainButtons/OptionsButton" to="." method="_on_options_button_pressed"]
-[connection signal="mouse_entered" from="MainButtons/ExitButton" to="." method="_on_button_mouse_entered" binds=["MainButtons/ExitButton"]]
 [connection signal="pressed" from="MainButtons/ExitButton" to="." method="_on_exit_button_pressed"]
-[connection signal="mouse_entered" from="GameModeButtons/TopDownButton" to="." method="_on_button_mouse_entered" binds=["GameModeButtons/TopDownButton"]]
 [connection signal="pressed" from="GameModeButtons/TopDownButton" to="." method="_on_top_down_button_pressed"]
-[connection signal="mouse_entered" from="GameModeButtons/PlatformerButton" to="." method="_on_button_mouse_entered" binds=["GameModeButtons/PlatformerButton"]]
 [connection signal="pressed" from="GameModeButtons/PlatformerButton" to="." method="_on_platformer_button_pressed"]
-[connection signal="mouse_entered" from="GameModeButtons/3DButton" to="." method="_on_button_mouse_entered" binds=["GameModeButtons/3DButton"]]
 [connection signal="pressed" from="GameModeButtons/3DButton" to="." method="_on_3d_button_pressed"]
-[connection signal="mouse_entered" from="GameModeButtons/BackButton" to="." method="_on_button_mouse_entered" binds=["GameModeButtons/BackButton"]]
 [connection signal="pressed" from="GameModeButtons/BackButton" to="." method="_on_back_button_pressed"]
