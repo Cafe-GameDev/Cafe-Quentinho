@@ -41,6 +41,7 @@ func _update_ui(audio_settings: Dictionary) -> void:
 		_update_value_label(slider.value)
 
 func _on_mouse_entered_control(control_node: Control) -> void:
+	@warning_ignore("unused_variable")
 	var local_tooltip_text = ""
 	if control_node and control_node.has_meta("tooltip_text"):
 		tooltip_text = control_node.get_meta("tooltip_text")

@@ -23,7 +23,7 @@ func _on_loading_settings_changed(settings: Dictionary) -> void:
 		checkbox.button_pressed = settings.video.reduce_screen_shake
 
 func _on_mouse_entered_control(control_node: Control) -> void:
-	var tooltip_text = ""
+	var tooltip_text : String = ""
 	if control_node and control_node.has_meta("tooltip_text"):
 		tooltip_text = control_node.get_meta("tooltip_text")
 	elif control_node and control_node.tooltip_text:

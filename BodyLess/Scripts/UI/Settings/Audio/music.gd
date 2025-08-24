@@ -22,9 +22,6 @@ func _on_slider_value_changed(value: float) -> void:
 	_update_value_label(value)
 	GlobalEvents.emit_signal("setting_changed", {"audio": {"music_volume": value}})
 
-func _on_music_slider_drag_ended(value_changed: bool) -> void:
-	# O sinal de drag_ended não é mais necessário, pois value_changed já lida com isso.
-	pass
 
 func _on_loading_settings_changed(settings: Dictionary) -> void:
 	if settings.has("audio") and settings.audio.has("music_volume"):
@@ -41,7 +38,8 @@ func _update_ui(audio_settings: Dictionary) -> void:
 		_update_value_label(slider.value)
 
 func _on_mouse_entered_control(control_node: Control) -> void:
-	var tooltip_text = ""
+	@warning_ignore("shadowed_variable_base_class")
+	var tooltip_text : String = ""
 	if control_node and control_node.has_meta("tooltip_text"):
 		tooltip_text = control_node.get_meta("tooltip_text")
 	elif control_node and control_node.tooltip_text:

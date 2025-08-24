@@ -52,7 +52,6 @@ func _ready():
 # --- Lógica de Carregamento ---
 
 func _load_all_sounds():
-	print("Iniciando carregamento das bibliotecas de áudio...")
 	_music_library.clear()
 	_sfx_library.clear()
 
@@ -172,7 +171,6 @@ func _select_and_play_random_playlist():
 		return
 
 	_current_playlist_key = _music_playlist_keys.pick_random()
-	print("Playlist selecionada: '%s'" % _current_playlist_key)
 	play_random_music(_current_playlist_key)
 
 
