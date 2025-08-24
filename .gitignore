@@ -14,3 +14,5 @@ Credits.txt
 *.local
 *.exe
 /BodyLess/godot
+.cfg
+*.txt

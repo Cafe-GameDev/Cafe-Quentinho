@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://c7ckkfc3bhrkc"]
+[gd_scene load_steps=4 format=3 uid="uid://c7ckkfc3bhrkc"]
 
 [ext_resource type="Script" uid="uid://cwqycex11ds7o" path="res://Scripts/UI/quit_confirmation_dialog.gd" id="1_08863"]
+[ext_resource type="StyleBox" uid="uid://ccucsa8kk57ft" path="res://Resources/button_focus.tres" id="2_m3xdi"]
+[ext_resource type="StyleBox" uid="uid://bej76kq62gywe" path="res://Resources/button_normal.tres" id="3_7b7yf"]
 
 [node name="QuitConfirmationDialog" type="PanelContainer"]
 process_mode = 3
@@ -40,11 +42,23 @@ theme_override_constants/separation = 20
 alignment = 1
 
 [node name="YesButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(0, 31)
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_styles/focus = ExtResource("2_m3xdi")
+theme_override_styles/hover_pressed = ExtResource("2_m3xdi")
+theme_override_styles/hover = ExtResource("2_m3xdi")
+theme_override_styles/pressed = ExtResource("2_m3xdi")
+theme_override_styles/normal = ExtResource("3_7b7yf")
 text = "UI_YES"
 
 [node name="NoButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(0, 31)
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_styles/focus = ExtResource("2_m3xdi")
+theme_override_styles/hover_pressed = ExtResource("2_m3xdi")
+theme_override_styles/hover = ExtResource("2_m3xdi")
+theme_override_styles/pressed = ExtResource("2_m3xdi")
+theme_override_styles/normal = ExtResource("3_7b7yf")
 text = "UI_NO"

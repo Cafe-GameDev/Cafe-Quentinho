@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://xsfe4eohtxl4"]
+[gd_scene load_steps=8 format=3 uid="uid://xsfe4eohtxl4"]
 
 [ext_resource type="Script" uid="uid://bn5pjvf7wbdv4" path="res://Scripts/UI/options_menu.gd" id="1_run4o"]
+[ext_resource type="StyleBox" uid="uid://ccucsa8kk57ft" path="res://Resources/button_focus.tres" id="2_s2riy"]
 [ext_resource type="PackedScene" uid="uid://b8n0le3mmhafb" path="res://Scenes/UI/Settings/video_settings.tscn" id="2_yjqj2"]
+[ext_resource type="StyleBox" uid="uid://bej76kq62gywe" path="res://Resources/button_normal.tres" id="3_dod7e"]
 [ext_resource type="PackedScene" uid="uid://dat2iwiarvvxj" path="res://Scenes/UI/Settings/audio_settings.tscn" id="3_x3x5h"]
 [ext_resource type="PackedScene" uid="uid://bey3t3k4biaww" path="res://Scenes/UI/Settings/language_settings.tscn" id="4_3tdd8"]
 [ext_resource type="PackedScene" uid="uid://cvtlqfm3228xb" path="res://Scenes/UI/Settings/input_map_settings.tscn" id="4_x3x5h"]
@@ -123,8 +125,15 @@ theme_override_constants/separation = 10
 alignment = 1
 
 [node name="VideoButton" type="Button" parent="PanelContainer/Margin/Box/ContentHBox/ScrollList/CategoryList"]
+custom_minimum_size = Vector2(0, 31)
 layout_mode = 2
 size_flags_vertical = 3
+focus_mode = 0
+theme_override_styles/focus = ExtResource("2_s2riy")
+theme_override_styles/hover_pressed = ExtResource("2_s2riy")
+theme_override_styles/hover = ExtResource("2_s2riy")
+theme_override_styles/pressed = ExtResource("2_s2riy")
+theme_override_styles/normal = ExtResource("3_dod7e")
 text = "UI_VIDEO"
 
 [node name="VideoModulate" type="ColorRect" parent="PanelContainer/Margin/Box/ContentHBox/ScrollList/CategoryList/VideoButton"]
@@ -139,8 +148,15 @@ mouse_filter = 2
 color = Color(0.392157, 0.392157, 0.392157, 0.156863)
 
 [node name="AudioButton" type="Button" parent="PanelContainer/Margin/Box/ContentHBox/ScrollList/CategoryList"]
+custom_minimum_size = Vector2(0, 31)
 layout_mode = 2
 size_flags_vertical = 3
+focus_mode = 0
+theme_override_styles/focus = ExtResource("2_s2riy")
+theme_override_styles/hover_pressed = ExtResource("2_s2riy")
+theme_override_styles/hover = ExtResource("2_s2riy")
+theme_override_styles/pressed = ExtResource("2_s2riy")
+theme_override_styles/normal = ExtResource("3_dod7e")
 text = "UI_AUDIO"
 
 [node name="AudioModulate" type="ColorRect" parent="PanelContainer/Margin/Box/ContentHBox/ScrollList/CategoryList/AudioButton"]
@@ -155,8 +171,15 @@ mouse_filter = 2
 color = Color(0.392157, 0.392157, 0.392157, 0)
 
 [node name="InputMapButton" type="Button" parent="PanelContainer/Margin/Box/ContentHBox/ScrollList/CategoryList"]
+custom_minimum_size = Vector2(0, 31)
 layout_mode = 2
 size_flags_vertical = 3
+focus_mode = 0
+theme_override_styles/focus = ExtResource("2_s2riy")
+theme_override_styles/hover_pressed = ExtResource("2_s2riy")
+theme_override_styles/hover = ExtResource("2_s2riy")
+theme_override_styles/pressed = ExtResource("2_s2riy")
+theme_override_styles/normal = ExtResource("3_dod7e")
 text = "UI_INPUTMAP"
 
 [node name="InputModulate" type="ColorRect" parent="PanelContainer/Margin/Box/ContentHBox/ScrollList/CategoryList/InputMapButton"]
@@ -171,8 +194,15 @@ mouse_filter = 2
 color = Color(0.392157, 0.392157, 0.392157, 0)
 
 [node name="LanguageButton" type="Button" parent="PanelContainer/Margin/Box/ContentHBox/ScrollList/CategoryList"]
+custom_minimum_size = Vector2(0, 31)
 layout_mode = 2
 size_flags_vertical = 3
+focus_mode = 0
+theme_override_styles/focus = ExtResource("2_s2riy")
+theme_override_styles/hover_pressed = ExtResource("2_s2riy")
+theme_override_styles/hover = ExtResource("2_s2riy")
+theme_override_styles/pressed = ExtResource("2_s2riy")
+theme_override_styles/normal = ExtResource("3_dod7e")
 text = "UI_LANGUAGE"
 
 [node name="LanguageModulate" type="ColorRect" parent="PanelContainer/Margin/Box/ContentHBox/ScrollList/CategoryList/LanguageButton"]
@@ -241,6 +271,12 @@ alignment = 2
 [node name="BackButton" type="Button" parent="PanelContainer/Margin/Box/BottomButtonsContainer"]
 custom_minimum_size = Vector2(254, 0)
 layout_mode = 2
+focus_mode = 0
+theme_override_styles/focus = ExtResource("2_s2riy")
+theme_override_styles/hover_pressed = ExtResource("2_s2riy")
+theme_override_styles/hover = ExtResource("2_s2riy")
+theme_override_styles/pressed = ExtResource("2_s2riy")
+theme_override_styles/normal = ExtResource("3_dod7e")
 text = "UI_BACK"
 
 [node name="BackRect" type="ColorRect" parent="PanelContainer/Margin/Box/BottomButtonsContainer/BackButton"]
@@ -260,6 +296,12 @@ layout_mode = 2
 [node name="ApplyButton" type="Button" parent="PanelContainer/Margin/Box/BottomButtonsContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+focus_mode = 0
+theme_override_styles/focus = ExtResource("2_s2riy")
+theme_override_styles/hover_pressed = ExtResource("2_s2riy")
+theme_override_styles/hover = ExtResource("2_s2riy")
+theme_override_styles/pressed = ExtResource("2_s2riy")
+theme_override_styles/normal = ExtResource("3_dod7e")
 text = "UI_APPLY"
 
 [node name="ApplyRect" type="ColorRect" parent="PanelContainer/Margin/Box/BottomButtonsContainer/ApplyButton"]

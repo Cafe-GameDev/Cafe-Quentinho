@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://bey3t3k4biaww"]
+[gd_scene load_steps=4 format=3 uid="uid://bey3t3k4biaww"]
 
 [ext_resource type="Script" uid="uid://cnmrmds3xslo2" path="res://Scripts/UI/Settings/Locate/language_options.gd" id="1_utlj1"]
+[ext_resource type="StyleBox" uid="uid://ccucsa8kk57ft" path="res://Resources/button_focus.tres" id="2_syk7v"]
+[ext_resource type="StyleBox" uid="uid://bej76kq62gywe" path="res://Resources/button_normal.tres" id="3_ywr8a"]
 
 [node name="LanguageSettings" type="VBoxContainer"]
 custom_minimum_size = Vector2(572, 0)
@@ -12,7 +14,13 @@ theme_override_constants/separation = 10
 script = ExtResource("1_utlj1")
 
 [node name="EN_US_Button" type="Button" parent="LanguageOptionsContainer"]
+custom_minimum_size = Vector2(0, 31)
 layout_mode = 2
+theme_override_styles/focus = ExtResource("2_syk7v")
+theme_override_styles/hover_pressed = ExtResource("2_syk7v")
+theme_override_styles/hover = ExtResource("2_syk7v")
+theme_override_styles/pressed = ExtResource("2_syk7v")
+theme_override_styles/normal = ExtResource("3_ywr8a")
 text = "UI_LANGUAGE_EN_US"
 metadata/locale = "en_US"
 
@@ -28,7 +36,13 @@ mouse_filter = 2
 color = Color(0.392157, 0.392157, 0.392157, 0)
 
 [node name="EN_GB_Button" type="Button" parent="LanguageOptionsContainer"]
+custom_minimum_size = Vector2(0, 31)
 layout_mode = 2
+theme_override_styles/focus = ExtResource("2_syk7v")
+theme_override_styles/hover_pressed = ExtResource("2_syk7v")
+theme_override_styles/hover = ExtResource("2_syk7v")
+theme_override_styles/pressed = ExtResource("2_syk7v")
+theme_override_styles/normal = ExtResource("3_ywr8a")
 text = "UI_LANGUAGE_EN_GB"
 metadata/locale = "en_GB"
 
@@ -44,7 +58,13 @@ mouse_filter = 2
 color = Color(0.392157, 0.392157, 0.392157, 0)
 
 [node name="EN_IN_Button" type="Button" parent="LanguageOptionsContainer"]
+custom_minimum_size = Vector2(0, 31)
 layout_mode = 2
+theme_override_styles/focus = ExtResource("2_syk7v")
+theme_override_styles/hover_pressed = ExtResource("2_syk7v")
+theme_override_styles/hover = ExtResource("2_syk7v")
+theme_override_styles/pressed = ExtResource("2_syk7v")
+theme_override_styles/normal = ExtResource("3_ywr8a")
 text = "UI_LANGUAGE_EN_IN"
 metadata/locale = "en_IN"
 
@@ -60,7 +80,13 @@ mouse_filter = 2
 color = Color(0.392157, 0.392157, 0.392157, 0)
 
 [node name="PT_BR_Button" type="Button" parent="LanguageOptionsContainer"]
+custom_minimum_size = Vector2(0, 31)
 layout_mode = 2
+theme_override_styles/focus = ExtResource("2_syk7v")
+theme_override_styles/hover_pressed = ExtResource("2_syk7v")
+theme_override_styles/hover = ExtResource("2_syk7v")
+theme_override_styles/pressed = ExtResource("2_syk7v")
+theme_override_styles/normal = ExtResource("3_ywr8a")
 text = "UI_LANGUAGE_PT_BR"
 metadata/locale = "pt_BR"
 
@@ -76,7 +102,13 @@ mouse_filter = 2
 color = Color(0.392157, 0.392157, 0.392157, 0)
 
 [node name="PT_PT_Button" type="Button" parent="LanguageOptionsContainer"]
+custom_minimum_size = Vector2(0, 31)
 layout_mode = 2
+theme_override_styles/focus = ExtResource("2_syk7v")
+theme_override_styles/hover_pressed = ExtResource("2_syk7v")
+theme_override_styles/hover = ExtResource("2_syk7v")
+theme_override_styles/pressed = ExtResource("2_syk7v")
+theme_override_styles/normal = ExtResource("3_ywr8a")
 text = "UI_LANGUAGE_PT_PT"
 metadata/locale = "pt_PT"
 
@@ -92,7 +124,13 @@ mouse_filter = 2
 color = Color(0.392157, 0.392157, 0.392157, 0)
 
 [node name="ES_ES_Button" type="Button" parent="LanguageOptionsContainer"]
+custom_minimum_size = Vector2(0, 31)
 layout_mode = 2
+theme_override_styles/focus = ExtResource("2_syk7v")
+theme_override_styles/hover_pressed = ExtResource("2_syk7v")
+theme_override_styles/hover = ExtResource("2_syk7v")
+theme_override_styles/pressed = ExtResource("2_syk7v")
+theme_override_styles/normal = ExtResource("3_ywr8a")
 text = "UI_LANGUAGE_ES_ES"
 metadata/locale = "es_ES"
 
@@ -108,7 +146,13 @@ mouse_filter = 2
 color = Color(0.392157, 0.392157, 0.392157, 0)
 
 [node name="ES_LA_Button" type="Button" parent="LanguageOptionsContainer"]
+custom_minimum_size = Vector2(0, 31)
 layout_mode = 2
+theme_override_styles/focus = ExtResource("2_syk7v")
+theme_override_styles/hover_pressed = ExtResource("2_syk7v")
+theme_override_styles/hover = ExtResource("2_syk7v")
+theme_override_styles/pressed = ExtResource("2_syk7v")
+theme_override_styles/normal = ExtResource("3_ywr8a")
 text = "UI_LANGUAGE_ES_LA"
 metadata/locale = "es_LA"
 
@@ -124,7 +168,13 @@ mouse_filter = 2
 color = Color(0.392157, 0.392157, 0.392157, 0)
 
 [node name="FR_Button" type="Button" parent="LanguageOptionsContainer"]
+custom_minimum_size = Vector2(0, 31)
 layout_mode = 2
+theme_override_styles/focus = ExtResource("2_syk7v")
+theme_override_styles/hover_pressed = ExtResource("2_syk7v")
+theme_override_styles/hover = ExtResource("2_syk7v")
+theme_override_styles/pressed = ExtResource("2_syk7v")
+theme_override_styles/normal = ExtResource("3_ywr8a")
 text = "UI_LANGUAGE_FR"
 metadata/locale = "fr"
 
@@ -140,7 +190,13 @@ mouse_filter = 2
 color = Color(0.392157, 0.392157, 0.392157, 0)
 
 [node name="DE_Button" type="Button" parent="LanguageOptionsContainer"]
+custom_minimum_size = Vector2(0, 31)
 layout_mode = 2
+theme_override_styles/focus = ExtResource("2_syk7v")
+theme_override_styles/hover_pressed = ExtResource("2_syk7v")
+theme_override_styles/hover = ExtResource("2_syk7v")
+theme_override_styles/pressed = ExtResource("2_syk7v")
+theme_override_styles/normal = ExtResource("3_ywr8a")
 text = "UI_LANGUAGE_DE"
 metadata/locale = "de"
 
@@ -156,7 +212,13 @@ mouse_filter = 2
 color = Color(0.392157, 0.392157, 0.392157, 0)
 
 [node name="IT_Button" type="Button" parent="LanguageOptionsContainer"]
+custom_minimum_size = Vector2(0, 31)
 layout_mode = 2
+theme_override_styles/focus = ExtResource("2_syk7v")
+theme_override_styles/hover_pressed = ExtResource("2_syk7v")
+theme_override_styles/hover = ExtResource("2_syk7v")
+theme_override_styles/pressed = ExtResource("2_syk7v")
+theme_override_styles/normal = ExtResource("3_ywr8a")
 text = "UI_LANGUAGE_IT"
 metadata/locale = "it"
 
@@ -172,7 +234,13 @@ mouse_filter = 2
 color = Color(0.392157, 0.392157, 0.392157, 0)
 
 [node name="JA_Button" type="Button" parent="LanguageOptionsContainer"]
+custom_minimum_size = Vector2(0, 31)
 layout_mode = 2
+theme_override_styles/focus = ExtResource("2_syk7v")
+theme_override_styles/hover_pressed = ExtResource("2_syk7v")
+theme_override_styles/hover = ExtResource("2_syk7v")
+theme_override_styles/pressed = ExtResource("2_syk7v")
+theme_override_styles/normal = ExtResource("3_ywr8a")
 text = "UI_LANGUAGE_JA"
 metadata/locale = "ja"
 
@@ -188,7 +256,13 @@ mouse_filter = 2
 color = Color(0.392157, 0.392157, 0.392157, 0)
 
 [node name="KO_Button" type="Button" parent="LanguageOptionsContainer"]
+custom_minimum_size = Vector2(0, 31)
 layout_mode = 2
+theme_override_styles/focus = ExtResource("2_syk7v")
+theme_override_styles/hover_pressed = ExtResource("2_syk7v")
+theme_override_styles/hover = ExtResource("2_syk7v")
+theme_override_styles/pressed = ExtResource("2_syk7v")
+theme_override_styles/normal = ExtResource("3_ywr8a")
 text = "UI_LANGUAGE_KO"
 metadata/locale = "ko"
 
@@ -204,7 +278,13 @@ mouse_filter = 2
 color = Color(0.392157, 0.392157, 0.392157, 0)
 
 [node name="RU_Button" type="Button" parent="LanguageOptionsContainer"]
+custom_minimum_size = Vector2(0, 31)
 layout_mode = 2
+theme_override_styles/focus = ExtResource("2_syk7v")
+theme_override_styles/hover_pressed = ExtResource("2_syk7v")
+theme_override_styles/hover = ExtResource("2_syk7v")
+theme_override_styles/pressed = ExtResource("2_syk7v")
+theme_override_styles/normal = ExtResource("3_ywr8a")
 text = "UI_LANGUAGE_RU"
 metadata/locale = "ru"
 
@@ -220,7 +300,13 @@ mouse_filter = 2
 color = Color(0.392157, 0.392157, 0.392157, 0)
 
 [node name="ZH_HANS_Button" type="Button" parent="LanguageOptionsContainer"]
+custom_minimum_size = Vector2(0, 31)
 layout_mode = 2
+theme_override_styles/focus = ExtResource("2_syk7v")
+theme_override_styles/hover_pressed = ExtResource("2_syk7v")
+theme_override_styles/hover = ExtResource("2_syk7v")
+theme_override_styles/pressed = ExtResource("2_syk7v")
+theme_override_styles/normal = ExtResource("3_ywr8a")
 text = "UI_LANGUAGE_ZH_HANS"
 metadata/locale = "zh_Hans"
 
@@ -236,7 +322,13 @@ mouse_filter = 2
 color = Color(0.392157, 0.392157, 0.392157, 0)
 
 [node name="ZH_HANT_Button" type="Button" parent="LanguageOptionsContainer"]
+custom_minimum_size = Vector2(0, 31)
 layout_mode = 2
+theme_override_styles/focus = ExtResource("2_syk7v")
+theme_override_styles/hover_pressed = ExtResource("2_syk7v")
+theme_override_styles/hover = ExtResource("2_syk7v")
+theme_override_styles/pressed = ExtResource("2_syk7v")
+theme_override_styles/normal = ExtResource("3_ywr8a")
 text = "UI_LANGUAGE_ZH_HANT"
 metadata/locale = "zh_Hant"
 
