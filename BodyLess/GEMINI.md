@@ -116,7 +116,7 @@ Enquanto uma "Cena" é um arquivo no seu disco, a **Árvore de Cenas** é a estr
 
 **Sinais** são o mecanismo de comunicação do Godot. Eles permitem que um nó emita uma "mensagem" quando um evento específico ocorre, e outros nós podem "ouvir" essa mensagem e reagir, sem que eles precisem se conhecer diretamente.
 
-*   **Como Funcionam:** Um nó `Button` emite o sinal `pressed` quando é clicado. Qualquer outro nó pode se **conectar** a esse sinal e executar uma função quando ele for emitido.
+*   **Como Funcionam:** Um nó `Button` emite o sinal `pressed` quando é clicado. Qualquer outro nó pode se **conectar** a esse sinal e executar uma função quando ele for emitida.
 *   **Benefícios:** Promovem o **desacoplamento**, que é um pilar central da nossa arquitetura. O botão não precisa saber quem está ouvindo; ele apenas anuncia o que aconteceu.
 
 ---
@@ -130,7 +130,7 @@ O **EventBus** é a nossa ferramenta central para comunicação, aplicando o con
 
 ### Padrão de Comunicação para Dados Persistentes
 
-Para garantir o desacoplamento e a previsibilidade, qualquer sistema que gerencie dados que precisam ser salvos e carregados (configurações, idioma, mapeamento de teclas, etc.) deve seguir um rigoroso padrão de comunicação com 5 sinais através do `GlobalEvents`. O padrão utiliza um prefixo de **escopo** (ex: `settings_`, `language_`) e um sufixo de **ação** para formar nomes de sinais consistentes.
+Para garantir o desacoplamento e a previsibilidade, qualquer sistema que gerencie dados que precisam ser salvos e carregados (configurações, idioma, etc.) deve seguir um rigoroso padrão de comunicação com 5 sinais através do `GlobalEvents`. O padrão utiliza um prefixo de **escopo** (ex: `settings_`, `language_`) e um sufixo de **ação** para formar nomes de sinais consistentes.
 
 **O Padrão Base de 5 Sinais:**
 
@@ -153,7 +153,6 @@ Para garantir o desacoplamento e a previsibilidade, qualquer sistema que gerenci
 
 *   **Settings (Áudio/Vídeo):** `settings_changed`, `request_loading_settings_changed`, `loading_settings_changed`, `request_saving_settings_changed`, `request_reset_settings_changed`
 *   **Language (Idioma):** `language_changed`, `request_loading_language_changed`, `loading_language_changed`, `request_saving_language_changed`, `request_reset_language_changed`
-*   **Inputs (Mapeamento de Teclas - Futuro):** `inputs_changed`, `request_loading_inputs_changed`, `loading_inputs_changed`, `request_saving_inputs_changed`, `request_reset_inputs_changed`
 
 *   **`GlobalEvents`:** Para eventos que afetam todo o jogo (mudanças de cena, configurações, estado do jogo).
 *   **`LocalEvents`:** Para comunicação *dentro* de uma cena de jogo específica (puzzles, interações locais).
@@ -248,3 +247,136 @@ Sempre que possivel, use Dictionary
 EventBus, seja ele o GlobalEvents ou o LocalEvents, são obrigatorios, e nem mesmo eles podema acessar diretamente um script ou scene, apenas pode emitir sinais da propria godot
 
 - Ao criar um script ou cena, antes de usar / anexar o script a cena, ou ao instanciar essa cena dentro de outra, é obrigatorio abrir a godot usando as flags -e --verbose --import, para que a propria godot gere as uids invés de tentar "adivinhar" ou escolher uma. O caminho para a instalação da godot é "C://Users/bruno/Documents/Godot_v4.4.1-stable_win64_console.exe" abra ela com -e --verbose quando o usuario solicitar
+
+## 🎮 Os 3 Modos de Jogo do Template "BodyLess"
+
+Perfeito! Pelas informações do GDD, o template **BodyLess** suporta e integra os seguintes 3 modos de jogo, cada um com suas particularidades, mas todos construídos sobre a mesma base sólida de engenharia:
+
+1. **TopDown (2D)**
+
+   * Visão de cima (top-down) ou isométrica.
+   * Movimento em 8 direções.
+   * Ideal para shooters, RPGs ou simuladores táticos.
+   * Estrutura de combate, HUD, inventário e coleta de itens integrada ao template.
+
+2. **Platformer (2D)**
+
+   * Jogo de plataforma tradicional (scroll lateral ou vertical).
+   * Suporte a pulos, colisões físicas, power-ups e inimigos.
+   * Ferramentas de HUD, checkpoints e inventário adaptáveis.
+   * Handlers e EventBus funcionam da mesma forma para desacoplamento.
+
+3. **3D**
+
+   * Ambiente tridimensional, com suporte a visão **primeira ou terceira pessoa**.
+   * Mecânicas de movimentação, combate e interação com o mundo adaptadas para 3D.
+   * UI modular e reativa, tooltips, toasts e coach marks integrados.
+   * Uso de Resources para itens, armas e inimigos, mantendo desacoplamento.
+
+---
+
+Todos os modos compartilham os **mesmos sistemas fundamentais**:
+
+*   **Configurações (SettingsManager)**
+*   **Persistência (SaveSystem)**
+*   **Input e eventos (GlobalEvents)**
+*   **Áudio (AudioManager)**
+*   **UI modular (menus, HUD, tooltips, popovers, toasts, coach marks)**
+*   **Internacionalização (I18N com arquivos .po)**
+
+O template é feito para que **cada modo de jogo seja plugável**, mantendo a arquitetura BodyLess consistente, sem precisar refatorar os sistemas centrais.
+
+Perfeito! Com base nas suas informações, dá pra organizar assim:
+
+---
+
+## **Recursos Compartilhados entre os 3 Modos**
+
+1. **Players**
+
+   * 5 personagens jogáveis.
+   * Cada modo de jogo terá apenas **1 player selecionado** por vez.
+   * Stats, animações e habilidades base são os mesmos, mas a **interação e controles** podem variar conforme o modo (ex: TopDown vs Platformer vs 3D).
+
+2. **Armas**
+
+   * 5 tipos de armas.
+   * Cada arma funciona em todos os modos, mas **a forma de uso e alcance** muda:
+
+     * TopDown: mira em 2D e rotação baseada na posição do mouse.
+     * Platformer: mira lateral/vertical, ataques direcionais.
+     * 3D: mira em 3D, câmera controlada pelo jogador.
+
+3. **Inimigos**
+
+   * 3 tipos de inimigos.
+   * Comportamento adaptado ao modo, mas **stats base, drops e efeitos** são os mesmos.
+
+4. **Itens e Feitos (Achievements)**
+
+   * Todos os modos usam os **mesmos items coletáveis** e **mesmos achievements**.
+   * Uso dos itens pode variar: ex. item de cura funciona em todos, mas o HUD mostra de forma diferente em cada modo.
+
+5. **Resources (Itens, Armas, Inimigos, Players)**
+
+   * Criados como `Resource`s para serem **reutilizáveis e configuráveis**.
+   * Mantém **consistência de dados** e evita duplicação.
+
+6. **Autoloads / Singletons**
+
+   * `GlobalEvents`, `AudioManager`, `SettingsManager`, `SaveSystem`, `DebugConsole` → **compartilhados entre todos os modos**.
+   * Comunicação com cada modo via **EventBus**, mantendo desacoplamento.
+
+7. **Traduções (I18N / L10N)**
+
+   * Todos os modos usam o **mesmo arquivo de idiomas**.
+   * Textos de HUD, menus, tooltips, toasts e popovers **não precisam ser duplicados por modo**.
+
+---
+
+## **O que muda entre os modos**
+
+Embora os modos de jogo compartilhem sistemas fundamentais, suas implementações variam para se adequar à jogabilidade específica de cada um:
+
+*   **Movimentação:**
+    *   **TopDown (2D):** Movimento em 8 direções, planar.
+    *   **Platformer (2D):** Movimento lateral e em plataformas.
+    *   **3D:** Movimento livre em 3D, com opções de primeira ou terceira pessoa (FPS/TPP).
+
+*   **Ataques / Armas:**
+    *   **TopDown (2D):** Mira em 2D e rotação baseada na posição do mouse.
+    *   **Platformer (2D):** Mira direcional lateral/vertical.
+    *   **3D:** Mira em 3D, com a câmera controlada pelo jogador.
+
+*   **Interação com itens:**
+    *   **TopDown (2D) e Platformer (2D):** Coleta e uso simples.
+    *   **3D:** Coleta e uso, possivelmente com mira ou posicionamento.
+
+*   **HUD:**
+    *   **TopDown (2D):** Barra de vida e hotbar 2D.
+    *   **Platformer (2D):** Barra de vida e hotbar lateral.
+    *   **3D:** HUD adaptado para 3D (ex: canvas overlay).
+
+*   **Física / Colisões:**
+    *   **TopDown (2D):** Tilemap e colisão 2D.
+    *   **Platformer (2D):** Plataforma e colisão 2D.
+    *   **3D:** Colliders 3D e Rigidbody.
+
+*   **AI / Comportamento inimigos:**
+    *   **TopDown (2D):** Movimento e perseguição estilo top-down.
+    *   **Platformer (2D):** Movimento e patrulha em plataformas.
+    *   **3D:** Movimento e perseguição em ambiente 3D.
+
+*   **Câmera:**
+    *   **TopDown (2D):** Fixa ou seguindo o jogador.
+    *   **Platformer (2D):** Lateral ou com scroll.
+    *   **3D:** Dinâmica, com opções de primeira ou terceira pessoa (FPS/TPP).
+
+*   **Interpretação de Inputs:**
+    *   Cada modo de jogo (TopDown, Platformer, 3D) é responsável por consumir os eventos de input brutos (`_unhandled_input`) e interpretá-los com base no mapeamento de inputs fornecido pelo `SettingsManager`.
+    *   Isso permite que a mesma ação (ex: "pular") seja mapeada para diferentes teclas ou comportamentos de acordo com o modo de jogo.
+    *   Os consumidores de input emitem sinais de "intenção" (ex: `GlobalEvents.emit_signal("player_jump_requested")`) após a interpretação, mantendo o desacoplamento.
+
+---
+
+O ponto chave é que **os dados e assets são compartilhados**, mas **os Handlers e scripts de interação adaptam a lógica de cada modo**. Isso mantém consistência e facilita manutenção, enquanto cada modo mantém sua jogabilidade única.

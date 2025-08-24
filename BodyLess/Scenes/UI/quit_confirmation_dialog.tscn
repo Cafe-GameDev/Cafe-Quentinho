@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://ckonqksbeok8r"]
+[gd_scene load_steps=2 format=3 uid="uid://c7ckkfc3bhrkc"]
 
-[ext_resource type="Script" path="res://Scripts/UI/quit_confirmation_dialog.gd" id="1_08863"]
+[ext_resource type="Script" uid="uid://cwqycex11ds7o" path="res://Scripts/UI/quit_confirmation_dialog.gd" id="1_08863"]
 
 [node name="QuitConfirmationDialog" type="PanelContainer"]
 process_mode = 3
@@ -48,8 +48,3 @@ text = "UI_YES"
 layout_mode = 2
 size_flags_horizontal = 3
 text = "UI_NO"
-
-[connection signal="mouse_entered" from="MarginContainer/VBoxContainer/HBoxContainer/YesButton" to="." method="_on_button_mouse_entered"]
-[connection signal="mouse_entered" from="MarginContainer/VBoxContainer/HBoxContainer/NoButton" to="." method="_on_button_mouse_entered"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/YesButton" to="." method="_on_yes_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/NoButton" to="." method="_on_no_button_pressed"]

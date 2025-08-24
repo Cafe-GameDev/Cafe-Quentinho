@@ -4,12 +4,6 @@ extends HBoxContainer
 @onready var ui_scale_label: Label = $UIScaleLabel
 
 func _ready() -> void:
-	# Popula com presets de escala.
-	option_button.add_item("100%", 0)
-	option_button.add_item("125%", 1)
-	option_button.add_item("150%", 2)
-	option_button.add_item("175%", 3)
-	option_button.add_item("200%", 4)
 	
 	GlobalEvents.loading_settings_changed.connect(_on_loading_settings_changed)
 	
@@ -48,10 +42,14 @@ func _on_loading_settings_changed(settings: Dictionary) -> void:
 			option_button.select(selected_index)
 
 func _on_mouse_entered_control(control_node: Control) -> void:
+	var tooltip_text = ""
 	if control_node and control_node.has_meta("tooltip_text"):
-		GlobalEvents.show_tooltip_requested.emit(control_node.get_meta("tooltip_text"), get_global_mouse_position())
+		tooltip_text = control_node.get_meta("tooltip_text")
 	elif control_node and control_node.tooltip_text:
-		GlobalEvents.show_tooltip_requested.emit(control_node.tooltip_text, get_global_mouse_position())
+		tooltip_text = tr(control_node.tooltip_text)
+
+	if not tooltip_text.is_empty():
+		GlobalEvents.show_tooltip_requested.emit({"text": tooltip_text, "position": get_global_mouse_position()})
 
 func _on_mouse_exited_control() -> void:
 	GlobalEvents.hide_tooltip_requested.emit()

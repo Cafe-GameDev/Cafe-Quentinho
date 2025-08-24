@@ -135,6 +135,9 @@ msgstr "Windowed"
 msgid "UI_WINDOW_MODE_FULLSCREEN"
 msgstr "Fullscreen"
 
+msgid "UI_WINDOW_MODE_BORDERLESS"
+msgstr "Borderless"
+
 msgid "UI_RESOLUTION"
 msgstr "Resolution"
 
@@ -591,14 +594,66 @@ msgstr "Jump"
 msgid "INPUT_ATTACK_NAME"
 msgstr "Attack"
 
-msgid "TOAST_LOAD_SUCCESS_MESSAGE"
-msgstr "Game loaded successfully!"
+msgid "UI_SCALE_100_PERCENT"
+msgstr "100%"
 
-msgid "TOAST_ERROR_LOAD_FAILED_MESSAGE"
-msgstr "Failed to load game progress."
+msgid "UI_SCALE_125_PERCENT"
+msgstr "125%"
 
-msgid "TOAST_ITEM_USED_MESSAGE"
-msgstr "Item used: {item_name}!"
+msgid "UI_SCALE_150_PERCENT"
+msgstr "150%"
 
-msgid "TOAST_ITEM_EQUIPPED_MESSAGE"
-msgstr "Item equipped: {item_name}!"
+msgid "UI_SCALE_175_PERCENT"
+msgstr "175%"
+
+msgid "UI_SCALE_200_PERCENT"
+msgstr "200%"
+
+
+
+msgid "UI_UPSCALE_MODE"
+msgstr "Upscale Mode"
+
+msgid "UI_UPSCALING_QUALITY"
+msgstr "Upscaling Quality"
+
+msgid "UI_UPSCALING_NONE"
+msgstr "None"
+
+msgid "UI_FSR_BALANCED"
+msgstr "FSR Balanced"
+
+msgid "UI_UPSCALE_FSR1"
+msgstr "FSR 1.0"
+
+
+
+msgid "UI_FSR_ULTRA_QUALITY"
+msgstr "FSR Ultra Quality"
+
+msgid "UI_FSR_QUALITY"
+msgstr "FSR Quality"
+
+msgid "UI_FSR_PERFORMANCE"
+msgstr "FSR Performance"
+
+msgid "UI_FSR_ULTRA_PERFORMANCE"
+msgstr "FSR Ultra Performance"
+
+msgid "ui.main_menu.new_game_tooltip"
+msgstr "Starts a new game from the beginning."
+
+msgid "ui.main_menu.options_tooltip"
+msgstr "Adjust game settings like video, audio, and controls."
+
+msgid "ui.main_menu.exit_tooltip"
+msgstr "Quits the game."
+
+msgid "ui.pause_menu.resume_game_tooltip"
+msgstr "Resumes the current game."
+
+msgid "ui.pause_menu.options_tooltip"
+msgstr "Adjust game settings like video, audio, and controls."
+
+msgid "ui.pause_menu.exit_tooltip"
+msgstr "Quits the game."

@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://b8n0le3mmhafb"]
+[gd_scene load_steps=17 format=3 uid="uid://b8n0le3mmhafb"]
 
 [ext_resource type="Script" uid="uid://c8soxpoohhv3k" path="res://Scripts/UI/Settings/Video/monitor.gd" id="1_ck0h6"]
 [ext_resource type="Script" uid="uid://b0to51po0ycj" path="res://Scripts/UI/Settings/Video/window.gd" id="2_jrcuf"]
@@ -6,7 +6,6 @@
 [ext_resource type="Script" uid="uid://mcw6jcmukn0p" path="res://Scripts/UI/Settings/Video/aspect.gd" id="4_fp6p0"]
 [ext_resource type="Script" uid="uid://dxglauj582j4f" path="res://Scripts/UI/Settings/Video/dynamic_render.gd" id="5_d6jo6"]
 [ext_resource type="Script" uid="uid://23p4eofu6nmn" path="res://Scripts/UI/Settings/Video/upscaling_quality.gd" id="6_b1e37"]
-
 [ext_resource type="Script" uid="uid://cil22dy7linnr" path="res://Scripts/UI/Settings/Video/frame_rate.gd" id="7_upbcw"]
 [ext_resource type="Script" uid="uid://xgcla4f0g3v0" path="res://Scripts/UI/Settings/Video/max_frame.gd" id="8_qg8p3"]
 [ext_resource type="Script" uid="uid://diqpb8y127a6m" path="res://Scripts/UI/Settings/Video/v_sync.gd" id="9_njf1s"]
@@ -16,10 +15,11 @@
 [ext_resource type="Script" uid="uid://d34h55j7rh84o" path="res://Scripts/UI/Settings/Video/shaders.gd" id="13_q7xpl"]
 [ext_resource type="Script" uid="uid://hq6ekapwquwn" path="res://Scripts/UI/Settings/Video/effects_quality.gd" id="14_buwta"]
 [ext_resource type="Script" uid="uid://bka2dvk3puxs" path="res://Scripts/UI/Settings/Video/colorblind.gd" id="15_h7rlw"]
-[ext_resource type="Script" uid="uid://6q70717rqc0r" path="res://Scripts/UI/Settings/Video/reduce_screen_shake.gd" id="16_adft6"]
 [ext_resource type="Script" uid="uid://byvycfw8yhyom" path="res://Scripts/UI/Settings/Video/ui_scale.gd" id="17_qu0a1"]
 
 [node name="VideoSettings" type="VBoxContainer"]
+offset_right = 572.0
+offset_bottom = 590.0
 theme_override_constants/separation = 10
 
 [node name="Monitor" type="HBoxContainer" parent="."]
@@ -32,6 +32,7 @@ script = ExtResource("1_ck0h6")
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 tooltip_text = "TOOLTIP_MONITOR_DESC"
+mouse_filter = 0
 text = "UI_MONITOR"
 
 [node name="MonitorOptionButton" type="OptionButton" parent="Monitor"]
@@ -50,12 +51,21 @@ script = ExtResource("2_jrcuf")
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 tooltip_text = "TOOLTIP_WINDOW_MODE_DESC"
+mouse_filter = 0
 text = "UI_WINDOW_MODE"
 
 [node name="WindowModeOptionButton" type="OptionButton" parent="Window"]
 layout_mode = 2
 size_flags_horizontal = 3
 tooltip_text = "TOOLTIP_WINDOW_MODE_DESC"
+selected = 0
+item_count = 3
+popup/item_0/text = "UI_WINDOW_MODE_WINDOWED"
+popup/item_0/id = 0
+popup/item_1/text = "UI_WINDOW_MODE_FULLSCREEN"
+popup/item_1/id = 1
+popup/item_2/text = "UI_WINDOW_MODE_BORDERLESS"
+popup/item_2/id = 2
 
 [node name="Resolution" type="HBoxContainer" parent="."]
 layout_mode = 2
@@ -68,6 +78,7 @@ script = ExtResource("3_13id4")
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 tooltip_text = "TOOLTIP_RESOLUTION_DESC"
+mouse_filter = 0
 text = "UI_RESOLUTION"
 
 [node name="ResolutionOptionButton" type="OptionButton" parent="Resolution"]
@@ -76,21 +87,19 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 tooltip_text = "TOOLTIP_RESOLUTION_DESC"
 selected = 4
-item_count = 7
-popup/item_0/text = "320x180"
-popup/item_0/id = 0
-popup/item_1/text = "640x360"
-popup/item_1/id = 1
-popup/item_2/text = "854x480"
-popup/item_2/id = 2
-popup/item_3/text = "1280x720"
-popup/item_3/id = 3
-popup/item_4/text = "1920x1080"
-popup/item_4/id = 4
-popup/item_5/text = "2560x1440"
-popup/item_5/id = 5
-popup/item_6/text = "3840x2160"
-popup/item_6/id = 6
+item_count = 6
+popup/item_0/text = "640x360"
+popup/item_0/id = 1
+popup/item_1/text = "854x480"
+popup/item_1/id = 2
+popup/item_2/text = "1280x720"
+popup/item_2/id = 3
+popup/item_3/text = "1920x1080"
+popup/item_3/id = 4
+popup/item_4/text = "2560x1440"
+popup/item_4/id = 5
+popup/item_5/text = "3840x2160"
+popup/item_5/id = 6
 
 [node name="Aspect" type="HBoxContainer" parent="."]
 layout_mode = 2
@@ -103,6 +112,7 @@ script = ExtResource("4_fp6p0")
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 tooltip_text = "TOOLTIP_ASPECT_RATIO_DESC"
+mouse_filter = 0
 text = "UI_ASPECT_RATIO"
 
 [node name="AspectRatioOptionButton" type="OptionButton" parent="Aspect"]
@@ -134,7 +144,8 @@ script = ExtResource("5_d6jo6")
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 tooltip_text = "TOOLTIP_UPSCALING_MODE_DESC"
-text = "UI_UPSCALING_MODE"
+mouse_filter = 0
+text = "UI_UPSCALE_MODE"
 
 [node name="UpscalingModeOptionButton" type="OptionButton" parent="UpscalingMode"]
 layout_mode = 2
@@ -145,9 +156,9 @@ selected = 0
 item_count = 3
 popup/item_0/text = "UI_UPSCALING_NONE"
 popup/item_0/id = 0
-popup/item_1/text = "UI_UPSCALING_FSR1"
+popup/item_1/text = "UI_UPSCALE_FSR1"
 popup/item_1/id = 1
-popup/item_2/text = "UI_UPSCALING_FSR2"
+popup/item_2/text = "UI_UPSCALE_FSR2"
 popup/item_2/id = 2
 
 [node name="UpscalingQuality" type="HBoxContainer" parent="."]
@@ -161,6 +172,7 @@ script = ExtResource("6_b1e37")
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 tooltip_text = "TOOLTIP_UPSCALING_QUALITY_DESC"
+mouse_filter = 0
 text = "UI_UPSCALING_QUALITY"
 
 [node name="UpscalingQualityOptionButton" type="OptionButton" parent="UpscalingQuality"]
@@ -190,6 +202,7 @@ script = ExtResource("7_upbcw")
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 tooltip_text = "TOOLTIP_FRAME_RATE_LIMIT_DESC"
+mouse_filter = 0
 text = "UI_FRAME_RATE_LIMIT"
 
 [node name="FrameRateLimitOptionButton" type="OptionButton" parent="FrameRate"]
@@ -204,7 +217,7 @@ popup/item_1/text = "UI_FRAME_RATE_VSYNC"
 popup/item_1/id = 1
 popup/item_2/text = "UI_FRAME_RATE_ADAPTIVE_VSYNC"
 popup/item_2/id = 2
-popup/item_3/text = "UI_FRAME_RATE_CUSTOM"
+popup/item_3/text = "UI_FPS_CUSTOM"
 popup/item_3/id = 3
 
 [node name="MaxFrame" type="HBoxContainer" parent="."]
@@ -218,6 +231,7 @@ script = ExtResource("8_qg8p3")
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 tooltip_text = "TOOLTIP_MAX_FRAME_RATE_DESC"
+mouse_filter = 0
 text = "UI_MAX_FRAME_RATE"
 
 [node name="MaxFrameRateSlider" type="HSlider" parent="MaxFrame"]
@@ -228,6 +242,12 @@ min_value = 30.0
 max_value = 300.0
 step = 2.0
 value = 300.0
+
+[node name="MaxFrameRateValueLabel" type="Label" parent="MaxFrame"]
+custom_minimum_size = Vector2(35, 0)
+layout_mode = 2
+text = "300"
+horizontal_alignment = 2
 
 [node name="VSync" type="HBoxContainer" parent="."]
 layout_mode = 2
@@ -240,6 +260,7 @@ script = ExtResource("9_njf1s")
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 tooltip_text = "TOOLTIP_VSYNC_MODE_DESC"
+mouse_filter = 0
 text = "UI_VSYNC"
 
 [node name="VSyncOptionButton" type="OptionButton" parent="VSync"]
@@ -266,6 +287,7 @@ script = ExtResource("10_8dxi5")
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 tooltip_text = "TOOLTIP_GAMMA_CORRECTION_DESC"
+mouse_filter = 0
 text = "UI_GAMMA_CORRECTION"
 
 [node name="GammaCorrectionSlider" type="HSlider" parent="GammaCorrection"]
@@ -276,6 +298,12 @@ min_value = 1.0
 max_value = 3.0
 step = 0.01
 value = 2.2
+
+[node name="GammaCorrectionValueLabel" type="Label" parent="GammaCorrection"]
+custom_minimum_size = Vector2(35, 0)
+layout_mode = 2
+text = "2.2"
+horizontal_alignment = 2
 
 [node name="Contrast" type="HBoxContainer" parent="."]
 layout_mode = 2
@@ -288,6 +316,7 @@ script = ExtResource("11_dw5bh")
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 tooltip_text = "TOOLTIP_CONTRAST_DESC"
+mouse_filter = 0
 text = "UI_CONTRAST"
 
 [node name="ContrastSlider" type="HSlider" parent="Contrast"]
@@ -298,6 +327,12 @@ min_value = 0.5
 max_value = 1.5
 step = 0.01
 value = 1.0
+
+[node name="ContrastValueLabel" type="Label" parent="Contrast"]
+custom_minimum_size = Vector2(35, 0)
+layout_mode = 2
+text = "1.0"
+horizontal_alignment = 2
 
 [node name="Brightness" type="HBoxContainer" parent="."]
 layout_mode = 2
@@ -310,6 +345,7 @@ script = ExtResource("12_8oo28")
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 tooltip_text = "TOOLTIP_BRIGHTNESS_DESC"
+mouse_filter = 0
 text = "UI_BRIGHTNESS"
 
 [node name="BrightnessSlider" type="HSlider" parent="Brightness"]
@@ -321,6 +357,12 @@ max_value = 1.5
 step = 0.01
 value = 1.0
 
+[node name="BrightnessValueLabel" type="Label" parent="Brightness"]
+custom_minimum_size = Vector2(35, 0)
+layout_mode = 2
+text = "1.0"
+horizontal_alignment = 2
+
 [node name="Shaders" type="HBoxContainer" parent="."]
 layout_mode = 2
 size_flags_vertical = 3
@@ -331,7 +373,8 @@ script = ExtResource("13_q7xpl")
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 tooltip_text = "TOOLTIP_SHADERS_QUALITY_DESC"
-text = "UI_SHADERS_QUALITY"
+mouse_filter = 0
+text = "TOOLTIP_SHADERS_QUALITY_TITLE"
 
 [node name="ShadersQualityOptionButton" type="OptionButton" parent="Shaders"]
 layout_mode = 2
@@ -357,7 +400,8 @@ script = ExtResource("14_buwta")
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 tooltip_text = "TOOLTIP_EFFECTS_QUALITY_DESC"
-text = "UI_EFFECTS_QUALITY"
+mouse_filter = 0
+text = "TOOLTIP_EFFECTS_QUALITY_TITLE"
 
 [node name="EffectsQualityOptionButton" type="OptionButton" parent="EffectsQuality"]
 layout_mode = 2
@@ -383,7 +427,8 @@ script = ExtResource("15_h7rlw")
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 tooltip_text = "TOOLTIP_COLORBLIND_MODE_DESC"
-text = "UI_COLORBLIND_MODE"
+mouse_filter = 0
+text = "TOOLTIP_COLORBLIND_MODE_TITLE"
 
 [node name="ColorblindModeOptionButton" type="OptionButton" parent="Colorblind"]
 layout_mode = 2
@@ -400,24 +445,6 @@ popup/item_2/id = 2
 popup/item_3/text = "UI_COLORBLIND_TRITANOPIA"
 popup/item_3/id = 3
 
-[node name="ReduceScreenShake" type="HBoxContainer" parent="."]
-layout_mode = 2
-size_flags_vertical = 3
-tooltip_text = "TOOLTIP_REDUCE_SCREEN_SHAKE_DESC"
-theme_override_constants/separation = 20
-script = ExtResource("16_adft6")
-
-[node name="ReduceScreenShakeLabel" type="Label" parent="ReduceScreenShake"]
-custom_minimum_size = Vector2(250, 0)
-layout_mode = 2
-tooltip_text = "TOOLTIP_REDUCE_SCREEN_SHAKE_DESC"
-text = "UI_REDUCE_SCREEN_SHAKE"
-
-[node name="ReduceScreenShakeCheckBox" type="CheckBox" parent="ReduceScreenShake"]
-layout_mode = 2
-size_flags_horizontal = 3
-tooltip_text = "TOOLTIP_REDUCE_SCREEN_SHAKE_DESC"
-
 [node name="UIScale" type="HBoxContainer" parent="."]
 layout_mode = 2
 size_flags_vertical = 3
@@ -429,12 +456,25 @@ script = ExtResource("17_qu0a1")
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 tooltip_text = "TOOLTIP_UI_SCALE_DESC"
+mouse_filter = 0
 text = "UI_SCALE_PRESET"
 
 [node name="UIScaleOptionButton" type="OptionButton" parent="UIScale"]
 layout_mode = 2
 size_flags_horizontal = 3
 tooltip_text = "TOOLTIP_UI_SCALE_DESC"
+selected = 0
+item_count = 5
+popup/item_0/text = "UI_SCALE_100_PERCENT"
+popup/item_0/id = 0
+popup/item_1/text = "UI_SCALE_125_PERCENT"
+popup/item_1/id = 1
+popup/item_2/text = "UI_SCALE_150_PERCENT"
+popup/item_2/id = 2
+popup/item_3/text = "UI_SCALE_175_PERCENT"
+popup/item_3/id = 3
+popup/item_4/text = "UI_SCALE_200_PERCENT"
+popup/item_4/id = 4
 
 [connection signal="item_selected" from="Monitor/MonitorOptionButton" to="Monitor" method="_on_monitor_option_button_item_selected"]
 [connection signal="item_selected" from="Window/WindowModeOptionButton" to="Window" method="_on_window_mode_option_button_item_selected"]

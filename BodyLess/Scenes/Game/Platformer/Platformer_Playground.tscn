@@ -1,5 +1,0 @@
-[gd_scene load_steps=1 format=3 uid="uid://new_platformer_playground_uid"]
-
-[node name="Platformer_Playground" type="Node2D"]
-
-[node name="TileMap" type="TileMap" parent="."]

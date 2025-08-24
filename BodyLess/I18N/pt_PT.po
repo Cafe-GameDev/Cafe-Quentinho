@@ -208,34 +208,34 @@ msgid "UI_LANGUAGE_PT_PT"
 msgstr "Português (Portugal)"
 
 msgid "UI_LANGUAGE_ES_ES"
-msgstr "Español (España)"
+msgstr "Espanhol (Espanha)"
 
 msgid "UI_LANGUAGE_ES_LA"
-msgstr "Español (América)"
+msgstr "Espanhol (América)"
 
 msgid "UI_LANGUAGE_FR"
-msgstr "Français"
+msgstr "Francês"
 
 msgid "UI_LANGUAGE_DE"
-msgstr "Deutsch"
+msgstr "Alemão"
 
 msgid "UI_LANGUAGE_IT"
 msgstr "Italiano"
 
 msgid "UI_LANGUAGE_NL"
-msgstr "Nederlands"
+msgstr "Holandês"
 
 msgid "UI_LANGUAGE_JA"
-msgstr "日本語"
+msgstr "Japonês"
 
 msgid "UI_LANGUAGE_KO"
-msgstr "한국어"
+msgstr "Coreano"
 
 msgid "UI_LANGUAGE_RU"
-msgstr "Русский"
+msgstr "Russo"
 
 msgid "UI_LANGUAGE_ZH"
-msgstr "中文"
+msgstr "Chinês"
 
 msgid "UI_LANGUAGE_EN_IN"
 msgstr "Inglês (Índia)"
@@ -290,3 +290,57 @@ msgstr "Jogo carregado com sucesso!"
 
 msgid "TOAST_ERROR_LOAD_FAILED_MESSAGE"
 msgstr "Falha ao carregar o progresso do jogo."
+
+msgid "UI_ASPECT_RATIO"
+msgstr "Proporção do Ecrã"
+
+msgid "UI_UPSCALE_MODE"
+msgstr "Modo de Upscale"
+
+msgid "UI_UPSCALING_QUALITY"
+msgstr "Qualidade de Upscale"
+
+msgid "UI_UPSCALING_NONE"
+msgstr "Nenhum"
+
+msgid "UI_FSR_BALANCED"
+msgstr "FSR Equilibrado"
+
+msgid "UI_UPSCALE_FSR1"
+msgstr "FSR 1.0"
+
+msgid "UI_UPSCALE_FSR2"
+msgstr "FSR 2.0"
+
+msgid "UI_FSR_ULTRA_QUALITY"
+msgstr "FSR Qualidade Ultra"
+
+msgid "UI_FSR_QUALITY"
+msgstr "FSR Qualidade"
+
+msgid "UI_FSR_PERFORMANCE"
+msgstr "FSR Desempenho"
+
+msgid "UI_FSR_ULTRA_PERFORMANCE"
+msgstr "FSR Desempenho Ultra"
+
+msgid "UI_RESET_DEFAULTS"
+msgstr "Redefinir Padrões"
+
+msgid "ui.main_menu.new_game_tooltip"
+msgstr "Inicia um novo jogo desde o início."
+
+msgid "ui.main_menu.options_tooltip"
+msgstr "Ajusta as definições do jogo, como vídeo, áudio e controlos."
+
+msgid "ui.main_menu.exit_tooltip"
+msgstr "Sai do jogo."
+
+msgid "ui.pause_menu.resume_game_tooltip"
+msgstr "Retoma o jogo atual."
+
+msgid "ui.pause_menu.options_tooltip"
+msgstr "Ajusta as definições do jogo, como vídeo, áudio e controlos."
+
+msgid "ui.pause_menu.exit_tooltip"
+msgstr "Sai do jogo."

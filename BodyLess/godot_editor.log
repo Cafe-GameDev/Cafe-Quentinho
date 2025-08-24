@@ -1,0 +1,257 @@
+Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org
+TextServer: Added interface "Dummy"
+TextServer: Added interface "ICU / HarfBuzz / Graphite (Built-in)"
+Native OpenGL API detected: 3.3: Intel - Intel(R) Iris(R) Xe Graphics
+Using "winink" pen tablet driver...
+Shader 'CanvasSdfShaderGLES3' SHA256: 509f7b1f1d8d0c0e4176bbb258f6ba37ea01e349485f5c82899463d8a09ede9e
+Shader 'SkeletonShaderGLES3' SHA256: c60034cb9f9a567b99d60d37e9939c38d926456a1e15ae21f5f89c4af0512f1b
+Shader 'ParticlesShaderGLES3' SHA256: de46c5f1c7b11d22d0af1026dfafb9c2cf1d08b47b1129368a41cb21ebc35b0d
+Shader 'ParticlesCopyShaderGLES3' SHA256: 6adac6320e37d15401a43375295bda3ba2651d754e2328d942cee0e344debb7c
+Shader 'CopyShaderGLES3' SHA256: f4dfc8377206ece159f71da846071cbf05f3eaad3f02b8a4125a8b8549bd23f7
+Shader 'CubemapFilterShaderGLES3' SHA256: 1e11a31ca24095b6210a1e3d6c14d86026d4df7ac74a9c931cb5c7334e543e83
+Shader 'GlowShaderGLES3' SHA256: 3f45dc4bccec8114437020559fcb439daa9f6dbb0f00cea4977733ed2fa0757a
+Shader 'PostShaderGLES3' SHA256: 81b663ec474fddbcdf11899e1bfa273be1bb4c75e20afbda6b6f795bc9c08676
+Shader 'FeedShaderGLES3' SHA256: 2d730bcc6332b12adca8b1c5963319330d11250349e043639b4dd85652a9d591
+Shader 'CanvasShaderGLES3' SHA256: 1ba668da9c501af427e637089337006fc010644fb7ce58708c3dc8c12a14d5ad
+Shader 'CanvasOcclusionShaderGLES3' SHA256: 8f3734520038f48b21f1ab2f15546e3c2780eb6a260155a18efe6db9f7a4466b
+Shader 'SceneShaderGLES3' SHA256: 1f15c5c9a1d1ffce4f9eb172fb8a52b9d8f9b3ed993845564f83a7045581af16
+Shader 'SkyShaderGLES3' SHA256: 8e147ba2d0d934931c1af4081ccf46951dc65f68a1b911042c525e1fa86e4376
+OpenGL API 3.3.0 - Build 30.0.101.1960 - Compatibility - Using Device: Intel - Intel(R) Iris(R) Xe Graphics
+WASAPI: Activated output_device using IAudioClient3 interface
+WASAPI: wFormatTag = 65534
+WASAPI: nChannels = 2
+WASAPI: nSamplesPerSec = 48000
+WASAPI: nAvgBytesPerSec = 384000
+WASAPI: nBlockAlign = 8
+WASAPI: wBitsPerSample = 32
+WASAPI: cbSize = 22
+WASAPI: mix_rate = 48000
+WASAPI: fundamental_period_frames = 480
+WASAPI: min_period_frames = 480
+WASAPI: max_period_frames = 480
+WASAPI: selected a period frame size of 480
+WASAPI: detected 2 channels
+WASAPI: audio buffer frames: 480 calculated latency: 10ms
+
+Loading resource: res://I18N/pt_BR.po
+Loading resource: res://I18N/pt_PT.po
+Loading resource: res://I18N/en_US.po
+Loading resource: res://I18N/en_GB.po
+Loading resource: res://I18N/en_IN.po
+Loading resource: res://I18N/es_LA.po
+Loading resource: res://I18N/es_ES.po
+Loading resource: res://I18N/de.po
+Loading resource: res://I18N/fr.po
+Loading resource: res://I18N/it.po
+Loading resource: res://I18N/ja.po
+Loading resource: res://I18N/ko.po
+Loading resource: res://I18N/ru.po
+Loading resource: res://I18N/zh_Hans.po
+Loading resource: res://I18N/zh_Hant.po
+TextServer: Primary interface set to: "ICU / HarfBuzz / Graphite (Built-in)".
+Loading resource: res://Resources/default_bus_layout.tres
+CORE API HASH: 4052744068
+EDITOR API HASH: 910296392
+Loading resource: C:/Users/bruno/AppData/Roaming/Godot/editor_settings-4.4.tres
+EditorSettings: Load OK!
+EditorTheme: Generating new theme for the config '2106092673'.
+EditorTheme: Generating new icons.
+EditorTheme: Generating new fonts.
+EditorTheme: Generating new styles.
+EditorSettings: Save OK!
+Loading resource: C:/Users/bruno/AppData/Local/Godot/editor_doc_cache-4.4.res
+MbedTLS: Some X509 certificates could not be parsed (1 certificates skipped).
+Loaded system CA certificates
+Loading resource: res://Singletons/Scripts/settings_manager.gd
+Loading resource: res://Singletons/Scripts/game_manager.gd
+Loading resource: res://Singletons/Scenes/audio_manager.tscn
+Loading resource: res://Singletons/Scripts/audio_manager.gd
+Loading resource: res://Singletons/Scenes/debug_console.tscn
+Loading resource: res://Singletons/Scripts/debug_console.gd
+Loading resource: res://Singletons/Scripts/input_manager.gd
+Loading resource: res://Scripts/UI/Settings/Video/frame_rate.gd
+Loading resource: res://Singletons/Scenes/scene_manager.tscn
+Loading resource: res://Scenes/UI/quit_confirmation_dialog.tscn
+Loading resource: res://Scripts/UI/quit_confirmation_dialog.gd
+Loading resource: res://Scenes/UI/pause_menu.tscn
+Loading resource: res://Scripts/UI/pause_menu.gd
+Loading resource: res://Scenes/UI/main_menu.tscn
+Loading resource: res://Scripts/UI/main_menu.gd
+Loading resource: res://Scenes/UI/options_menu.tscn
+Loading resource: res://Scripts/UI/options_menu.gd
+Loading resource: res://Scenes/UI/Settings/video_settings.tscn
+Loading resource: res://Scripts/UI/Settings/Video/monitor.gd
+Loading resource: res://Scripts/UI/Settings/Video/window.gd
+Loading resource: res://Scripts/UI/Settings/Video/resolution.gd
+Loading resource: res://Scripts/UI/Settings/Video/aspect.gd
+Loading resource: res://Scripts/UI/Settings/Video/dynamic_render.gd
+Loading resource: res://Scripts/UI/Settings/Video/upscaling_quality.gd
+Loading resource: res://Scripts/UI/Settings/Video/max_frame.gd
+Loading resource: res://Scripts/UI/Settings/Video/v_sync.gd
+Loading resource: res://Scripts/UI/Settings/Video/gamma_correction.gd
+Loading resource: res://Scripts/UI/Settings/Video/contrast.gd
+Loading resource: res://Scripts/UI/Settings/Video/brightness.gd
+Loading resource: res://Scripts/UI/Settings/Video/shaders.gd
+Loading resource: res://Scripts/UI/Settings/Video/effects_quality.gd
+Loading resource: res://Scripts/UI/Settings/Video/colorblind.gd
+Loading resource: res://Scripts/UI/Settings/Video/ui_scale.gd
+Loading resource: res://Scenes/UI/Settings/audio_settings.tscn
+Loading resource: res://Scripts/UI/Settings/Audio/master.gd
+Loading resource: res://Scripts/UI/Settings/Audio/music.gd
+Loading resource: res://Scripts/UI/Settings/Audio/sfx.gd
+Loading resource: res://Scenes/UI/Settings/language_settings.tscn
+Loading resource: res://Scripts/UI/Settings/Locate/language_options.gd
+Loading resource: res://Scenes/UI/Settings/input_map_settings.tscn
+Loading resource: res://Scenes/UI/options_menu.tscn
+Loading resource: res://Scenes/UI/Settings/video_settings.tscn
+Loading resource: res://Scenes/UI/Settings/audio_settings.tscn
+Loading resource: res://Scenes/UI/Settings/input_map_settings.tscn
+Loading resource: res://Scenes/UI/Settings/language_settings.tscn
+Generated 'res://Docs/A/addons.md' preview in 595 usec
+Generated 'res://Docs/A/android.md' preview in 406 usec
+Generated 'res://Docs/A/assets.md' preview in 752 usec
+Generated 'res://Docs/A/audio_structure.md' preview in 366 usec
+Generated 'res://Docs/A/autoloads.md' preview in 356 usec
+Generated 'res://Docs/A/crafts_build.md' preview in 312 usec
+Generated 'res://Docs/A/cutscenes.md' preview in 470 usec
+Generated 'res://Docs/A/fsm.md' preview in 614 usec
+Generated 'res://Docs/A/geracao_procedural.md' preview in 324 usec
+Generated 'res://Docs/A/gestao_mundos_grandes_mundo_aberto.md' preview in 351 usec
+Generated 'res://Docs/A/guia_id_xbox.md' preview in 574 usec
+Generated 'res://Docs/A/html5.md' preview in 424 usec
+Generated 'res://Docs/A/ios.md' preview in 373 usec
+Generated 'res://Docs/A/machine_learning_ia.md' preview in 322 usec
+Generated 'res://Docs/A/macos.md' preview in 262 usec
+Generated 'res://Docs/A/multiplayer_local_lan.md' preview in 299 usec
+Generated 'res://Docs/A/multithreading.md' preview in 342 usec
+Generated 'res://Docs/A/nintendo_switch.md' preview in 583 usec
+Generated 'res://Docs/A/nodes.md' preview in 300 usec
+Generated 'res://Docs/A/path_tracing_iluminacao_avancada.md' preview in 265 usec
+Generated 'res://Docs/A/playstation.md' preview in 251 usec
+Generated 'res://Docs/A/rog_ally.md' preview in 302 usec
+Generated 'res://Docs/A/save_em_nuvem.md' preview in 354 usec
+Generated 'res://Docs/A/scenes.md' preview in 263 usec
+Generated 'res://Docs/A/scripts.md' preview in 325 usec
+Generated 'res://Docs/A/shaders.md' preview in 363 usec
+Generated 'res://Docs/A/signals.md' preview in 544 usec
+Generated 'res://Docs/A/splitscreen.md' preview in 267 usec
+Generated 'res://Docs/A/steam_deck.md' preview in 252 usec
+Generated 'res://Docs/A/tests.md' preview in 305 usec
+Generated 'res://Docs/A/upscale_downscale.md' preview in 281 usec
+Generated 'res://Docs/A/xbox.md' preview in 282 usec
+Generated 'res://Docs/A/Xbox_Ally.md' preview in 377 usec
+Generated 'res://Docs/guias/glossary.md' preview in 358 usec
+Generated 'res://Docs/guias/guia_api.md' preview in 595 usec
+Generated 'res://Docs/guias/guia_audio.md' preview in 270 usec
+Generated 'res://Docs/guias/guia_fsm.md' preview in 266 usec
+Generated 'res://Docs/guias/guia_juice.md' preview in 296 usec
+Generated 'res://Docs/guias/guia_level_design.md' preview in 292 usec
+Generated 'res://Docs/guias/guia_multiplayer_local.md' preview in 352 usec
+Generated 'res://Docs/guias/guia_pixel_art.md' preview in 390 usec
+Generated 'res://Docs/guias/guia_resources.md' preview in 328 usec
+Generated 'res://Docs/guias/guia_salto_kinematic.md' preview in 643 usec
+Generated 'res://Docs/guias/guia_settings.md' preview in 289 usec
+Generated 'res://Docs/guias/guia_shaders.md' preview in 279 usec
+Generated 'res://Docs/guias/guia_sinais.md' preview in 266 usec
+Generated 'res://Docs/guias/guia_singletons.md' preview in 385 usec
+Generated 'res://Docs/guias/guia_sistema_inventario.md' preview in 365 usec
+Generated 'res://Docs/guias/guia_sistema_save.md' preview in 422 usec
+Generated 'res://Docs/guias/guia_tweens.md' preview in 503 usec
+Generated 'res://Docs/guias/guia_viewport.md' preview in 789 usec
+Generated 'res://Docs/ADD_TemplateFramework.md' preview in 288 usec
+Generated 'res://Docs/GDD_Template.md' preview in 271 usec
+Generated 'res://Docs/GoogleSearch.md' preview in 270 usec
+Generated 'res://Docs/TDD_TemplateFramework.md' preview in 340 usec
+Generated 'res://I18N/de.po' preview in 28 usec
+Generated 'res://I18N/en_GB.po' preview in 18 usec
+Generated 'res://I18N/en_IN.po' preview in 15 usec
+Generated 'res://I18N/en_US.po' preview in 15 usec
+Generated 'res://I18N/es_ES.po' preview in 19 usec
+Generated 'res://I18N/es_LA.po' preview in 39 usec
+Generated 'res://I18N/fr.po' preview in 15 usec
+Generated 'res://I18N/it.po' preview in 13 usec
+Generated 'res://I18N/ja.po' preview in 13 usec
+Generated 'res://I18N/ko.po' preview in 14 usec
+Generated 'res://I18N/pt_BR.po' preview in 14 usec
+Generated 'res://I18N/pt_PT.po' preview in 14 usec
+Generated 'res://I18N/ru.po' preview in 14 usec
+Generated 'res://I18N/zh_Hans.po' preview in 14 usec
+Generated 'res://I18N/zh_Hant.po' preview in 14 usec
+Generated 'res://Resources/default_bus_layout.tres' preview in 253 usec
+Generated 'res://Scenes/UI/Components/CoachMark.tscn' preview in 64 usec
+Generated 'res://Scenes/UI/Components/Popover.tscn' preview in 74 usec
+Generated 'res://Scenes/UI/Components/Toast.tscn' preview in 49 usec
+Generated 'res://Scenes/UI/Components/Tooltip.tscn' preview in 69 usec
+Generated 'res://Scenes/UI/Settings/Language/language_button.tscn' preview in 61 usec
+Generated 'res://Scenes/UI/Settings/input_row_template.tscn' preview in 67 usec
+Generated 'res://Scenes/UI/Tooltip/Tooltip.tscn' preview in 56 usec
+Generated 'res://Scenes/UI/gamma_correction_overlay.tscn' preview in 58 usec
+Generated 'res://Scenes/UI/main_menu.tscn' preview in 73 usec
+Generated 'res://Scenes/UI/pause_menu.tscn' preview in 51 usec
+Generated 'res://Scenes/UI/quit_confirmation_dialog.tscn' preview in 46 usec
+Generated 'res://Scripts/UI/Settings/Video/frame_rate.gd' preview in 43556 usec
+Generated 'res://Singletons/Scenes/audio_manager.tscn' preview in 57 usec
+Generated 'res://Singletons/Scenes/debug_console.tscn' preview in 52 usec
+Generated 'res://Singletons/Scripts/settings_manager.gd' preview in 33115 usec
+Generated 'res://GEMINI.md' preview in 398 usec
+Generated 'res://godot_editor.log' preview in 456 usec
+Generated 'res://README.md' preview in 674 usec
+Generated 'ID:-9223369888532185629' preview in 966 usec
+Loading resource: res://Scenes/UI/main_menu.tscn
+Loading resource: res://Scenes/UI/pause_menu.tscn
+Loading resource: res://Scenes/UI/options_menu.tscn
+Loading resource: res://Scenes/UI/quit_confirmation_dialog.tscn
+Running: C:/Users/bruno/Documents/Godot_v4.4.1-stable_win64_console.exe
+ %s --verbose
+ %s --path
+ %s C:/Users/bruno/Desktop/Nova%20pasta%20(2)/HeadLess
+ %s --remote-debug
+ %s tcp://127.0.0.1:6007
+ %s --editor-pid
+ %s 9000
+ %s uid://bqf02v5eog068
+ %s --wid
+ %s 3409024
+ %s --position
+ %s 2400,234
+ %s --resolution
+ %s 960x540
+Generated 'res://Scenes/UI/Settings/audio_settings.tscn' preview in 39901 usec
+Generated 'res://Scenes/UI/Settings/input_map_settings.tscn' preview in 40601 usec
+Generated 'res://Scenes/UI/Settings/language_settings.tscn' preview in 51158 usec
+Generated 'res://Scenes/UI/Settings/video_settings.tscn' preview in 36162 usec
+Generated 'res://Scenes/UI/options_menu.tscn' preview in 25728 usec
+Generated 'res://Singletons/Scenes/scene_manager.tscn' preview in 22522 usec
+Loading resource: res://Scenes/UI/main_menu.tscn
+Loading resource: res://Scenes/UI/pause_menu.tscn
+Loading resource: res://Scenes/UI/options_menu.tscn
+Loading resource: res://Scenes/UI/quit_confirmation_dialog.tscn
+Running: C:/Users/bruno/Documents/Godot_v4.4.1-stable_win64_console.exe
+ %s --verbose
+ %s --path
+ %s C:/Users/bruno/Desktop/Nova%20pasta%20(2)/HeadLess
+ %s --remote-debug
+ %s tcp://127.0.0.1:6007
+ %s --editor-pid
+ %s 9000
+ %s uid://bqf02v5eog068
+ %s --wid
+ %s 2360542
+ %s --position
+ %s 2400,234
+ %s --resolution
+ %s 960x540
+Generated 'res://Scenes/UI/Settings/audio_settings.tscn' preview in 44681 usec
+Generated 'res://Scenes/UI/Settings/input_map_settings.tscn' preview in 40475 usec
+Generated 'res://Scenes/UI/Settings/language_settings.tscn' preview in 47240 usec
+Generated 'res://Scenes/UI/Settings/video_settings.tscn' preview in 33346 usec
+Generated 'res://Scenes/UI/options_menu.tscn' preview in 43028 usec
+Generated 'res://Singletons/Scenes/scene_manager.tscn' preview in 45830 usec
+WARNING: Scan thread aborted...
+   at: _notification (editor/editor_file_system.cpp:1710)
+EditorSettings: Save OK!
+XR: Clearing primary interface
+XR: Removed interface "Native mobile"
+XR: Removed interface "OpenXR"
+Orphan StringName: Node (static: 9, total: 10)
+StringName: 1 unclaimed string names at exit.

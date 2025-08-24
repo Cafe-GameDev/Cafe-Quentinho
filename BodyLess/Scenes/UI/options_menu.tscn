@@ -1,6 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://cy8wdupgurgfc"]
+[gd_scene load_steps=6 format=3 uid="uid://xsfe4eohtxl4"]
 
-[ext_resource type="Script" path="res://Scripts/UI/options_menu.gd" id="1_run4o"]
+[ext_resource type="Script" uid="uid://bn5pjvf7wbdv4" path="res://Scripts/UI/options_menu.gd" id="1_run4o"]
 [ext_resource type="PackedScene" uid="uid://b8n0le3mmhafb" path="res://Scenes/UI/Settings/video_settings.tscn" id="2_yjqj2"]
 [ext_resource type="PackedScene" uid="uid://dat2iwiarvvxj" path="res://Scenes/UI/Settings/audio_settings.tscn" id="3_x3x5h"]
 [ext_resource type="PackedScene" uid="uid://bey3t3k4biaww" path="res://Scenes/UI/Settings/language_settings.tscn" id="4_3tdd8"]
@@ -14,6 +14,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 script = ExtResource("1_run4o")
 
 [node name="Background" type="ColorRect" parent="."]
@@ -24,6 +26,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.784314)
+metadata/_edit_use_anchors_ = true
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -124,20 +127,64 @@ layout_mode = 2
 size_flags_vertical = 3
 text = "UI_VIDEO"
 
+[node name="VideoModulate" type="ColorRect" parent="PanelContainer/Margin/Box/ContentHBox/ScrollList/CategoryList/VideoButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+mouse_filter = 2
+color = Color(0.392157, 0.392157, 0.392157, 0.156863)
+
 [node name="AudioButton" type="Button" parent="PanelContainer/Margin/Box/ContentHBox/ScrollList/CategoryList"]
 layout_mode = 2
 size_flags_vertical = 3
 text = "UI_AUDIO"
+
+[node name="AudioModulate" type="ColorRect" parent="PanelContainer/Margin/Box/ContentHBox/ScrollList/CategoryList/AudioButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+mouse_filter = 2
+color = Color(0.392157, 0.392157, 0.392157, 0)
 
 [node name="InputMapButton" type="Button" parent="PanelContainer/Margin/Box/ContentHBox/ScrollList/CategoryList"]
 layout_mode = 2
 size_flags_vertical = 3
 text = "UI_INPUTMAP"
 
+[node name="InputModulate" type="ColorRect" parent="PanelContainer/Margin/Box/ContentHBox/ScrollList/CategoryList/InputMapButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+mouse_filter = 2
+color = Color(0.392157, 0.392157, 0.392157, 0)
+
 [node name="LanguageButton" type="Button" parent="PanelContainer/Margin/Box/ContentHBox/ScrollList/CategoryList"]
 layout_mode = 2
 size_flags_vertical = 3
 text = "UI_LANGUAGE"
+
+[node name="LanguageModulate" type="ColorRect" parent="PanelContainer/Margin/Box/ContentHBox/ScrollList/CategoryList/LanguageButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+mouse_filter = 2
+color = Color(0.392157, 0.392157, 0.392157, 0)
 
 [node name="Spacer" type="Control" parent="PanelContainer/Margin/Box/ContentHBox/ScrollList/CategoryList"]
 layout_mode = 2
@@ -156,16 +203,24 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="VideoSettings" parent="PanelContainer/Margin/Box/ContentHBox/ScrollContent/CategoryContent" instance=ExtResource("2_yjqj2")]
+custom_minimum_size = Vector2(572, 0)
 layout_mode = 2
+size_flags_vertical = 3
 
 [node name="AudioSettings" parent="PanelContainer/Margin/Box/ContentHBox/ScrollContent/CategoryContent" instance=ExtResource("3_x3x5h")]
+visible = false
 layout_mode = 2
+size_flags_vertical = 3
 
 [node name="InputMapSettings" parent="PanelContainer/Margin/Box/ContentHBox/ScrollContent/CategoryContent" instance=ExtResource("4_x3x5h")]
+visible = false
 layout_mode = 2
+size_flags_vertical = 3
 
 [node name="LanguageSettings" parent="PanelContainer/Margin/Box/ContentHBox/ScrollContent/CategoryContent" instance=ExtResource("4_3tdd8")]
+visible = false
 layout_mode = 2
+size_flags_vertical = 3
 
 [node name="Spacer" type="Control" parent="PanelContainer/Margin/Box/ContentHBox/ScrollContent/CategoryContent"]
 layout_mode = 2
@@ -188,6 +243,17 @@ custom_minimum_size = Vector2(254, 0)
 layout_mode = 2
 text = "UI_BACK"
 
+[node name="BackRect" type="ColorRect" parent="PanelContainer/Margin/Box/BottomButtonsContainer/BackButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+mouse_filter = 2
+color = Color(0.392157, 0.392157, 0.392157, 0)
+
 [node name="VSeparator" type="VSeparator" parent="PanelContainer/Margin/Box/BottomButtonsContainer"]
 layout_mode = 2
 
@@ -195,6 +261,17 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 text = "UI_APPLY"
+
+[node name="ApplyRect" type="ColorRect" parent="PanelContainer/Margin/Box/BottomButtonsContainer/ApplyButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+mouse_filter = 2
+color = Color(0.392157, 0.392157, 0.392157, 0)
 
 [connection signal="pressed" from="PanelContainer/Margin/Box/ContentHBox/ScrollList/CategoryList/VideoButton" to="." method="_on_video_button_pressed"]
 [connection signal="pressed" from="PanelContainer/Margin/Box/ContentHBox/ScrollList/CategoryList/AudioButton" to="." method="_on_audio_button_pressed"]

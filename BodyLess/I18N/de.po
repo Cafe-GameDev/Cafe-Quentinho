@@ -135,6 +135,9 @@ msgstr "Fenstermodus"
 msgid "UI_WINDOW_MODE_FULLSCREEN"
 msgstr "Vollbild"
 
+msgid "UI_WINDOW_MODE_BORDERLESS"
+msgstr "Rahmenlos"
+
 msgid "UI_RESOLUTION"
 msgstr "Auflösung"
 
@@ -285,14 +288,55 @@ msgstr "Yoruba"
 msgid "UI_LANGUAGE_BN"
 msgstr "Bengali"
 
-msgid "TOAST_LOAD_SUCCESS_MESSAGE"
-msgstr "Game loaded successfully!"
 
-msgid "TOAST_ERROR_LOAD_FAILED_MESSAGE"
-msgstr "Failed to load game progress."
 
-msgid "TOAST_ITEM_USED_MESSAGE"
-msgstr "Item used: {item_name}!"
+msgid "UI_ASPECT_RATIO"
+msgstr "Seitenverhältnis"
 
-msgid "TOAST_ITEM_EQUIPPED_MESSAGE"
-msgstr "Item equipped: {item_name}!"
+msgid "UI_UPSCALE_MODE"
+msgstr "Upscale-Modus"
+
+msgid "UI_UPSCALING_QUALITY"
+msgstr "Upscaling-Qualität"
+
+msgid "UI_UPSCALING_NONE"
+msgstr "Keine"
+
+msgid "UI_FSR_BALANCED"
+msgstr "FSR Ausgewogen"
+
+msgid "UI_UPSCALE_FSR1"
+msgstr "FSR 1.0"
+
+msgid "UI_UPSCALE_FSR2"
+msgstr "FSR 2.0"
+
+msgid "UI_FSR_ULTRA_QUALITY"
+msgstr "FSR Ultra Qualität"
+
+msgid "UI_FSR_QUALITY"
+msgstr "FSR Qualität"
+
+msgid "UI_FSR_PERFORMANCE"
+msgstr "FSR Leistung"
+
+msgid "UI_FSR_ULTRA_PERFORMANCE"
+msgstr "FSR Ultra Leistung"
+
+msgid "UI_RESET_DEFAULTS"
+msgstr "Standard wiederherstellen"
+
+msgid "UI_SCALE_100_PERCENT"
+msgstr "100%"
+
+msgid "UI_SCALE_125_PERCENT"
+msgstr "125%"
+
+msgid "UI_SCALE_150_PERCENT"
+msgstr "150%"
+
+msgid "UI_SCALE_175_PERCENT"
+msgstr "175%"
+
+msgid "UI_SCALE_200_PERCENT"
+msgstr "200%"

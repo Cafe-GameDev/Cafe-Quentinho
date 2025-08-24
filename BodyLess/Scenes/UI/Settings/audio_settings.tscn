@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://dq12omuvgwn8k" path="res://Scripts/UI/Settings/Audio/sfx.gd" id="3_6doi4"]
 
 [node name="AudioSettings" type="VBoxContainer"]
-visible = false
+custom_minimum_size = Vector2(572, 0)
 theme_override_constants/separation = 10
 
 [node name="Master" type="HBoxContainer" parent="."]
@@ -28,6 +28,11 @@ max_value = 1.0
 step = 0.01
 value = 1.0
 
+[node name="MasterValueLabel" type="Label" parent="Master"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+text = "100%"
+
 [node name="Music" type="HBoxContainer" parent="."]
 layout_mode = 2
 size_flags_vertical = 3
@@ -49,6 +54,11 @@ max_value = 1.0
 step = 0.01
 value = 1.0
 
+[node name="MusicValueLabel" type="Label" parent="Music"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+text = "100%"
+
 [node name="SFX" type="HBoxContainer" parent="."]
 layout_mode = 2
 size_flags_vertical = 3
@@ -69,6 +79,11 @@ tooltip_text = "TOOLTIP_SFX_VOLUME_DESC"
 max_value = 1.0
 step = 0.01
 value = 1.0
+
+[node name="SfxValueLabel" type="Label" parent="SFX"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+text = "100%"
 
 [connection signal="drag_ended" from="Master/MasterSlider" to="Master" method="_on_master_slider_drag_ended"]
 [connection signal="drag_ended" from="Music/MusicSlider" to="Music" method="_on_music_slider_drag_ended"]

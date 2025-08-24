@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://xc4la75a5m4q"]
+[gd_scene load_steps=2 format=3 uid="uid://b4b5bm4br5j6a"]
 
-[ext_resource type="Script" path="res://Scripts/UI/pause_menu.gd" id="1_rrvs5"]
+[ext_resource type="Script" uid="uid://j7kgorat6c5a" path="res://Scripts/UI/pause_menu.gd" id="1_rrvs5"]
 
 [node name="PauseMenu" type="Control"]
 process_mode = 3
@@ -63,15 +63,6 @@ text = "UI_OPTIONS"
 layout_mode = 2
 text = "UI_EXIT"
 
-[node name="ChangeGameButton" type="Button" parent="MainButtons"]
-layout_mode = 2
-text = "UI_CHANGE_GAME"
-
-[connection signal="mouse_entered" from="MainButtons/NewGameButton" to="." method="_on_button_mouse_entered"]
-[connection signal="mouse_entered" from="MainButtons/OptionsButton" to="." method="_on_button_mouse_entered"]
-[connection signal="mouse_entered" from="MainButtons/ExitButton" to="." method="_on_button_mouse_entered"]
-[connection signal="mouse_entered" from="MainButtons/ChangeGameButton" to="." method="_on_button_mouse_entered"]
-[connection signal="pressed" from="MainButtons/NewGameButton" to="." method="_on_new_game_button_pressed"]
+[connection signal="pressed" from="MainButtons/NewGameButton" to="." method="_on_resume_button_pressed"]
 [connection signal="pressed" from="MainButtons/OptionsButton" to="." method="_on_options_button_pressed"]
 [connection signal="pressed" from="MainButtons/ExitButton" to="." method="_on_exit_button_pressed"]
-[connection signal="pressed" from="MainButtons/ChangeGameButton" to="." method="_on_change_game_button_pressed"]

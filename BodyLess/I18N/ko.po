@@ -135,6 +135,9 @@ msgstr "창 모드"
 msgid "UI_WINDOW_MODE_FULLSCREEN"
 msgstr "전체 화면"
 
+msgid "UI_WINDOW_MODE_BORDERLESS"
+msgstr "테두리 없는 창"
+
 msgid "UI_RESOLUTION"
 msgstr "해상도"
 
@@ -285,14 +288,55 @@ msgstr "요루바어"
 msgid "UI_LANGUAGE_BN"
 msgstr "벵골어"
 
-msgid "TOAST_LOAD_SUCCESS_MESSAGE"
-msgstr "Game loaded successfully!"
 
-msgid "TOAST_ERROR_LOAD_FAILED_MESSAGE"
-msgstr "Failed to load game progress."
 
-msgid "TOAST_ITEM_USED_MESSAGE"
-msgstr "Item used: {item_name}!"
+msgid "UI_ASPECT_RATIO"
+msgstr "화면 비율"
 
-msgid "TOAST_ITEM_EQUIPPED_MESSAGE"
-msgstr "Item equipped: {item_name}!"
+msgid "UI_UPSCALE_MODE"
+msgstr "업스케일 모드"
+
+msgid "UI_UPSCALING_QUALITY"
+msgstr "업스케일링 품질"
+
+msgid "UI_UPSCALING_NONE"
+msgstr "없음"
+
+msgid "UI_FSR_BALANCED"
+msgstr "FSR 균형"
+
+msgid "UI_UPSCALE_FSR1"
+msgstr "FSR 1.0"
+
+msgid "UI_UPSCALE_FSR2"
+msgstr "FSR 2.0"
+
+msgid "UI_FSR_ULTRA_QUALITY"
+msgstr "FSR 울트라 품질"
+
+msgid "UI_FSR_QUALITY"
+msgstr "FSR 품질"
+
+msgid "UI_FSR_PERFORMANCE"
+msgstr "FSR 성능"
+
+msgid "UI_FSR_ULTRA_PERFORMANCE"
+msgstr "FSR 울트라 성능"
+
+msgid "UI_RESET_DEFAULTS"
+msgstr "기본값으로 재설정"
+
+msgid "UI_SCALE_100_PERCENT"
+msgstr "100%"
+
+msgid "UI_SCALE_125_PERCENT"
+msgstr "125%"
+
+msgid "UI_SCALE_150_PERCENT"
+msgstr "150%"
+
+msgid "UI_SCALE_175_PERCENT"
+msgstr "175%"
+
+msgid "UI_SCALE_200_PERCENT"
+msgstr "200%"

@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://d20d20d20d20d20d"]
+[gd_scene load_steps=3 format=3 uid="uid://cxwlrnq5mpovp"]
 
 [ext_resource type="Script" path="res://Scripts/UI/gamma_correction_overlay.gd" id="1_bu6qsgk4fdcx7"]
 [ext_resource type="Shader" path="res://Resources/Shaders/gamma_correction_shader.gdshader" id="2_itpp2std32bl"]

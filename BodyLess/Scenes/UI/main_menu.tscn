@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://oy5s0xerhufo"]
+[gd_scene load_steps=2 format=3 uid="uid://cgrv6f7vj3l3g"]
 
-[ext_resource type="Script" path="res://Scripts/UI/main_menu.gd" id="1_5wsvm"]
+[ext_resource type="Script" uid="uid://ba0vkmgxvn1oh" path="res://Scripts/UI/main_menu.gd" id="1_5wsvm"]
 
 [node name="MainMenu" type="Control"]
 process_mode = 3
@@ -63,42 +63,6 @@ text = "UI_OPTIONS"
 layout_mode = 2
 text = "UI_EXIT"
 
-[node name="GameModeButtons" type="VBoxContainer" parent="."]
-visible = false
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -80.0
-offset_top = -60.0
-offset_right = 80.0
-offset_bottom = 60.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/separation = 15
-
-[node name="TopDownButton" type="Button" parent="GameModeButtons"]
-layout_mode = 2
-text = "UI_TOPDOWN_GAME"
-
-[node name="PlatformerButton" type="Button" parent="GameModeButtons"]
-layout_mode = 2
-text = "UI_PLATFORMER_GAME"
-
-[node name="3DButton" type="Button" parent="GameModeButtons"]
-layout_mode = 2
-text = "UI_3D_GAME"
-
-[node name="BackButton" type="Button" parent="GameModeButtons"]
-layout_mode = 2
-text = "UI_BACK"
-
 [connection signal="pressed" from="MainButtons/NewGameButton" to="." method="_on_new_game_button_pressed"]
 [connection signal="pressed" from="MainButtons/OptionsButton" to="." method="_on_options_button_pressed"]
 [connection signal="pressed" from="MainButtons/ExitButton" to="." method="_on_exit_button_pressed"]
-[connection signal="pressed" from="GameModeButtons/TopDownButton" to="." method="_on_top_down_button_pressed"]
-[connection signal="pressed" from="GameModeButtons/PlatformerButton" to="." method="_on_platformer_button_pressed"]
-[connection signal="pressed" from="GameModeButtons/3DButton" to="." method="_on_3d_button_pressed"]
-[connection signal="pressed" from="GameModeButtons/BackButton" to="." method="_on_back_button_pressed"]

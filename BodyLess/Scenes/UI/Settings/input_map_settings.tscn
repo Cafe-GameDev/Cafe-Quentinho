@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cvtlqfm3228xb"]
 
 [node name="InputMapSettings" type="VBoxContainer"]
-visible = false
+custom_minimum_size = Vector2(572, 0)
 theme_override_constants/separation = 10
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
@@ -47,3 +47,14 @@ layout_mode = 2
 [node name="ResetButton" type="Button" parent="."]
 layout_mode = 2
 text = "UI_RESET_DEFAULTS"
+
+[node name="ResetRect" type="ColorRect" parent="ResetButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+mouse_filter = 2
+color = Color(0.392157, 0.392157, 0.392157, 0)

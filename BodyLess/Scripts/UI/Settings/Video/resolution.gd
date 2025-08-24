@@ -5,7 +5,6 @@ extends HBoxContainer
 
 # Mapeamento de IDs para resoluções (deve corresponder aos IDs definidos na cena .tscn)
 const RESOLUTION_MAP: Dictionary = {
-	0: Vector2i(320, 180),
 	1: Vector2i(640, 360),
 	2: Vector2i(854, 480),
 	3: Vector2i(1280, 720),
@@ -33,7 +32,7 @@ func _on_resolution_option_button_item_selected(index: int) -> void:
 func _on_loading_settings_changed(settings: Dictionary) -> void:
 	# Define a resolução selecionada no OptionButton com base nas configurações carregadas.
 	if settings.has("video") and settings["video"].has("resolution"):
-		var current_resolution: Vector2i = settings["video"]["resolution"]
+		var current_resolution: Vector2i = Vector2i(settings["video"]["resolution"].x, settings["video"]["resolution"].y)
 		var selected_index: int = -1
 		for key in RESOLUTION_MAP:
 			if RESOLUTION_MAP[key] == current_resolution:
@@ -44,10 +43,14 @@ func _on_loading_settings_changed(settings: Dictionary) -> void:
 			option_button.select(selected_index)
 
 func _on_mouse_entered_control(control_node: Control) -> void:
+	var tooltip_text = ""
 	if control_node and control_node.has_meta("tooltip_text"):
-		GlobalEvents.show_tooltip_requested.emit(control_node.get_meta("tooltip_text"), get_global_mouse_position())
+		tooltip_text = control_node.get_meta("tooltip_text")
 	elif control_node and control_node.tooltip_text:
-		GlobalEvents.show_tooltip_requested.emit(control_node.tooltip_text, get_global_mouse_position())
+		tooltip_text = tr(control_node.tooltip_text)
+
+	if not tooltip_text.is_empty():
+		GlobalEvents.show_tooltip_requested.emit({"text": tooltip_text, "position": get_global_mouse_position()})
 
 func _on_mouse_exited_control() -> void:
 	GlobalEvents.hide_tooltip_requested.emit()

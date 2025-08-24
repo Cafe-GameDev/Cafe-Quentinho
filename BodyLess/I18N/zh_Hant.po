@@ -135,6 +135,9 @@ msgstr "視窗化"
 msgid "UI_WINDOW_MODE_FULLSCREEN"
 msgstr "全螢幕"
 
+msgid "UI_WINDOW_MODE_BORDERLESS"
+msgstr "無邊框視窗"
+
 msgid "UI_RESOLUTION"
 msgstr "解析度"
 
@@ -287,3 +290,54 @@ msgstr "Game loaded successfully!"
 
 msgid "TOAST_ERROR_LOAD_FAILED_MESSAGE"
 msgstr "Failed to load game progress."
+
+msgid "UI_ASPECT_RATIO"
+msgstr "長寬比"
+
+msgid "UI_UPSCALE_MODE"
+msgstr "升頻模式"
+
+msgid "UI_UPSCALING_QUALITY"
+msgstr "升頻品質"
+
+msgid "UI_UPSCALING_NONE"
+msgstr "無"
+
+msgid "UI_FSR_BALANCED"
+msgstr "FSR 平衡"
+
+msgid "UI_UPSCALE_FSR1"
+msgstr "FSR 1.0"
+
+msgid "UI_UPSCALE_FSR2"
+msgstr "FSR 2.0"
+
+msgid "UI_FSR_ULTRA_QUALITY"
+msgstr "FSR 超高品質"
+
+msgid "UI_FSR_QUALITY"
+msgstr "FSR 品質"
+
+msgid "UI_FSR_PERFORMANCE"
+msgstr "FSR 效能"
+
+msgid "UI_FSR_ULTRA_PERFORMANCE"
+msgstr "FSR 超高效能"
+
+msgid "UI_RESET_DEFAULTS"
+msgstr "重設為預設值"
+
+msgid "UI_SCALE_100_PERCENT"
+msgstr "100%"
+
+msgid "UI_SCALE_125_PERCENT"
+msgstr "125%"
+
+msgid "UI_SCALE_150_PERCENT"
+msgstr "150%"
+
+msgid "UI_SCALE_175_PERCENT"
+msgstr "175%"
+
+msgid "UI_SCALE_200_PERCENT"
+msgstr "200%"
