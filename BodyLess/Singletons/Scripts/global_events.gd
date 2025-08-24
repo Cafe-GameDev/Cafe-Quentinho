@@ -118,8 +118,6 @@ signal tutorial_finished() # Mantido, pois é uma ação específica
 # --- Sinais de Depuração ---
 @warning_ignore("unused_signal")
 signal debug_log_requested(log_data: Dictionary)
-@warning_ignore("unused_signal")
-signal debug_console_toggled(is_visible: bool)
 
 # --- Sinais de SaveSystem ---
 @warning_ignore("unused_signal")

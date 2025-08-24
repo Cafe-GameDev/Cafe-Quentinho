@@ -11,15 +11,16 @@ func _ready() -> void:
 	log_text.clear()
 	_log_message(tr("DEBUG_CONSOLE_READY"), "INFO")
 	_connect_to_global_events()
-	GlobalEvents.debug_console_toggled.connect(_on_debug_console_toggled)
 
 func _process(_delta: float) -> void:
 	# Atualiza as informacoes de depuracao da coluna esquerda a cada frame
 	if visible:
 		_update_debug_info()
 
-func _on_debug_console_toggled() -> void:
-	visible = not visible
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("toggle_console"):
+		visible = not visible
 
 
 # --- Private Methods ---
@@ -64,7 +65,6 @@ func _update_debug_info() -> void:
 
 func _connect_to_global_events() -> void:
 	GlobalEvents.play_sfx_by_key_requested.connect(_on_play_sfx_by_key_requested)
-	GlobalEvents.music_track_changed.connect(_on_music_track_changed)
 	GlobalEvents.debug_log_requested.connect(_on_debug_log_requested)
 
 	# Conexões para Settings

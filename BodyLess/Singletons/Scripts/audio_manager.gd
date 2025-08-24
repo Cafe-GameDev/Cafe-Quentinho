@@ -211,3 +211,7 @@ func _on_music_change_timer_timeout() -> void:
 func _on_music_change_requested() -> void:
 	_select_and_play_random_playlist()
 	music_change_timer.start(300) # Restart the timer after manual change
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("music_change"):
+		_select_and_play_random_playlist()
