@@ -1,16 +1,17 @@
-[gd_scene load_steps=8 format=3 uid="uid://xsfe4eohtxl4"]
+[gd_scene load_steps=10 format=3 uid="uid://xsfe4eohtxl4"]
 
 [ext_resource type="Script" uid="uid://bn5pjvf7wbdv4" path="res://Scripts/UI/options_menu.gd" id="1_run4o"]
+[ext_resource type="StyleBox" uid="uid://clbbsxi0r0l6k" path="res://Resources/panel.tres" id="2_dod7e"]
 [ext_resource type="StyleBox" uid="uid://ccucsa8kk57ft" path="res://Resources/button_focus.tres" id="2_s2riy"]
 [ext_resource type="PackedScene" uid="uid://b8n0le3mmhafb" path="res://Scenes/UI/Settings/video_settings.tscn" id="2_yjqj2"]
 [ext_resource type="StyleBox" uid="uid://bej76kq62gywe" path="res://Resources/button_normal.tres" id="3_dod7e"]
+[ext_resource type="StyleBox" uid="uid://5qc4dawypfba" path="res://Resources/panel2.tres" id="3_gcjgb"]
 [ext_resource type="PackedScene" uid="uid://dat2iwiarvvxj" path="res://Scenes/UI/Settings/audio_settings.tscn" id="3_x3x5h"]
 [ext_resource type="PackedScene" uid="uid://bey3t3k4biaww" path="res://Scenes/UI/Settings/language_settings.tscn" id="4_3tdd8"]
 [ext_resource type="PackedScene" uid="uid://cvtlqfm3228xb" path="res://Scenes/UI/Settings/input_map_settings.tscn" id="4_x3x5h"]
 
-[node name="OptionsMenu" type="Control"]
+[node name="OptionsMenu" type="Panel"]
 process_mode = 3
-layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -18,17 +19,8 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+theme_override_styles/panel = ExtResource("2_dod7e")
 script = ExtResource("1_run4o")
-
-[node name="Background" type="ColorRect" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 0.784314)
-metadata/_edit_use_anchors_ = true
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -37,19 +29,21 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -450.0
-offset_top = -250.0
-offset_right = 450.0
-offset_bottom = 250.0
+offset_left = -460.0
+offset_top = -260.0
+offset_right = 460.0
+offset_bottom = 260.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = ExtResource("3_gcjgb")
 
 [node name="Margin" type="MarginContainer" parent="PanelContainer"]
+texture_filter = 2
 layout_mode = 2
-theme_override_constants/margin_left = 15
-theme_override_constants/margin_top = 15
-theme_override_constants/margin_right = 15
-theme_override_constants/margin_bottom = 15
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
 
 [node name="Box" type="VBoxContainer" parent="PanelContainer/Margin"]
 layout_mode = 2

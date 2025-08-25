@@ -4,6 +4,7 @@ extends CanvasLayer
 @onready var debug_info_text: RichTextLabel = $Panel/MarginContainer/MainLayout/LeftColumn/DebugInfoText
 @onready var log_label: Label = $Panel/MarginContainer/MainLayout/RightColumn/Label
 
+var game_version = "0.5.0"
 
 # --- Godot Lifecycle ---
 
@@ -45,7 +46,7 @@ func _update_debug_info() -> void:
 
 	var info_string = ""
 	info_string += tr("DEBUG_GAME_SECTION") + "\n"
-	info_string += tr("DEBUG_GAME_VERSION") + "\n"
+	info_string += tr("DEBUG_GAME_VERSION") + game_version
 	info_string += tr("DEBUG_GAME_STATE").format({"state": game_state_str}) + "\n"
 	info_string += tr("DEBUG_CURRENT_SCENE").format({"scene": current_scene_str}) + "\n"
 	info_string += tr("DEBUG_LAST_SAVE") + "\n\n"

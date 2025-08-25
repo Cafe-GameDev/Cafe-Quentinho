@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://c7ckkfc3bhrkc"]
+[gd_scene load_steps=5 format=3 uid="uid://c7ckkfc3bhrkc"]
 
+[ext_resource type="StyleBox" uid="uid://5qc4dawypfba" path="res://Resources/panel2.tres" id="1_7b7yf"]
 [ext_resource type="Script" uid="uid://cwqycex11ds7o" path="res://Scripts/UI/quit_confirmation_dialog.gd" id="1_08863"]
 [ext_resource type="StyleBox" uid="uid://ccucsa8kk57ft" path="res://Resources/button_focus.tres" id="2_m3xdi"]
 [ext_resource type="StyleBox" uid="uid://bej76kq62gywe" path="res://Resources/button_normal.tres" id="3_7b7yf"]
@@ -11,20 +12,21 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -150.0
-offset_top = -75.0
-offset_right = 150.0
-offset_bottom = 75.0
+offset_left = -160.0
+offset_top = -85.0
+offset_right = 160.0
+offset_bottom = 85.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = ExtResource("1_7b7yf")
 script = ExtResource("1_08863")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2

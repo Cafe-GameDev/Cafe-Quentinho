@@ -1,4 +1,4 @@
-extends Control
+extends Panel
 
 # O script do OptionsMenu gerencia a navegação interna e as ações de "Voltar" e "Aplicar".
 
@@ -31,6 +31,9 @@ const _INACTIVE_MODULATE_COLOR: Color = Color(0.39,0.39,0.39,0.0)
 var _category_modulates: Array[ColorRect]
 
 func _ready() -> void:
+	# Conecta-se ao sinal de mudança de estado do GameManager.
+	GlobalEvents.game_state_updated.connect(_on_game_state_updated)
+	
 	_category_modulates = [_video_modulate, _audio_modulate, _input_modulate, _language_modulate]
 
 	# Conecta os sinais de mouse_entered dos botões de categoria.
@@ -161,3 +164,8 @@ func _on_input_map_button_pressed() -> void:
 	$PanelContainer/Margin/Box/UPButtons/LabelContainer/InputMapLabel.visible = true
 	$PanelContainer/Margin/Box/UPButtons/LabelContainer/LanguageLabel.visible = false
 	_update_category_buttons_modulate(_input_modulate)
+
+func _on_game_state_updated(state_data: Dictionary) -> void:
+	# O menu de pausa só deve ser visível quando o jogo está no estado PAUSED.
+	var new_state_key = state_data.get("new_state", "")
+	visible = (new_state_key == GameManager.GameState.keys()[GameManager.GameState.SETTINGS])

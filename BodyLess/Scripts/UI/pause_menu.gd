@@ -1,4 +1,4 @@
-extends Control
+extends Panel
 
 # --- Constantes de Som ---
 const CLICK_SOUND = "click1"

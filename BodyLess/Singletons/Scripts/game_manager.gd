@@ -16,9 +16,6 @@ func _ready() -> void:
 	GlobalEvents.return_to_previous_state_requested.connect(_on_return_to_previous_state_requested)
 	GlobalEvents.quit_confirmed.connect(_on_quit_confirmed)
 	GlobalEvents.quit_cancelled.connect(_on_quit_cancelled)
-	
-
-	
 
 
 func set_game_state(state_request_data: Dictionary) -> void:

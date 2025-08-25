@@ -94,7 +94,7 @@ msgid "DEBUG_GAME_SECTION"
 msgstr "[b]游戏[/b]"
 
 msgid "DEBUG_GAME_VERSION"
-msgstr "  游戏版本: 1.0.0 (Alpha)"
+msgstr "  游戏版本: "
 
 msgid "DEBUG_GAME_STATE"
 msgstr "  状态: {state}"

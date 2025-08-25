@@ -1,4 +1,4 @@
-extends Control
+extends Node
 
 const SETTINGS_PATH = "res://settings.json"
 

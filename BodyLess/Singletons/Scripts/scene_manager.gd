@@ -1,7 +1,11 @@
 class_name SceneManager
-extends Node
+extends Control
 
 # Gerencia as transições de cena no jogo usando um sistema de empilhamento.
+@onready var main_menu: Panel = $MenuViewportContainer/GameViewport/Control/MainMenu
+@onready var pause_menu: Panel = $MenuViewportContainer/GameViewport/Control/PauseMenu
+@onready var options_menu: Panel = $MenuViewportContainer/GameViewport/Control/OptionsMenu
+@onready var quit_confirmation_dialog: PanelContainer = $MenuViewportContainer/GameViewport/Control/QuitConfirmationDialog
 
 @onready var game_viewport: SubViewport = $GameViewportContainer/GameViewport
 var _scene_stack: Array[Node] = [] # Pilha de cenas carregadas
@@ -65,22 +69,22 @@ func _on_game_state_updated(state_data: Dictionary) -> void:
 	var is_paused = state_data.get("is_paused", false)
 
 	# Esconde todas as UIs por padrão e mostra apenas as relevantes.
-	$CanvasLayer/MainMenu.visible = false
-	$CanvasLayer/PauseMenu.visible = false
-	$CanvasLayer/OptionsMenu.visible = false
-	$CanvasLayer/QuitConfirmationDialog.visible = false
+	main_menu.visible = false
+	pause_menu.visible = false
+	options_menu.visible = false
+	quit_confirmation_dialog.visible = false
 
 	match new_state:
 		"MENU":
-			$CanvasLayer/MainMenu.visible = true
+			main_menu.visible = true
 		"PLAYING":
 			pass # Nenhuma UI de menu visível durante o jogo.
 		"PAUSED":
-			$CanvasLayer/PauseMenu.visible = true
+			pause_menu.visible = true
 		"SETTINGS":
-			$CanvasLayer/OptionsMenu.visible = true
+			options_menu.visible = true
 		"QUIT_CONFIRMATION":
-			$CanvasLayer/QuitConfirmationDialog.visible = true
+			quit_confirmation_dialog.visible = true
 
 	# Ajusta o process_mode das cenas de jogo com base no estado de pausa.
 	for scene in _scene_stack:
