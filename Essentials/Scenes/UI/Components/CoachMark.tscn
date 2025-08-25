@@ -1,0 +1,43 @@
+[gd_scene load_steps=2 format=3 uid="uid://new_coachmark_uid"]
+
+[ext_resource type="Script" path="res://Scripts/UI/Components/CoachMark.gd" id="1_coachmark_script"]
+
+[node name="CoachMark" type="PanelContainer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -100.0
+offset_right = 200.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_coachmark_script")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+alignment = 1
+
+[node name="TextLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Coach Mark Text"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="NextButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Próximo"
+
+[node name="SkipButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Pular"
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/NextButton" to="." method="_on_next_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/SkipButton" to="." method="_on_skip_button_pressed"]

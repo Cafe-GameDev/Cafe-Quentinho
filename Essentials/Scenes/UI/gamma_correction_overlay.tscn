@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://cxwlrnq5mpovp"]
+
+[ext_resource type="Script" path="res://Scripts/UI/gamma_correction_overlay.gd" id="1_bu6qsgk4fdcx7"]
+[ext_resource type="Shader" path="res://Resources/Shaders/gamma_correction_shader.gdshader" id="2_itpp2std32bl"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xyz"]
+shader = ExtResource("2_itpp2std32bl")
+
+[node name="GammaCorrectionOverlay" type="CanvasLayer"]
+script = ExtResource("1_bu6qsgk4fdcx7")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_xyz")
+anchors_preset = 15
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 1)
