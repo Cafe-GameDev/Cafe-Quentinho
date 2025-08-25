@@ -13,7 +13,7 @@ dest_files=["res://.godot/imported/NotoSansKR-VF.ttf-fe24e8d000c7e2bf6b83deb087b
 [params]
 
 Rendering=null
-antialiasing=1
+antialiasing=2
 generate_mipmaps=false
 disable_embedded_bitmaps=true
 multichannel_signed_distance_field=false
@@ -28,8 +28,16 @@ oversampling=0.0
 Fallbacks=null
 fallbacks=[]
 Compress=null
-compress=true
-preload=[]
+compress=false
+preload=[{
+"chars": [],
+"glyphs": [],
+"name": "Nova Configuração",
+"size": Vector2i(16, 0),
+&"variation_opentype": {
+2003265652: 400
+}
+}]
 language_support={}
 script_support={}
 opentype_features={}

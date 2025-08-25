@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://cgrv6f7vj3l3g"]
+[gd_scene load_steps=6 format=3 uid="uid://cgrv6f7vj3l3g"]
 
 [ext_resource type="Script" uid="uid://ba0vkmgxvn1oh" path="res://Scripts/UI/main_menu.gd" id="1_5wsvm"]
 [ext_resource type="StyleBox" uid="uid://clbbsxi0r0l6k" path="res://Resources/panel.tres" id="1_u7lva"]
 [ext_resource type="StyleBox" uid="uid://ccucsa8kk57ft" path="res://Resources/button_focus.tres" id="2_o14dv"]
+[ext_resource type="FontFile" uid="uid://ba6tmpodlc0io" path="res://Assets/Fonts/NotoSans-Regular.ttf" id="3_mrfpk"]
 [ext_resource type="StyleBox" uid="uid://bej76kq62gywe" path="res://Resources/button_normal.tres" id="3_u7lva"]
 
 [node name="MainMenu" type="Panel"]
@@ -31,6 +32,7 @@ offset_right = 190.0
 offset_bottom = -170.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_mrfpk")
 theme_override_font_sizes/font_size = 36
 text = "UI_MAIN_MENU_TITLE"
 horizontal_alignment = 1
@@ -56,6 +58,7 @@ alignment = 1
 [node name="NewGameButton" type="Button" parent="MainButtons"]
 custom_minimum_size = Vector2(0, 31)
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_mrfpk")
 theme_override_styles/focus = ExtResource("2_o14dv")
 theme_override_styles/hover_pressed = ExtResource("2_o14dv")
 theme_override_styles/hover = ExtResource("2_o14dv")
@@ -66,6 +69,7 @@ text = "UI_NEW_GAME"
 [node name="OptionsButton" type="Button" parent="MainButtons"]
 custom_minimum_size = Vector2(0, 31)
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_mrfpk")
 theme_override_styles/focus = ExtResource("2_o14dv")
 theme_override_styles/hover_pressed = ExtResource("2_o14dv")
 theme_override_styles/hover = ExtResource("2_o14dv")
@@ -76,6 +80,7 @@ text = "UI_OPTIONS"
 [node name="ExitButton" type="Button" parent="MainButtons"]
 custom_minimum_size = Vector2(0, 31)
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_mrfpk")
 theme_override_styles/focus = ExtResource("2_o14dv")
 theme_override_styles/hover_pressed = ExtResource("2_o14dv")
 theme_override_styles/hover = ExtResource("2_o14dv")

@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://bey3t3k4biaww"]
+[gd_scene load_steps=5 format=3 uid="uid://bey3t3k4biaww"]
 
 [ext_resource type="Script" uid="uid://cnmrmds3xslo2" path="res://Scripts/UI/Settings/Locate/language_options.gd" id="1_utlj1"]
 [ext_resource type="StyleBox" uid="uid://ccucsa8kk57ft" path="res://Resources/button_focus.tres" id="2_syk7v"]
+[ext_resource type="FontFile" uid="uid://ba6tmpodlc0io" path="res://Assets/Fonts/NotoSans-Regular.ttf" id="2_ywr8a"]
 [ext_resource type="StyleBox" uid="uid://bej76kq62gywe" path="res://Resources/button_normal.tres" id="3_ywr8a"]
 
 [node name="LanguageSettings" type="VBoxContainer"]
@@ -16,6 +17,7 @@ script = ExtResource("1_utlj1")
 [node name="EN_US_Button" type="Button" parent="LanguageOptionsContainer"]
 custom_minimum_size = Vector2(0, 31)
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_ywr8a")
 theme_override_styles/focus = ExtResource("2_syk7v")
 theme_override_styles/hover_pressed = ExtResource("2_syk7v")
 theme_override_styles/hover = ExtResource("2_syk7v")
@@ -34,10 +36,12 @@ grow_vertical = 2
 size_flags_vertical = 3
 mouse_filter = 2
 color = Color(0.392157, 0.392157, 0.392157, 0)
+metadata/_edit_lock_ = true
 
 [node name="EN_GB_Button" type="Button" parent="LanguageOptionsContainer"]
 custom_minimum_size = Vector2(0, 31)
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_ywr8a")
 theme_override_styles/focus = ExtResource("2_syk7v")
 theme_override_styles/hover_pressed = ExtResource("2_syk7v")
 theme_override_styles/hover = ExtResource("2_syk7v")
@@ -56,10 +60,12 @@ grow_vertical = 2
 size_flags_vertical = 3
 mouse_filter = 2
 color = Color(0.392157, 0.392157, 0.392157, 0)
+metadata/_edit_lock_ = true
 
 [node name="EN_IN_Button" type="Button" parent="LanguageOptionsContainer"]
 custom_minimum_size = Vector2(0, 31)
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_ywr8a")
 theme_override_styles/focus = ExtResource("2_syk7v")
 theme_override_styles/hover_pressed = ExtResource("2_syk7v")
 theme_override_styles/hover = ExtResource("2_syk7v")
@@ -78,10 +84,12 @@ grow_vertical = 2
 size_flags_vertical = 3
 mouse_filter = 2
 color = Color(0.392157, 0.392157, 0.392157, 0)
+metadata/_edit_lock_ = true
 
 [node name="PT_BR_Button" type="Button" parent="LanguageOptionsContainer"]
 custom_minimum_size = Vector2(0, 31)
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_ywr8a")
 theme_override_styles/focus = ExtResource("2_syk7v")
 theme_override_styles/hover_pressed = ExtResource("2_syk7v")
 theme_override_styles/hover = ExtResource("2_syk7v")
@@ -100,10 +108,12 @@ grow_vertical = 2
 size_flags_vertical = 3
 mouse_filter = 2
 color = Color(0.392157, 0.392157, 0.392157, 0)
+metadata/_edit_lock_ = true
 
 [node name="PT_PT_Button" type="Button" parent="LanguageOptionsContainer"]
 custom_minimum_size = Vector2(0, 31)
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_ywr8a")
 theme_override_styles/focus = ExtResource("2_syk7v")
 theme_override_styles/hover_pressed = ExtResource("2_syk7v")
 theme_override_styles/hover = ExtResource("2_syk7v")
@@ -122,10 +132,12 @@ grow_vertical = 2
 size_flags_vertical = 3
 mouse_filter = 2
 color = Color(0.392157, 0.392157, 0.392157, 0)
+metadata/_edit_lock_ = true
 
 [node name="ES_ES_Button" type="Button" parent="LanguageOptionsContainer"]
 custom_minimum_size = Vector2(0, 31)
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_ywr8a")
 theme_override_styles/focus = ExtResource("2_syk7v")
 theme_override_styles/hover_pressed = ExtResource("2_syk7v")
 theme_override_styles/hover = ExtResource("2_syk7v")
@@ -144,10 +156,12 @@ grow_vertical = 2
 size_flags_vertical = 3
 mouse_filter = 2
 color = Color(0.392157, 0.392157, 0.392157, 0)
+metadata/_edit_lock_ = true
 
 [node name="ES_LA_Button" type="Button" parent="LanguageOptionsContainer"]
 custom_minimum_size = Vector2(0, 31)
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_ywr8a")
 theme_override_styles/focus = ExtResource("2_syk7v")
 theme_override_styles/hover_pressed = ExtResource("2_syk7v")
 theme_override_styles/hover = ExtResource("2_syk7v")
@@ -166,10 +180,12 @@ grow_vertical = 2
 size_flags_vertical = 3
 mouse_filter = 2
 color = Color(0.392157, 0.392157, 0.392157, 0)
+metadata/_edit_lock_ = true
 
 [node name="FR_Button" type="Button" parent="LanguageOptionsContainer"]
 custom_minimum_size = Vector2(0, 31)
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_ywr8a")
 theme_override_styles/focus = ExtResource("2_syk7v")
 theme_override_styles/hover_pressed = ExtResource("2_syk7v")
 theme_override_styles/hover = ExtResource("2_syk7v")
@@ -188,10 +204,12 @@ grow_vertical = 2
 size_flags_vertical = 3
 mouse_filter = 2
 color = Color(0.392157, 0.392157, 0.392157, 0)
+metadata/_edit_lock_ = true
 
 [node name="DE_Button" type="Button" parent="LanguageOptionsContainer"]
 custom_minimum_size = Vector2(0, 31)
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_ywr8a")
 theme_override_styles/focus = ExtResource("2_syk7v")
 theme_override_styles/hover_pressed = ExtResource("2_syk7v")
 theme_override_styles/hover = ExtResource("2_syk7v")
@@ -210,10 +228,12 @@ grow_vertical = 2
 size_flags_vertical = 3
 mouse_filter = 2
 color = Color(0.392157, 0.392157, 0.392157, 0)
+metadata/_edit_lock_ = true
 
 [node name="IT_Button" type="Button" parent="LanguageOptionsContainer"]
 custom_minimum_size = Vector2(0, 31)
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_ywr8a")
 theme_override_styles/focus = ExtResource("2_syk7v")
 theme_override_styles/hover_pressed = ExtResource("2_syk7v")
 theme_override_styles/hover = ExtResource("2_syk7v")
@@ -232,10 +252,12 @@ grow_vertical = 2
 size_flags_vertical = 3
 mouse_filter = 2
 color = Color(0.392157, 0.392157, 0.392157, 0)
+metadata/_edit_lock_ = true
 
 [node name="JA_Button" type="Button" parent="LanguageOptionsContainer"]
 custom_minimum_size = Vector2(0, 31)
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_ywr8a")
 theme_override_styles/focus = ExtResource("2_syk7v")
 theme_override_styles/hover_pressed = ExtResource("2_syk7v")
 theme_override_styles/hover = ExtResource("2_syk7v")
@@ -254,10 +276,12 @@ grow_vertical = 2
 size_flags_vertical = 3
 mouse_filter = 2
 color = Color(0.392157, 0.392157, 0.392157, 0)
+metadata/_edit_lock_ = true
 
 [node name="KO_Button" type="Button" parent="LanguageOptionsContainer"]
 custom_minimum_size = Vector2(0, 31)
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_ywr8a")
 theme_override_styles/focus = ExtResource("2_syk7v")
 theme_override_styles/hover_pressed = ExtResource("2_syk7v")
 theme_override_styles/hover = ExtResource("2_syk7v")
@@ -276,10 +300,12 @@ grow_vertical = 2
 size_flags_vertical = 3
 mouse_filter = 2
 color = Color(0.392157, 0.392157, 0.392157, 0)
+metadata/_edit_lock_ = true
 
 [node name="RU_Button" type="Button" parent="LanguageOptionsContainer"]
 custom_minimum_size = Vector2(0, 31)
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_ywr8a")
 theme_override_styles/focus = ExtResource("2_syk7v")
 theme_override_styles/hover_pressed = ExtResource("2_syk7v")
 theme_override_styles/hover = ExtResource("2_syk7v")
@@ -298,10 +324,12 @@ grow_vertical = 2
 size_flags_vertical = 3
 mouse_filter = 2
 color = Color(0.392157, 0.392157, 0.392157, 0)
+metadata/_edit_lock_ = true
 
 [node name="ZH_HANS_Button" type="Button" parent="LanguageOptionsContainer"]
 custom_minimum_size = Vector2(0, 31)
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_ywr8a")
 theme_override_styles/focus = ExtResource("2_syk7v")
 theme_override_styles/hover_pressed = ExtResource("2_syk7v")
 theme_override_styles/hover = ExtResource("2_syk7v")
@@ -320,10 +348,12 @@ grow_vertical = 2
 size_flags_vertical = 3
 mouse_filter = 2
 color = Color(0.392157, 0.392157, 0.392157, 0)
+metadata/_edit_lock_ = true
 
 [node name="ZH_HANT_Button" type="Button" parent="LanguageOptionsContainer"]
 custom_minimum_size = Vector2(0, 31)
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_ywr8a")
 theme_override_styles/focus = ExtResource("2_syk7v")
 theme_override_styles/hover_pressed = ExtResource("2_syk7v")
 theme_override_styles/hover = ExtResource("2_syk7v")
@@ -342,3 +372,4 @@ grow_vertical = 2
 size_flags_vertical = 3
 mouse_filter = 2
 color = Color(0.392157, 0.392157, 0.392157, 0)
+metadata/_edit_lock_ = true

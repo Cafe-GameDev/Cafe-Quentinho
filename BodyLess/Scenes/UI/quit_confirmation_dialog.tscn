@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://c7ckkfc3bhrkc"]
+[gd_scene load_steps=6 format=3 uid="uid://c7ckkfc3bhrkc"]
 
 [ext_resource type="StyleBox" uid="uid://5qc4dawypfba" path="res://Resources/panel2.tres" id="1_7b7yf"]
 [ext_resource type="Script" uid="uid://cwqycex11ds7o" path="res://Scripts/UI/quit_confirmation_dialog.gd" id="1_08863"]
 [ext_resource type="StyleBox" uid="uid://ccucsa8kk57ft" path="res://Resources/button_focus.tres" id="2_m3xdi"]
 [ext_resource type="StyleBox" uid="uid://bej76kq62gywe" path="res://Resources/button_normal.tres" id="3_7b7yf"]
+[ext_resource type="FontFile" uid="uid://ba6tmpodlc0io" path="res://Assets/Fonts/NotoSans-Regular.ttf" id="3_c2l6h"]
 
 [node name="QuitConfirmationDialog" type="PanelContainer"]
 process_mode = 3
@@ -35,6 +36,7 @@ alignment = 1
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_c2l6h")
 text = "UI_QUIT_CONFIRMATION_PROMPT"
 horizontal_alignment = 1
 
@@ -47,6 +49,7 @@ alignment = 1
 custom_minimum_size = Vector2(0, 31)
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("3_c2l6h")
 theme_override_styles/focus = ExtResource("2_m3xdi")
 theme_override_styles/hover_pressed = ExtResource("2_m3xdi")
 theme_override_styles/hover = ExtResource("2_m3xdi")
@@ -58,6 +61,7 @@ text = "UI_YES"
 custom_minimum_size = Vector2(0, 31)
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("3_c2l6h")
 theme_override_styles/focus = ExtResource("2_m3xdi")
 theme_override_styles/hover_pressed = ExtResource("2_m3xdi")
 theme_override_styles/hover = ExtResource("2_m3xdi")

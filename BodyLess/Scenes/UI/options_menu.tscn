@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://xsfe4eohtxl4"]
+[gd_scene load_steps=11 format=3 uid="uid://xsfe4eohtxl4"]
 
 [ext_resource type="Script" uid="uid://bn5pjvf7wbdv4" path="res://Scripts/UI/options_menu.gd" id="1_run4o"]
 [ext_resource type="StyleBox" uid="uid://clbbsxi0r0l6k" path="res://Resources/panel.tres" id="2_dod7e"]
@@ -8,6 +8,7 @@
 [ext_resource type="StyleBox" uid="uid://5qc4dawypfba" path="res://Resources/panel2.tres" id="3_gcjgb"]
 [ext_resource type="PackedScene" uid="uid://dat2iwiarvvxj" path="res://Scenes/UI/Settings/audio_settings.tscn" id="3_x3x5h"]
 [ext_resource type="PackedScene" uid="uid://bey3t3k4biaww" path="res://Scenes/UI/Settings/language_settings.tscn" id="4_3tdd8"]
+[ext_resource type="FontFile" uid="uid://ba6tmpodlc0io" path="res://Assets/Fonts/NotoSans-Regular.ttf" id="4_qmfxs"]
 [ext_resource type="PackedScene" uid="uid://cvtlqfm3228xb" path="res://Scenes/UI/Settings/input_map_settings.tscn" id="4_x3x5h"]
 
 [node name="OptionsMenu" type="Panel"]
@@ -59,6 +60,7 @@ theme_override_constants/separation = 16
 [node name="TitleLabel" type="Label" parent="PanelContainer/Margin/Box/UPButtons"]
 custom_minimum_size = Vector2(254, 0)
 layout_mode = 2
+theme_override_fonts/font = ExtResource("4_qmfxs")
 theme_override_font_sizes/font_size = 28
 text = "UI_SETTINGS_TITLE"
 horizontal_alignment = 1
@@ -74,6 +76,7 @@ alignment = 1
 
 [node name="VideoLabel" type="Label" parent="PanelContainer/Margin/Box/UPButtons/LabelContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("4_qmfxs")
 theme_override_font_sizes/font_size = 22
 text = "UI_VIDEO_OPTIONS"
 vertical_alignment = 1
@@ -123,6 +126,7 @@ custom_minimum_size = Vector2(0, 31)
 layout_mode = 2
 size_flags_vertical = 3
 focus_mode = 0
+theme_override_fonts/font = ExtResource("4_qmfxs")
 theme_override_styles/focus = ExtResource("2_s2riy")
 theme_override_styles/hover_pressed = ExtResource("2_s2riy")
 theme_override_styles/hover = ExtResource("2_s2riy")
@@ -140,12 +144,14 @@ grow_vertical = 2
 size_flags_vertical = 3
 mouse_filter = 2
 color = Color(0.392157, 0.392157, 0.392157, 0.156863)
+metadata/_edit_lock_ = true
 
 [node name="AudioButton" type="Button" parent="PanelContainer/Margin/Box/ContentHBox/ScrollList/CategoryList"]
 custom_minimum_size = Vector2(0, 31)
 layout_mode = 2
 size_flags_vertical = 3
 focus_mode = 0
+theme_override_fonts/font = ExtResource("4_qmfxs")
 theme_override_styles/focus = ExtResource("2_s2riy")
 theme_override_styles/hover_pressed = ExtResource("2_s2riy")
 theme_override_styles/hover = ExtResource("2_s2riy")
@@ -163,12 +169,14 @@ grow_vertical = 2
 size_flags_vertical = 3
 mouse_filter = 2
 color = Color(0.392157, 0.392157, 0.392157, 0)
+metadata/_edit_lock_ = true
 
 [node name="InputMapButton" type="Button" parent="PanelContainer/Margin/Box/ContentHBox/ScrollList/CategoryList"]
 custom_minimum_size = Vector2(0, 31)
 layout_mode = 2
 size_flags_vertical = 3
 focus_mode = 0
+theme_override_fonts/font = ExtResource("4_qmfxs")
 theme_override_styles/focus = ExtResource("2_s2riy")
 theme_override_styles/hover_pressed = ExtResource("2_s2riy")
 theme_override_styles/hover = ExtResource("2_s2riy")
@@ -186,12 +194,14 @@ grow_vertical = 2
 size_flags_vertical = 3
 mouse_filter = 2
 color = Color(0.392157, 0.392157, 0.392157, 0)
+metadata/_edit_lock_ = true
 
 [node name="LanguageButton" type="Button" parent="PanelContainer/Margin/Box/ContentHBox/ScrollList/CategoryList"]
 custom_minimum_size = Vector2(0, 31)
 layout_mode = 2
 size_flags_vertical = 3
 focus_mode = 0
+theme_override_fonts/font = ExtResource("4_qmfxs")
 theme_override_styles/focus = ExtResource("2_s2riy")
 theme_override_styles/hover_pressed = ExtResource("2_s2riy")
 theme_override_styles/hover = ExtResource("2_s2riy")
@@ -209,6 +219,7 @@ grow_vertical = 2
 size_flags_vertical = 3
 mouse_filter = 2
 color = Color(0.392157, 0.392157, 0.392157, 0)
+metadata/_edit_lock_ = true
 
 [node name="Spacer" type="Control" parent="PanelContainer/Margin/Box/ContentHBox/ScrollList/CategoryList"]
 layout_mode = 2
@@ -266,6 +277,7 @@ alignment = 2
 custom_minimum_size = Vector2(254, 0)
 layout_mode = 2
 focus_mode = 0
+theme_override_fonts/font = ExtResource("4_qmfxs")
 theme_override_styles/focus = ExtResource("2_s2riy")
 theme_override_styles/hover_pressed = ExtResource("2_s2riy")
 theme_override_styles/hover = ExtResource("2_s2riy")
@@ -283,6 +295,7 @@ grow_vertical = 2
 size_flags_vertical = 3
 mouse_filter = 2
 color = Color(0.392157, 0.392157, 0.392157, 0)
+metadata/_edit_lock_ = true
 
 [node name="VSeparator" type="VSeparator" parent="PanelContainer/Margin/Box/BottomButtonsContainer"]
 layout_mode = 2
@@ -291,6 +304,7 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 focus_mode = 0
+theme_override_fonts/font = ExtResource("4_qmfxs")
 theme_override_styles/focus = ExtResource("2_s2riy")
 theme_override_styles/hover_pressed = ExtResource("2_s2riy")
 theme_override_styles/hover = ExtResource("2_s2riy")
@@ -308,6 +322,7 @@ grow_vertical = 2
 size_flags_vertical = 3
 mouse_filter = 2
 color = Color(0.392157, 0.392157, 0.392157, 0)
+metadata/_edit_lock_ = true
 
 [connection signal="pressed" from="PanelContainer/Margin/Box/ContentHBox/ScrollList/CategoryList/VideoButton" to="." method="_on_video_button_pressed"]
 [connection signal="pressed" from="PanelContainer/Margin/Box/ContentHBox/ScrollList/CategoryList/AudioButton" to="." method="_on_audio_button_pressed"]

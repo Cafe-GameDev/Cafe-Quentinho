@@ -1,5 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://cvtlqfm3228xb"]
+[gd_scene load_steps=4 format=3 uid="uid://cvtlqfm3228xb"]
 
+[ext_resource type="FontFile" uid="uid://ba6tmpodlc0io" path="res://Assets/Fonts/NotoSans-Regular.ttf" id="1_6pmdh"]
 [ext_resource type="StyleBox" uid="uid://ccucsa8kk57ft" path="res://Resources/button_focus.tres" id="1_scugc"]
 [ext_resource type="StyleBox" uid="uid://bej76kq62gywe" path="res://Resources/button_normal.tres" id="2_6pmdh"]
 
@@ -50,6 +51,7 @@ layout_mode = 2
 [node name="ResetButton" type="Button" parent="."]
 custom_minimum_size = Vector2(0, 31)
 layout_mode = 2
+theme_override_fonts/font = ExtResource("1_6pmdh")
 theme_override_styles/focus = ExtResource("1_scugc")
 theme_override_styles/hover_pressed = ExtResource("1_scugc")
 theme_override_styles/hover = ExtResource("1_scugc")
@@ -67,3 +69,4 @@ grow_vertical = 2
 size_flags_vertical = 3
 mouse_filter = 2
 color = Color(0.392157, 0.392157, 0.392157, 0)
+metadata/_edit_lock_ = true

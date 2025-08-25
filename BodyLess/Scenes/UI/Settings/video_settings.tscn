@@ -1,6 +1,7 @@
-[gd_scene load_steps=17 format=3 uid="uid://b8n0le3mmhafb"]
+[gd_scene load_steps=18 format=3 uid="uid://b8n0le3mmhafb"]
 
 [ext_resource type="Script" uid="uid://c8soxpoohhv3k" path="res://Scripts/UI/Settings/Video/monitor.gd" id="1_ck0h6"]
+[ext_resource type="FontFile" uid="uid://ba6tmpodlc0io" path="res://Assets/Fonts/NotoSans-Regular.ttf" id="2_ck0h6"]
 [ext_resource type="Script" uid="uid://b0to51po0ycj" path="res://Scripts/UI/Settings/Video/window.gd" id="2_jrcuf"]
 [ext_resource type="Script" uid="uid://bpixej8va8ltk" path="res://Scripts/UI/Settings/Video/resolution.gd" id="3_13id4"]
 [ext_resource type="Script" uid="uid://mcw6jcmukn0p" path="res://Scripts/UI/Settings/Video/aspect.gd" id="4_fp6p0"]
@@ -33,12 +34,14 @@ custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 tooltip_text = "TOOLTIP_MONITOR_DESC"
 mouse_filter = 0
+theme_override_fonts/font = ExtResource("2_ck0h6")
 text = "UI_MONITOR"
 
 [node name="MonitorOptionButton" type="OptionButton" parent="Monitor"]
 layout_mode = 2
 size_flags_horizontal = 3
 tooltip_text = "TOOLTIP_MONITOR_DESC"
+theme_override_fonts/font = ExtResource("2_ck0h6")
 
 [node name="Window" type="HBoxContainer" parent="."]
 layout_mode = 2
@@ -52,12 +55,14 @@ custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 tooltip_text = "TOOLTIP_WINDOW_MODE_DESC"
 mouse_filter = 0
+theme_override_fonts/font = ExtResource("2_ck0h6")
 text = "UI_WINDOW_MODE"
 
 [node name="WindowModeOptionButton" type="OptionButton" parent="Window"]
 layout_mode = 2
 size_flags_horizontal = 3
 tooltip_text = "TOOLTIP_WINDOW_MODE_DESC"
+theme_override_fonts/font = ExtResource("2_ck0h6")
 selected = 0
 item_count = 3
 popup/item_0/text = "UI_WINDOW_MODE_WINDOWED"
@@ -79,6 +84,7 @@ custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 tooltip_text = "TOOLTIP_RESOLUTION_DESC"
 mouse_filter = 0
+theme_override_fonts/font = ExtResource("2_ck0h6")
 text = "UI_RESOLUTION"
 
 [node name="ResolutionOptionButton" type="OptionButton" parent="Resolution"]
@@ -86,6 +92,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 tooltip_text = "TOOLTIP_RESOLUTION_DESC"
+theme_override_fonts/font = ExtResource("2_ck0h6")
 selected = 2
 item_count = 6
 popup/item_0/text = "640x360"
@@ -113,6 +120,7 @@ custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 tooltip_text = "TOOLTIP_ASPECT_RATIO_DESC"
 mouse_filter = 0
+theme_override_fonts/font = ExtResource("2_ck0h6")
 text = "UI_ASPECT_RATIO"
 
 [node name="AspectRatioOptionButton" type="OptionButton" parent="Aspect"]
@@ -120,6 +128,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 tooltip_text = "TOOLTIP_ASPECT_RATIO_DESC"
+theme_override_fonts/font = ExtResource("2_ck0h6")
 selected = 0
 item_count = 5
 popup/item_0/text = "UI_ASPECT_FREE"
@@ -145,6 +154,7 @@ custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 tooltip_text = "TOOLTIP_UPSCALING_MODE_DESC"
 mouse_filter = 0
+theme_override_fonts/font = ExtResource("2_ck0h6")
 text = "UI_UPSCALE_MODE"
 
 [node name="UpscalingModeOptionButton" type="OptionButton" parent="UpscalingMode"]
@@ -152,6 +162,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 tooltip_text = "TOOLTIP_UPSCALING_MODE_DESC"
+theme_override_fonts/font = ExtResource("2_ck0h6")
 selected = 0
 item_count = 3
 popup/item_0/text = "UI_UPSCALING_NONE"
@@ -173,12 +184,14 @@ custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 tooltip_text = "TOOLTIP_UPSCALING_QUALITY_DESC"
 mouse_filter = 0
+theme_override_fonts/font = ExtResource("2_ck0h6")
 text = "UI_UPSCALING_QUALITY"
 
 [node name="UpscalingQualityOptionButton" type="OptionButton" parent="UpscalingQuality"]
 layout_mode = 2
 size_flags_horizontal = 3
 tooltip_text = "TOOLTIP_UPSCALING_QUALITY_DESC"
+theme_override_fonts/font = ExtResource("2_ck0h6")
 selected = 2
 item_count = 5
 popup/item_0/text = "UI_FSR_ULTRA_QUALITY"
@@ -203,12 +216,14 @@ custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 tooltip_text = "TOOLTIP_FRAME_RATE_LIMIT_DESC"
 mouse_filter = 0
+theme_override_fonts/font = ExtResource("2_ck0h6")
 text = "UI_FRAME_RATE_LIMIT"
 
 [node name="FrameRateLimitOptionButton" type="OptionButton" parent="FrameRate"]
 layout_mode = 2
 size_flags_horizontal = 3
 tooltip_text = "TOOLTIP_FRAME_RATE_LIMIT_DESC"
+theme_override_fonts/font = ExtResource("2_ck0h6")
 selected = 0
 item_count = 4
 popup/item_0/text = "UI_FRAME_RATE_NO_LIMIT"
@@ -232,6 +247,7 @@ custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 tooltip_text = "TOOLTIP_MAX_FRAME_RATE_DESC"
 mouse_filter = 0
+theme_override_fonts/font = ExtResource("2_ck0h6")
 text = "UI_MAX_FRAME_RATE"
 
 [node name="MaxFrameRateSlider" type="HSlider" parent="MaxFrame"]
@@ -246,6 +262,7 @@ value = 300.0
 [node name="MaxFrameRateValueLabel" type="Label" parent="MaxFrame"]
 custom_minimum_size = Vector2(35, 0)
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_ck0h6")
 text = "300"
 horizontal_alignment = 2
 
@@ -261,12 +278,14 @@ custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 tooltip_text = "TOOLTIP_VSYNC_MODE_DESC"
 mouse_filter = 0
+theme_override_fonts/font = ExtResource("2_ck0h6")
 text = "UI_VSYNC"
 
 [node name="VSyncOptionButton" type="OptionButton" parent="VSync"]
 layout_mode = 2
 size_flags_horizontal = 3
 tooltip_text = "TOOLTIP_VSYNC_MODE_DESC"
+theme_override_fonts/font = ExtResource("2_ck0h6")
 selected = 0
 item_count = 3
 popup/item_0/text = "UI_VSYNC_ENABLED"
@@ -288,6 +307,7 @@ custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 tooltip_text = "TOOLTIP_GAMMA_CORRECTION_DESC"
 mouse_filter = 0
+theme_override_fonts/font = ExtResource("2_ck0h6")
 text = "UI_GAMMA_CORRECTION"
 
 [node name="GammaCorrectionSlider" type="HSlider" parent="GammaCorrection"]
@@ -302,6 +322,7 @@ value = 2.2
 [node name="GammaCorrectionValueLabel" type="Label" parent="GammaCorrection"]
 custom_minimum_size = Vector2(35, 0)
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_ck0h6")
 text = "2.2"
 horizontal_alignment = 2
 
@@ -317,6 +338,7 @@ custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 tooltip_text = "TOOLTIP_CONTRAST_DESC"
 mouse_filter = 0
+theme_override_fonts/font = ExtResource("2_ck0h6")
 text = "UI_CONTRAST"
 
 [node name="ContrastSlider" type="HSlider" parent="Contrast"]
@@ -331,6 +353,7 @@ value = 1.0
 [node name="ContrastValueLabel" type="Label" parent="Contrast"]
 custom_minimum_size = Vector2(35, 0)
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_ck0h6")
 text = "1.0"
 horizontal_alignment = 2
 
@@ -346,6 +369,7 @@ custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 tooltip_text = "TOOLTIP_BRIGHTNESS_DESC"
 mouse_filter = 0
+theme_override_fonts/font = ExtResource("2_ck0h6")
 text = "UI_BRIGHTNESS"
 
 [node name="BrightnessSlider" type="HSlider" parent="Brightness"]
@@ -360,6 +384,7 @@ value = 1.0
 [node name="BrightnessValueLabel" type="Label" parent="Brightness"]
 custom_minimum_size = Vector2(35, 0)
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_ck0h6")
 text = "1.0"
 horizontal_alignment = 2
 
@@ -374,12 +399,14 @@ custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 tooltip_text = "TOOLTIP_SHADERS_QUALITY_DESC"
 mouse_filter = 0
+theme_override_fonts/font = ExtResource("2_ck0h6")
 text = "TOOLTIP_SHADERS_QUALITY_TITLE"
 
 [node name="ShadersQualityOptionButton" type="OptionButton" parent="Shaders"]
 layout_mode = 2
 size_flags_horizontal = 3
 tooltip_text = "TOOLTIP_SHADERS_QUALITY_DESC"
+theme_override_fonts/font = ExtResource("2_ck0h6")
 selected = 2
 item_count = 3
 popup/item_0/text = "UI_QUALITY_LOW"
@@ -401,12 +428,14 @@ custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 tooltip_text = "TOOLTIP_EFFECTS_QUALITY_DESC"
 mouse_filter = 0
+theme_override_fonts/font = ExtResource("2_ck0h6")
 text = "TOOLTIP_EFFECTS_QUALITY_TITLE"
 
 [node name="EffectsQualityOptionButton" type="OptionButton" parent="EffectsQuality"]
 layout_mode = 2
 size_flags_horizontal = 3
 tooltip_text = "TOOLTIP_EFFECTS_QUALITY_DESC"
+theme_override_fonts/font = ExtResource("2_ck0h6")
 selected = 2
 item_count = 3
 popup/item_0/text = "UI_QUALITY_LOW"
@@ -428,12 +457,14 @@ custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 tooltip_text = "TOOLTIP_COLORBLIND_MODE_DESC"
 mouse_filter = 0
+theme_override_fonts/font = ExtResource("2_ck0h6")
 text = "TOOLTIP_COLORBLIND_MODE_TITLE"
 
 [node name="ColorblindModeOptionButton" type="OptionButton" parent="Colorblind"]
 layout_mode = 2
 size_flags_horizontal = 3
 tooltip_text = "TOOLTIP_COLORBLIND_MODE_DESC"
+theme_override_fonts/font = ExtResource("2_ck0h6")
 selected = 0
 item_count = 4
 popup/item_0/text = "UI_COLORBLIND_NONE"
@@ -457,12 +488,14 @@ custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 tooltip_text = "TOOLTIP_UI_SCALE_DESC"
 mouse_filter = 0
+theme_override_fonts/font = ExtResource("2_ck0h6")
 text = "UI_SCALE_PRESET"
 
 [node name="UIScaleOptionButton" type="OptionButton" parent="UIScale"]
 layout_mode = 2
 size_flags_horizontal = 3
 tooltip_text = "TOOLTIP_UI_SCALE_DESC"
+theme_override_fonts/font = ExtResource("2_ck0h6")
 selected = 0
 item_count = 5
 popup/item_0/text = "UI_SCALE_100_PERCENT"

@@ -13,7 +13,7 @@ dest_files=["res://.godot/imported/NotoSans-Regular.ttf-7ed6077ac9489a5d9a6d1869
 [params]
 
 Rendering=null
-antialiasing=1
+antialiasing=2
 generate_mipmaps=false
 disable_embedded_bitmaps=true
 multichannel_signed_distance_field=false
@@ -26,16 +26,14 @@ subpixel_positioning=4
 keep_rounding_remainders=true
 oversampling=0.0
 Fallbacks=null
-fallbacks=[]
+fallbacks=[Resource("res://Assets/Fonts/NotoSansJP-VF.ttf"), Resource("res://Assets/Fonts/NotoSansKR-VF.ttf"), Resource("res://Assets/Fonts/NotoSansSC-VF.ttf"), Resource("res://Assets/Fonts/NotoSansTC-VF.ttf")]
 Compress=null
-compress=true
+compress=false
 preload=[{
 "chars": [],
-"glyphs": [55, 72, 80, 83, 79, 68, 87, 3, 71, 82, 37, 85, 88, 81, 49, 89, 45, 74, 50, 169, 183, 86, 54, 76, 51, 57, 39, 77, 34, 165, 38, 1654, 175, 131, 75, 42, 48, 188, 70, 40, 73, 36, 44, 17, 10, 47, 69, 62, 64, 18, 29, 94, 96, 156, 92, 93, 35, 43, 53, 91, 171, 172, 11, 56, 12, 41, 143, 164, 163, 84, 15, 20, 25, 28, 23, 22, 52, 182, 181, 4, 16, 58, 66, 19, 21, 8, 24, 26, 90, 60, 78, 1653, 46, 129, 179, 99, 184, 61, 190, 166, 1655, 161, 134, 158, 170, 139, 1656, 276, 176, 162, 140, 189, 174, 448, 456, 457, 467, 470, 469, 425, 472, 475, 437, 458, 487, 464, 459, 473, 474, 465, 466, 426, 483, 477, 460, 439, 463, 462, 484, 461, 428, 424, 485, 468, 438, 481, 436, 431, 476, 455, 434, 471, 486, 479, 430, 432, 441, 442, 478, 427, 440, 480, 443, 444, 445, 433, 435],
-"name": "NotoSans",
-"size": Vector2i(16, 0),
-&"variation_embolden": 0.0,
-&"variation_opentype": {}
+"glyphs": [],
+"name": "Nova Configuração",
+"size": Vector2i(16, 0)
 }]
 language_support={}
 script_support={}
