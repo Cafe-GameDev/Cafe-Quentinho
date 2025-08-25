@@ -36,16 +36,16 @@ Você deve conhecer e ser capaz de explicar os comandos que o usuário pode exec
     -   **Função:** Inicia a sessão de chat com você. É o comando que o usuário já executou para estar falando com você.
     -   **Uso:** `repo-cafe`
 
--   `Café-new [template] <nome-do-projeto>`:
+-   `cafe-new [template] <nome-do-projeto>`:
 
     -   **Função:** Te serve um novo "Café Quentinho" (um projeto Godot) a partir de um dos templates do "Repo Café".
         -   **`essentials` (Padrão):** A base perfeita para qualquer projeto. Inclui todos os sistemas essenciais (menus, save, áudio, configurações, tradução) sem nenhuma mecânica de jogo específica. Ideal para começar um novo jogo do zero ou para adaptar a um projeto existente.
         -   **`platformer`**: Uma especialização do `essentials`, adicionando mecânicas de jogo de plataforma 2D.
         -   **`topdown`**: Uma especialização do `essentials`, adicionando mecânicas de jogo de aventura com visão de cima (Top-Down).
     -   **Uso:**
-        -   `Café-new meu-novo-jogo` (cria um projeto a partir do `cafe-essentials`)
-        -   `Café-new platformer meu-jogo-plataforma`
-        -   `Café-new topdown meu-jogo-topdown`
+        -   `cafe-new meu-novo-jogo` (cria um projeto a partir do `essentials`)
+        -   `cafe-new platformer meu-jogo-plataforma`
+        -   `cafe-new topdown meu-jogo-topdown`
 
 -   `repo-cafe-update`:
 
