@@ -1,4 +1,55 @@
+# EditorConfig para projetos Godot
 root = true
 
+# Regras gerais para todos os arquivos
 [*]
+charset = utf-8           # Garante UTF-8
+end_of_line = lf          # Quebra de linha LF
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+# Arquivos GDScript
+[*.gd]
+indent_style = space
+indent_size = 4
+
+# Cenas e recursos Godot
+[*.tscn]
+indent_style = space
+indent_size = 4
+
+[*.tres]
+indent_style = space
+indent_size = 4
+
+# Arquivos de tradução
+[*.po]
 charset = utf-8
+indent_style = space
+indent_size = 2
+trim_trailing_whitespace = false   # importante manter espaços no gettext
+
+# Arquivos de configuração e textuais
+[*.cfg]
+indent_style = space
+indent_size = 2
+
+[*.ini]
+indent_style = space
+indent_size = 2
+
+# Arquivos JSON / YAML
+[*.json]
+indent_style = space
+indent_size = 2
+
+[*.yml]
+indent_style = space
+indent_size = 2
+
+# Scripts auxiliares ou outros arquivos de texto
+[*.txt]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true

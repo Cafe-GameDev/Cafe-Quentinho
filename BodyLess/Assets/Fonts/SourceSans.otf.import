@@ -2,7 +2,7 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://ted1hu4r6w38"
+uid="uid://mew0iowtcf0k"
 path="res://.godot/imported/SourceSans.otf-23a6b4afb552ae3ad10d19e14b3c43ed.fontdata"
 
 [deps]
@@ -13,7 +13,7 @@ dest_files=["res://.godot/imported/SourceSans.otf-23a6b4afb552ae3ad10d19e14b3c43
 [params]
 
 Rendering=null
-antialiasing=2
+antialiasing=1
 generate_mipmaps=false
 disable_embedded_bitmaps=true
 multichannel_signed_distance_field=false
@@ -28,10 +28,10 @@ oversampling=0.0
 Fallbacks=null
 fallbacks=[Resource("res://Assets/Fonts/SourceHanSansCN.otf"), Resource("res://Assets/Fonts/SourceHanSansHK.otf"), Resource("res://Assets/Fonts/SourceHanSansJP.otf"), Resource("res://Assets/Fonts/SourceHanSansKR.otf"), Resource("res://Assets/Fonts/SourceHanSansTW.otf")]
 Compress=null
-compress=false
+compress=true
 preload=[{
 "chars": [],
-"glyphs": [],
+"glyphs": [21, 32, 40, 43, 39, 28, 47, 1, 31, 42, 3, 45, 48, 41, 15, 49, 11, 34, 16, 358, 463, 46, 20, 36, 17, 23, 5, 37, 1394, 327, 4, 33, 412, 55, 35, 8, 14, 520, 30, 6, 2, 10, 1387, 1396, 13, 29, 1444, 1445, 1448, 1389, 1446, 1447, 248, 52, 53, 1491, 9, 19, 51, 371, 372, 1442, 22, 1443, 7, 144, 326, 325, 44, 1388, 1334, 1339, 1342, 1337, 1336, 18, 462, 461, 1392, 1415, 24, 1438, 1333, 1335, 2140, 1338, 1340, 50, 26, 38, 687, 12, 690, 1395, 452, 1393, 464, 27, 523, 328, 508, 58, 251, 370, 102, 481, 413, 324, 103, 521, 411, 1151, 1205, 1206, 1216, 1219, 1218, 1128, 1221, 1224, 1140, 1207, 1236, 1213, 1208, 1222, 1223, 1214, 1215, 1129, 1232, 1226, 1209, 1142, 1212, 1211, 1233, 1210, 1131, 1127, 1234, 1217, 1141, 1230, 1139, 1134, 1225, 1158, 1137, 1220, 1235, 1228, 1133, 1135, 1144, 1145, 1227, 1130, 1143, 1229, 1146, 1147, 1148, 1136, 1138],
 "name": "Nova Configuração",
 "size": Vector2i(16, 0),
 &"variation_embolden": 0.0
