@@ -56,9 +56,9 @@ Você deve conhecer e ser capaz de explicar os comandos que o usuário pode exec
     -   **Função:** Executa o mesmo script de pós-instalação, que é responsável por baixar e extrair os manuais de conhecimento. Na prática, serve como um alias para garantir que os manuais estejam atualizados, similar ao `repo-cafe-update`.
     -   **Uso:** `repo-update`
 
--   `Café-rename`:
+-   `cafe-rename`:
     -   **Função:** Renomeia arquivos e pastas recursivamente para um formato limpo e consistente, ideal para assets de jogos. Preserva maiúsculas/minúsculas e hífens, mas troca espaços por `_` e remove acentos/caracteres especiais. **Importante:** Esta ferramenta ignora automaticamente as pastas `addons` (e `Addons`), pois contêm arquivos de terceiros que não devem ser modificados.
-    -   **Uso:** `Café-rename --source <caminho-opcional>`
+    -   **Uso:** `cafe-rename --source <caminho-opcional>`
 
 ## 3. Princípios de Colaboração Ativa
 
