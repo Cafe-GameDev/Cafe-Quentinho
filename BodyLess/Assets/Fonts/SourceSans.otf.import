@@ -1,0 +1,41 @@
+[remap]
+
+importer="font_data_dynamic"
+type="FontFile"
+uid="uid://ted1hu4r6w38"
+path="res://.godot/imported/SourceSans.otf-23a6b4afb552ae3ad10d19e14b3c43ed.fontdata"
+
+[deps]
+
+source_file="res://Assets/Fonts/SourceSans.otf"
+dest_files=["res://.godot/imported/SourceSans.otf-23a6b4afb552ae3ad10d19e14b3c43ed.fontdata"]
+
+[params]
+
+Rendering=null
+antialiasing=2
+generate_mipmaps=false
+disable_embedded_bitmaps=true
+multichannel_signed_distance_field=false
+msdf_pixel_range=8
+msdf_size=48
+allow_system_fallback=true
+force_autohinter=false
+hinting=1
+subpixel_positioning=4
+keep_rounding_remainders=true
+oversampling=0.0
+Fallbacks=null
+fallbacks=[Resource("res://Assets/Fonts/SourceHanSansCN.otf"), Resource("res://Assets/Fonts/SourceHanSansHK.otf"), Resource("res://Assets/Fonts/SourceHanSansJP.otf"), Resource("res://Assets/Fonts/SourceHanSansKR.otf"), Resource("res://Assets/Fonts/SourceHanSansTW.otf")]
+Compress=null
+compress=false
+preload=[{
+"chars": [],
+"glyphs": [],
+"name": "Nova Configuração",
+"size": Vector2i(16, 0),
+&"variation_embolden": 0.0
+}]
+language_support={}
+script_support={}
+opentype_features={}

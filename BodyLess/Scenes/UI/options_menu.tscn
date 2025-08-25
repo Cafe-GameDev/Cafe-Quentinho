@@ -8,7 +8,7 @@
 [ext_resource type="StyleBox" uid="uid://5qc4dawypfba" path="res://Resources/panel2.tres" id="3_gcjgb"]
 [ext_resource type="PackedScene" uid="uid://dat2iwiarvvxj" path="res://Scenes/UI/Settings/audio_settings.tscn" id="3_x3x5h"]
 [ext_resource type="PackedScene" uid="uid://bey3t3k4biaww" path="res://Scenes/UI/Settings/language_settings.tscn" id="4_3tdd8"]
-[ext_resource type="FontFile" uid="uid://ba6tmpodlc0io" path="res://Assets/Fonts/NotoSans-Regular.ttf" id="4_qmfxs"]
+[ext_resource type="FontFile" uid="uid://ted1hu4r6w38" path="res://Assets/Fonts/SourceSans.otf" id="4_oecpn"]
 [ext_resource type="PackedScene" uid="uid://cvtlqfm3228xb" path="res://Scenes/UI/Settings/input_map_settings.tscn" id="4_x3x5h"]
 
 [node name="OptionsMenu" type="Panel"]
@@ -60,7 +60,7 @@ theme_override_constants/separation = 16
 [node name="TitleLabel" type="Label" parent="PanelContainer/Margin/Box/UPButtons"]
 custom_minimum_size = Vector2(254, 0)
 layout_mode = 2
-theme_override_fonts/font = ExtResource("4_qmfxs")
+theme_override_fonts/font = ExtResource("4_oecpn")
 theme_override_font_sizes/font_size = 28
 text = "UI_SETTINGS_TITLE"
 horizontal_alignment = 1
@@ -76,7 +76,7 @@ alignment = 1
 
 [node name="VideoLabel" type="Label" parent="PanelContainer/Margin/Box/UPButtons/LabelContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("4_qmfxs")
+theme_override_fonts/font = ExtResource("4_oecpn")
 theme_override_font_sizes/font_size = 22
 text = "UI_VIDEO_OPTIONS"
 vertical_alignment = 1
@@ -126,7 +126,7 @@ custom_minimum_size = Vector2(0, 31)
 layout_mode = 2
 size_flags_vertical = 3
 focus_mode = 0
-theme_override_fonts/font = ExtResource("4_qmfxs")
+theme_override_fonts/font = ExtResource("4_oecpn")
 theme_override_styles/focus = ExtResource("2_s2riy")
 theme_override_styles/hover_pressed = ExtResource("2_s2riy")
 theme_override_styles/hover = ExtResource("2_s2riy")
@@ -151,7 +151,7 @@ custom_minimum_size = Vector2(0, 31)
 layout_mode = 2
 size_flags_vertical = 3
 focus_mode = 0
-theme_override_fonts/font = ExtResource("4_qmfxs")
+theme_override_fonts/font = ExtResource("4_oecpn")
 theme_override_styles/focus = ExtResource("2_s2riy")
 theme_override_styles/hover_pressed = ExtResource("2_s2riy")
 theme_override_styles/hover = ExtResource("2_s2riy")
@@ -176,7 +176,7 @@ custom_minimum_size = Vector2(0, 31)
 layout_mode = 2
 size_flags_vertical = 3
 focus_mode = 0
-theme_override_fonts/font = ExtResource("4_qmfxs")
+theme_override_fonts/font = ExtResource("4_oecpn")
 theme_override_styles/focus = ExtResource("2_s2riy")
 theme_override_styles/hover_pressed = ExtResource("2_s2riy")
 theme_override_styles/hover = ExtResource("2_s2riy")
@@ -201,7 +201,7 @@ custom_minimum_size = Vector2(0, 31)
 layout_mode = 2
 size_flags_vertical = 3
 focus_mode = 0
-theme_override_fonts/font = ExtResource("4_qmfxs")
+theme_override_fonts/font = ExtResource("4_oecpn")
 theme_override_styles/focus = ExtResource("2_s2riy")
 theme_override_styles/hover_pressed = ExtResource("2_s2riy")
 theme_override_styles/hover = ExtResource("2_s2riy")
@@ -232,15 +232,14 @@ layout_mode = 2
 clip_contents = false
 layout_mode = 2
 size_flags_horizontal = 3
+horizontal_scroll_mode = 0
 
 [node name="CategoryContent" type="VBoxContainer" parent="PanelContainer/Margin/Box/ContentHBox/ScrollContent"]
+custom_minimum_size = Vector2(560, 0)
 layout_mode = 2
-size_flags_horizontal = 3
 
 [node name="VideoSettings" parent="PanelContainer/Margin/Box/ContentHBox/ScrollContent/CategoryContent" instance=ExtResource("2_yjqj2")]
-custom_minimum_size = Vector2(572, 0)
 layout_mode = 2
-size_flags_vertical = 3
 
 [node name="AudioSettings" parent="PanelContainer/Margin/Box/ContentHBox/ScrollContent/CategoryContent" instance=ExtResource("3_x3x5h")]
 visible = false
@@ -277,7 +276,7 @@ alignment = 2
 custom_minimum_size = Vector2(254, 0)
 layout_mode = 2
 focus_mode = 0
-theme_override_fonts/font = ExtResource("4_qmfxs")
+theme_override_fonts/font = ExtResource("4_oecpn")
 theme_override_styles/focus = ExtResource("2_s2riy")
 theme_override_styles/hover_pressed = ExtResource("2_s2riy")
 theme_override_styles/hover = ExtResource("2_s2riy")
@@ -304,7 +303,7 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 focus_mode = 0
-theme_override_fonts/font = ExtResource("4_qmfxs")
+theme_override_fonts/font = ExtResource("4_oecpn")
 theme_override_styles/focus = ExtResource("2_s2riy")
 theme_override_styles/hover_pressed = ExtResource("2_s2riy")
 theme_override_styles/hover = ExtResource("2_s2riy")
