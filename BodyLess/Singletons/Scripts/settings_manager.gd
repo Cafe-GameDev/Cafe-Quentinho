@@ -1,6 +1,6 @@
 extends Node
 
-const SETTINGS_PATH = "res://settings.json"
+const SETTINGS_PATH = "user://settings.json"
 
 # Usamos valores simples e literais para evitar problemas de parse.
 const DEFAULT_SETTINGS = {
@@ -13,7 +13,7 @@ const DEFAULT_SETTINGS = {
 	"video": {
 		"monitor_index": 0,
 		"window_mode": DisplayServer.WINDOW_MODE_WINDOWED,
-		"resolution": {"x": 1920, "y": 1080},
+		"resolution": {"x": 1280, "y": 720},
 		"field_of_view": 70.0, # Valor padrão para FOV
 		"aspect_ratio": 0, # 0 para 16:9, 1 para 4:3, etc.
 		"dynamic_render_scale_mode": 0, # 0: Off, 1: Custom
