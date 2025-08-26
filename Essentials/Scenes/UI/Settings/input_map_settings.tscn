@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cvtlqfm3228xb"]
 
-[ext_resource type="FontFile" uid="uid://ted1hu4r6w38" path="res://Assets/Fonts/SourceSans.otf" id="1_6pmdh"]
+[ext_resource type="FontFile" uid="uid://mew0iowtcf0k" path="res://Assets/Fonts/SourceSans.otf" id="1_6pmdh"]
 [ext_resource type="StyleBox" uid="uid://ccucsa8kk57ft" path="res://Resources/button_focus.tres" id="1_scugc"]
 [ext_resource type="StyleBox" uid="uid://bej76kq62gywe" path="res://Resources/button_normal.tres" id="2_6pmdh"]
 

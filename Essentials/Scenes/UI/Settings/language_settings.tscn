@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cnmrmds3xslo2" path="res://Scripts/UI/Settings/Locate/language_options.gd" id="1_utlj1"]
 [ext_resource type="StyleBox" uid="uid://ccucsa8kk57ft" path="res://Resources/button_focus.tres" id="2_syk7v"]
-[ext_resource type="FontFile" uid="uid://ted1hu4r6w38" path="res://Assets/Fonts/SourceSans.otf" id="2_ywr8a"]
+[ext_resource type="FontFile" uid="uid://mew0iowtcf0k" path="res://Assets/Fonts/SourceSans.otf" id="2_ywr8a"]
 [ext_resource type="StyleBox" uid="uid://bej76kq62gywe" path="res://Resources/button_normal.tres" id="3_ywr8a"]
 
 [node name="LanguageSettings" type="VBoxContainer"]
