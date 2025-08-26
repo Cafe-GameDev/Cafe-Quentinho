@@ -1,0 +1,45 @@
+[gd_scene load_steps=2 format=3 uid="uid://c22i8ska6ji7n"]
+
+[ext_resource type="Script" uid="uid://da7f82lyicmjt" path="res://addons/Cafe-AudioManager/scripts/cafe_audio_manager.gd" id="1_3sx8q"]
+
+[node name="AudioManager" type="Node"]
+process_mode = 3
+script = ExtResource("1_3sx8q")
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+autoplay = true
+bus = &"Music"
+
+[node name="MusicChangeTimer" type="Timer" parent="."]
+wait_time = 300.0
+autostart = true
+
+[node name="SFXPlayer" type="Node" parent="."]
+
+[node name="SFXPlayer_0" type="AudioStreamPlayer" parent="SFXPlayer"]
+
+[node name="SFXPlayer_1" type="AudioStreamPlayer" parent="SFXPlayer"]
+
+[node name="SFXPlayer_2" type="AudioStreamPlayer" parent="SFXPlayer"]
+
+[node name="SFXPlayer_3" type="AudioStreamPlayer" parent="SFXPlayer"]
+
+[node name="SFXPlayer_4" type="AudioStreamPlayer" parent="SFXPlayer"]
+
+[node name="SFXPlayer_5" type="AudioStreamPlayer" parent="SFXPlayer"]
+
+[node name="SFXPlayer_6" type="AudioStreamPlayer" parent="SFXPlayer"]
+
+[node name="SFXPlayer_7" type="AudioStreamPlayer" parent="SFXPlayer"]
+
+[node name="SFXPlayer_8" type="AudioStreamPlayer" parent="SFXPlayer"]
+
+[node name="SFXPlayer_9" type="AudioStreamPlayer" parent="SFXPlayer"]
+
+[node name="SFXPlayer_10" type="AudioStreamPlayer" parent="SFXPlayer"]
+
+[connection signal="finished" from="MusicPlayer" to="." method="_on_music_player_finished"]
+[connection signal="timeout" from="MusicChangeTimer" to="." method="_on_music_change_timer_timeout"]
+[connection signal="finished" from="SFXPlayer/SFXPlayer_0" to="." method="_on_sfx_player_0_finished"]
+[connection signal="finished" from="SFXPlayer/SFXPlayer_1" to="." method="_on_sfx_player_1_finished"]
