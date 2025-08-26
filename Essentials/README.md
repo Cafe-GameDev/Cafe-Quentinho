@@ -98,7 +98,7 @@ No ecossistema "Café Quentinho", os plugins são tratados como "Grãos Especiai
 
 *   **Integração:** Plugins são adicionados via a pasta `addons/` e ativados nas configurações do projeto.
 *   **Comunicação:** Preferencialmente, plugins devem se comunicar com o restante do jogo através de seus próprios sinais (atuando como EventBuses locais) ou ouvindo/emitindo sinais no `GlobalEvents` para interações mais amplas.
-*   **Exemplo: `Cafe-AudioManager`:** Este plugin substitui o `AudioManager` original, tornando-se o EventBus para todos os eventos de áudio (SFX e música). Ele gerencia o carregamento, reprodução e controle de volume de forma centralizada, garantindo que a lógica de áudio seja desacoplada da UI e de outros sistemas.
+*   **Exemplo: `CafeAudioManager`:** Este plugin substitui o `AudioManager` original, tornando-se o EventBus para todos os eventos de áudio (SFX e música). Ele gerencia o carregamento, reprodução e controle de volume de forma centralizada, garantindo que a lógica de áudio seja desacoplada da UI e de outros sistemas.
 
 ### Sistema de UI Reativo
 

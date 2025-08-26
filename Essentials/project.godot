@@ -26,7 +26,7 @@ SettingsManager="*res://Singletons/Scripts/settings_manager.gd"
 GlobalEvents="*res://Singletons/Scripts/global_events.gd"
 GameManager="*res://Singletons/Scripts/game_manager.gd"
 DebugConsole="*res://Singletons/Scenes/debug_console.tscn"
-CafeAudioManager="*res://addons/Cafe-AudioManager/scenes/cafe_audio_manager.tscn"
+CafeAudioManager="*res://addons/CafeAudioManager/scenes/cafe_audio_manager.tscn"
 
 [display]
 
@@ -42,7 +42,7 @@ window/canvas_textures/default_texture_filter=0
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/Cafe-AudioManager/plugin.cfg")
+enabled=PackedStringArray("res://addons/Cafe-AudioManager/plugin.cfg", "res://addons/CafeAudioManager/plugin.cfg")
 
 [filesystem]
 

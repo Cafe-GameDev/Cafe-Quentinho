@@ -158,9 +158,10 @@ func _apply_all_settings() -> void:
 	var master_volume = settings.get("audio", {}).get("master_volume", DEFAULT_SETTINGS["audio"]["master_volume"])
 	var music_volume = settings.get("audio", {}).get("music_volume", DEFAULT_SETTINGS["audio"]["music_volume"])
 	var sfx_volume = settings.get("audio", {}).get("sfx_volume", DEFAULT_SETTINGS["audio"]["sfx_volume"])
-	CafeAudioManager.volume_changed.emit("Master", master_volume)
-	CafeAudioManager.volume_changed.emit("Music", music_volume)
-	CafeAudioManager.volume_changed.emit("SFX", sfx_volume)
+	
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), linear_to_db(master_volume))
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"), linear_to_db(music_volume))
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("SFX"), linear_to_db(sfx_volume))
 
 	# Aplica as configurações de idioma
 	TranslationServer.set_locale(settings.get("locale", DEFAULT_SETTINGS["locale"]))
