@@ -83,9 +83,6 @@ O template oferece os seguintes sistemas pré-configurados, com foco em eficiên
     *   **Propósito:** O coração da comunicação desacoplada. Contém exclusivamente declarações de `signal`, atuando como um quadro de avisos central e passivo para eventos globais.
 *   **`SceneManager`:**
     *   **Propósito:** Gerenciar o carregamento, descarregamento e transições de cenas de forma eficiente e controlada usando um sistema de pilha (`push`/`pop`).
-*   **`AudioManager`:**
-    *   **Propósito:** Centralizar o carregamento e a reprodução de música e efeitos sonoros (SFX).
-    *   **Eficiência:** Carrega sons dinamicamente de pastas, os categoriza automaticamente e usa um pool de players para SFX, evitando que sons se cortem.
 *   **`SettingsManager`:**
     *   **Propósito:** Gerenciar o estado das configurações do jogo (áudio, vídeo, etc.) em um dicionário. Ele aplica as configurações e reage a mudanças, mas não lida com salvamento/carregamento.
 *   **`SaveSystem`:**
@@ -94,6 +91,14 @@ O template oferece os seguintes sistemas pré-configurados, com foco em eficiên
     *   **Propósito:** Traduzir input bruto (teclado, controle) em sinais de "intenção" para o `GlobalEvents`, desacoplando a entrada física da ação do jogo.
 *   **`DebugConsole`:**
     *   **Propósito:** Fornecer feedback visual para depuração em tempo real, ouvindo todos os sinais do `GlobalEvents` e exibindo um log formatado.
+
+### Grãos Especiais: Plugins de Café
+
+No ecossistema "Café Quentinho", os plugins são tratados como "Grãos Especiais" – componentes modulares que estendem a funcionalidade do seu projeto de forma desacoplada e eficiente. Eles são projetados para serem facilmente integrados, seguindo os princípios arquiteturais do template.
+
+*   **Integração:** Plugins são adicionados via a pasta `addons/` e ativados nas configurações do projeto.
+*   **Comunicação:** Preferencialmente, plugins devem se comunicar com o restante do jogo através de seus próprios sinais (atuando como EventBuses locais) ou ouvindo/emitindo sinais no `GlobalEvents` para interações mais amplas.
+*   **Exemplo: `Cafe-AudioManager`:** Este plugin substitui o `AudioManager` original, tornando-se o EventBus para todos os eventos de áudio (SFX e música). Ele gerencia o carregamento, reprodução e controle de volume de forma centralizada, garantindo que a lógica de áudio seja desacoplada da UI e de outros sistemas.
 
 ### Sistema de UI Reativo
 

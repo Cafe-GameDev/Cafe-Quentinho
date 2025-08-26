@@ -22,4 +22,4 @@ func _on_mouse_entered() -> void:
 func _on_pressed() -> void:
 	# Emite um sinal global solicitando a reprodução de um som de clique.
 	# A chave "ui_click" corresponde à estrutura de pastas em Assets/Audio/ui/click
-	GlobalEvents.emit_signal("play_sfx_by_key_requested", "ui_click")
+	CafeAudioManager.play_sfx_requested.emit("ui_click", "SFX")

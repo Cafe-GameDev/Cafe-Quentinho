@@ -15,4 +15,4 @@ static func play_hover_sound() -> void:
 static func play_click_sound() -> void:
 	# A chave "interface_confirmation" corresponde à estrutura de pastas em Assets/Audio/
 	# Ex: res://Assets/Audio/interface/confirmation/sound.ogg
-	GlobalEvents.emit_signal("play_sfx_by_key_requested", "interface_confirmation")
+	CafeAudioManager.play_sfx_requested.emit("interface_confirmation", "SFX")

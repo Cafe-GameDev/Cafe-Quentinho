@@ -40,6 +40,7 @@ func _ready():
 	# Connect to self signals
 	play_sfx_requested.connect(_on_play_sfx_requested)
 	play_music_requested.connect(_on_play_music_requested)
+	volume_changed.connect(apply_volume_to_bus)
 	
 	_load_audio_from_manifest()
 	_select_and_play_random_playlist()

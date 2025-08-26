@@ -48,12 +48,9 @@ signal request_reset_language_changed()
 signal language_data_save_requested(language_data: Dictionary) # NOVO SINAL
 
 # --- Sinais de Áudio ---
-@warning_ignore("unused_signal")
 signal play_sfx_by_key_requested(sfx_key: String)
-@warning_ignore("unused_signal")
-signal music_change_requested(music_key: String) # Mantido conforme discussão
-@warning_ignore("unused_signal")
-signal music_track_changed(track_name: String) # Mantido conforme discussão
+signal music_change_requested(music_key: String)
+signal music_track_changed(track_name: String)
 
 # --- Sinais de Estado do Jogo (Game State) ---
 @warning_ignore("unused_signal")

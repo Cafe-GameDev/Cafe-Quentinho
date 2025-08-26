@@ -158,9 +158,9 @@ func _apply_all_settings() -> void:
 	var master_volume = settings.get("audio", {}).get("master_volume", DEFAULT_SETTINGS["audio"]["master_volume"])
 	var music_volume = settings.get("audio", {}).get("music_volume", DEFAULT_SETTINGS["audio"]["music_volume"])
 	var sfx_volume = settings.get("audio", {}).get("sfx_volume", DEFAULT_SETTINGS["audio"]["sfx_volume"])
-	_apply_volume_to_bus("Master", master_volume)
-	_apply_volume_to_bus("Music", music_volume)
-	_apply_volume_to_bus("SFX", sfx_volume)
+	CafeAudioManager.volume_changed.emit("Master", master_volume)
+	CafeAudioManager.volume_changed.emit("Music", music_volume)
+	CafeAudioManager.volume_changed.emit("SFX", sfx_volume)
 
 	# Aplica as configurações de idioma
 	TranslationServer.set_locale(settings.get("locale", DEFAULT_SETTINGS["locale"]))
@@ -207,11 +207,7 @@ func _apply_all_settings() -> void:
 	print("Configurações aplicadas.")
 	print("DEBUG: _apply_all_settings - settings: ", settings)
 
-func _apply_volume_to_bus(bus_name: String, linear_volume: float) -> void:
-	var bus_index = AudioServer.get_bus_index(bus_name)
-	if bus_index != -1:
-		var db_volume = linear_to_db(linear_volume) if linear_volume > 0 else -80.0
-		AudioServer.set_bus_volume_db(bus_index, db_volume)
+
 
 func _apply_field_of_view(_fov_value: float) -> void:
 	# Lógica para aplicar FOV (pode envolver a câmera do jogador)
