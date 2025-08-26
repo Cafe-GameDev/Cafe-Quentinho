@@ -3,12 +3,12 @@
 importer="oggvorbisstr"
 type="AudioStreamOggVorbis"
 uid="uid://cdc1jfmblw4al"
-path="res://.godot/imported/jingles_steel_4.ogg-4ba4a47399ec15abb375e98bf854b06b.oggvorbisstr"
+path="res://.godot/imported/jingles_steel_4.ogg-aa4a345c92a1ec617a83ec4dd4685065.oggvorbisstr"
 
 [deps]
 
-source_file="res://Assets/Audio/music/Steel_jingles/jingles_steel_4.ogg"
-dest_files=["res://.godot/imported/jingles_steel_4.ogg-4ba4a47399ec15abb375e98bf854b06b.oggvorbisstr"]
+source_file="res://addons/Cafe-AudioManager/assets/music/Steel_jingles/jingles_steel_4.ogg"
+dest_files=["res://.godot/imported/jingles_steel_4.ogg-aa4a345c92a1ec617a83ec4dd4685065.oggvorbisstr"]
 
 [params]
 

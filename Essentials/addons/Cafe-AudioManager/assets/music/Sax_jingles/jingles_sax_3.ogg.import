@@ -3,12 +3,12 @@
 importer="oggvorbisstr"
 type="AudioStreamOggVorbis"
 uid="uid://61ky3imh1p0g"
-path="res://.godot/imported/jingles_sax_3.ogg-17600b86b90a07c28ef1a0c33229a9c8.oggvorbisstr"
+path="res://.godot/imported/jingles_sax_3.ogg-9509e53bed43b3684f96cf829872cb6b.oggvorbisstr"
 
 [deps]
 
-source_file="res://Assets/Audio/music/Sax_jingles/jingles_sax_3.ogg"
-dest_files=["res://.godot/imported/jingles_sax_3.ogg-17600b86b90a07c28ef1a0c33229a9c8.oggvorbisstr"]
+source_file="res://addons/Cafe-AudioManager/assets/music/Sax_jingles/jingles_sax_3.ogg"
+dest_files=["res://.godot/imported/jingles_sax_3.ogg-9509e53bed43b3684f96cf829872cb6b.oggvorbisstr"]
 
 [params]
 

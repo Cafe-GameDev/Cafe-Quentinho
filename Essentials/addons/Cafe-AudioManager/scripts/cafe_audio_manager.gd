@@ -1,137 +1,102 @@
+@tool
 extends Node
 
-# AudioManager: Gerencia o carregamento e a reprodução de música e efeitos sonoros (SFX).
-# Este singleton carrega arquivos de áudio de diretórios específicos,
-# os categoriza em bibliotecas separadas e fornece sistemas para reprodução.
+# CafeAudioManager: Manages audio (music and SFX) for UI/UX/Interfaces and background music.
+# This AudioManager acts as its own EventBus for audio-related signals.
+# It loads audio resources based on a generated AudioManifest, ensuring compatibility
+# with exported builds.
+
+# Limitations: This AudioManager is designed exclusively for mono audio,
+# without support for 2D or 3D positional audio effects.
+
+signal play_sfx_requested(sfx_key: String, bus: String)
+signal play_music_requested(music_key: String)
+signal music_track_changed(music_key: String)
+signal volume_changed(bus_name: String, linear_volume: float)
 
 const SFX_BUS_NAME = "SFX"
 const MUSIC_BUS_NAME = "Music"
 
-# --- Bibliotecas de Som ---
+@export var audio_manifest: AudioManifest
+@export var sfx_root_path: String = "res://addons/Cafe-AudioManager/assets/sfx/"
+@export var music_root_path: String = "res://addons/Cafe-AudioManager/assets/music/"
+
 var _sfx_library: Dictionary = {}
 var _music_library: Dictionary = {}
 
-# --- Variáveis de Playlist ---
 var _music_playlist_keys: Array = []
 var _current_playlist_key: String = ""
 
-# --- Componentes de Player ---
 @export var _sfx_player_count = 15
 var _sfx_players: Array[AudioStreamPlayer] = []
 @onready var _music_player: AudioStreamPlayer = $MusicPlayer
-@onready var music_change_timer: Timer = $MusicChangeTimer
+@onready var _music_change_timer: Timer = $MusicChangeTimer
 
 func _ready():
-	# Configura o bus do player de música e conecta seu sinal de término.
+	_setup_audio_buses()
 	_music_player.bus = MUSIC_BUS_NAME
 	_music_player.finished.connect(_on_music_finished)
 
-	# Conecta-se a sinais globais para reprodução de SFX.
-	GlobalEvents.play_sfx_by_key_requested.connect(play_random_sfx)
-	GlobalEvents.music_change_requested.connect(_on_music_change_requested)
-	GlobalEvents.loading_settings_changed.connect(_on_settings_changed) # Conecta para carregar as configurações iniciais
-	GlobalEvents.setting_changed.connect(_on_settings_changed) # Conecta para atualizações em tempo real
-
-	# Cria um pool de AudioStreamPlayers para SFX.
-	for i in range(_sfx_player_count):
-		var player = AudioStreamPlayer.new()
-		player.name = "SFXPlayer_" + str(i)
-		add_child(player)
-		_sfx_players.append(player)
-
-	# Carrega todas as bibliotecas de som.
-	_load_all_sounds()
+	# Connect to self signals
+	play_sfx_requested.connect(_on_play_sfx_requested)
+	play_music_requested.connect(_on_play_music_requested)
 	
-	# Seleciona e toca uma playlist aleatória.
+	_load_audio_from_manifest()
 	_select_and_play_random_playlist()
+	_music_change_timer.start()
 
-	# Inicia o timer para trocar de playlist periodicamente.
-	$MusicChangeTimer.start()
+func _setup_audio_buses():
+	# Ensure Music and SFX buses exist and are configured
+	if AudioServer.get_bus_index(MUSIC_BUS_NAME) == -1:
+		AudioServer.add_bus(AudioServer.get_bus_count())
+		var music_bus_idx = AudioServer.get_bus_count() - 1 # Get the index of the newly added bus
+		AudioServer.set_bus_name(music_bus_idx, MUSIC_BUS_NAME)
+		AudioServer.set_bus_send(music_bus_idx, "Master")
+		print("CafeAudioManager: Created Music audio bus.")
+	
+	if AudioServer.get_bus_index(SFX_BUS_NAME) == -1:
+		AudioServer.add_bus(AudioServer.get_bus_count())
+		var sfx_bus_idx = AudioServer.get_bus_count() - 1 # Get the index of the newly added bus
+		AudioServer.set_bus_name(sfx_bus_idx, SFX_BUS_NAME)
+		AudioServer.set_bus_send(sfx_bus_idx, "Master")
+		print("CafeAudioManager: Created SFX audio bus.")
 
-
-# --- Lógica de Carregamento ---
-
-func _load_all_sounds():
-	_music_library.clear()
-	_sfx_library.clear()
-
-	var audio_root_path = "res://Assets/Audio/"
-	var root_dir = DirAccess.open(audio_root_path)
-	if not root_dir:
-		printerr("AudioManager: Falha ao abrir o diretório raiz de áudio: %s" % audio_root_path)
+func _load_audio_from_manifest():
+	if not audio_manifest:
+		printerr("CafeAudioManager: AudioManifest not assigned. Please generate it in the editor.")
 		return
 
-	root_dir.list_dir_begin()
-	var category_folder = root_dir.get_next()
-	while category_folder != "":
-		if root_dir.current_is_dir():
-			var current_path = audio_root_path.path_join(category_folder)
-			
-			# Separa os áudios: a pasta "music" vai para a biblioteca de música, o resto para SFX.
-			if category_folder.to_lower() == "music":
-				_populate_library_from(current_path, _music_library)
-			else:
-				_populate_library_from(current_path, _sfx_library, category_folder.to_lower())
-
-		category_folder = root_dir.get_next()
-	
-	# Após carregar, popula a lista de chaves de playlists.
+	_sfx_library = audio_manifest.sfx_data
+	_music_library = audio_manifest.music_data
 	_music_playlist_keys = _music_library.keys()
-	print("Carregamento de áudio concluído. %d playlists de música encontradas." % _music_playlist_keys.size())
-
-
-func _populate_library_from(path: String, library: Dictionary, key_prefix: String = ""):
-	var dir = DirAccess.open(path)
-	if not dir:
-		printerr("AudioManager: Falha ao abrir o caminho: %s" % path)
-		return
-
-	dir.list_dir_begin()
-	var sub_folder = dir.get_next()
-	while sub_folder != "":
-		if dir.current_is_dir():
-			var sub_path = path.path_join(sub_folder)
-			var final_key = (key_prefix + "_" + sub_folder.to_lower()) if not key_prefix.is_empty() else sub_folder.to_lower()
-			
-			var audio_streams = _get_streams_in_folder(sub_path)
-			if not audio_streams.is_empty():
-				library[final_key] = audio_streams
-				print("  - Categoria '%s' carregada com %d sons." % [final_key, audio_streams.size()])
-
-		sub_folder = dir.get_next()
-
-
-func _get_streams_in_folder(path: String) -> Array[AudioStream]:
-	var streams: Array[AudioStream] = []
-	var dir = DirAccess.open(path)
-	if not dir:
-		return streams
-
-	dir.list_dir_begin()
-	var file_name = dir.get_next()
-	while file_name != "":
-		if not dir.current_is_dir() and not file_name.ends_with(".import"):
-			var stream = load(path.path_join(file_name))
-			if stream is AudioStream:
-				streams.append(stream)
-		file_name = dir.get_next()
 	
-	return streams
+	print("CafeAudioManager: Loaded audio from manifest. %d music playlists and %d SFX categories found." % [_music_playlist_keys.size(), _sfx_library.size()])
 
+	# Collect SFX players from the scene
+	var sfx_player_node = get_node_or_null("SFXPlayer")
+	if sfx_player_node:
+		for child in sfx_player_node.get_children():
+			if child is AudioStreamPlayer:
+				child.bus = SFX_BUS_NAME
+				child.finished.connect(Callable(self, "_on_sfx_player_finished").bind(child))
+				_sfx_players.append(child)
+	else:
+		printerr("CafeAudioManager: SFXPlayer Node not found in scene. Please add a Node named 'SFXPlayer' with AudioStreamPlayer children.")
 
-# --- Funções Públicas de Reprodução ---
+# --- Public Playback Functions (via signals) ---
 
-func play_random_sfx(sfx_key: String, bus: String = SFX_BUS_NAME):
+func _on_play_sfx_requested(sfx_key: String, bus: String = SFX_BUS_NAME):
 	if not _sfx_library.has(sfx_key):
-		printerr("AudioManager: Chave de SFX não encontrada na biblioteca: '%s'" % sfx_key)
+		printerr("CafeAudioManager: SFX key not found in library: '%s'" % sfx_key)
 		return
 
-	var sound_array = _sfx_library[sfx_key]
-	if sound_array.is_empty():
-		printerr("AudioManager: Categoria de SFX '%s' está vazia." % sfx_key)
+	var sfx_uids = _sfx_library[sfx_key]
+	if sfx_uids.is_empty():
+		printerr("CafeAudioManager: SFX category '%s' is empty." % sfx_key)
 		return
 	
-	var sound_stream = sound_array.pick_random()
+	var random_uid = sfx_uids.pick_random()
+	var sound_stream = load(random_uid)
 
 	for player in _sfx_players:
 		if not player.playing:
@@ -140,88 +105,57 @@ func play_random_sfx(sfx_key: String, bus: String = SFX_BUS_NAME):
 			player.play()
 			return
 
-func play_random_music(music_key: String):
+func _on_play_music_requested(music_key: String):
 	if not _music_library.has(music_key):
-		printerr("AudioManager: Chave de música não encontrada na biblioteca: '%s'" % music_key)
+		printerr("CafeAudioManager: Music key not found in library: '%s'" % music_key)
 		return
 
-	var music_array = _music_library[music_key]
-	if music_array.is_empty():
-		printerr("AudioManager: Categoria de música '%s' está vazia." % music_key)
+	var music_uids = _music_library[music_key]
+	if music_uids.is_empty():
+		printerr("CafeAudioManager: Music category '%s' is empty." % music_key)
 		return
 
-	var music_stream = music_array.pick_random()
+	var random_uid = music_uids.pick_random()
+	var music_stream = load(random_uid)
 
 	if _music_player.stream == music_stream and _music_player.playing:
 		return
 
 	_music_player.stream = music_stream
 	_music_player.play()
-	GlobalEvents.music_track_changed.emit(music_stream.resource_path.get_file())
-
+	music_track_changed.emit(music_stream.resource_path.get_file())
 
 func stop_music():
 	_music_player.stop()
 
-# --- Lógica de Playlist ---
+# --- Playlist Logic ---
 
 func _select_and_play_random_playlist():
 	if _music_playlist_keys.is_empty():
-		printerr("AudioManager: Nenhuma playlist de música encontrada para tocar.")
+		printerr("CafeAudioManager: No music playlists found to play.")
 		return
 
 	_current_playlist_key = _music_playlist_keys.pick_random()
-	play_random_music(_current_playlist_key)
+	play_music_requested.emit(_current_playlist_key)
 
+# --- Volume Control ---
 
-# --- Handlers de Sinais ---
-
-func _on_music_finished():
-	# Toca a próxima música aleatória da mesma playlist.
-	if _current_playlist_key.is_empty():
-		_select_and_play_random_playlist()
-	else:
-		play_random_music(_current_playlist_key)
-
-
-func _on_settings_changed(settings_data: Dictionary):
-	if settings_data.has("audio"):
-		var audio_settings = settings_data["audio"]
-		if audio_settings.has("master_volume"):
-			_apply_volume_to_bus("Master", audio_settings["master_volume"])
-		if audio_settings.has("music_volume"):
-			_apply_volume_to_bus(MUSIC_BUS_NAME, audio_settings["music_volume"])
-		if audio_settings.has("sfx_volume"):
-			_apply_volume_to_bus(SFX_BUS_NAME, audio_settings["sfx_volume"])
-
-func _apply_volume_to_bus(bus_name: String, linear_volume: float):
+func apply_volume_to_bus(bus_name: String, linear_volume: float):
 	var bus_index = AudioServer.get_bus_index(bus_name)
 	if bus_index != -1:
 		var db_volume = linear_to_db(linear_volume) if linear_volume > 0 else -80.0
 		AudioServer.set_bus_volume_db(bus_index, db_volume)
+		volume_changed.emit(bus_name, linear_volume)
+	else:
+		printerr("CafeAudioManager: Audio bus '%s' not found." % bus_name)
 
+# --- Signal Handlers ---
 
-func _on_music_change_timer_timeout() -> void:
-	# Esta função pode ser usada para trocar de playlist após um tempo.
+func _on_music_finished():
 	_select_and_play_random_playlist()
 
-
-func _on_music_change_requested() -> void:
+func _on_music_change_timer_timeout():
 	_select_and_play_random_playlist()
-	music_change_timer.start(300) # Restart the timer after manual change
 
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("music_change"):
-		_select_and_play_random_playlist()
-
-
-func _on_music_player_finished() -> void:
-	pass # Replace with function body.
-
-
-func _on_sfx_player_0_finished() -> void:
-	pass # Replace with function body.
-
-
-func _on_sfx_player_1_finished() -> void:
-	pass # Replace with function body.
+func _on_sfx_player_finished(player: AudioStreamPlayer):
+	player.stream = null # Clear stream after playing to free up memory and allow reuse

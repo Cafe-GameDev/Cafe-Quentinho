@@ -3,12 +3,12 @@
 importer="oggvorbisstr"
 type="AudioStreamOggVorbis"
 uid="uid://da73ghbgeacv3"
-path="res://.godot/imported/scroll_003.ogg-911ce00d3e84bb8c374e4d1bf872099c.oggvorbisstr"
+path="res://.godot/imported/scroll_003.ogg-b406bb5f7f3409fc1c6e71ba1d4efef1.oggvorbisstr"
 
 [deps]
 
-source_file="res://Assets/Audio/interface/scroll/scroll_003.ogg"
-dest_files=["res://.godot/imported/scroll_003.ogg-911ce00d3e84bb8c374e4d1bf872099c.oggvorbisstr"]
+source_file="res://addons/Cafe-AudioManager/assets/interface/scroll/scroll_003.ogg"
+dest_files=["res://.godot/imported/scroll_003.ogg-b406bb5f7f3409fc1c6e71ba1d4efef1.oggvorbisstr"]
 
 [params]
 

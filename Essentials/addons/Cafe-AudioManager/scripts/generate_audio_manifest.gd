@@ -1,3 +1,4 @@
+@tool
 extends EditorScript
 
 const AUDIO_ROOT_PATH = "res://Assets/Audio/"

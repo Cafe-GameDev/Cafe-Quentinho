@@ -3,12 +3,12 @@
 importer="oggvorbisstr"
 type="AudioStreamOggVorbis"
 uid="uid://btpi2i88udbtx"
-path="res://.godot/imported/jingles_nes_0.ogg-10d5aab56d024d662b83baed9cdd278e.oggvorbisstr"
+path="res://.godot/imported/jingles_nes_0.ogg-370b4a143f37818d1f1b7db820b1a5a5.oggvorbisstr"
 
 [deps]
 
-source_file="res://Assets/Audio/music/8-Bit_jingles/jingles_nes_0.ogg"
-dest_files=["res://.godot/imported/jingles_nes_0.ogg-10d5aab56d024d662b83baed9cdd278e.oggvorbisstr"]
+source_file="res://addons/Cafe-AudioManager/assets/music/8-Bit_jingles/jingles_nes_0.ogg"
+dest_files=["res://.godot/imported/jingles_nes_0.ogg-370b4a143f37818d1f1b7db820b1a5a5.oggvorbisstr"]
 
 [params]
 

@@ -3,12 +3,12 @@
 importer="oggvorbisstr"
 type="AudioStreamOggVorbis"
 uid="uid://civj770ogyrhe"
-path="res://.godot/imported/switch25.ogg-f8733a873c52db7977eec01fc6a4d575.oggvorbisstr"
+path="res://.godot/imported/switch25.ogg-ea22dac1e8cc60ec4a5522548df8309a.oggvorbisstr"
 
 [deps]
 
-source_file="res://Assets/Audio/ui/switch/switch25.ogg"
-dest_files=["res://.godot/imported/switch25.ogg-f8733a873c52db7977eec01fc6a4d575.oggvorbisstr"]
+source_file="res://addons/Cafe-AudioManager/assets/ui/switch/switch25.ogg"
+dest_files=["res://.godot/imported/switch25.ogg-ea22dac1e8cc60ec4a5522548df8309a.oggvorbisstr"]
 
 [params]
 
