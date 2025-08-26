@@ -82,7 +82,7 @@ msgid "UI_LANGUAGE"
 msgstr "言語"
 
 msgid "UI_LANGUAGE_OPTIONS"
-msgstr "言語オプション"
+msgstr "言語"
 
 msgid "DEBUG_CONSOLE_READY"
 msgstr "デバッグコンソール準備完了。'P'を押して切り替えます。"
