@@ -73,7 +73,7 @@ func _load_audio_from_manifest():
 	
 	print("CafeAudioManager: Loaded audio from manifest. %d music playlists and %d SFX categories found." % [_music_playlist_keys.size(), _sfx_library.size()])
 
-	# Collect SFX players from the scene
+	# Collect SFX players from the scene or create them dynamically
 	var sfx_player_node = get_node_or_null("SFXPlayer")
 	if sfx_player_node:
 		for child in sfx_player_node.get_children():
@@ -82,7 +82,15 @@ func _load_audio_from_manifest():
 				child.finished.connect(Callable(self, "_on_sfx_player_finished").bind(child))
 				_sfx_players.append(child)
 	else:
-		printerr("CafeAudioManager: SFXPlayer Node not found in scene. Please add a Node named 'SFXPlayer' with AudioStreamPlayer children.")
+		# If SFXPlayer node not found, create AudioStreamPlayers dynamically
+		print("CafeAudioManager: SFXPlayer Node not found in scene. Creating %d AudioStreamPlayers dynamically." % _sfx_player_count)
+		for i in range(_sfx_player_count):
+			var sfx_player = AudioStreamPlayer.new()
+			sfx_player.name = "SFXPlayer_%d" % i
+			sfx_player.bus = SFX_BUS_NAME
+			sfx_player.finished.connect(Callable(self, "_on_sfx_player_finished").bind(sfx_player))
+			add_child(sfx_player)
+			_sfx_players.append(sfx_player)
 
 # --- Public Playback Functions (via signals) ---
 
