@@ -3,22 +3,18 @@ extends EditorScript
 
 const MANIFEST_SAVE_PATH = "res://addons/Cafe-AudioManager/resources/audio_manifest.tres"
 
+@export var sfx_root_path: String = "res://addons/Cafe-AudioManager/assets/sfx/"
+@export var music_root_path: String = "res://addons/Cafe-AudioManager/assets/music/"
+# Define root paths for SFX and music assets within the plugin
+
 func _run():
 	print("Generating AudioManifest...")
-
+	
 	var audio_manifest = AudioManifest.new()
 	
-	# Access CafeAudioManager Autoload directly to retrieve configured paths
-	if not has_node("/root/CafeAudioManager") or not "CafeAudioManager" in get_node("/root").get_children():
-		printerr("GenerateAudioManifest: CafeAudioManager Autoload not found. Please ensure it's enabled in Project Settings -> Autoload.")
-		return
-
-	var sfx_root_path = CafeAudioManager.sfx_root_path
-	var music_root_path = CafeAudioManager.music_root_path
-
 	_scan_and_populate_library(sfx_root_path, audio_manifest.sfx_data, "sfx")
 	_scan_and_populate_library(music_root_path, audio_manifest.music_data, "music")
-		
+	
 	ResourceSaver.save(audio_manifest, MANIFEST_SAVE_PATH)
 	print("AudioManifest generated and saved to: %s" % MANIFEST_SAVE_PATH)
 
@@ -27,7 +23,7 @@ func _scan_and_populate_library(current_path: String, library: Dictionary, audio
 	if not dir:
 		printerr("GenerateAudioManifest: Failed to open directory: %s" % current_path)
 		return
-
+	
 	dir.list_dir_begin()
 	var file_or_dir_name = dir.get_next()
 	while file_or_dir_name != "":
@@ -44,7 +40,7 @@ func _scan_and_populate_library(current_path: String, library: Dictionary, audio
 				var relative_path_parts = current_path.split("/")
 				var category_name = ""
 				var subcategory_name = ""
-
+	
 				# Assuming structure like: res://addons/Cafe-AudioManager/assets/sfx/category/subcategory/file.ogg
 				# We want to extract 'category_subcategory' or just 'category' if no subcategory
 				# Find the index of 'assets/sfx' or 'assets/music'
