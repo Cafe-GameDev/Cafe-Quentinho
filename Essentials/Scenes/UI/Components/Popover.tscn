@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://new_popover_uid"]
+[gd_scene load_steps=2 format=3 uid="uid://wkhmjk6n3145"]
 
-[ext_resource type="Script" path="res://Scripts/UI/Components/Popover.gd" id="1_popover_script"]
+[ext_resource type="Script" uid="uid://bvex6s21m3537" path="res://Scripts/UI/Components/Popover.gd" id="1_popover_script"]
 
 [node name="Popover" type="PanelContainer"]
 anchors_preset = 0

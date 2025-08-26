@@ -15,7 +15,8 @@ func _ready():
 	GlobalEvents.scene_push_requested.connect(_on_scene_push_requested)
 	GlobalEvents.scene_pop_requested.connect(_on_scene_pop_requested)
 	GlobalEvents.game_state_updated.connect(_on_game_state_updated) # Conecta ao sinal de atualização de estado do jogo
-
+	CafeAudioManager.emit_signal("request_audio_start")
+	
 	# A cena inicial (MainMenu, etc.) agora está em um CanvasLayer separado.
 	# Não precisamos mais inicializá-las aqui.
 

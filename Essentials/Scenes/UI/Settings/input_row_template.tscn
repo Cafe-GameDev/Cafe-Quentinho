@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://c2111111111111111111111111111111"]
+[gd_scene load_steps=2 format=3 uid="uid://b1denbewpw7u5"]
 
-[ext_resource type="Script" path="res://Scripts/UI/Settings/input_row_template.gd" id="1_script"]
+[ext_resource type="Script" uid="uid://cwcfb1vx78kpu" path="res://Scripts/UI/Settings/input_row_template.gd" id="1_script"]
 
 [node name="InputRowTemplate" type="HBoxContainer"]
 layout_mode = 2

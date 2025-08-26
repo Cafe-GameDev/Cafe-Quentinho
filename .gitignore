@@ -17,3 +17,4 @@ Credits.txt
 .cfg
 *.txt
 /BodyLess/Build
+Essentials/addons/Cafe-AudioManager/scripts/audio_manager_plugin.gd

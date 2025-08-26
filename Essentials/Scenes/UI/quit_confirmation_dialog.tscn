@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://cwqycex11ds7o" path="res://Scripts/UI/quit_confirmation_dialog.gd" id="1_08863"]
 [ext_resource type="StyleBox" uid="uid://ccucsa8kk57ft" path="res://Resources/button_focus.tres" id="2_m3xdi"]
 [ext_resource type="StyleBox" uid="uid://bej76kq62gywe" path="res://Resources/button_normal.tres" id="3_7b7yf"]
-[ext_resource type="FontFile" uid="uid://mew0iowtcf0k" path="res://Assets/Fonts/SourceSans.otf" id="3_c2l6h"]
+[ext_resource type="FontFile" uid="uid://bml1tlmc1m8p" path="res://Assets/Fonts/SourceSans.otf" id="3_c2l6h"]
 
 [node name="QuitConfirmationDialog" type="PanelContainer"]
 process_mode = 3

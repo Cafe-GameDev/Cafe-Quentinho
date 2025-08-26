@@ -127,8 +127,6 @@ func _connect_to_global_events() -> void:
 
 	# Conexões para CafeAudioManager (Plugin)
 	if CafeAudioManager:
-		CafeAudioManager.play_sfx_requested.connect(_on_cafe_audio_manager_play_sfx_requested)
-		CafeAudioManager.play_music_requested.connect(_on_cafe_audio_manager_play_music_requested)
 		CafeAudioManager.music_track_changed.connect(_on_cafe_audio_manager_music_track_changed)
 		CafeAudioManager.volume_changed.connect(_on_cafe_audio_manager_volume_changed)
 

@@ -8,7 +8,7 @@
 [ext_resource type="StyleBox" uid="uid://5qc4dawypfba" path="res://Resources/panel2.tres" id="3_gcjgb"]
 [ext_resource type="PackedScene" uid="uid://dat2iwiarvvxj" path="res://Scenes/UI/Settings/audio_settings.tscn" id="3_x3x5h"]
 [ext_resource type="PackedScene" uid="uid://bey3t3k4biaww" path="res://Scenes/UI/Settings/language_settings.tscn" id="4_3tdd8"]
-[ext_resource type="FontFile" uid="uid://mew0iowtcf0k" path="res://Assets/Fonts/SourceSans.otf" id="4_oecpn"]
+[ext_resource type="FontFile" uid="uid://bml1tlmc1m8p" path="res://Assets/Fonts/SourceSans.otf" id="4_oecpn"]
 [ext_resource type="PackedScene" uid="uid://cvtlqfm3228xb" path="res://Scenes/UI/Settings/input_map_settings.tscn" id="4_x3x5h"]
 
 [node name="OptionsMenu" type="Panel"]

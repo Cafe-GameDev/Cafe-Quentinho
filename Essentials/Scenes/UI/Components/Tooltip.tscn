@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://d0b37233c06b631e97171f489cd02153"]
+[gd_scene load_steps=2 format=3 uid="uid://fkll1kjlpoi"]
 
-[ext_resource type="Script" path="res://Scripts/UI/Components/Tooltip.gd" id="1_j4x2x"]
+[ext_resource type="Script" uid="uid://643aun4ae3q1" path="res://Scripts/UI/Components/Tooltip.gd" id="1_j4x2x"]
 
 [node name="Tooltip" type="PanelContainer"]
 anchors_preset = 0

@@ -1,14 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://d00d1e5f00d1e5f0"]
+[gd_scene load_steps=2 format=3 uid="uid://b5asvf13en5hn"]
 
-[ext_resource type="Script" path="res://Scripts/UI/Tooltip/tooltip.gd" id="1_script"]
+[ext_resource type="Script" uid="uid://d3fv7q0o00osj" path="res://Scripts/UI/Tooltip/tooltip.gd" id="1_script"]
 
 [node name="Tooltip" type="PanelContainer"]
-mouse_filter = 2 # MOUSE_FILTER_IGNORE
-script = ExtResource("1_script")
+mouse_filter = 2
+#MOUSE_FILTER_IGNOREscript = ExtResource("1_script")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 layout_mode = 2
 fit_content = true
-mouse_filter = 2 # MOUSE_FILTER_IGNORE
-bbcode_enabled = true
+mouse_filter = 2
+#MOUSE_FILTER_IGNOREbbcode_enabled = true
 text = "Tooltip Text"

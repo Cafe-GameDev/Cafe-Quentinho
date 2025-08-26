@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://new_coachmark_uid"]
+[gd_scene load_steps=2 format=3 uid="uid://bt8y5ria6m58s"]
 
-[ext_resource type="Script" path="res://Scripts/UI/Components/CoachMark.gd" id="1_coachmark_script"]
+[ext_resource type="Script" uid="uid://do044mbkw0q5u" path="res://Scripts/UI/Components/CoachMark.gd" id="1_coachmark_script"]
 
 [node name="CoachMark" type="PanelContainer"]
 anchors_preset = 8

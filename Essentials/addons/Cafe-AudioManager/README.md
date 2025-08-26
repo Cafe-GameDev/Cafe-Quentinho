@@ -3,23 +3,23 @@
 ## Índice
 
 *   [Português](#português)
-    *   [Visão Geral](#visão-geral-pt)
-    *   [Sinais (EventBus de Áudio)](#sinais-eventbus-de-áudio-pt)
-    *   [Configuração](#configuração-pt)
-    *   [Biblioteca de Áudio Nativa](#biblioteca-de-áudio-nativa-pt)
-    *   [Instalação e Uso](#instalação-e-uso-pt)
+	*   [Visão Geral](#visão-geral-pt)
+	*   [Sinais (EventBus de Áudio)](#sinais-eventbus-de-áudio-pt)
+	*   [Configuração](#configuração-pt)
+	*   [Biblioteca de Áudio Nativa](#biblioteca-de-áudio-nativa-pt)
+	*   [Instalação e Uso](#instalação-e-uso-pt)
 *   [English](#english)
-    *   [Overview](#overview-en)
-    *   [Signals (Audio EventBus)](#signals-audio-eventbus-en)
-    *   [Configuration](#configuration-en)
-    *   [Native Audio Library](#native-audio-library-en)
-    *   [Installation and Usage](#installation-and-usage-en)
+	*   [Overview](#overview-en)
+	*   [Signals (Audio EventBus)](#signals-audio-eventbus-en)
+	*   [Configuration](#configuration-en)
+	*   [Native Audio Library](#native-audio-library-en)
+	*   [Installation and Usage](#installation-and-usage-en)
 *   [Español](#español)
-    *   [Visión General](#visión-general-es)
-    *   [Señales (EventBus de Audio)](#señales-eventbus-de-audio-es)
-    *   [Configuración](#configuración-es)
-    *   [Biblioteca de Audio Nativa](#biblioteca-de-audio-nativa-es)
-    *   [Instalación y Uso](#instalación-y-uso-es)
+	*   [Visión General](#visión-general-es)
+	*   [Señales (EventBus de Audio)](#señales-eventbus-de-audio-es)
+	*   [Configuración](#configuración-es)
+	*   [Biblioteca de Audio Nativa](#biblioteca-de-audio-nativa-es)
+	*   [Instalación y Uso](#instalación-y-uso-es)
 
 ---
 
@@ -53,11 +53,13 @@ O `Cafe-AudioManager` atua como seu próprio EventBus para áudio, emitindo e ou
 
 #### Sinais Ouvidos
 
-*   `play_sfx_requested(sfx_key: String, bus: String)`: Solicita a reprodução de um efeito sonoro.
-    *   `sfx_key`: A chave do SFX a ser reproduzido (definida no `AudioManifest`).
-    *   `bus`: O nome do bus de áudio (ex: "SFX"). Padrão: "SFX".
-*   `play_music_requested(music_key: String)`: Solicita a reprodução de uma faixa de música ou playlist.
-    *   `music_key`: A chave da música/playlist a ser reproduzida (definida no `AudioManifest`).
+*   `play_sfx_requested(sfx_key: String, bus: String, manager_node: Node = null)`: Solicita a reprodução de um efeito sonoro.
+	*   `sfx_key`: A chave do SFX a ser reproduzido (definida no `AudioManifest`).
+	*   `bus`: O nome do bus de áudio (ex: "SFX"). Padrão: "SFX".
+	*   `manager_node`: (Opcional, para v2.0) O nó `CafeAudioPlayer2D/3D` que deve gerenciar a reprodução posicional do áudio. Se `null`, o `CafeAudioManager` gerencia.
+*   `play_music_requested(music_key: String, manager_node: Node = null)`: Solicita a reprodução de uma faixa de música ou playlist.
+	*   `music_key`: A chave da música/playlist a ser reproduzida (definida no `AudioManifest`).
+	*   `manager_node`: (Opcional, para v2.0) O nó `CafeAudioPlayer2D/3D` que deve gerenciar a reprodução posicional do áudio. Se `null`, o `CafeAudioManager` gerencia.
 *   `volume_changed(bus_name: String, linear_volume: float)`: Ouve seu próprio sinal para aplicar as mudanças de volume.
 
 <a name="configuração-pt"></a>
@@ -128,10 +130,10 @@ The `Cafe-AudioManager` acts as its own EventBus for audio, emitting and listeni
 #### Listened Signals
 
 *   `play_sfx_requested(sfx_key: String, bus: String)`: Requests the playback of a sound effect.
-    *   `sfx_key`: The key of the SFX to be played (defined in the `AudioManifest`).
-    *   `bus`: The name of the audio bus (e.g., "SFX"). Default: "SFX".
+	*   `sfx_key`: The key of the SFX to be played (defined in the `AudioManifest`).
+	*   `bus`: The name of the audio bus (e.g., "SFX"). Default: "SFX".
 *   `play_music_requested(music_key: String)`: Requests the playback of a music track or playlist.
-    *   `music_key`: The key of the music/playlist to be played (defined in the `AudioManifest`).
+	*   `music_key`: The key of the music/playlist to be played (defined in the `AudioManifest`).
 *   `volume_changed(bus_name: String, linear_volume: float)`: Listens to its own signal to apply volume changes.
 
 <a name="configuration-en"></a>
@@ -202,10 +204,10 @@ El `Cafe-AudioManager` actúa como su propio EventBus para audio, emitiendo y es
 #### Señales Escuchadas
 
 *   `play_sfx_requested(sfx_key: String, bus: String)`: Solicita la reproducción de un efecto de sonido.
-    *   `sfx_key`: La clave del SFX a reproducir (definida en el `AudioManifest`).
-    *   `bus`: El nombre del bus de audio (ej: "SFX"). Predeterminado: "SFX".
+	*   `sfx_key`: La clave del SFX a reproducir (definida en el `AudioManifest`).
+	*   `bus`: El nombre del bus de audio (ej: "SFX"). Predeterminado: "SFX".
 *   `play_music_requested(music_key: String)`: Solicita la reproducción de una pista de música o lista de reproducción.
-    *   `music_key`: La clave de la música/lista de reproducción a reproducir (definida en el `AudioManifest`).
+	*   `music_key`: La clave de la música/lista de reproducción a reproducir (definida en el `AudioManifest`).
 *   `volume_changed(bus_name: String, linear_volume: float)`: Escucha su propia señal para aplicar los cambios de volumen.
 
 <a name="configuración-es"></a>

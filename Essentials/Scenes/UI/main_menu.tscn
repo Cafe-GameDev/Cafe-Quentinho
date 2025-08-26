@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://ba0vkmgxvn1oh" path="res://Scripts/UI/main_menu.gd" id="1_5wsvm"]
 [ext_resource type="StyleBox" uid="uid://clbbsxi0r0l6k" path="res://Resources/panel.tres" id="1_u7lva"]
 [ext_resource type="StyleBox" uid="uid://ccucsa8kk57ft" path="res://Resources/button_focus.tres" id="2_o14dv"]
-[ext_resource type="FontFile" uid="uid://mew0iowtcf0k" path="res://Assets/Fonts/SourceSans.otf" id="3_mrfpk"]
+[ext_resource type="FontFile" uid="uid://bml1tlmc1m8p" path="res://Assets/Fonts/SourceSans.otf" id="3_mrfpk"]
 [ext_resource type="StyleBox" uid="uid://bej76kq62gywe" path="res://Resources/button_normal.tres" id="3_u7lva"]
 
 [node name="MainMenu" type="Panel"]

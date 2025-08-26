@@ -9,10 +9,17 @@ extends Node
 # Limitations: This AudioManager is designed exclusively for mono audio,
 # without support for 2D or 3D positional audio effects.
 
-signal play_sfx_requested(sfx_key: String, bus: String)
-signal play_music_requested(music_key: String)
+
+@warning_ignore("unused_signal")
+signal play_sfx_requested(sfx_key: String, bus: String, manager_node: Node)
+@warning_ignore("unused_signal")
+signal play_music_requested(music_key: String, manager_node: Node)
+@warning_ignore("unused_signal")
 signal music_track_changed(music_key: String)
+@warning_ignore("unused_signal")
 signal volume_changed(bus_name: String, linear_volume: float)
+@warning_ignore("unused_signal")
+signal request_audio_start()
 
 const SFX_BUS_NAME = "SFX"
 const MUSIC_BUS_NAME = "Music"
@@ -32,16 +39,20 @@ var _sfx_players: Array[AudioStreamPlayer] = []
 @onready var _music_player: AudioStreamPlayer = $MusicPlayer
 @onready var _music_change_timer: Timer = $MusicChangeTimer
 
+
 func _ready():
-	_setup_audio_buses()
 	_music_player.bus = MUSIC_BUS_NAME
 	_music_player.finished.connect(_on_music_finished)
 
 	# Connect to self signals
 	play_sfx_requested.connect(_on_play_sfx_requested)
 	play_music_requested.connect(_on_play_music_requested)
-	volume_changed.connect(apply_volume_to_bus)
 	
+	# Connect to GlobalEvents to start audio when requested by the game
+	CafeAudioManager.request_audio_start.connect(_on_request_audio_start)
+
+func _on_request_audio_start():
+	_setup_audio_buses()
 	_load_audio_from_manifest()
 	_select_and_play_random_playlist()
 	_music_change_timer.start()
@@ -94,7 +105,7 @@ func _load_audio_from_manifest():
 
 # --- Public Playback Functions (via signals) ---
 
-func _on_play_sfx_requested(sfx_key: String, bus: String = SFX_BUS_NAME):
+func _on_play_sfx_requested(sfx_key: String, bus: String = SFX_BUS_NAME, manager_node: Node = self):
 	if not _sfx_library.has(sfx_key):
 		printerr("CafeAudioManager: SFX key not found in library: '%s'" % sfx_key)
 		return
@@ -104,8 +115,19 @@ func _on_play_sfx_requested(sfx_key: String, bus: String = SFX_BUS_NAME):
 		printerr("CafeAudioManager: SFX category '%s' is empty." % sfx_key)
 		return
 	
-	var random_uid = sfx_uids.pick_random()
-	var sound_stream = load(random_uid)
+	var random_uid_str = sfx_uids.pick_random()
+	var uid_int = random_uid_str.replace("uid://", "").to_int()
+	var resource_path = ResourceUID.get_id_path(uid_int)
+
+	if resource_path.is_empty():
+		printerr("CafeAudioManager: Failed to get resource path for SFX UID: '%s'" % random_uid_str)
+		return
+
+	var sound_stream = load(resource_path)
+
+	if sound_stream == null:
+		printerr("CafeAudioManager: Failed to load SFX stream from path: '%s' (UID: '%s')" % [resource_path, random_uid_str])
+		return
 
 	for player in _sfx_players:
 		if not player.playing:
@@ -114,7 +136,7 @@ func _on_play_sfx_requested(sfx_key: String, bus: String = SFX_BUS_NAME):
 			player.play()
 			return
 
-func _on_play_music_requested(music_key: String):
+func _on_play_music_requested(music_key: String, manager_node: Node = self):
 	if not _music_library.has(music_key):
 		printerr("CafeAudioManager: Music key not found in library: '%s'" % music_key)
 		return
@@ -124,15 +146,26 @@ func _on_play_music_requested(music_key: String):
 		printerr("CafeAudioManager: Music category '%s' is empty." % music_key)
 		return
 
-	var random_uid = music_uids.pick_random()
-	var music_stream = load(random_uid)
+	var random_uid_str = music_uids.pick_random()
+	var uid_int = random_uid_str.replace("uid://", "").to_int()
+	var resource_path = ResourceUID.get_id_path(uid_int)
+
+	if resource_path.is_empty():
+		printerr("CafeAudioManager: Failed to get resource path for UID: '%s'" % random_uid_str)
+		return
+
+	var music_stream = load(resource_path)
+
+	if music_stream == null:
+		printerr("CafeAudioManager: Failed to load music stream from path: '%s' (UID: '%s')" % [resource_path, random_uid_str])
+		return
 
 	if _music_player.stream == music_stream and _music_player.playing:
 		return
 
 	_music_player.stream = music_stream
 	_music_player.play()
-	music_track_changed.emit(music_stream.resource_path.get_file())
+	music_track_changed.emit(music_key)
 
 func stop_music():
 	_music_player.stop()
