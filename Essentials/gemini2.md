@@ -130,11 +130,11 @@ Com os conceitos fundamentais estabelecidos, podemos agora explorar como eles s�
 
 O **EventBus** é a nossa ferramenta central para comunicação, aplicando o conceito de Sinais em uma escala global. Ele funciona como um "quadro de avisos" centralizado (implementado como um Autoload/Singleton) que permite que diferentes partes do código se comuniquem sem se conhecerem.
 
-### Padrão de Comunicação para Dados Persistentes (Até 6 Sinais)
+### Padrão de Comunicação para Dados Persistentes
 
-Para garantir o desacoplamento e a previsibilidade, qualquer sistema que gerencie dados que precisam ser salvos e carregados (configurações, idioma, etc.) deve seguir um rigoroso padrão de comunicação com **até 6 sinais** através do `GlobalEvents`. O padrão utiliza um prefixo de **escopo** (ex: `settings_`, `language_`, `game_`) e um sufixo de **ação** para formar nomes de sinais consistentes.
+Para garantir o desacoplamento e a previsibilidade, qualquer sistema que gerencie dados que precisam ser salvos e carregados (configurações, idioma, etc.) deve seguir um rigoroso padrão de comunicação com 5 sinais através do `GlobalEvents`. O padrão utiliza um prefixo de **escopo** (ex: `settings_`, `language_`) e um sufixo de **ação** para formar nomes de sinais consistentes.
 
-**O Padrão de Comunicação (Até 6 Sinais):**
+**O Padrão Base de até 6 Sinais (Nem todos são obrigatórios):**
 
 1.  **`[escopo]_changed(dados: Dictionary)`**
     *   **Propósito:** Notificação de mudança em tempo real ("live"). É emitida por controles da UI (sliders, botões) e contém um dicionário apenas com o valor alterado. O `Manager` correspondente ouve este sinal para atualizar seu estado interno "ao vivo".
@@ -152,13 +152,12 @@ Para garantir o desacoplamento e a previsibilidade, qualquer sistema que gerenci
     *   **Propósito:** Requisição para redefinir as configurações para os padrões de fábrica. O `Manager` ouve, restaura seu estado "ao vivo" para os padrões e imediatamente salva essa versão em disco.
 
 6.  **`sending_[escopo]_data(dados: Dictionary)`**
-    *   **Propósito:** Sinal para enviar um `Dictionary` de dados para o `SaveSystem`. É emitido por um Manager (ex: `LocalControl`) após reunir todos os dados necessários para salvamento. O `SaveSystem` ouve este sinal para persistir os dados.
+    *   **Propósito:** Sinal para enviar um dicionário de dados para o `SaveSystem`. Emitido pelo `LocalControl` após reunir todos os dados locais que precisam ser salvos (Player Data, Env Data, Stage Data, etc.). O `LocalControl` requisita esses dados via um sinal próprio (`request_local_data()`, que não faz parte deste padrão de 6 sinais), e os sistemas locais reagem com `local_data()`. Após a coleta e validação, o `LocalControl` emite este sinal com o dicionário completo e, em seguida, reseta seu dicionário interno para evitar persistência de dados.
 
 **Exemplos de Aplicação:**
 
 *   **Settings (Áudio/Vídeo):** `settings_changed`, `request_loading_settings_changed`, `loading_settings_changed`, `request_saving_settings_changed`, `request_reset_settings_changed`
 *   **Language (Idioma):** `language_changed`, `request_loading_language_changed`, `loading_language_changed`, `request_saving_language_changed`, `request_reset_language_changed`
-*   **LocalControl (Jogo Ativo):** `game_loaded`, `request_saving_game_data_requested`, `request_local_data`, `local_data_received`, `sending_game_data`
 
 *   **`GlobalEvents`:** Para eventos que afetam todo o jogo (mudanças de cena, configurações, estado do jogo).
 *   **`LocalEvents`:** Para comunicação *dentro* de uma cena de jogo específica (puzzles, interações locais).
@@ -244,15 +243,8 @@ Nossa UI é construída usando cenas auto-contidas (`main_menu.tscn`, `options_m
 2.  **Para Reações:** Ela ouve sinais do `GlobalEvents` para saber quando deve aparecer ou se atualizar (ex: `GlobalEvents.game_state_changed.connect(_on_game_state_changed)`).
 Isso desacopla completamente a interface da lógica e das máquinas de estado do jogo.
 
-
-- Sempre que for para abrir o editor Godot, use as flags --verbose -e
-- O usuário prefere que eu sempre teste as modificações automaticamente após implementá-las.
-- Executavel da Godot: "C://Users/bruno/Documents/Godot_v4.4.1-stable_win64_console.exe"
-
 Sempre que possivel, use Dictionary
 EventBus, seja ele o GlobalEvents ou o LocalEvents, são obrigatorios, e nem mesmo eles podema acessar diretamente um script ou scene, apenas pode emitir sinais da propria godot
-
-- Ao criar um script ou cena, antes de usar / anexar o script a cena, ou ao instanciar essa cena dentro de outra, é obrigatorio abrir a godot usando as flags -e --verbose --import, para que a propria godot gere as uids invés de tentar "adivinhar" ou escolher uma. O caminho para a instalação da godot é "C://Users/bruno/Documents/Godot_v4.4.1-stable_win64_console.exe" abra ela com -e --verbose quando o usuario solicitar
 
 ☕ O Template "Café Essentials": O Padrão de Engenharia do Repo Café
 
@@ -377,11 +369,6 @@ Embora os modos de jogo compartilhem sistemas fundamentais, suas implementaçõe
     *   **TopDown (2D):** Fixa ou seguindo o jogador.
     *   **Platformer (2D):** Lateral ou com scroll.
     *   **3D:** Dinâmica, com opções de primeira ou terceira pessoa (FPS/TPP).
-
-*   **Interpretação de Inputs:**
-    *   Cada modo de jogo (TopDown, Platformer, 3D) é responsável por consumir os eventos de input brutos (`_unhandled_input`) e interpretá-los com base no mapeamento de inputs fornecido pelo `SettingsManager`.
-    *   Isso permite que a mesma ação (ex: "pular") seja mapeada para diferentes teclas ou comportamentos de acordo com o modo de jogo.
-    *   Os consumidores de input emitem sinais de "intenção" (ex: `GlobalEvents.emit_signal("player_jump_requested")`) após a interpretação, mantendo o desacoplamento.
 
 ---
 
