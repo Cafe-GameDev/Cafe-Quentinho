@@ -25,8 +25,8 @@ buses/default_bus_layout="uid://ds7iaq80ptcxo"
 SettingsManager="*res://Singletons/Scripts/settings_manager.gd"
 GlobalEvents="*res://Singletons/Scripts/global_events.gd"
 GameManager="*res://Singletons/Scripts/game_manager.gd"
-AudioManager="*res://Singletons/Scenes/audio_manager.tscn"
 DebugConsole="*res://Singletons/Scenes/debug_console.tscn"
+CafeAudioManager="*res://addons/Cafe-AudioManager/scenes/cafe_audio_manager.tscn"
 
 [display]
 
@@ -39,6 +39,10 @@ window/use_hidden_project_data_directory=true
 window/name="BodyLess"
 window/version="0.5"
 window/canvas_textures/default_texture_filter=0
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/Cafe-AudioManager/plugin.cfg")
 
 [filesystem]
 

@@ -64,7 +64,6 @@ func _update_debug_info() -> void:
 	debug_info_text.text = info_string
 
 func _connect_to_global_events() -> void:
-	GlobalEvents.play_sfx_by_key_requested.connect(_on_play_sfx_by_key_requested)
 	GlobalEvents.debug_log_requested.connect(_on_debug_log_requested)
 
 	# Conexões para Settings
@@ -91,7 +90,7 @@ func _connect_to_global_events() -> void:
 
 	# Conexões para UI
 	GlobalEvents.show_ui_requested.connect(_on_show_ui_requested)
-	GlobalEvents.hide_ui_requested.connect(_on_hide_ui_requested)
+	GlobalEvents.hide_ui_requested.connect(_on_on_hide_ui_requested)
 	GlobalEvents.show_quit_confirmation_requested.connect(_on_show_quit_confirmation_requested)
 	GlobalEvents.hide_quit_confirmation_requested.connect(_on_hide_quit_confirmation_requested)
 	GlobalEvents.quit_confirmed.connect(_on_quit_confirmed)
@@ -126,6 +125,13 @@ func _connect_to_global_events() -> void:
 	# Conexões para Input de Ação
 	GlobalEvents.input_action_triggered.connect(_on_input_action_triggered)
 
+	# Conexões para CafeAudioManager (Plugin)
+	if CafeAudioManager:
+		CafeAudioManager.play_sfx_requested.connect(_on_cafe_audio_manager_play_sfx_requested)
+		CafeAudioManager.play_music_requested.connect(_on_cafe_audio_manager_play_music_requested)
+		CafeAudioManager.music_track_changed.connect(_on_cafe_audio_manager_music_track_changed)
+		CafeAudioManager.volume_changed.connect(_on_cafe_audio_manager_volume_changed)
+
 func _log_signal(signal_name: String, args: Dictionary = {}) -> void:
 	var message = tr("DEBUG_SIGNAL_RECEIVED").format({"signal": signal_name})
 	if not args.is_empty():
@@ -148,12 +154,6 @@ func _log_message(text: String, level: String = "DEBUG") -> void:
 
 
 # --- Signal Handlers ---
-
-func _on_play_sfx_by_key_requested(sfx_key: String) -> void:
-	_log_signal("play_sfx_by_key_requested", {"key": sfx_key})
-
-func _on_music_track_changed(track_name: String) -> void:
-	_log_signal("music_track_changed", {"track": track_name})
 
 func _on_debug_log_requested(log_data: Dictionary) -> void:
 	_log_message(log_data.get("message", ""), log_data.get("level", "DEBUG"))
@@ -213,7 +213,7 @@ func _on_live_language_data_provided(language_data: Dictionary) -> void:
 func _on_show_ui_requested(ui_data: Dictionary) -> void:
 	_log_signal("show_ui_requested", {"data": ui_data})
 
-func _on_hide_ui_requested(ui_data: Dictionary) -> void:
+func _on_on_hide_ui_requested(ui_data: Dictionary) -> void:
 	_log_signal("hide_ui_requested", {"data": ui_data})
 
 func _on_show_quit_confirmation_requested() -> void:
@@ -299,3 +299,15 @@ func _on_quest_updated(quest_data: Dictionary) -> void:
 # Handlers para Input de Ação
 func _on_input_action_triggered(action_data: Dictionary) -> void:
 	_log_signal("input_action_triggered", {"data": action_data})
+
+func _on_cafe_audio_manager_play_sfx_requested(sfx_key: String, bus: String) -> void:
+	_log_signal("CafeAudioManager.play_sfx_requested", {"key": sfx_key, "bus": bus})
+
+func _on_cafe_audio_manager_play_music_requested(music_key: String) -> void:
+	_log_signal("CafeAudioManager.play_music_requested", {"key": music_key})
+
+func _on_cafe_audio_manager_music_track_changed(music_key: String) -> void:
+	_log_signal("CafeAudioManager.music_track_changed", {"track": music_key})
+
+func _on_cafe_audio_manager_volume_changed(bus_name: String, linear_volume: float) -> void:
+	_log_signal("CafeAudioManager.volume_changed", {"bus": bus_name, "volume": linear_volume})

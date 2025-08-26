@@ -285,7 +285,7 @@ func _update_resolution_options(monitor_index: int):
 # --- Handlers dos Botões de Categoria ---
 
 func _show_panel(panel_to_show: VBoxContainer, label_to_show: Label) -> void:
-	GlobalEvents.play_sfx_by_key_requested.emit("ui_click")
+	CafeAudioManager.play_sfx_requested.emit("ui_click", "SFX")
 	# Esconde todos os painéis de conteúdo
 	for child in $PanelContainer/Margin/Box/ContentHBox/ScrollContent/CategoryContent.get_children():
 		if child is VBoxContainer:
@@ -375,7 +375,7 @@ func _on_hdr_mode_selected(index: int) -> void:
 	GlobalEvents.setting_changed.emit({"hdr_mode": mode_id})
 
 func _on_hdr_calibration_button_pressed() -> void:
-	GlobalEvents.play_sfx_by_key_requested.emit("ui_click")
+	CafeAudioManager.play_sfx_requested.emit("ui_click", "SFX")
 	print("HDR Calibration button pressed (placeholder).")
 
 func _on_shaders_quality_selected(index: int) -> void:
@@ -398,22 +398,22 @@ func _on_ui_scale_selected(index: int) -> void:
 	GlobalEvents.setting_changed.emit({"ui_scale_preset": preset_key})
 
 func _on_language_button_pressed(locale_code: String):
-	GlobalEvents.play_sfx_by_key_requested.emit("ui_click")
+	CafeAudioManager.play_sfx_requested.emit("ui_click", "SFX")
 	GlobalEvents.language_changed.emit({"language": {"locale": locale_code}})
 	_update_language_buttons(locale_code)
 
 func _on_apply_button_pressed() -> void:
-	GlobalEvents.play_sfx_by_key_requested.emit("ui_click")
+	CafeAudioManager.play_sfx_requested.emit("ui_click", "SFX")
 	GlobalEvents.request_saving_settings_changed.emit()
 	print("Solicitação para salvar configurações enviada.")
 
 func _on_back_button_pressed() -> void:
-	GlobalEvents.play_sfx_by_key_requested.emit("ui_click")
+	CafeAudioManager.play_sfx_requested.emit("ui_click", "SFX")
 	GlobalEvents.request_loading_settings_changed.emit() # Descarta mudanças não salvas
 	GlobalEvents.return_to_previous_state_requested.emit()
 
 func _on_mouse_entered_interactive_element():
-	GlobalEvents.play_sfx_by_key_requested.emit("ui_rollover")
+	CafeAudioManager.play_sfx_requested.emit("ui_rollover", "SFX")
 
 
 # --- Handlers de Sinais Globais ---

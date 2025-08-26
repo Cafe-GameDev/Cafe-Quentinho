@@ -201,7 +201,7 @@ Loading resource: res://Scenes/UI/main_menu.tscn
 Loading resource: res://Scenes/UI/pause_menu.tscn
 Loading resource: res://Scenes/UI/options_menu.tscn
 Loading resource: res://Scenes/UI/quit_confirmation_dialog.tscn
-Running: C:/Users/bruno/Documents/Godot_v4.4.1-stable_win64_console.exe
+Running: C:/Users/bruno/Documents/Godot.exe
  %s --verbose
  %s --path
  %s C:/Users/bruno/Desktop/Nova%20pasta%20(2)/HeadLess
@@ -226,7 +226,7 @@ Loading resource: res://Scenes/UI/main_menu.tscn
 Loading resource: res://Scenes/UI/pause_menu.tscn
 Loading resource: res://Scenes/UI/options_menu.tscn
 Loading resource: res://Scenes/UI/quit_confirmation_dialog.tscn
-Running: C:/Users/bruno/Documents/Godot_v4.4.1-stable_win64_console.exe
+Running: C:/Users/bruno/Documents/Godot.exe
  %s --verbose
  %s --path
  %s C:/Users/bruno/Desktop/Nova%20pasta%20(2)/HeadLess

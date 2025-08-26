@@ -30,20 +30,20 @@ func _exit_tree():
 # --- Handlers de Botões ---
 
 func _on_new_game_button_pressed() -> void:
-	GlobalEvents.play_sfx_by_key_requested.emit("ui_click")
+	CafeAudioManager.play_sfx_requested.emit("ui_click", "SFX")
 	GlobalEvents.request_game_state_change.emit({"new_state": GameManager.GameState.keys()[GameManager.GameState.PLAYING], "reason": "new_game"})
 	GlobalEvents.scene_push_requested.emit("res://Scenes/world.tscn") # Ou a cena do primeiro nível
 
 func _on_options_button_pressed() -> void:
-	GlobalEvents.play_sfx_by_key_requested.emit("ui_click")
+	CafeAudioManager.play_sfx_requested.emit("ui_click", "SFX")
 	GlobalEvents.request_game_state_change.emit({"new_state": GameManager.GameState.keys()[GameManager.GameState.SETTINGS], "reason": "open_options"})
 
 func _on_exit_button_pressed() -> void:
-	GlobalEvents.play_sfx_by_key_requested.emit("ui_click")
+	CafeAudioManager.play_sfx_requested.emit("ui_click", "SFX")
 	GlobalEvents.request_game_state_change.emit({"new_state": GameManager.GameState.keys()[GameManager.GameState.QUIT_CONFIRMATION], "reason": "exit_game"})
 
 func _on_button_mouse_entered():
-	GlobalEvents.play_sfx_by_key_requested.emit("ui_rollover")
+	CafeAudioManager.play_sfx_requested.emit("ui_rollover", "SFX")
 
 
 # --- Handlers de Sinais do GameManager ---

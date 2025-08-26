@@ -207,7 +207,7 @@ Autoloads são cenas ou scripts carregados automaticamente no início do jogo, t
     *   **Acesso:** Acessados diretamente pelo nome definido nas configurações do projeto (ex: `PlayerData.health`).
     *   **Configuração:** Em `Projeto > Configurações do Projeto > Autoload`.
 
-**Como Promovem o Desacoplamento:** Autoloads podem facilmente levar a código fortemente acoplado. Na arquitetura "Café Essentials - Godot Brew Kit", nós os utilizamos de forma restrita e deliberada como a fundação para nossos sistemas globais. Nossos `Managers` (`AudioManager`, `SettingsManager`, etc.) são Autoloads, mas eles **não são chamados diretamente**. Em vez disso, eles **ouvem** os sinais do `GlobalEvents` e reagem a eles. O próprio EventBus é um Autoload. Portanto, usamos esse padrão global não para criar referências diretas, mas para fornecer a infraestrutura (o quadro de avisos) que permite que todo o resto se comunique de forma desacoplada.
+**Como Promovem o Desacoplamento:** Autoloads podem facilmente levar a código fortemente acoplado. Na arquitetura "Café Essentials - Godot Brew Kit", nós os utilizamos de forma restrita e deliberada como a fundação para nossos sistemas globais. Nossos `Managers` (`SettingsManager`, etc.) são Autoloads, mas eles **não são chamados diretamente**. Em vez disso, eles **ouvem** os sinais do `GlobalEvents` e reagem a eles. O próprio EventBus é um Autoload. Portanto, usamos esse padrão global não para criar referências diretas, mas para fornecer a infraestrutura (o quadro de avisos) que permite que todo o resto se comunique de forma desacoplada.
 
 ## Internacionalização (I18N): Conteúdo Desacoplado da Lógica
 
@@ -244,15 +244,24 @@ Nossa UI é construída usando cenas auto-contidas (`main_menu.tscn`, `options_m
 2.  **Para Reações:** Ela ouve sinais do `GlobalEvents` para saber quando deve aparecer ou se atualizar (ex: `GlobalEvents.game_state_changed.connect(_on_game_state_changed)`).
 Isso desacopla completamente a interface da lógica e das máquinas de estado do jogo.
 
+## Grãos Especiais: Plugins de Café
+
+No ecossistema "Café Essentials - Godot Brew Kit", os plugins são tratados como "Grãos Especiais" – componentes modulares que estendem a funcionalidade do seu projeto de forma desacoplada e eficiente. Eles são projetados para serem facilmente integrados, seguindo os princípios arquiteturais do template.
+
+*   **Integração:** Plugins são adicionados via a pasta `addons/` e ativados nas configurações do projeto.
+*   **Comunicação:** Preferencialmente, plugins devem se comunicar com o restante do jogo através de seus próprios sinais (atuando como EventBuses locais) ou ouvindo/emitindo sinais no `GlobalEvents` para interações mais amplas.
+*   **Exemplo: `Cafe-AudioManager`:** Este plugin substitui o `AudioManager` original, tornando-se o EventBus para todos os eventos de áudio (SFX e música). Ele gerencia o carregamento, reprodução e controle de volume de forma centralizada, garantindo que a lógica de áudio seja desacoplada da UI e de outros sistemas.
+
+---
 
 - Sempre que for para abrir o editor Godot, use as flags --verbose -e
 - O usuário prefere que eu sempre teste as modificações automaticamente após implementá-las.
-- Executavel da Godot: "C://Users/bruno/Documents/Godot_v4.4.1-stable_win64_console.exe"
+- Executavel da Godot: "C://Users/bruno/Desktop/Cafe-Quentinho/Essentials/Godot.exe"
 
 Sempre que possivel, use Dictionary
 EventBus, seja ele o GlobalEvents ou o LocalEvents, são obrigatorios, e nem mesmo eles podema acessar diretamente um script ou scene, apenas pode emitir sinais da propria godot
 
-- Ao criar um script ou cena, antes de usar / anexar o script a cena, ou ao instanciar essa cena dentro de outra, é obrigatorio abrir a godot usando as flags -e --verbose --import, para que a propria godot gere as uids invés de tentar "adivinhar" ou escolher uma. O caminho para a instalação da godot é "C://Users/bruno/Documents/Godot_v4.4.1-stable_win64_console.exe" abra ela com -e --verbose quando o usuario solicitar
+- Ao criar um script ou cena, antes de usar / anexar o script a cena, ou ao instanciar essa cena dentro de outra, é obrigatorio abrir a godot usando as flags -e --verbose --import, para que a propria godot gere as uids invés de tentar "adivinhar" ou escolher uma. O caminho para a instalação da godot é "C://Users/bruno/Desktop/Cafe-Quentinho/Essentials/Godot.exe" abra ela com -e --verbose quando o usuario solicitar
 
 ☕ O Template "Café Essentials": O Padrão de Engenharia do Repo Café
 
